@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.active {
+  color: #475DDB;
+}
+
+input:-webkit-autofill{
+  background: transparent;
+}
+
+@media screen and (max-width: 375px) {
+  .dropdown {
+    top: 15%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .dropdown {
+    top: 18%;
+  }
+}

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../../assets/where2go.png';
 import login from '../../assets/login.png';
 import { BsFacebook, BsGoogle } from 'react-icons/bs';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function RegistrationComponent() {
 
@@ -20,6 +21,32 @@ function RegistrationComponent() {
         setSecondVisibility(!secondVisibility);
     }
 
+    const formik = useFormik({
+		initialValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            mobile: '',
+            password: '',
+            confirmPassword:'',
+        },
+
+        validationSchema: Yup.object({
+            firstName: Yup.string().required('Field is required'),
+            lastName: Yup.string().required('Field is required'),
+            email: Yup.string().required('Field is required'),
+            mobile: Yup.string().required('Field is required'),
+            password: Yup.string().required('Field is required'),
+            confirmPassword: Yup.string().required('Field is required'),
+        }),
+
+        onSubmit: (values) => {
+            console.log(values);
+        }
+    });
+
+    const showError = (name) => formik.errors[name] && formik.touched[name] && formik.errors[name];
+
   return (
     <div className='flex justify-between bg-white text-others flex-grow h-[100vh] mt-14 lg:mt-0'>
         <div className='flex flex-col justify-center m-9 mx-auto'>
@@ -28,33 +55,33 @@ function RegistrationComponent() {
                 <p className='text-xl text-center'>Registrujte se da biste pristupili svom profilu</p>
             </div>
             <div>
-                <form className='flex flex-col items-center gap-2'>
+                <form onSubmit={formik.handleSubmit} className='flex flex-col items-center gap-2'>
                     <div className='flex flex-col lg:flex-row gap-2'>
                         <div className='flex flex-col lg:flex-col gap-2'>
-                            <label>Ime</label>
-                            <input type="text" className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Unesite ime...' />
+                            <label>Firstname {' '} <span className='text-[14px] text-red-600'> {showError('firstName')} </span></label>
+                            <input name='firstName' type="text" value={formik.values.firstName} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert Firstname...' />
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <label>Prezime</label>
-                            <input type="text" className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Unesite prezime...' />
+                            <label>Lastname {' '} <span className='text-[14px] text-red-600'> {showError('lastName')} </span></label>
+                            <input name='lastName' type="text" value={formik.values.lastName} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert Lastname...' />
                         </div>
                     </div>
 
                     <div className='flex flex-col lg:flex-row gap-2'>
                         <div className='flex flex-col gap-2'>
-                            <label>Email</label>
-                            <input type="email" className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Unesite email...' />
+                            <label>Email {' '} <span className='text-[14px] text-red-600'> {showError('email')} </span></label>
+                            <input name='email' type="email" value={formik.values.email} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert email...' />
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <label>Mobilni</label>
-                            <input type="text" className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Unesite broj telefona...' />
+                            <label>Mobile Phone {' '} <span className='text-[14px] text-red-600'> {showError('mobile')} </span></label>
+                            <input name='mobile' type="text" value={formik.values.mobile} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert mobile phone...' />
                         </div>
                     </div>
                     
                     <div className='flex flex-col lg:flex-row gap-2'>
-                        <div className='flex flex-col items-center lg:items-start relative gap-2'>
-                            <label>Lozinka</label>
-                            <input type={visibility ? "password" : "text"} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Unesite lozinku...' />
+                        <div className='flex flex-col lg:items-start relative gap-2'>
+                            <label>Password {' '} <span className='text-[14px] text-red-600'> {showError('password')} </span></label>
+                            <input name='password' type={visibility ? "password" : "text"} value={formik.values.password} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Insert password...' />
                             {visibility ? (
                                 <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handleVisibility}/>
                             ) : (
@@ -62,9 +89,9 @@ function RegistrationComponent() {
                             )}
                         </div>
 
-                        <div className='flex flex-col items-center lg:items-start relative gap-2'>
-                            <label>Potvrdi lozinku</label>
-                            <input type={secondVisibility ? "password" : "text"} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Potvrdite lozinku...' />
+                        <div className='flex flex-col lg:items-start relative gap-2'>
+                            <label>Confirm Password {' '} <span className='text-[14px] text-red-600'> {showError('confirmPassword')} </span></label>
+                            <input name='confirmPassword' type={secondVisibility ? "password" : "text"} value={formik.values.confirmPassword} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Confirm Password...' />
                             {secondVisibility ? (
                                 <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             ) : (
@@ -74,7 +101,7 @@ function RegistrationComponent() {
                     </div>
 
                     <div className='text-center mt-[15px] lg:mt-[20px]'>
-                        <button className='border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-16 py-3'>Registruj se</button>
+                        <button type='submit' className='border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-16 py-3'>Register</button>
                     </div>
 
                 </form>

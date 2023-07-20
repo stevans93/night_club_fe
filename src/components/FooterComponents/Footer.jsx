@@ -4,7 +4,7 @@ import FooterTop from './FooterTop/FooterTop';
 
 function Footer() {
   return (
-    <div className='static bottom-0 '>
+    <div className='static bottom-0'>
         <div className='bg-secondary py-[60px]'>
             <div className='container mx-auto px-4'>
                 <FooterTop />

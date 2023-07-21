@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import UserService from '../../services/userService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 function RegistrationComponent() {
@@ -31,32 +31,50 @@ function RegistrationComponent() {
             firstName: '',
             lastName: '',
             email: '',
-            mobile: '',
+            mobilePhone: '',
             password: '',
-            confirmPassword:'',
+            confPassword:'',
         },
 
         validationSchema: Yup.object({
             firstName: Yup.string().required('Field is required'),
             lastName: Yup.string().required('Field is required'),
             email: Yup.string().required('Field is required'),
-            mobile: Yup.string().required('Field is required'),
+            mobilePhone: Yup.string().required('Field is required'),
             password: Yup.string().required('Field is required'),
-            confirmPassword: Yup.string().required('Field is required'),
+            confPassword: Yup.string().required('Field is required'),
         }),
 
         onSubmit: async (values) => {
             try {
                 const response = await UserService.registerUser(values);
-                if(response.data === 200) {
-                    toast.success('Registration is successful!');
+                if(response.status === 200) {
+                    toast.success('Registration is successful!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,  
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                     setTimeout(() => {
-                        navigate('/');
+                        navigate('/home');
                     }, 3000)
                 } else {
-                    toast.warning('The user is already registered!');
+                    toast.warning('The user is already registered!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,  
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                 }
-                console.log(response.data);
+                console.log(response);
             } catch (errors) {
                 console.log(errors);
             }
@@ -93,8 +111,8 @@ function RegistrationComponent() {
                             <input name='email' type="email" value={formik.values.email} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert email...' />
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <label>Mobile Phone {' '} <span className='text-[14px] text-red-600'> {showError('mobile')} </span></label>
-                            <input name='mobile' type="text" value={formik.values.mobile} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert mobile phone...' />
+                            <label>Mobile Phone {' '} <span className='text-[14px] text-red-600'> {showError('mobilePhone')} </span></label>
+                            <input name='mobilePhone' type="text" value={formik.values.mobilePhone} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] focus:bg-white rounded-lg p-3' placeholder='Insert mobile phone...' />
                         </div>
                     </div>
                     
@@ -110,8 +128,8 @@ function RegistrationComponent() {
                         </div>
 
                         <div className='flex flex-col lg:items-start relative gap-2'>
-                            <label>Confirm Password {' '} <span className='text-[14px] text-red-600'> {showError('confirmPassword')} </span></label>
-                            <input name='confirmPassword' type={secondVisibility ? "password" : "text"} value={formik.values.confirmPassword} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Confirm Password...' />
+                            <label>Confirm Password {' '} <span className='text-[14px] text-red-600'> {showError('confPassword')} </span></label>
+                            <input name='confPassword' type={secondVisibility ? "password" : "text"} value={formik.values.confPassword} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Confirm Password...' />
                             {secondVisibility ? (
                                 <MdVisibility className='absolute top-[45px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             ) : (

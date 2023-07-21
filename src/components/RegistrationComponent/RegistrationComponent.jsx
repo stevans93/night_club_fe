@@ -6,8 +6,13 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import UserService from '../../services/userService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function RegistrationComponent() {
+
+    const navigate = useNavigate();
 
     const [visibility, setVisibility] = useState(true);
 
@@ -40,8 +45,23 @@ function RegistrationComponent() {
             confirmPassword: Yup.string().required('Field is required'),
         }),
 
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+            try {
+                const response = await UserService.registerUser(values);
+                if(response.data === 200) {
+                    toast.success('Registration is successful!');
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 3000)
+                } else {
+                    toast.warning('The user is already registered!');
+                }
+                console.log(response.data);
+            } catch (errors) {
+                console.log(errors);
+            }
+
+            formik.resetForm();
         }
     });
 
@@ -83,9 +103,9 @@ function RegistrationComponent() {
                             <label>Password {' '} <span className='text-[14px] text-red-600'> {showError('password')} </span></label>
                             <input name='password' type={visibility ? "password" : "text"} value={formik.values.password} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Insert password...' />
                             {visibility ? (
-                                <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handleVisibility}/>
+                                <MdVisibility className='absolute top-[45px] right-4 text-2xl' onClick={handleVisibility}/>
                             ) : (
-                                <MdVisibilityOff className='absolute top-[40px] right-4 text-2xl' onClick={handleVisibility}/>
+                                <MdVisibilityOff className='absolute top-[45px] right-4 text-2xl' onClick={handleVisibility}/>
                             )}
                         </div>
 
@@ -93,9 +113,9 @@ function RegistrationComponent() {
                             <label>Confirm Password {' '} <span className='text-[14px] text-red-600'> {showError('confirmPassword')} </span></label>
                             <input name='confirmPassword' type={secondVisibility ? "password" : "text"} value={formik.values.confirmPassword} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Confirm Password...' />
                             {secondVisibility ? (
-                                <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handlesecondVisibility}/>
+                                <MdVisibility className='absolute top-[45px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             ) : (
-                                <MdVisibilityOff className='absolute top-[40px] right-4 text-2xl' onClick={handlesecondVisibility}/>
+                                <MdVisibilityOff className='absolute top-[45px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             )}
                     </div>
                     </div>

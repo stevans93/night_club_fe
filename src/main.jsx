@@ -12,6 +12,8 @@ import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import MainLayout from './pages/MainLayout/MainLayout';
 import Contact from './pages/Contact/Contact';
+import About from './pages/About/About';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 const router = createBrowserRouter([
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/clubs',
                 element: <Clubs />
+            },
+            {
+                path: '/about',
+                element: <About />
             },
             {
                 path: '/contact',
@@ -46,6 +52,16 @@ const router = createBrowserRouter([
                 path: '/main/register',
                 element: <Registration />
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard />
+            }
         ]
     }
 ])

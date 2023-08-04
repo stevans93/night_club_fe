@@ -1,10 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './pages/Home/Home'
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css'
 import App from './App.jsx';
 import Clubs from './pages/Clubs/Clubs';
@@ -14,7 +11,10 @@ import MainLayout from './pages/MainLayout/MainLayout';
 import Contact from './pages/Contact/Contact';
 import About from './pages/About/About';
 import Dashboard from './pages/Dashboard/Dashboard';
-
+import { Provider } from 'react-redux';
+import store from './store/store';
+import DashboardMenu from './pages/DashboardMenu/DashboardMenu';
+import DashboardSettings from './pages/DashboardSettings/DashboardSettings';
 
 const router = createBrowserRouter([
     {
@@ -59,8 +59,12 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
             {
-                path: '/dashboard',
-                element: <Dashboard />
+                path: '/dashboard/menu',
+                element: <DashboardMenu />
+            },
+            {
+                path: '/dashboard/settings',
+                element: <DashboardSettings />
             }
         ]
     }
@@ -72,6 +76,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <Provider store={store}>
+            <RouterProvider router={router}/>
+        </Provider>
     </React.StrictMode>
 );

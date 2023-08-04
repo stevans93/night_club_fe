@@ -7,9 +7,14 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import UserService from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { loggedUser } from '../../store/userSlice';
+import { toast } from 'react-toastify';
 
 function LoginComponent() {
 
+    const dispatch = useDispatch();
     const [visibility, setVisibility] = useState(true);
     const navigate = useNavigate();
 
@@ -25,7 +30,51 @@ function LoginComponent() {
         }),
 
         onSubmit: (values) => {
-            console.log(values);
+            UserService.loginUser(values)
+                .then((res) => {
+                    if(res.status === 200) {
+                        toast.success('You are logged in!', {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,  
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+
+                        localStorage.setItem('nc_token', res.data.token);
+                        dispatch(loggedUser(res.data.user));
+                        
+                        setTimeout(() => {
+                            navigate('/home');
+                        }, 3000);
+                    } else {
+                        toast.warning('You are not logged in, wrong password!', {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,  
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .catch((err) => {
+                    toast.error(err.response.data.msg, {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,  
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                });
         }
     });
 

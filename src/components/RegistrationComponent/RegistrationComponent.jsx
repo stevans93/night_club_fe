@@ -47,7 +47,24 @@ function RegistrationComponent() {
 
         onSubmit: async (values) => {
             try {
+
+                if (values.password !== values.confPassword) {
+                    toast.warning('Passwords do not match!', {
+                      position: "top-right",
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+
+                    return;
+                }
+
                 const response = await UserService.registerUser(values);
+                
                 if(response.status === 200) {
                     toast.success('Registration is successful!', {
                         position: "top-right",
@@ -59,9 +76,11 @@ function RegistrationComponent() {
                         progress: undefined,
                         theme: "light",
                     });
+                    
                     setTimeout(() => {
                         navigate('/home');
                     }, 3000)
+
                 } else {
                     toast.warning('The user is already registered!', {
                         position: "top-right",
@@ -74,7 +93,6 @@ function RegistrationComponent() {
                         theme: "light",
                         });
                 }
-                console.log(response);
             } catch (errors) {
                 console.log(errors);
             }

@@ -12,6 +12,7 @@ export default {
         tertiary: '#f8f8ff',
         others: '#484848',
         font: '#8A8A8A',
+        dashboardPrimary: '#343A40',
       }
     },
   },

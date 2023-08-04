@@ -48,7 +48,7 @@ function LoginComponent() {
                         dispatch(loggedUser(res.data.user));
                         
                         setTimeout(() => {
-                            navigate('/home');
+                            navigate('/');
                         }, 3000);
                     } else {
                         toast.warning('You are not logged in, wrong password!', {
@@ -107,14 +107,11 @@ function LoginComponent() {
                         <MdVisibilityOff className='absolute top-[47px] right-4 text-2xl' onClick={handleVisibility}/>
                     )}
                 </div>
-                <div className='flex justify-center gap-3'>
-                    <p>Zapamti me</p> <input type="checkbox" name="" id="" />
-                </div>
-                <div className='text-center'>
+                <div className='text-center mt-5'>
                     <button type="submit" className='border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-16 py-2'>Sign in</button>
                 </div>
                 <div className='text-center'>
-                    <Link href="/">Zaboravili ste lozinku?</Link>Zapamti me
+                    <Link href="/" className='hover:text-primary'>Zaboravili ste lozinku?</Link>
                 </div>
             </form>
             <div className='flex flex-col items-center gap-2 mt-[30px] lg:mt-[50px] mb-8'>
@@ -122,7 +119,7 @@ function LoginComponent() {
                     <button className='flex flex-row border border-primary hover:bg-primary hover:text-white justify-center items-center text-primary text-lg w-[300px] h-[55px] rounded-[4px]'><BsFacebook className='text-3xl mr-2' />Prijavite se sa Facebook</button>
                     <button className='flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]'><BsGoogle className='text-3xl mr-2' />Prijavite se sa Google</button>
                 </div>
-                <a href="#"><p>Nemate nalog? Kreiraje ovde</p></a>
+                <Link to='/main/register' className='hover:text-primary'><p>Nemate nalog? Kreiraje ovde</p></Link>
             </div>
         </div>
     </div>

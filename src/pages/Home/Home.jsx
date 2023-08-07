@@ -127,9 +127,9 @@ const events = [
 function Home() {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex justify-center bg-[#F0F4F9]">
+      <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl px-20">
-          <h3 class="mb-6 text-3xl font-bold dark:text-white">
+          <h3 class="mb-6 text-3xl font-bold text-black">
             Premijum Mesta
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
@@ -139,9 +139,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center py-12">
         <div className="max-w-screen-xl px-20">
-          <h3 class="mb-6 text-3xl font-bold dark:text-white">
+          <h3 class="mb-6 text-3xl font-bold text-black">
             Regularna Mesta
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
@@ -151,9 +151,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center bg-[#F0F4F9]">
+      <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl px-20">
-          <h3 class="mb-6 text-3xl font-bold dark:text-white">Dogadjaji</h3>
+          <h3 class="mb-6 text-3xl font-bold text-black">Dogadjaji</h3>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
             {events.map((card) => {
               return <Card card={card} />;
@@ -163,15 +163,15 @@ function Home() {
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col items-center max-w-screen-xl px-20 py-20">
-          <h2 class="mb-6 text-3xl font-bold dark:text-white">
-            Zasto <span className="text-[#475DDB]">izabrati nas</span>
+          <h2 class="mb-6 text-3xl font-bold datext-blackrk:text-white">
+            Zasto <span className="text-[#475DDB]">Izabrati nas</span>
           </h2>
           <div className="flex gap-5">
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-[#475DDB] mb-5">
                 <img className="w-18 h-18" src={clocklIcon} alt="" />
               </div>
-              <h6 class="text-lg font-bold dark:text-white mb-3">
+              <h6 class="text-lg font-bold text-black mb-3">
                 Izaberite vreme
               </h6>
               <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">
@@ -189,7 +189,7 @@ function Home() {
                   alt=""
                 />
               </div>
-              <h6 class="text-lg font-bold dark:text-white mb-3">
+              <h6 class="text-lg font-bold text-black mb-3">
                 Rezervisete odmah
               </h6>
               <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">
@@ -203,7 +203,7 @@ function Home() {
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-[#475DDB] mb-5">
                 <img className="w-18 h-18 bg-[#475DDB]" src={pathIcon} alt="" />
               </div>
-              <h6 class="text-lg font-bold dark:text-white mb-3">
+              <h6 class="text-lg font-bold text-black mb-3">
                 100% bezbedno
               </h6>
               <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">

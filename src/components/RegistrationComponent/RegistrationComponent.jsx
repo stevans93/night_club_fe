@@ -104,8 +104,8 @@ function RegistrationComponent() {
     const showError = (name) => formik.errors[name] && formik.touched[name] && formik.errors[name];
 
   return (
-    <div className='flex justify-between bg-white text-others flex-grow h-[100vh] mt-14 lg:mt-0'>
-        <div className='flex flex-col justify-center m-9 mx-auto'>
+    <div className='flex justify-between bg-white text-others flex-grow h-[100vh] lg:mt-0'>
+        <div className='flex flex-col justify-center mt-[350px] md:mt-[200px] lg:m-9 mx-auto'>
             <div className='flex flex-col items-center gap-2 m-4'>
                 <img src={logo} alt="login" className='w-[250px]'/>
                 <p className='text-xl text-center'>Registrujte se da biste pristupili svom profilu</p>

@@ -86,8 +86,8 @@ function LoginComponent() {
 
   return (
     <div className='flex flex-grow justify-between bg-white text-others h-[100vh]'>
-    <div className='flex flex-col justify-center m-9 mx-auto'>
-        <div className='flex flex-col items-center gap-2 m-4s'>
+    <div className='flex flex-col justify-center mt-[100px] lg:mt-0 mx-auto'>
+        <div className='flex flex-col items-center gap-2'>
             <img src={logo} alt="login" className='w-[250px]'/>
             <p className='text-xl text-center'>Prijavite se da biste pristupili svom profilu</p>
         </div>
@@ -107,14 +107,14 @@ function LoginComponent() {
                         <MdVisibilityOff className='absolute top-[47px] right-4 text-2xl' onClick={handleVisibility}/>
                     )}
                 </div>
-                <div className='text-center mt-5'>
+                <div className='text-center mt-3'>
                     <button type="submit" className='border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-16 py-2'>Sign in</button>
                 </div>
                 <div className='text-center'>
                     <Link href="/" className='hover:text-primary'>Zaboravili ste lozinku?</Link>
                 </div>
             </form>
-            <div className='flex flex-col items-center gap-2 mt-[30px] lg:mt-[50px] mb-8'>
+            <div className='flex flex-col items-center gap-2 mt-[30px] lg:mt-[20px] mb-2'>
                 <div className='flex flex-col lg:flex-row gap-2'>
                     <button className='flex flex-row border border-primary hover:bg-primary hover:text-white justify-center items-center text-primary text-lg w-[300px] h-[55px] rounded-[4px]'><BsFacebook className='text-3xl mr-2' />Prijavite se sa Facebook</button>
                     <button className='flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]'><BsGoogle className='text-3xl mr-2' />Prijavite se sa Google</button>

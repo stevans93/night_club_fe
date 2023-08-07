@@ -9,13 +9,14 @@ import { BiFoodMenu, BiWrench } from 'react-icons/bi';
 import { PiContactlessPayment } from 'react-icons/pi';
 import { MdOutlineSupportAgent } from 'react-icons/md';
 import { HiOutlineUserGroup } from 'react-icons/hi';
+import avatar from '../../../assets/avatar.png';
 
 function DashboardSidebar({children, open}) {
   return (
     <div className='flex'>
       <div className={`fixed ${open ? "w-20 md:w-60" : "w-60 md:w-20"} duration-300 h-screen p-4 bg-dashboardPrimary text-white flex items-center flex-col`}>
         <div className='my-6'>
-          Admin Img
+          <img src={avatar} alt="avatar" />
         </div>
         <div className='flex justify-center flex-col gap-4'>
           <NavLink to='/' className='flex'> <AiOutlineHome className='mr-2 text-2xl' /> <span className={` ${open ? 'hidden md:block' : 'md:hidden'}`}>Home</span> </NavLink>

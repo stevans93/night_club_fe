@@ -77,19 +77,37 @@ function Navbar() {
                 )}
             </div>
 
-            <div className={`${open ? '' : 'hidden'} dropdown absolute flex flex-col justify-center items-center top-[13%] sm:top-[10%] md:top-[9%] left-0 text-center bg-secondary w-[100%]`}>
-                <NavLink to='/' className='m-2'>Početna</NavLink>
-                <NavLink to='/clubs' className='m-2'>Ugostiteljski Objekti</NavLink>
-                <NavLink to='/about' className='m-2'>O Nama</NavLink>
-                <NavLink to='/contact' className='m-2'>Kontakt</NavLink>
-                <NavLink to='/events' className='m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2'>Događaji</NavLink>
-                <NavLink to='/main/login' className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Login</NavLink>
-                <NavLink to='/main/register' className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Register</NavLink>
-                <select className='bg-secondary mt-2 mb-3'>
-                    <option>SR</option>
-                    <option>EN</option>
-                </select>
-            </div>
+            {localStorage.hasOwnProperty('nc_user') ? (
+                <div className={`${open ? '' : 'hidden'} dropdown absolute flex flex-col justify-center items-center top-[13%] sm:top-[10%] md:top-[9%] left-0 text-center bg-secondary w-[100%]`}>
+                    <NavLink to='/' className='m-2'>Početna</NavLink>
+                    <NavLink to='/clubs' className='m-2'>Ugostiteljski Objekti</NavLink>
+                    <NavLink to='/about' className='m-2'>O Nama</NavLink>
+                    <NavLink to='/contact' className='m-2'>Kontakt</NavLink>
+                    <NavLink to='/events' className='m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2'>Događaji</NavLink>
+                    <NavLink to='/dashboard' className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Dashboard</NavLink>
+                    <button onClick={handleLogOut} className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Log Out</button>
+                    <select className='bg-secondary mt-2 mb-3'>
+                        <option>SR</option>
+                        <option>EN</option>
+                    </select>
+                </div>
+            ) : (
+                <div className={`${open ? '' : 'hidden'} dropdown absolute flex flex-col justify-center items-center top-[13%] sm:top-[10%] md:top-[9%] left-0 text-center bg-secondary w-[100%]`}>
+                    <NavLink to='/' className='m-2'>Početna</NavLink>
+                    <NavLink to='/clubs' className='m-2'>Ugostiteljski Objekti</NavLink>
+                    <NavLink to='/about' className='m-2'>O Nama</NavLink>
+                    <NavLink to='/contact' className='m-2'>Kontakt</NavLink>
+                    <NavLink to='/events' className='m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2'>Događaji</NavLink>
+                    <NavLink to='/main/login' className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Login</NavLink>
+                    <NavLink to='/main/register' className='m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2'>Register</NavLink>
+                    <select className='bg-secondary mt-2 mb-3'>
+                        <option>SR</option>
+                        <option>EN</option>
+                    </select>
+                </div>
+            )}
+
+            
         </nav>
     </>
   )

@@ -8,7 +8,7 @@ function Card(props) {
         <a href="#">
           <img className="rounded-t-lg" src={party_image} alt="" />
         </a>
-        {props.card.badge && <Badge badgeType={props.card.badge} className="absolute top-5 left-4" />}
+        {props.card.badge && <Badge badgeType={props.card.badge} className="absolute top-5 left-4 " />}
       </div>
       <div className="flex items-center justify-between p-5">
         <div>

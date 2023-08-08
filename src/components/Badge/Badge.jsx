@@ -18,16 +18,16 @@ function Badge(props) {
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            enable-background="new 0 0 512 512"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            enableBackground="new 0 0 512 512"
           >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               stroke="#CCCCCC"
-              stroke-width="5.12"
+              strokeWidth="5.12"
             ></g>
             <g id="SVGRepo_iconCarrier">
               <g>
@@ -37,7 +37,7 @@ function Badge(props) {
           </svg>
         </span>
       )}
-      {props.badgeType === "premium" && <span>PREMIJUM MESTO</span>}
+      {props.badgeType === "premium" && <span className="text-black font-bold">PREMIJUM MESTO</span>}
       {props.badgeType === "event" && <span className="pl-5">DOGADJAJI</span>}
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import pathIcon from "../../assets/path.svg";
@@ -5,127 +6,8 @@ import clocklIcon from "../../assets/clock.svg";
 import surfaceIcon from "../../assets/surface.svg";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import CarouselText from "../../components/CarouselText/CarouselText";
-
-const premium = [
-  {
-    id: 1,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-  {
-    id: 2,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-  {
-    id: 3,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-  {
-    id: 4,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-  {
-    id: 5,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-  {
-    id: 6,
-    title: "River",
-    description: "Night Club",
-    location: "Belgarde, Serbia",
-    badge: "premium",
-  },
-];
-
-const regular = [
-  {
-    id: 1,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-  {
-    id: 2,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-  {
-    id: 3,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-  {
-    id: 4,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-  {
-    id: 5,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-  {
-    id: 6,
-    title: "Porta",
-    description: "Caffe Bar",
-    location: "Kragujevac, Serbia",
-    badge: undefined,
-  },
-];
-
-const events = [
-  {
-    id: 1,
-    title: "Suncanje - Sunday",
-    description: "pocinje od 14:00",
-    location: "Belgarde, Serbia",
-    badge: "event",
-  },
-  {
-    id: 2,
-    title: "Suncanje - Sunday",
-    description: "pocinje od 14:00",
-    location: "Belgarde, Serbia",
-    badge: "event",
-  },
-  {
-    id: 3,
-    title: "Suncanje - Sunday",
-    description: "pocinje od 14:00",
-    location: "Belgarde, Serbia",
-    badge: "event",
-  },
-  {
-    id: 4,
-    title: "Suncanje - Sunday",
-    description: "pocinje od 14:00",
-    location: "Belgarde, Serbia",
-    badge: "event",
-  },
-];
+import EventList from "../../components/EventList/EventList";
+import ClubList from "../../components/ClubList/ClubList";
 
 const carouselItems = [
   { image: "party-image.jpg", content: "" },
@@ -143,15 +25,17 @@ function Home() {
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Premijum Mesta</h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
+              Premijum Mesta
+            </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                class="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -159,20 +43,20 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                class="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -180,35 +64,33 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {premium.map((card) => {
-              return <Card key={card.id} card={card} button='Istrazi' />;
-            })}
-          </div>
+          <ClubList bannerImage='Premium Mesto' />
         </div>
       </div>
       <div className="flex justify-center py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Regularna Mesta</h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
+              Regularna Mesta
+            </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                class="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -216,20 +98,20 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                class="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -237,35 +119,33 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-            {regular.map((card) => {
-              return <Card key={card.id} card={card} button='Istrazi' />;
-            })}
-          </div>
+          <ClubList bannerImage='Regularno Mesto' />
         </div>
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Dogadjaji</h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
+              Dogadjaji
+            </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                class="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -273,20 +153,20 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                class="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -294,21 +174,17 @@ function Home() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span class="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
-            {events.map((card) => {
-              return <Card key={card.id} card={card} button='Istrazi' />;
-            })}
-          </div>
+          <EventList />
         </div>
       </div>
       <div className="flex justify-center">

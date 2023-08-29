@@ -6,10 +6,10 @@ function Badge(props) {
     <div
       className={`inline-flex items-center pr-5 p-1 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none
         ${props.className} 
-        ${props.badgeType === "event" && eventStyle}
-        ${props.badgeType === "premium" && premiumStyle}`}
+        ${props.bannerImage === "Dogadjaj" && eventStyle}
+        ${props.bannerImage === "Premium Mesto" && premiumStyle}`}
     >
-      {props.badgeType === "premium" && (
+      {props.bannerImage === "Premium Mesto" && (
         <span className="inline-flex items-center justify-center w-4 h-4 mx-2">
           <svg
             fill="#000000"
@@ -37,8 +37,8 @@ function Badge(props) {
           </svg>
         </span>
       )}
-      {props.badgeType === "premium" && <span className="text-black font-bold">PREMIJUM MESTO</span>}
-      {props.badgeType === "event" && <span className="pl-5">DOGADJAJI</span>}
+      {props.bannerImage === "Premium Mesto" && <span className="text-black font-bold">PREMIJUM MESTO</span>}
+      {props.bannerImage === "Dogadjaj" && <span className="pl-5">DOGADJAJI</span>}
     </div>
   );
 }

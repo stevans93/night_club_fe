@@ -5,15 +5,20 @@ function Card(props) {
     <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="relative">
         <a href="#">
-          <img className="rounded-t-lg" src="../assets/party-image.jpg" alt="" />
+          <img className="rounded-t-lg" src={props.card.image} alt="" />
         </a>
-        {props.card.badge && <Badge badgeType={props.card.badge} className="absolute top-5 left-4 " />}
+        {props.card.bannerImage && (
+          <Badge
+            bannerImage={props.card.bannerImage}
+            className="absolute top-5 left-4 "
+          />
+        )}
       </div>
       <div className="flex items-center justify-between p-5">
         <div>
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-              {props.card.title}
+              {props.card.name}
             </h5>
           </a>
           <p className="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400">

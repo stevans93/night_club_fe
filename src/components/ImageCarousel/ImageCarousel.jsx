@@ -3,7 +3,7 @@ import { Carousel } from "flowbite-react";
 export default function ImageCarousel() {
   return (
     <div className="h-full">
-      <Carousel showArrows={false} slideInterval={5000}>
+      <Carousel slideInterval={5000}>
         <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
           <img
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 xs:h-full sm:h-auto"

@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const InputForm = (props) => {
+const ClubInputForm = (props) => {
+
   const [selectedIme, setSelectedIme] = useState("");
   const [selectedTip, setSelectedTip] = useState("");
-  const [selectedGrad, setSelectedGrad] = useState("");
 
   const handleChangIme = (event) => {
     setSelectedIme(event.target.value);
@@ -15,18 +15,13 @@ const InputForm = (props) => {
     props.handleChangTip(event.target.value);
   };
 
-  const handleChangeGrad = (event) => {
-    setSelectedGrad(event.target.value);
-    props.handleChangeGrad(event.target.value);
-  };
-
   const handleChangDate = (event) => {
     props.handleChangDate(event.target.value);
   };
 
   return (
     <div className="flex xs:flex-col sm:flex-row flex-wrap gap-5 mb-10">
-      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
+      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-quater xs:max-w-full">
         <label htmlFor="ime">Ime</label>
         <select
           className="border-black border-2 px-3 py-1 h-full rounded"
@@ -38,7 +33,7 @@ const InputForm = (props) => {
           </option>
         </select>
       </div>
-      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
+      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-quater xs:max-w-full">
         <label htmlFor="tip">Tip</label>
         <select
           className="border-black border-2 px-3 py-1 h-full rounded"
@@ -50,19 +45,7 @@ const InputForm = (props) => {
           </option>
         </select>
       </div>
-      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="gde">Gde</label>
-        <select
-          className="border-black border-2 px-3 py-1 h-full rounded"
-          value={selectedGrad}
-          onChange={handleChangeGrad}
-        >
-          <option value="" disabled>
-            Izaberi grad
-          </option>
-        </select>
-      </div>
-      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
+      <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-quater xs:max-w-full">
         <label htmlFor="kada">Kada</label>
         <input
           id="kada"
@@ -75,4 +58,4 @@ const InputForm = (props) => {
   );
 };
 
-export default InputForm;
+export default ClubInputForm;

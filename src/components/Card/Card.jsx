@@ -21,6 +21,9 @@ function Card(props) {
               {props.card.name}
             </h5>
           </a>
+          <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900 dark:text-white">
+            {props.card.dateOfEvent}
+          </h5>
           <p className="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400">
             {props.card.description}
           </p>

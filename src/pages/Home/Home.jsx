@@ -1,25 +1,17 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Card from "../../components/Card/Card";
 import pathIcon from "../../assets/path.svg";
 import clocklIcon from "../../assets/clock.svg";
 import surfaceIcon from "../../assets/surface.svg";
-import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import CarouselText from "../../components/CarouselText/CarouselText";
 import EventList from "../../components/EventList/EventList";
 import ClubList from "../../components/ClubList/ClubList";
-
-const carouselItems = [
-  { image: "party-image.jpg", content: "" },
-  { image: "party-image-2.jpg", content: "" },
-  { image: "party-image-3.avif", content: "" },
-];
+import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 
 function Home() {
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-        <ImageCarousel items={carouselItems} />
+        <ImageCarousel />
         <CarouselText />
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
@@ -74,7 +66,7 @@ function Home() {
               </button>
             </div>
           </div>
-          <ClubList bannerImage='Premium Mesto' />
+          <ClubList bannerImage='Premium Mesto' button='Istrazi'/>
         </div>
       </div>
       <div className="flex justify-center py-12">
@@ -129,7 +121,7 @@ function Home() {
               </button>
             </div>
           </div>
-          <ClubList bannerImage='Regularno Mesto' />
+          <ClubList bannerImage='Regularno Mesto' button='Istrazi' />
         </div>
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
@@ -184,7 +176,7 @@ function Home() {
               </button>
             </div>
           </div>
-          <EventList />
+          <EventList button='Bookiraj' />
         </div>
       </div>
       <div className="flex justify-center">

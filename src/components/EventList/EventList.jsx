@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Card from "../Card/Card";
 
-const EventList = () => {
+const EventList = (props) => {
   const [events, setEvents] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const EventList = () => {
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">
       {events &&
         events.map((card) => {
-          return <Card key={card._id} card={card} button="Bookiraj" />;
+          return <Card key={card._id} card={card} button={props.button} />;
         })}
     </div>
   );

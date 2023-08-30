@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  plugins: [require("flowbite/plugin")],
+  content: ["./index.html", "./node_modules/flowbite-react/**/*.js", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       screens: {
@@ -16,6 +17,7 @@ export default {
       },
       height: {
         h700: "700px",
+        h550: '550px',
       },
       maxWidth: {
         half: "50%",

@@ -21,6 +21,7 @@ module.exports = {
       },
       maxWidth: {
         half: "50%",
+        quater: '25%',
       },
     },
   },

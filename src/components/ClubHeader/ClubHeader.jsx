@@ -10,7 +10,7 @@ const ClubHeader = () => {
         <div className="flex gap-10 items-center">
           <span className="text-xl">Logo</span>
           <div className="flex">
-            <ul className="flex gap-5 items-center">
+            <ul className="flex gap-5 items-center m-0">
               <li>
                 <Link to="">Home</Link>
               </li>

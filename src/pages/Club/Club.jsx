@@ -1,11 +1,37 @@
 import { RiSearchLine } from "react-icons/ri";
 import ClubHeader from "../../components/ClubHeader/ClubHeader";
+import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
 import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
-import DrinksCarousel from "../../components/DrinksCarousel/DrinksCarousel";
+import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";
 import EventList from "../../components/EventList/EventList";
-import InputForm from "../../components/InputForm/InputForm";
+import { useState } from "react";
 
 const Club = () => {
+  const [selectedParams, setSelectedParams] = useState({
+    clubId: "64edf0d0c92b5de1e5f7eb9a",
+  });
+  
+  const handleChangIme = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      ime: value,
+    }));
+  };
+
+  const handleChangTip = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      tip: value,
+    }));
+  };
+
+  const handleChangDate = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      date: value,
+    }));
+  };
+
   return (
     <>
       <ClubHeader />
@@ -33,7 +59,7 @@ const Club = () => {
             </span>{" "}
             Category
           </h2>
-          <DrinksCarousel />
+          <DrinkMenu clubId="64ee53cb2744ff39426bddff" />
         </div>
       </div>
       <div className="flex flex-col items-center">
@@ -44,11 +70,15 @@ const Club = () => {
           <h3 className="mb-10 text-5xl font-bold dark:text-white">
             Dogadjaji
           </h3>
-          <InputForm />
-          <EventList button='Bookiraj' />
+          <ClubInputForm
+            handleChangIme={handleChangIme}
+            handleChangTip={handleChangTip}
+            handleChangDate={handleChangDate}
+          />
+          <EventList button="Bookiraj" params={selectedParams} />
         </div>
       </div>
-      <ContactMap bg='#F0F4F9' />
+      <ContactMap bg="#F0F4F9" />
     </>
   );
 };

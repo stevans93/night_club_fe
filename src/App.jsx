@@ -32,10 +32,10 @@ function App() {
       {/* <Header />
         <Navbar /> */}
       <Outlet />
-      <Footer />
+      <Footer clubId='64ee53cb2744ff39426bddff' />
       <ToastContainer />
     </div>
-  );
+  );;
 }
 
 export default App;

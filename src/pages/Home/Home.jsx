@@ -24,18 +24,16 @@ function Home() {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              
               Premijum Mesta
-            
             </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                classNameName="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -49,14 +47,14 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                classNameName="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -70,7 +68,7 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>
@@ -81,18 +79,16 @@ function Home() {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              
               Regularna Mesta
-            
             </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                classNameName="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -106,14 +102,14 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                classNameName="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -127,7 +123,7 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>
@@ -138,18 +134,16 @@ function Home() {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              
               Dogadjaji
-            
             </h3>
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
                 type="button"
-                classNameName="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -163,14 +157,14 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
               <button
                 type="button"
-                classNameName="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
                 <svg
-                  classNameName="w-5 h-5"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -184,7 +178,7 @@ function Home() {
                     d="M1 5h12m0 0L9 1m4 4L9 9"
                   />
                 </svg>
-                <span classNameName="sr-only">Icon description</span>
+                <span className="sr-only">Icon description</span>
               </button>
             </div>
           </div>

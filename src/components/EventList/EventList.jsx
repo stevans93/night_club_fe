@@ -19,14 +19,19 @@ const EventList = (props) => {
           }
         }
       }
-      console.log(queryString);
       const response = await fetch(
         `http://localhost:4000/api/event/allEvents/${queryString}`
       );
       const json = await response.json();
 
       if (response.ok) {
-        setEvents(json);
+        setEvents(json.events);
+        if (props.setNumberOfPages) {
+          props.setNumberOfPages(json.numberOfPages);
+        }
+        if (props.setNumberOfEvents) {
+          props.setNumberOfEvents(json.numberOfEvents);
+        }
       }
     };
 

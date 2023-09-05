@@ -14,6 +14,23 @@ function Home() {
     pageSize: 3,
   });
 
+  const [numberOfPages, setNumberOfPages] = useState(1);
+  const [numberOfEvents, setNumberOfEvents] = useState();
+
+  const handleNextPage = () => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      pageNumber: selectedParams.pageNumber + 1,
+    }));
+  };
+
+  const handlePrevPage = () => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      pageNumber: selectedParams.pageNumber - 1,
+    }));
+  };
+
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
@@ -29,6 +46,7 @@ function Home() {
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
+                onClick={handlePrevPage}
                 type="button"
                 className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -50,6 +68,7 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
+                onClick={handleNextPage}
                 type="button"
                 className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -84,6 +103,7 @@ function Home() {
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve (50)</Link>
               <button
+                onClick={handlePrevPage}
                 type="button"
                 className="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
@@ -105,6 +125,7 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
+                onClick={handleNextPage}
                 type="button"
                 className="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
@@ -137,8 +158,12 @@ function Home() {
               Dogadjaji
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve (50)</Link>
+              <Link to="/events" className="mr-5">
+                Vidi sve ({numberOfEvents})
+              </Link>
               <button
+                onClick={handlePrevPage}
+                disabled={selectedParams.pageNumber === 1}
                 type="button"
                 className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -160,6 +185,8 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
+                onClick={handleNextPage}
+                disabled={selectedParams.pageNumber === numberOfPages}
                 type="button"
                 className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -182,7 +209,12 @@ function Home() {
               </button>
             </div>
           </div>
-          <EventList params={selectedParams} button="Bookiraj" />
+          <EventList
+            params={selectedParams}
+            setNumberOfPages={setNumberOfPages}
+            setNumberOfEvents={setNumberOfEvents}
+            button="Bookiraj"
+          />
         </div>
       </div>
       <div className="flex justify-center">

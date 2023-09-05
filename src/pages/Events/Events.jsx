@@ -4,7 +4,17 @@ import EventList from "../../components/EventList/EventList";
 import InputForm from "../../components/InputForm/InputForm";
 
 const Events = () => {
-  const [selectedParams, setSelectedParams] = useState({});
+  const [selectedParams, setSelectedParams] = useState({
+    pageNumber: 1,
+    pageSize: 6,
+  });
+
+  const handleLoadMore = () => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      pageSize: selectedParams.pageSize + 6,
+    }));
+  };
 
   const handleChangIme = (value) => {
     setSelectedParams((selectedParams) => ({
@@ -39,9 +49,15 @@ const Events = () => {
           handleChangTip={handleChangTip}
           handleChangDate={handleChangDate}
         />
-        <EventList params={selectedParams} button="Bookiraj" />
+        <EventList
+          params={selectedParams}
+          button="Bookiraj"
+        />
       </div>
-      <button className="mt-10 inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-[#475DDB] rounded-full hover:bg-[#475DDB] focus:ring-4 focus:outline-none focus:ring-[#475DDB] dark:bg-[#475DDB] dark:hover:bg-[#475DDB] dark:focus:ring-[#475DDB]">
+      <button
+        onClick={handleLoadMore}
+        className="mt-10 inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-[#475DDB] rounded-full hover:bg-[#475DDB] focus:ring-4 focus:outline-none focus:ring-[#475DDB] dark:bg-[#475DDB] dark:hover:bg-[#475DDB] dark:focus:ring-[#475DDB]"
+      >
         Vidi jos
       </button>
     </div>

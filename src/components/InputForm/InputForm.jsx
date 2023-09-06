@@ -1,23 +1,23 @@
 import { useState } from "react";
 
 const InputForm = (props) => {
-  const [selectedIme, setSelectedIme] = useState("");
+  const [selectedName, setSelectedName] = useState("");
   const [selectedTip, setSelectedTip] = useState("");
-  const [selectedGrad, setSelectedGrad] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
 
-  const handleChangIme = (event) => {
-    setSelectedIme(event.target.value);
-    props.handleChangIme(event.target.value);
+  const handleChangeName = (event) => {
+    setSelectedName(event.target.value);
+    props.handleChangeName(event.target.value);
   };
 
-  const handleChangTip = (event) => {
+  const handleChangeTip = (event) => {
     setSelectedTip(event.target.value);
-    props.handleChangTip(event.target.value);
+    props.handleChangeTip(event.target.value);
   };
 
-  const handleChangeGrad = (event) => {
-    setSelectedGrad(event.target.value);
-    props.handleChangeGrad(event.target.value);
+  const handleChangeLocation = (event) => {
+    setSelectedLocation(event.target.value);
+    props.handleChangeLocation(event.target.value);
   };
 
   const handleChangDate = (event) => {
@@ -28,39 +28,30 @@ const InputForm = (props) => {
     <div className="flex xs:flex-col sm:flex-row flex-wrap gap-5 mb-10">
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
         <label htmlFor="ime">Ime</label>
-        <select
+        <input
           className="border-black border-2 px-3 py-1 h-full rounded"
-          value={selectedIme}
-          onChange={handleChangIme}
-        >
-          <option value="" disabled>
-            Ime dogadjaja
-          </option>
-        </select>
+          value={selectedName}
+          onChange={handleChangeName}
+          placeholder='Ime dogadjaja'
+        />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
         <label htmlFor="tip">Tip</label>
-        <select
+        <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedTip}
-          onChange={handleChangTip}
-        >
-          <option value="" disabled>
-            Tip dogadjaja
-          </option>
-        </select>
+          onChange={handleChangeTip}
+          placeholder='Tip mesta'
+        />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
         <label htmlFor="gde">Gde</label>
-        <select
+        <input
           className="border-black border-2 px-3 py-1 h-full rounded"
-          value={selectedGrad}
-          onChange={handleChangeGrad}
-        >
-          <option value="" disabled>
-            Izaberi grad
-          </option>
-        </select>
+          value={selectedLocation}
+          onChange={handleChangeLocation}
+          placeholder='izaberi grad'
+        />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
         <label htmlFor="kada">Kada</label>

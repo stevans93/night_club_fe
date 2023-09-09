@@ -34,7 +34,6 @@ const Club = () => {
 
   return (
     <>
-      <ClubHeader />
       <div className="flex flex-col bg-[#F0F4F9]">
         <div className="flex h-h550 items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
           <img

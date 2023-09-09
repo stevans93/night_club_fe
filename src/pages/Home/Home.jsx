@@ -16,6 +16,7 @@ function Home() {
 
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfEvents, setNumberOfEvents] = useState();
+  const [numberOfClubs, setNumberOfClubs] = useState();
 
   const handleNextPage = () => {
     setSelectedParams((selectedParams) => ({
@@ -44,7 +45,7 @@ function Home() {
               Premijum Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve (50)</Link>
+              <Link className="mr-5">Vidi sve ({numberOfClubs})</Link>
               <button
                 onClick={handlePrevPage}
                 type="button"
@@ -91,7 +92,11 @@ function Home() {
               </button>
             </div>
           </div>
-          <ClubList bannerImage="Premium Mesto" button="Istrazi" />
+          <ClubList
+            setNumberOfClubs={setNumberOfClubs}
+            bannerImage="Premium Mesto"
+            button="Istrazi"
+          />
         </div>
       </div>
       <div className="flex justify-center py-12">
@@ -101,7 +106,7 @@ function Home() {
               Regularna Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve (50)</Link>
+              <Link className="mr-5">Vidi sve ({numberOfClubs})</Link>
               <button
                 onClick={handlePrevPage}
                 type="button"
@@ -148,7 +153,11 @@ function Home() {
               </button>
             </div>
           </div>
-          <ClubList bannerImage="Regularno Mesto" button="Istrazi" />
+          <ClubList
+            setNumberOfClubs={setNumberOfClubs}
+            bannerImage="Regularno Mesto"
+            button="Istrazi"
+          />
         </div>
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">

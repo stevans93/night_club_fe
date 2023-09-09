@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/Home/Home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import Clubs from "./pages/Clubs/Clubs";
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/club",
+        path: "/club/:clubId",
         element: <Club />,
       },
     ],

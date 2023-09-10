@@ -1,24 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
+import { useParams } from "react-router-dom";
 
 const EventList = (props) => {
   const [events, setEvents] = useState(null);
 
+  const { clubId } = useParams();
+
   useEffect(() => {
     const fetchEvents = async () => {
       let queryString = ``;
+      if (clubId) {
+        queryString += `?clubId=${clubId}`;
+      }
       if (props.params) {
         for (const [index, [key, value]] of Object.entries(
           props.params
         ).entries()) {
-          if (index === 0) {
+          if (index === 0 && !clubId) {
             queryString += `?${key}=${value}`;
           } else {
             queryString += `&${key}=${value}`;
           }
         }
       }
+      console.log(queryString);
       const response = await fetch(
         `http://localhost:4000/api/event/allEvents/${queryString}`
       );

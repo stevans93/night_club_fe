@@ -49,10 +49,7 @@ const Events = () => {
           handleChangTip={handleChangTip}
           handleChangDate={handleChangDate}
         />
-        <EventList
-          params={selectedParams}
-          button="Bookiraj"
-        />
+        <EventList params={selectedParams} button="Bookiraj" />
       </div>
       <button
         onClick={handleLoadMore}

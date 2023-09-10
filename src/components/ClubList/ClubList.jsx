@@ -27,14 +27,6 @@ const ClubList = (props) => {
         setClubs(json.clubs);
       }
 
-      if (props.bannerImage === "Premium Mesto") {
-        setClubs(json.clubs.filter((x) => x.bannerImage === "Premium Mesto"));
-      }
-
-      if (props.bannerImage === "Regularno Mesto") {
-        setClubs(json.clubs.filter((x) => x.bannerImage === "Regularno Mesto"));
-      }
-
       if (props.setNumberOfPages) {
         props.setNumberOfPages(json.numberOfPages);
       }

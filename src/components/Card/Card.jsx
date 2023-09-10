@@ -6,7 +6,7 @@ function Card(props) {
     <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="relative">
         <a href="#">
-          <img className="rounded-t-lg" src={props.card.image} alt="" />
+          <img className="rounded-t-lg" src={props.card.profileImage ?? props.card.image} alt="" />
         </a>
         {props.card.bannerImage && (
           <Badge

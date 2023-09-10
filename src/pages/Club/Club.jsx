@@ -1,16 +1,14 @@
 import { RiSearchLine } from "react-icons/ri";
-import ClubHeader from "../../components/ClubHeader/ClubHeader";
 import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
 import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
 import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";
 import EventList from "../../components/EventList/EventList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Club = () => {
-  const [selectedParams, setSelectedParams] = useState({
-    clubId: "64edf0d0c92b5de1e5f7eb9a",
-  });
-  
+  const [selectedParams, setSelectedParams] = useState({});
+
   const handleChangIme = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,

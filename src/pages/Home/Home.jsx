@@ -9,27 +9,76 @@ import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import { useState } from "react";
 
 function Home() {
+  //events
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
-    pageSize: 3,
+    pageSize: 6,
   });
-
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfEvents, setNumberOfEvents] = useState();
-  const [numberOfClubs, setNumberOfClubs] = useState();
 
-  const handleNextPage = () => {
-    setSelectedParams((selectedParams) => ({
-      ...selectedParams,
-      pageNumber: selectedParams.pageNumber + 1,
-    }));
+  //regular places
+  const [selectedRegularParams, setSelectedRegularParams] = useState({
+    pageNumber: 1,
+    pageSize: 6,
+    bannerImage: "Regular",
+  });
+  const [numberOfRegularPages, setNumberOfRegularPages] = useState(1);
+  const [numberOfRegularClubs, setNumberOfRegularClubs] = useState();
+
+  //premium places
+  const [selectedPremiumParams, setSelectedPremiumParams] = useState({
+    pageNumber: 1,
+    pageSize: 6,
+    bannerImage: "Premijum",
+  });
+  const [numberOfPremiumPages, setNumberOfPremiumPages] = useState(1);
+  const [numberOfPremiumClubs, setNumberOfPremiumClubs] = useState();
+
+  const handleNextPage = (value) => {
+    if (value === "premium") {
+      setSelectedPremiumParams((selectedPremiumParams) => ({
+        ...selectedPremiumParams,
+        pageNumber: selectedPremiumParams.pageNumber + 1,
+      }));
+    }
+
+    if (value === "regular") {
+      setSelectedRegularParams((selectedRegularParams) => ({
+        ...selectedRegularParams,
+        pageNumber: selectedRegularParams.pageNumber + 1,
+      }));
+    }
+
+    if (value === "events") {
+      setSelectedParams((selectedParams) => ({
+        ...selectedParams,
+        pageNumber: selectedParams.pageNumber + 1,
+      }));
+    }
   };
 
-  const handlePrevPage = () => {
-    setSelectedParams((selectedParams) => ({
-      ...selectedParams,
-      pageNumber: selectedParams.pageNumber - 1,
-    }));
+  const handlePrevPage = (value) => {
+    if (value === "premium") {
+      setSelectedPremiumParams((selectedPremiumParams) => ({
+        ...selectedPremiumParams,
+        pageNumber: selectedPremiumParams.pageNumber - 1,
+      }));
+    }
+
+    if (value === "regular") {
+      setSelectedRegularParams((selectedRegularParams) => ({
+        ...selectedRegularParams,
+        pageNumber: selectedRegularParams.pageNumber - 1,
+      }));
+    }
+
+    if (value === "events") {
+      setSelectedParams((selectedParams) => ({
+        ...selectedParams,
+        pageNumber: selectedParams.pageNumber - 1,
+      }));
+    }
   };
 
   return (
@@ -45,9 +94,10 @@ function Home() {
               Premijum Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve ({numberOfClubs})</Link>
+              <Link className="mr-5">Vidi sve ({numberOfPremiumClubs})</Link>
               <button
-                onClick={handlePrevPage}
+                onClick={() => handlePrevPage("premium")}
+                disabled={selectedPremiumParams.pageNumber === 1}
                 type="button"
                 className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -69,7 +119,10 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
-                onClick={handleNextPage}
+                onClick={() => handleNextPage("premium")}
+                disabled={
+                  selectedPremiumParams.pageNumber === numberOfPremiumPages
+                }
                 type="button"
                 className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
               >
@@ -93,8 +146,10 @@ function Home() {
             </div>
           </div>
           <ClubList
-            setNumberOfClubs={setNumberOfClubs}
-            bannerImage="Premium Mesto"
+            params={selectedPremiumParams}
+            setNumberOfPages={setNumberOfPremiumPages}
+            setNumberOfClubs={setNumberOfPremiumClubs}
+            bannerImage="Premijum Mesto"
             button="Istrazi"
           />
         </div>
@@ -106,9 +161,10 @@ function Home() {
               Regularna Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve ({numberOfClubs})</Link>
+              <Link className="mr-5">Vidi sve ({numberOfRegularClubs})</Link>
               <button
-                onClick={handlePrevPage}
+                onClick={() => handlePrevPage("regular")}
+                disabled={selectedRegularParams.pageNumber === 1}
                 type="button"
                 className="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
@@ -130,7 +186,10 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
-                onClick={handleNextPage}
+                onClick={() => handleNextPage("regular")}
+                disabled={
+                  selectedRegularParams.pageNumber === numberOfRegularPages
+                }
                 type="button"
                 className="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
               >
@@ -154,7 +213,9 @@ function Home() {
             </div>
           </div>
           <ClubList
-            setNumberOfClubs={setNumberOfClubs}
+            params={selectedRegularParams}
+            setNumberOfPages={setNumberOfRegularPages}
+            setNumberOfClubs={setNumberOfRegularClubs}
             bannerImage="Regularno Mesto"
             button="Istrazi"
           />

@@ -15,10 +15,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.active {
-  color: #475DDB;
-}
-
 input:-webkit-autofill{
   background: transparent;
 }

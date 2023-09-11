@@ -16,21 +16,21 @@ const Events = () => {
     }));
   };
 
-  const handleChangIme = (value) => {
+  const handleChangeName = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      ime: value,
+      name: value,
     }));
   };
 
-  const handleChangTip = (value) => {
+  const handleChangeTip = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       tip: value,
     }));
   };
 
-  const handleChangDate = (value) => {
+  const handleChangeDate = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       date: value,
@@ -45,9 +45,8 @@ const Events = () => {
         </span>
         <h3 className="mb-10 text-5xl font-bold dark:text-white">Dogadjaji</h3>
         <InputForm
-          handleChangIme={handleChangIme}
-          handleChangTip={handleChangTip}
-          handleChangDate={handleChangDate}
+          handleChangeName={handleChangeName}
+          handleChangeDate={handleChangeDate}
         />
         <EventList params={selectedParams} button="Bookiraj" />
       </div>

@@ -28,19 +28,19 @@ const ClubHeader = () => {
         </div>
         <div className="flex items-center">
           <Link to="#" className="m-2">
-            <FaEnvelope className="fill-[#475DDB]" />
+            <FaEnvelope className="fill-primary" />
           </Link>
           <Link to="#" className="m-2">
-            <BsFillTelephoneFill className="fill-[#475DDB]"/>
+            <BsFillTelephoneFill className="fill-primary"/>
           </Link>
           <Link to="#" className="m-2">
-            <BiLogoFacebook className="fill-[#475DDB]" size='1.3rem' />
+            <BiLogoFacebook className="fill-primary" size='1.3rem' />
           </Link>
           <Link to="#" className="m-2">
-            <BsTwitter className="fill-[#475DDB]" />
+            <BsTwitter className="fill-primary" />
           </Link>
           <Link to="#" className="m-2">
-            <BsInstagram className="fill-[#475DDB]" />
+            <BsInstagram className="fill-primary" />
           </Link>
         </div>
       </div>

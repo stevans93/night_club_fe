@@ -99,7 +99,7 @@ function Home() {
                 onClick={() => handlePrevPage("premium")}
                 disabled={selectedPremiumParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -124,7 +124,7 @@ function Home() {
                   selectedPremiumParams.pageNumber === numberOfPremiumPages
                 }
                 type="button"
-                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -166,7 +166,7 @@ function Home() {
                 onClick={() => handlePrevPage("regular")}
                 disabled={selectedRegularParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -191,7 +191,7 @@ function Home() {
                   selectedRegularParams.pageNumber === numberOfRegularPages
                 }
                 type="button"
-                className="text-[#475DDB] bg-[#F0F4F9] hover:bg-[#475DDB] hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-[#475DDB]"
+                className="text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -235,7 +235,7 @@ function Home() {
                 onClick={handlePrevPage}
                 disabled={selectedParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -258,7 +258,7 @@ function Home() {
                 onClick={handleNextPage}
                 disabled={selectedParams.pageNumber === numberOfPages}
                 type="button"
-                className="text-[#475DDB] bg-white hover:bg-[#475DDB] hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-[#475DDB]"
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
               >
                 <svg
                   className="w-5 h-5"
@@ -290,11 +290,11 @@ function Home() {
       <div className="flex justify-center">
         <div className="flex flex-col items-center max-w-screen-xl px-20 py-20">
           <h2 className="mb-6 text-3xl font-bold datext-blackrk:text-white text-center">
-            Zasto <span className="text-[#475DDB]">Izabrati nas</span>
+            Zasto <span className="text-primary">Izabrati nas</span>
           </h2>
           <div className="flex md:flex-row xs:flex-col gap-5">
             <div className="flex flex-col items-center">
-              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-[#475DDB] mb-5">
+              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18" src={clocklIcon} alt="" />
               </div>
               <h6 className="text-lg font-bold text-black mb-3">
@@ -308,9 +308,9 @@ function Home() {
               </p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-[#475DDB] mb-5">
+              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img
-                  className="w-18 h-18 bg-[#475DDB]"
+                  className="w-18 h-18 bg-primary"
                   src={surfaceIcon}
                   alt=""
                 />
@@ -326,8 +326,8 @@ function Home() {
               </p>
             </div>
             <div className="flex flex-col items-center">
-              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-[#475DDB] mb-5">
-                <img className="w-18 h-18 bg-[#475DDB]" src={pathIcon} alt="" />
+              <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
+                <img className="w-18 h-18 bg-primary" src={pathIcon} alt="" />
               </div>
               <h6 className="text-lg font-bold text-black mb-3">
                 100% bezbedno

@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   plugins: [require("flowbite/plugin")],
-  content: ["./index.html", "./node_modules/flowbite-react/**/*.js", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./node_modules/flowbite-react/**/*.js",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       screens: {
@@ -17,11 +21,14 @@ module.exports = {
       },
       height: {
         h700: "700px",
-        h550: '550px',
+        h550: "550px",
       },
       maxWidth: {
         half: "50%",
-        quater: '25%',
+        quater: "25%",
+      },
+      borderRadius: {
+        circle: "50%",
       },
     },
   },

@@ -27,104 +27,94 @@ function DashboardSidebar({ children, open }) {
         </div>
         <div className="flex flex-col w-full">
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <LuLayoutDashboard className="mr-2 text-2xl" />{" "}
+            <LuLayoutDashboard className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Dashboard
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/reservation"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <FiUsers className="mr-2 text-2xl" />{" "}
+            <FiUsers className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Reservation
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/payment"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <PiContactlessPayment className="mr-2 text-2xl" />{" "}
+            <PiContactlessPayment className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Payment History
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
             to="/dashboard/menu"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline active:text-white"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
           >
-            {" "}
-            <BiFoodMenu className="mr-2 text-2xl" />{" "}
+            <BiFoodMenu className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Menu
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/club-config"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <BiWrench className="mr-2 text-2xl" />{" "}
+            <BiWrench className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Club Configuration
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/coupon"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <RiCoupon2Line className="mr-2 text-2xl" />{" "}
+            <RiCoupon2Line className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Coupon List
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
             to="/dashboard/customer-list"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <HiOutlineUserGroup className="mr-2 text-2xl" />{" "}
+            <HiOutlineUserGroup className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Custommer List
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/staff"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <HiOutlineUserGroup className="mr-2 text-2xl" />{" "}
+            <HiOutlineUserGroup className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Staff
             </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/live-order"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <MdOutlineSupportAgent className="mr-2 text-2xl" />{" "}
+            <MdOutlineSupportAgent className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Live Order
-            </span>{" "}
+            </span>
           </NavLink>
           <NavLink
-            to="/"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-[#475DDB] hover:bg-[#475DDB] hover:text-white hover:no-underline"
+            to="/dashboard/events"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
-            {" "}
-            <BsCalendar2Event className="mr-2 text-2xl" />{" "}
+            <BsCalendar2Event className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Events
-            </span>{" "}
+            </span>
           </NavLink>
         </div>
       </div>

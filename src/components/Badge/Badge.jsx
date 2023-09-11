@@ -1,5 +1,5 @@
 const premiumStyle = "bg-[#FEB258] text-black";
-const eventStyle = "bg-[#475DDB]";
+const eventStyle = "bg-primary";
 
 function Badge(props) {
   return (

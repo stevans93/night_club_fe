@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/Home/Home";
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import Clubs from "./pages/Clubs/Clubs";
@@ -14,9 +14,17 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Events from "./pages/Events/Events";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import DashboardMenu from "./pages/DashboardMenu/DashboardMenu";
-import DashboardSettings from "./pages/DashboardSettings/DashboardSettings";
+import DashboardMenu from "./pages/Dashboard/DashboardPages/DashboardMenu/DashboardMenu";
+import DashboardCustomerList from "./pages/Dashboard/DashboardPages/DashboardCustomerList/DashboardCustomerList";
 import Club from "./pages/Club/Club";
+import DashboardHome from "./pages/Dashboard/DashboardPages/DashboardHome/DashboardHome";
+import DashboardReservation from "./pages/Dashboard/DashboardPages/DashboardReservation/DashboardReservation";
+import DashboardPayment from "./pages/Dashboard/DashboardPages/DashboardPayment/DashboardPayment";
+import DashboardConfiguration from "./pages/Dashboard/DashboardPages/DashboardConfiguration/DashboardConfiguration";
+import DashboardCoupon from "./pages/Dashboard/DashboardPages/DashboardCoupon/DashboardCoupon";
+import DashboardStaff from "./pages/Dashboard/DashboardPages/DashboardStaff/DashboardStaff";
+import DashboardLive from "./pages/Dashboard/DashboardPages/DashboardLive/DashboardLive";
+import DashboardEvents from "./pages/Dashboard/DashboardPages/DashboardEvents/DashboardEvents";
 
 const router = createBrowserRouter([
   {
@@ -69,12 +77,44 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "/dashboard/menu",
+        path: "",
+        element: <DashboardHome />,
+      },
+      {
+        path: "reservation",
+        element: <DashboardReservation />,
+      },
+      {
+        path: "payment",
+        element: <DashboardPayment />,
+      },
+      {
+        path: "menu",
         element: <DashboardMenu />,
       },
       {
-        path: "/dashboard/settings",
-        element: <DashboardSettings />,
+        path: "club-config",
+        element: <DashboardConfiguration />,
+      },
+      {
+        path: "coupon",
+        element: <DashboardCoupon />,
+      },
+      {
+        path: "customer-list",
+        element: <DashboardCustomerList />,
+      },
+      {
+        path: "staff",
+        element: <DashboardStaff />,
+      },
+      {
+        path: "live-order",
+        element: <DashboardLive />,
+      },
+      {
+        path: "events",
+        element: <DashboardEvents />,
       },
     ],
   },

@@ -3,8 +3,7 @@ import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
 import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
 import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";
 import EventList from "../../components/EventList/EventList";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const Club = () => {
   const [selectedParams, setSelectedParams] = useState({});
@@ -39,15 +38,6 @@ const Club = () => {
             alt="..."
             src="../../../public/assets/party-image.jpg"
           />
-        </div>
-
-        <div className="flex mt-16 self-center shadow-md items-center px-2 bg-white">
-          <input
-            className="focus:outline-none px-4 py-2"
-            type="text"
-            placeholder="Search for drinks"
-          />
-          <RiSearchLine className="search-icon hover:cursor-pointer" />
         </div>
         <div className="flex flex-col items-center self-center w-full max-w-5xl bg-[#F0F4F9] mt-16 mb-16">
           <h2 className="text-3xl">

@@ -23,6 +23,13 @@ const Events = () => {
     }));
   };
 
+  const handleChangeLocation = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      location: value,
+    }));
+  };
+
   const handleChangeType = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
@@ -48,6 +55,7 @@ const Events = () => {
           handleChangeName={handleChangeName}
           handleChangeDate={handleChangeDate}
           handleChangeType={handleChangeType}
+          handleChangeLocation={handleChangeLocation}
         />
         <EventList params={selectedParams} button="Bookiraj" />
       </div>

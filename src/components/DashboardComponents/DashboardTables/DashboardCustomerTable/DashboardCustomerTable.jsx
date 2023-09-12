@@ -1,3 +1,8 @@
+import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
+import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../../../Buttons/EditButton/EditButton";
+import LockButton from "../../../Buttons/LockButton/LockButton";
+
 const DashboardCustomerTable = () => {
   return (
     <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
@@ -20,8 +25,14 @@ const DashboardCustomerTable = () => {
             <td className="border-r-2 px-6 py-3">063-563-632</td>
             <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
             <td className="border-r-2 px-6 py-3">12</td>
-            <td className="border-r-2 px-6 py-3">Verified</td>
-            <td className="border-r-2 px-6 py-3">Lock Edit Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Verified" />
+            </td>
+            <td className="flex gap-1 border-r-2 px-6 py-3">
+              <LockButton />
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -30,8 +41,14 @@ const DashboardCustomerTable = () => {
             <td className="border-r-2 px-6 py-3">063-563-632</td>
             <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
             <td className="border-r-2 px-6 py-3">12</td>
-            <td className="border-r-2 px-6 py-3">Verified</td>
-            <td className="border-r-2 px-6 py-3">Lock Edit Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Verified" />
+            </td>
+            <td className="flex gap-1 border-r-2 px-6 py-3">
+              <LockButton />
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -40,8 +57,14 @@ const DashboardCustomerTable = () => {
             <td className="border-r-2 px-6 py-3">063-563-632</td>
             <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
             <td className="border-r-2 px-6 py-3">12</td>
-            <td className="border-r-2 px-6 py-3">Verified</td>
-            <td className="border-r-2 px-6 py-3">Lock Edit Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Verified" />
+            </td>
+            <td className="flex gap-1 border-r-2 px-6 py-3">
+              <LockButton />
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -50,8 +73,14 @@ const DashboardCustomerTable = () => {
             <td className="border-r-2 px-6 py-3">063-563-632</td>
             <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
             <td className="border-r-2 px-6 py-3">12</td>
-            <td className="border-r-2 px-6 py-3">Verified</td>
-            <td className="border-r-2 px-6 py-3">Lock Edit Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Verified" />
+            </td>
+            <td className="flex gap-1 border-r-2 px-6 py-3">
+              <LockButton />
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -60,8 +89,14 @@ const DashboardCustomerTable = () => {
             <td className="border-r-2 px-6 py-3">063-563-632</td>
             <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
             <td className="border-r-2 px-6 py-3">12</td>
-            <td className="border-r-2 px-6 py-3">Verified</td>
-            <td className="border-r-2 px-6 py-3">Lock Edit Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Verified" />
+            </td>
+            <td className="flex gap-1 border-r-2 px-6 py-3">
+              <LockButton />
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
         </tbody>
       </table>

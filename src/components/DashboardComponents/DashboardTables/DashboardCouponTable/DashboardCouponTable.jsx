@@ -1,3 +1,7 @@
+import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
+import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../../../Buttons/EditButton/EditButton";
+
 const DashboardCouponTable = () => {
   return (
     <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
@@ -24,8 +28,13 @@ const DashboardCouponTable = () => {
             <td className="border-r-2 px-6 py-3">5%</td>
             <td className="border-r-2 px-6 py-3">16 May 2023</td>
             <td className="border-r-2 px-6 py-3">25 May 2023</td>
-            <td className="border-r-2 px-6 py-3">Active</td>
-            <td className="border-r-2 px-6 py-3">Edit and Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Active" />
+            </td>
+            <td className="flex border-r-2 px-6 py-3 gap-2">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -36,8 +45,13 @@ const DashboardCouponTable = () => {
             <td className="border-r-2 px-6 py-3">5%</td>
             <td className="border-r-2 px-6 py-3">16 May 2023</td>
             <td className="border-r-2 px-6 py-3">25 May 2023</td>
-            <td className="border-r-2 px-6 py-3">Active</td>
-            <td className="border-r-2 px-6 py-3">Edit and Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Active" />
+            </td>
+            <td className="flex border-r-2 px-6 py-3 gap-2">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -48,8 +62,13 @@ const DashboardCouponTable = () => {
             <td className="border-r-2 px-6 py-3">5%</td>
             <td className="border-r-2 px-6 py-3">16 May 2023</td>
             <td className="border-r-2 px-6 py-3">25 May 2023</td>
-            <td className="border-r-2 px-6 py-3">Active</td>
-            <td className="border-r-2 px-6 py-3">Edit and Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Active" />
+            </td>
+            <td className="flex border-r-2 px-6 py-3 gap-2">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -60,8 +79,13 @@ const DashboardCouponTable = () => {
             <td className="border-r-2 px-6 py-3">5%</td>
             <td className="border-r-2 px-6 py-3">16 May 2023</td>
             <td className="border-r-2 px-6 py-3">25 May 2023</td>
-            <td className="border-r-2 px-6 py-3">Active</td>
-            <td className="border-r-2 px-6 py-3">Edit and Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Active" />
+            </td>
+            <td className="flex border-r-2 px-6 py-3 gap-2">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
           <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
@@ -72,8 +96,13 @@ const DashboardCouponTable = () => {
             <td className="border-r-2 px-6 py-3">5%</td>
             <td className="border-r-2 px-6 py-3">16 May 2023</td>
             <td className="border-r-2 px-6 py-3">25 May 2023</td>
-            <td className="border-r-2 px-6 py-3">Active</td>
-            <td className="border-r-2 px-6 py-3">Edit and Delete</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Active" />
+            </td>
+            <td className="flex border-r-2 px-6 py-3 gap-2">
+              <EditButton />
+              <DeleteButton />
+            </td>
           </tr>
         </tbody>
       </table>

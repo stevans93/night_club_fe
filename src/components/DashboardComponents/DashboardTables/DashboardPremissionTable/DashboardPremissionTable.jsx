@@ -1,6 +1,6 @@
 const DashboardPremissionTable = () => {
   return (
-    <div className="flex flex-col ml-2 bg-white w-fit rounded-lg px-2 h-full pb-10 w-2/6">
+    <div className="flex flex-col ml-2 bg-white w-fit rounded-lg px-2 h-full pb-10 w-3/12">
       <div className="flex border-b-2 w-full h-14 items-center">
         <span>Premission list</span>
       </div>

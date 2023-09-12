@@ -1,6 +1,11 @@
+import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
+import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../../../Buttons/EditButton/EditButton";
+import LockButton from "../../../Buttons/LockButton/LockButton";
+
 const DashboardStaffListTable = () => {
   return (
-    <div className="flex flex-col ml-2 bg-white w-fit rounded-lg px-2 pb-10 w-3/6">
+    <div className="flex flex-col ml-2 bg-white w-fit rounded-lg px-2 pb-10 w-8/12">
       <div className="flex border-b-2 w-full h-14 items-center">
         <span>Staff list</span>
       </div>
@@ -49,9 +54,13 @@ const DashboardStaffListTable = () => {
                   </tbody>
                 </table>
               </td>
-              <td className="border-r-2 px-6 py-3 align-baseline">Active</td>
               <td className="border-r-2 px-6 py-3 align-baseline">
-                Lock Edit Delete
+                <ActiveButton text="Active" />
+              </td>
+              <td className="flex gap-1 border-r-2 px-6 py-3 align-baseline">
+                <LockButton />
+                <EditButton />
+                <DeleteButton />
               </td>
             </tr>
           </tbody>

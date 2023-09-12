@@ -23,10 +23,10 @@ const Events = () => {
     }));
   };
 
-  const handleChangeTip = (value) => {
+  const handleChangeType = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      tip: value,
+      type: value,
     }));
   };
 
@@ -47,6 +47,7 @@ const Events = () => {
         <InputForm
           handleChangeName={handleChangeName}
           handleChangeDate={handleChangeDate}
+          handleChangeType={handleChangeType}
         />
         <EventList params={selectedParams} button="Bookiraj" />
       </div>

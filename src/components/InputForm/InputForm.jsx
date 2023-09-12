@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const InputForm = (props) => {
   const [selectedName, setSelectedName] = useState("");
-  const [selectedTip, setSelectedTip] = useState("");
+  const [selectedTip, setSelectedType] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
 
   const handleChangeName = (event) => {
@@ -10,9 +10,9 @@ const InputForm = (props) => {
     props.handleChangeName(event.target.value);
   };
 
-  const handleChangeTip = (event) => {
-    setSelectedTip(event.target.value);
-    props.handleChangeTip(event.target.value);
+  const handleChangeType = (event) => {
+    setSelectedType(event.target.value);
+    props.handleChangeType(event.target.value);
   };
 
   const handleChangeLocation = (event) => {
@@ -20,8 +20,8 @@ const InputForm = (props) => {
     props.handleChangeLocation(event.target.value);
   };
 
-  const handleChangDate = (event) => {
-    props.handleChangDate(event.target.value);
+  const handleChangeDate = (event) => {
+    props.handleChangeDate(event.target.value);
   };
 
   return (
@@ -32,7 +32,7 @@ const InputForm = (props) => {
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedName}
           onChange={handleChangeName}
-          placeholder='Ime dogadjaja'
+          placeholder="Ime dogadjaja"
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
@@ -40,8 +40,8 @@ const InputForm = (props) => {
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedTip}
-          onChange={handleChangeTip}
-          placeholder='Tip mesta'
+          onChange={handleChangeType}
+          placeholder="Tip mesta"
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
@@ -50,7 +50,7 @@ const InputForm = (props) => {
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedLocation}
           onChange={handleChangeLocation}
-          placeholder='izaberi grad'
+          placeholder="izaberi grad"
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
@@ -59,7 +59,7 @@ const InputForm = (props) => {
           id="kada"
           className="border-black border-2 px-3 py-1 rounded h-full"
           type="date"
-          onChange={handleChangDate}
+          onChange={handleChangeDate}
         />
       </div>
     </div>

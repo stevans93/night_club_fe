@@ -23,7 +23,7 @@ const Club = () => {
     }));
   };
 
-  const handleChangDate = (value) => {
+  const handleChangeDate = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       date: value,
@@ -70,7 +70,7 @@ const Club = () => {
           <ClubInputForm
             handleChangIme={handleChangIme}
             handleChangTip={handleChangTip}
-            handleChangDate={handleChangDate}
+            handleChangeDate={handleChangeDate}
           />
           <EventList button="Bookiraj" params={selectedParams} />
         </div>

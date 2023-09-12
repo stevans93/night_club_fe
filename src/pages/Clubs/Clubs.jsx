@@ -30,6 +30,20 @@ const Clubs = () => {
     }));
   };
 
+  const handleChangeDate = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      date: value,
+    }));
+  };
+
+  const handleChangeType = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      type: value,
+    }));
+  };
+
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-white from-30% to-30% to-[#F0F4F9]">
       <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5">
@@ -42,6 +56,8 @@ const Clubs = () => {
         <InputForm
           handleChangeName={handleChangeName}
           handleChangeLocation={handleChangeLocation}
+          handleChangeDate={handleChangeDate}
+          handleChangeType={handleChangeType}
         />
         <ClubList params={selectedParams} button="Istrazi" />
       </div>

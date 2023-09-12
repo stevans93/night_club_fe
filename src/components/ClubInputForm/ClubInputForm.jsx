@@ -15,8 +15,8 @@ const ClubInputForm = (props) => {
     props.handleChangTip(event.target.value);
   };
 
-  const handleChangDate = (event) => {
-    props.handleChangDate(event.target.value);
+  const handleChangeDate = (event) => {
+    props.handleChangeDate(event.target.value);
   };
 
   return (
@@ -51,7 +51,7 @@ const ClubInputForm = (props) => {
           id="kada"
           className="border-black border-2 px-3 py-1 rounded h-full"
           type="date"
-          onChange={handleChangDate}
+          onChange={handleChangeDate}
         />
       </div>
     </div>

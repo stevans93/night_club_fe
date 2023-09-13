@@ -1,4 +1,4 @@
-import { Table } from "flowbite-react";
+import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 
 const DashboardPaymentTable = () => {
   return (
@@ -19,7 +19,9 @@ const DashboardPaymentTable = () => {
             <td className="border-r-2 px-6 py-3">#3141432</td>
             <td className="border-r-2 px-6 py-3">7D6AF78DA87F6D8A7</td>
             <td className="border-r-2 px-6 py-3">2200.din</td>
-            <td className="border-r-2 px-6 py-3">Completed</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Completed" />
+            </td>
             <td className="border-r-2 px-6 py-3">MasterCard</td>
             <td className="border-r-2 px-6 py-3">12 Avg 2023 10:28 pm</td>
           </tr>
@@ -28,7 +30,9 @@ const DashboardPaymentTable = () => {
             <td className="border-r-2 px-6 py-3">#3141432</td>
             <td className="border-r-2 px-6 py-3">7D6AF78DA87F6D8A7</td>
             <td className="border-r-2 px-6 py-3">2200.din</td>
-            <td className="border-r-2 px-6 py-3">Completed</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Completed" />
+            </td>
             <td className="border-r-2 px-6 py-3">MasterCard</td>
             <td className="border-r-2 px-6 py-3">12 Avg 2023 10:28 pm</td>
           </tr>
@@ -37,7 +41,9 @@ const DashboardPaymentTable = () => {
             <td className="border-r-2 px-6 py-3">#3141432</td>
             <td className="border-r-2 px-6 py-3">7D6AF78DA87F6D8A7</td>
             <td className="border-r-2 px-6 py-3">2200.din</td>
-            <td className="border-r-2 px-6 py-3">Completed</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Completed" />
+            </td>
             <td className="border-r-2 px-6 py-3">MasterCard</td>
             <td className="border-r-2 px-6 py-3">12 Avg 2023 10:28 pm</td>
           </tr>
@@ -46,7 +52,9 @@ const DashboardPaymentTable = () => {
             <td className="border-r-2 px-6 py-3">#3141432</td>
             <td className="border-r-2 px-6 py-3">7D6AF78DA87F6D8A7</td>
             <td className="border-r-2 px-6 py-3">2200.din</td>
-            <td className="border-r-2 px-6 py-3">Completed</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Completed" />
+            </td>
             <td className="border-r-2 px-6 py-3">MasterCard</td>
             <td className="border-r-2 px-6 py-3">12 Avg 2023 10:28 pm</td>
           </tr>
@@ -55,7 +63,9 @@ const DashboardPaymentTable = () => {
             <td className="border-r-2 px-6 py-3">#3141432</td>
             <td className="border-r-2 px-6 py-3">7D6AF78DA87F6D8A7</td>
             <td className="border-r-2 px-6 py-3">2200.din</td>
-            <td className="border-r-2 px-6 py-3">Completed</td>
+            <td className="border-r-2 px-6 py-3">
+              <ActiveButton text="Completed" />
+            </td>
             <td className="border-r-2 px-6 py-3">MasterCard</td>
             <td className="border-r-2 px-6 py-3">12 Avg 2023 10:28 pm</td>
           </tr>

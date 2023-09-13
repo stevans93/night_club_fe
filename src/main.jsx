@@ -17,7 +17,6 @@ import store from "./store/store";
 import DashboardMenu from "./pages/Dashboard/DashboardPages/DashboardMenu/DashboardMenu";
 import DashboardCustomerList from "./pages/Dashboard/DashboardPages/DashboardCustomerList/DashboardCustomerList";
 import Club from "./pages/Club/Club";
-import DashboardHome from "./pages/Dashboard/DashboardPages/DashboardHome/DashboardHome";
 import DashboardReservation from "./pages/Dashboard/DashboardPages/DashboardReservation/DashboardReservation";
 import DashboardPayment from "./pages/Dashboard/DashboardPages/DashboardPayment/DashboardPayment";
 import DashboardConfiguration from "./pages/Dashboard/DashboardPages/DashboardConfiguration/DashboardConfiguration";
@@ -75,13 +74,9 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [
+    children: [,
       {
         path: "",
-        element: <DashboardHome />,
-      },
-      {
-        path: "reservation",
         element: <DashboardReservation />,
       },
       {

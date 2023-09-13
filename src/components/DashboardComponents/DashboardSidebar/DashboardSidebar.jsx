@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { LuLayoutDashboard } from "react-icons/lu";
 import { FiUsers } from "react-icons/fi";
 import { RiCoupon2Line } from "react-icons/ri";
 import { BiFoodMenu, BiWrench } from "react-icons/bi";
@@ -28,15 +27,6 @@ function DashboardSidebar({ children, open }) {
         <div className="flex flex-col w-full">
           <NavLink
             to="/dashboard"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <LuLayoutDashboard className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Dashboard
-            </span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/reservation"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
             <FiUsers className="mr-2 text-2xl" />

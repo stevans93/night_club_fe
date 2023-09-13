@@ -5,7 +5,7 @@ import TablePagination from "../../../../components/TablePagination/TablePaginat
 
 function DashboardReservation() {
   return (
-    <div className="bg-gray-600 pt-5 h-full">
+    <div className="bg-gray-600 pt-5 h-full px-3 py-10">
       <ReservationHeader />
       <DashboardReserveTable />
       <TablePagination />

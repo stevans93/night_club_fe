@@ -3,8 +3,9 @@ import ActionButton from "../../../Buttons/ActionButton/ActionButton";
 import CanceledButton from "../../../Buttons/CanceledButton/CanceledButton";
 
 const DashboardReserveTable = () => {
+
   return (
-    <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
+    <div className="relative overflow-x-auto shadow-md rounded-lg mt-10">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
           <th className="border-r-2 bg-white px-6 py-3">SI</th>
@@ -13,7 +14,6 @@ const DashboardReserveTable = () => {
           <th className="border-r-2 bg-white px-6 py-3">Phone</th>
           <th className="border-r-2 bg-white px-6 py-3">Date</th>
           <th className="border-r-2 bg-white px-6 py-3">Overview</th>
-          <th className="border-r-2 bg-white px-6 py-3">Comments</th>
           <th className="border-r-2 bg-white px-6 py-3">Completed</th>
           <th className="border-r-2 bg-white px-6 py-3">Action</th>
         </thead>
@@ -27,7 +27,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               Reservation - Total Person: 21 - Table 3
             </td>
-            <td className="border-r-2 px-6 py-3"></td>
+
             <td className="border-r-2 px-6 py-3">
               <ActiveButton text="Completed" />
             </td>
@@ -44,7 +44,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               Reservation - Total Person: 21 - Table 3
             </td>
-            <td className="border-r-2 px-6 py-3"></td>
+
             <td className="border-r-2 px-6 py-3">
               <ActiveButton text="Completed" />
             </td>
@@ -61,7 +61,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               Reservation - Total Person: 21 - Table 3
             </td>
-            <td className="border-r-2 px-6 py-3"></td>
+
             <td className="border-r-2 px-6 py-3">
               <CanceledButton />
             </td>
@@ -78,7 +78,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               Reservation - Total Person: 21 - Table 3
             </td>
-            <td className="border-r-2 px-6 py-3"></td>
+
             <td className="border-r-2 px-6 py-3">
               <ActiveButton text="Completed" />
             </td>
@@ -95,7 +95,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               Reservation - Total Person: 21 - Table 3
             </td>
-            <td className="border-r-2 px-6 py-3"></td>
+
             <td className="border-r-2 px-6 py-3">
               <ActiveButton text="Completed" />
             </td>

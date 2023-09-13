@@ -30,6 +30,9 @@ module.exports = {
       borderRadius: {
         circle: "50%",
       },
+      width: {
+        45: "45%",
+      },
     },
   },
   plugins: [],

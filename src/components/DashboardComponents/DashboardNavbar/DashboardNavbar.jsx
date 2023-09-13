@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsEye } from "react-icons/bs";
 import { BiSolidBellRing } from "react-icons/bi";

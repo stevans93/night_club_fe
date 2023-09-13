@@ -9,9 +9,7 @@ function DashboardNavbar({ handleOpen }) {
   return (
     <nav className="flex justify-between h-[7vh] items-center relative w-[100%] flex right-0 px-4">
       <div className="flex gap-5 items-center h-[5vh]">
-        <NavLink onClick={handleOpen}>
-          <GiHamburgerMenu className="text-2xl text-black" />
-        </NavLink>
+          <GiHamburgerMenu className="text-2xl text-black" onClick={handleOpen} />
         <span className="w-px h-4/5 bg-gray-500 opacity-20"></span>
         <button className="flex h-8 items-center px-5 bg-primary text-white rounded-lg gap-2">
           <BsEye size="1.1rem" /> View page

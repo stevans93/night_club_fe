@@ -1,17 +1,23 @@
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const TablePagination = () => {
+const TablePagination = (props) => {
   return (
     <div className="bg-white flex w-full justify-center relative mt-10">
       <span className="absolute left-0">
-        Show <span>15</span> of <span>150</span>
+        Show <span>15</span> of <span>{props.numberOfReservations}</span>
       </span>
-      <div className="flex">
-        <button className="bg-primary text-white">
+      <div className="flex gap-3">
+        <button
+          // disabled={props.selectedParams.pageNumber === 1}
+          className="bg-primary text-white"
+        >
           <MdKeyboardArrowLeft size="1.1rem" />
         </button>
-        <span>15 - 150</span>
-        <button className="bg-primary text-white">
+        <span>1 of {props.numberOfPages}</span>
+        <button
+          // disabled={props.selectedParams.pageNumber === props.numberOfPages}
+          className="bg-primary text-white"
+        >
           <MdKeyboardArrowRight size="1.1rem" />
         </button>
       </div>

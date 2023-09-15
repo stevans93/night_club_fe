@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import AddReservationForm from "../../DashboardForms/AddReservationForm/AddReservationForm";
 import { useState } from "react";
 
-const ReservationHeader = () => {
+const ReservationHeader = (props, event) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -33,10 +33,13 @@ const ReservationHeader = () => {
           </button>
           <div className="flex items-center gap-2">
             <span>Show</span>
-            <select className="px-1 w-12 border rounded-xl" value="">
-              <option value="" disabled>
-                15
-              </option>
+            <select
+              className="px-1 w-16 border rounded-xl"
+              value={event.target}
+            >
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
             </select>
           </div>
         </div>

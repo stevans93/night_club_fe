@@ -2,7 +2,7 @@ import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 import ActionButton from "../../../Buttons/ActionButton/ActionButton";
 import CanceledButton from "../../../Buttons/CanceledButton/CanceledButton";
 
-const DashboardReserveTable = () => {
+const DashboardReserveTable = (props) => {
 
   return (
     <div className="relative overflow-x-auto shadow-md rounded-lg mt-10">
@@ -18,24 +18,28 @@ const DashboardReserveTable = () => {
           <th className="border-r-2 bg-white px-6 py-3">Action</th>
         </thead>
         <tbody className="divide-y">
-          <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            <td className="border-r-2 px-6 py-3">1</td>
-            <td className="border-r-2 px-6 py-3">3141</td>
-            <td className="border-r-2 px-6 py-3">Pera Peric</td>
-            <td className="border-r-2 px-6 py-3">063-563-632</td>
-            <td className="border-r-2 px-6 py-3">11 Aug 2023</td>
-            <td className="border-r-2 px-6 py-3">
-              Reservation - Total Person: 21 - Table 3
-            </td>
+          {props.reservations.map((reservation, i) => {
+            return (
+              <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <td className="border-r-2 px-6 py-3">{i++}</td>
+                <td className="border-r-2 px-6 py-3">{reservation._id}</td>
+                <td className="border-r-2 px-6 py-3">{reservation.name}</td>
+                <td className="border-r-2 px-6 py-3">{reservation.phone}</td>
+                <td className="border-r-2 px-6 py-3">{reservation.date}</td>
+                <td className="border-r-2 px-6 py-3">
+                  Reservation - Total Person: {reservation.persons} - Table {reservation.table}
+                </td>
 
-            <td className="border-r-2 px-6 py-3">
-              <ActiveButton text="Completed" />
-            </td>
-            <td className="border-r-2 px-6 py-3">
-              <ActionButton />
-            </td>
-          </tr>
-          <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <td className="border-r-2 px-6 py-3">
+                  <ActiveButton text="Completed" />
+                </td>
+                <td className="border-r-2 px-6 py-3">
+                  <ActionButton />
+                </td>
+              </tr>
+            );
+          })}
+          {/* <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <td className="border-r-2 px-6 py-3">1</td>
             <td className="border-r-2 px-6 py-3">3141</td>
             <td className="border-r-2 px-6 py-3">Pera Peric</td>
@@ -102,7 +106,7 @@ const DashboardReserveTable = () => {
             <td className="border-r-2 px-6 py-3">
               <ActionButton />
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>

@@ -4,36 +4,103 @@ import DashboardReserveTable from "../../../../components/DashboardComponents/Da
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import { useState, useEffect } from "react";
 
-function DashboardReservation(props) {
+function DashboardReservation() {
+  const pageSizeOptions = [15, 30, 45];
+  const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
 
   const [selectedParams, setSelectedParams] = useState({
+    table: "",
+    status: "",
     pageNumber: 1,
-    pageSize: 15,
+    pageSize: pageSizeOptions[0],
   });
+
+  const getDate = () => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-0${month}-${date}`;
+  };
+
+  const [currentDate, setCurrentDate] = useState(getDate());
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfReservations, setNumberOfReservations] = useState();
 
-  const handleNextPage = (value) => {
+  const handlePageSizeChange = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      pageSize: value,
+      pageNumber: 1,
+    }));
+  };
+
+  const handleNextPage = () => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       pageNumber: selectedParams.pageNumber + 1,
     }));
   };
 
-  const handlePreviousPage = (value) => {
+  const handlePreviousPage = () => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       pageNumber: selectedParams.pageNumber - 1,
     }));
   };
 
+  const handleChangeDate = (value) => {
+    console.log(value);
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      date: value,
+    }));
+  };
+
+  const handleTodaysReservations = () => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      date: currentDate,
+    }));
+  };
+
+  const handleAllReservations = () => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      date: '',
+    }));
+  };
+
+  const handleChangeTable = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      table: value,
+    }));
+  };
+
+  const handleChangeStatus = (value) => {
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      status: value,
+    }));
+  };
+
+  const handleChangeName = (value) => {
+    console.log(value);
+    setSelectedParams((selectedParams) => ({
+      ...selectedParams,
+      name: value,
+    }));
+  };
+
   useEffect(() => {
     const fetchReservations = async () => {
       let queryString = ``;
-      if (props.params) {
+      if (selectedParams) {
         for (const [index, [key, value]] of Object.entries(
-          props.params
+          selectedParams
         ).entries()) {
           if (index === 0) {
             queryString += `?${key}=${value}`;
@@ -57,17 +124,39 @@ function DashboardReservation(props) {
     };
 
     fetchReservations();
-  }, [props.params]);
+  }, [selectedParams]);
 
   return (
     <div className="bg-gray-600 pt-5 h-full px-3 py-10">
-      <ReservationHeader />
-      {reservations && <DashboardReserveTable reservations={reservations} />}
+      <ReservationHeader
+        pageSizeOptions={pageSizeOptions}
+        tableOptions={tableOptions}
+        statusOptions={statusOptions}
+        pageSize={selectedParams.pageSize}
+        handlePageSizeChange={handlePageSizeChange}
+        selectedTable={selectedParams.selectedTable}
+        selectedStatus={selectedParams.selectedStatus}
+        handleChangeDate={handleChangeDate}
+        handleChangeTable={handleChangeTable}
+        handleChangeStatus={handleChangeStatus}
+        handleChangeName={handleChangeName}
+        handleTodaysReservations={handleTodaysReservations}
+        handleAllReservations={handleAllReservations}
+      />
+      {reservations && (
+        <DashboardReserveTable
+          reservations={reservations}
+          pageSize={selectedParams.pageSize}
+          pageNumber={selectedParams.pageNumber}
+        />
+      )}
       <TablePagination
         handleNextPage={handleNextPage}
         handlePreviousPage={handlePreviousPage}
+        pageSize={selectedParams.pageSize}
         numberOfPages={numberOfPages}
         numberOfReservations={numberOfReservations}
+        selectedParams={selectedParams}
       />
     </div>
   );

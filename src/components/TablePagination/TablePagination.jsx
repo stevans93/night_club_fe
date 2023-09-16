@@ -4,18 +4,26 @@ const TablePagination = (props) => {
   return (
     <div className="bg-white flex w-full justify-center relative mt-10">
       <span className="absolute left-0">
-        Show <span>15</span> of <span>{props.numberOfReservations}</span>
+        Show
+        <span>
+          {props.pageSize < props.numberOfReservations
+            ? props.pageSize
+            : props.numberOfReservations}
+        </span>
+        of <span>{props.numberOfReservations}</span>
       </span>
       <div className="flex gap-3">
         <button
-          // disabled={props.selectedParams.pageNumber === 1}
+          onClick={props.handlePreviousPage}
+          disabled={props.selectedParams.pageNumber === 1}
           className="bg-primary text-white"
         >
           <MdKeyboardArrowLeft size="1.1rem" />
         </button>
-        <span>1 of {props.numberOfPages}</span>
+        <span>{props.selectedParams.pageNumber} of {props.numberOfPages}</span>
         <button
-          // disabled={props.selectedParams.pageNumber === props.numberOfPages}
+          onClick={props.handleNextPage}
+          disabled={props.selectedParams.numberOfPages === props.numberOfPages}
           className="bg-primary text-white"
         >
           <MdKeyboardArrowRight size="1.1rem" />

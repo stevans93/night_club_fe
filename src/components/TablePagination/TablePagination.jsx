@@ -4,13 +4,13 @@ const TablePagination = (props) => {
   return (
     <div className="bg-white flex w-full justify-center relative mt-10">
       <span className="absolute left-0">
-        Show
+        Show{" "}
         <span>
-          {props.pageSize < props.numberOfCoupons
+          {props.pageSize < props.numberOfItems
             ? props.pageSize
-            : props.numberOfCoupons}
-        </span>
-        of <span>{props.numberOfCoupons}</span>
+            : props.numberOfItems}
+        </span>{" "}
+        of <span>{props.numberOfItems}</span>
       </span>
       <div className="flex gap-3">
         <button

@@ -88,7 +88,7 @@ function DashboardCoupon() {
         handlePreviousPage={handlePreviousPage}
         pageSize={selectedParams.pageSize}
         numberOfPages={numberOfPages}
-        numberOfCoupons={numberOfCoupons}
+        numberOfItems={numberOfCoupons}
         selectedParams={selectedParams}
       />
     </div>

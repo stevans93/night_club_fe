@@ -155,7 +155,7 @@ function DashboardReservation() {
         handlePreviousPage={handlePreviousPage}
         pageSize={selectedParams.pageSize}
         numberOfPages={numberOfPages}
-        numberOfReservations={numberOfReservations}
+        numberOfItems={numberOfReservations}
         selectedParams={selectedParams}
       />
     </div>

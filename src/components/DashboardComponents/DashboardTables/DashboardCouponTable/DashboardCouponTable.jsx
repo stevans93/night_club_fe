@@ -4,7 +4,7 @@ import EditButton from "../../../Buttons/EditButton/EditButton";
 import { useState } from "react";
 import EditCouponForm from "../../DashboardForms/EditCouponForm/EditCouponForm";
 
-const DashboardCouponTable = () => {
+const DashboardCouponTable = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -14,6 +14,7 @@ const DashboardCouponTable = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
@@ -31,91 +32,34 @@ const DashboardCouponTable = () => {
             <th className="border-r-2 bg-white px-6 py-3">Action</th>
           </thead>
           <tbody className="divide-y">
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">New Offer</td>
-              <td className="border-r-2 px-6 py-3">FOO389</td>
-              <td className="border-r-2 px-6 py-3">500</td>
-              <td className="border-r-2 px-6 py-3">60</td>
-              <td className="border-r-2 px-6 py-3">5%</td>
-              <td className="border-r-2 px-6 py-3">16 May 2023</td>
-              <td className="border-r-2 px-6 py-3">25 May 2023</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Active" />
-              </td>
-              <td className="flex border-r-2 px-6 py-3 gap-2">
-                <EditButton onClick={handleOpenModal} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">New Offer</td>
-              <td className="border-r-2 px-6 py-3">FOO389</td>
-              <td className="border-r-2 px-6 py-3">500</td>
-              <td className="border-r-2 px-6 py-3">60</td>
-              <td className="border-r-2 px-6 py-3">5%</td>
-              <td className="border-r-2 px-6 py-3">16 May 2023</td>
-              <td className="border-r-2 px-6 py-3">25 May 2023</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Active" />
-              </td>
-              <td className="flex border-r-2 px-6 py-3 gap-2">
-                <EditButton onClick={handleOpenModal} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">New Offer</td>
-              <td className="border-r-2 px-6 py-3">FOO389</td>
-              <td className="border-r-2 px-6 py-3">500</td>
-              <td className="border-r-2 px-6 py-3">60</td>
-              <td className="border-r-2 px-6 py-3">5%</td>
-              <td className="border-r-2 px-6 py-3">16 May 2023</td>
-              <td className="border-r-2 px-6 py-3">25 May 2023</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Active" />
-              </td>
-              <td className="flex border-r-2 px-6 py-3 gap-2">
-                <EditButton onClick={handleOpenModal} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">New Offer</td>
-              <td className="border-r-2 px-6 py-3">FOO389</td>
-              <td className="border-r-2 px-6 py-3">500</td>
-              <td className="border-r-2 px-6 py-3">60</td>
-              <td className="border-r-2 px-6 py-3">5%</td>
-              <td className="border-r-2 px-6 py-3">16 May 2023</td>
-              <td className="border-r-2 px-6 py-3">25 May 2023</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Active" />
-              </td>
-              <td className="flex border-r-2 px-6 py-3 gap-2">
-                <EditButton onClick={handleOpenModal} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">New Offer</td>
-              <td className="border-r-2 px-6 py-3">FOO389</td>
-              <td className="border-r-2 px-6 py-3">500</td>
-              <td className="border-r-2 px-6 py-3">60</td>
-              <td className="border-r-2 px-6 py-3">5%</td>
-              <td className="border-r-2 px-6 py-3">16 May 2023</td>
-              <td className="border-r-2 px-6 py-3">25 May 2023</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Active" />
-              </td>
-              <td className="flex border-r-2 px-6 py-3 gap-2">
-                <EditButton onClick={handleOpenModal} />
-                <DeleteButton />
-              </td>
-            </tr>
+            {props.coupons.map((coupon, i) => {
+              return (
+                <tr
+                  key={coupon._id}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <td className="border-r-2 px-6 py-3">
+                    {i + 1 + props.pageSize * (props.pageNumber - 1)}
+                  </td>
+                  <td className="border-r-2 px-6 py-3">{coupon.title}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.code}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.limit}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.used}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.discount}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.startDate}</td>
+                  <td className="border-r-2 px-6 py-3">{coupon.endDate}</td>
+                  <td className="border-r-2 px-6 py-3">
+                    <ActiveButton
+                      text={coupon.status ? "Active" : "Inactive"}
+                    />
+                  </td>
+                  <td className="flex border-r-2 px-6 py-3 gap-2">
+                    <EditButton onClick={handleOpenModal} />
+                    <DeleteButton />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

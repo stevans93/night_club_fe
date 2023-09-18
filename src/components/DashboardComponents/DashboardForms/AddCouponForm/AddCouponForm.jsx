@@ -1,7 +1,41 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
+import { useRef } from "react";
 
 const AddCouponForm = (props) => {
+  const titleInputRef = useRef();
+  const codeInputRef = useRef();
+  const limitInputRef = useRef();
+  const discountInputRef = useRef();
+  const startDateInputRef = useRef();
+  const endDateInputRef = useRef();
+
+  const handleSaveForm = async () => {
+    await saveCoupon();
+    props.handleCloseModal();
+  };
+
+  const saveCoupon = async () => {
+    const coupon = {
+      title: titleInputRef.current.value,
+      code: codeInputRef.current.value,
+      limit: limitInputRef.current.value,
+      discount: discountInputRef.current.value,
+      startDate: startDateInputRef.current.value,
+      endDate: endDateInputRef.current.value,
+    };
+
+    const response = await fetch(
+      `http://localhost:4000/api/coupons/addCoupon`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(coupon),
+      }
+    );
+  };
   return (
     <>
       {props.isModalOpen && (
@@ -16,7 +50,7 @@ const AddCouponForm = (props) => {
               Add Coupon
             </Modal.Header>
             <Modal.Body>
-              <div className="flex flex-wrap">
+              <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
                     Title
@@ -26,6 +60,7 @@ const AddCouponForm = (props) => {
                     placeholder="Enter title"
                     id="name"
                     type="text"
+                    ref={titleInputRef}
                   />
                 </div>
                 <div className="w-full flex flex-col">
@@ -37,6 +72,7 @@ const AddCouponForm = (props) => {
                     placeholder="Enter Coupon Code"
                     id="phone"
                     type="text"
+                    ref={codeInputRef}
                   />
                 </div>
                 <div className="flex w-full justify-between">
@@ -49,6 +85,7 @@ const AddCouponForm = (props) => {
                       placeholder="Set Limit"
                       id="limit"
                       type="text"
+                      ref={limitInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
@@ -60,6 +97,7 @@ const AddCouponForm = (props) => {
                       placeholder="Set discount"
                       id="discount"
                       type="text"
+                      ref={discountInputRef}
                     />
                   </div>
                 </div>
@@ -73,6 +111,7 @@ const AddCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="startDate"
                       type="date"
+                      ref={startDateInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
@@ -83,13 +122,14 @@ const AddCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="endDate"
                       type="date"
+                      ref={endDateInputRef}
                     />
                   </div>
                 </div>
-              </div>
+              </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleCloseModal} appearance="primary">
+              <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleCloseModal} appearance="subtle">

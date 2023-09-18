@@ -2,7 +2,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 import AddCouponForm from "../../DashboardForms/AddCouponForm/AddCouponForm";
 
-const CouponHeader = () => {
+const CouponHeader = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -21,10 +21,20 @@ const CouponHeader = () => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <span>Show</span>
-            <select className="px-1 w-12 border rounded-xl" value="">
-              <option value="" disabled>
-                15
-              </option>
+            <select
+              className="px-1 w-16 border rounded-xl"
+              value={props.pageSize}
+              onChange={(event) =>
+                props.handlePageSizeChange(event.target.value)
+              }
+            >
+              {props.pageSizeOptions.map((x) => {
+                return (
+                  <option key={x} value={x}>
+                    {x}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <button

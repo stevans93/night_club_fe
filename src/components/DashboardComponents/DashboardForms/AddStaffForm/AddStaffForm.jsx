@@ -13,7 +13,7 @@ const AddStaffForm = (props) => {
             backdrop={props.isModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add new customer
+              Add new staff
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap justify-between">

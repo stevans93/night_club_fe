@@ -21,7 +21,7 @@ const ActionButton = (props) => {
         </button>
         {isOpen && (
           <div className="flex flex-col absolute top-9 z-10 w-full bg-[#979797] p-1 rounded-md">
-            <DeleteButton />
+            <DeleteButton onClick={props.handleDelete} />
             <EditButton onClick={props.handleEditModalOpen}></EditButton>
           </div>
         )}

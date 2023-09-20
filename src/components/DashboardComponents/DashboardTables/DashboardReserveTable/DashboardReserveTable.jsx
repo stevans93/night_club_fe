@@ -38,7 +38,12 @@ const DashboardReserveTable = (props) => {
                   <ActiveButton text={reservation.status} />
                 </td>
                 <td className="border-r-2 px-6 py-3">
-                  <ActionButton handleEditModalOpen={() => props.handleEditModalOpen(reservation._id)} />
+                  <ActionButton
+                    handleEditModalOpen={() =>
+                      props.handleEditModalOpen(reservation._id)
+                    }
+                    handleDelete={() => props.handleDelete(reservation._id)}
+                  />
                 </td>
               </tr>
             );

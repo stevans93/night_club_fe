@@ -29,6 +29,10 @@ function DashboardReservation() {
     setIsEditModalOpen(true);
   };
 
+  const handleDelete = async (id) => {
+    await fetchDeleteReservationById(id);
+  };
+
   const getDate = () => {
     const today = new Date();
     const month = today.getMonth() + 1;
@@ -118,6 +122,19 @@ function DashboardReservation() {
     }
   };
 
+  const fetchDeleteReservationById = async (id) => {
+    const response = await fetch(
+      `http://localhost:4000/api/reservations/deleteReservation/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.ok) {
+      console.log("deleted");
+    }
+  };
+
   useEffect(() => {
     const fetchReservations = async () => {
       let queryString = ``;
@@ -173,6 +190,7 @@ function DashboardReservation() {
             pageSize={selectedParams.pageSize}
             pageNumber={selectedParams.pageNumber}
             handleEditModalOpen={handleEditModalOpen}
+            handleDelete={handleDelete}
           />
         )}
         <TablePagination

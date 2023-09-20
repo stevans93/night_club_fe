@@ -9,7 +9,6 @@ const AddReservationForm = (props) => {
   const tableInputRef = useRef();
   const personsInputRef = useRef();
   const dateInputRef = useRef();
-  const timeInputRef = useRef();
 
   const handleSaveForm = async () => {
     await saveReservation();
@@ -24,7 +23,6 @@ const AddReservationForm = (props) => {
       table: tableInputRef.current.value,
       persons: personsInputRef.current.value,
       date: dateInputRef.current.value,
-      time: timeInputRef.current.value,
     };
 
     const response = await fetch(
@@ -129,17 +127,6 @@ const AddReservationForm = (props) => {
                       id="date"
                       type="date"
                       ref={dateInputRef}
-                    />
-                  </div>
-                  <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="time">
-                      Time
-                    </label>
-                    <input
-                      className="py-3 px-2 border-2 border-black rounded-lg"
-                      id="name"
-                      type="time"
-                      ref={timeInputRef}
                     />
                   </div>
                 </div>

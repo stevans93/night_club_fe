@@ -3,19 +3,31 @@ import ReservationHeader from "../../../../components/DashboardComponents/Dashbo
 import DashboardReserveTable from "../../../../components/DashboardComponents/DashboardTables/DashboardReserveTable/DashboardReserveTable";
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import { useState, useEffect } from "react";
+import EditReservationForm from "../../../../components/DashboardComponents/DashboardForms/EditReservationForm/EditReservationForm";
 
 function DashboardReservation() {
   const pageSizeOptions = [15, 30, 45];
   const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
-
   const [selectedParams, setSelectedParams] = useState({
     table: "",
     status: "",
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
   });
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [reservationToEdit, setReservationToEdit] = useState(null);
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleEditModalOpen = async (id) => {
+    await fetchReservationById(id);
+    setIsEditModalOpen(true);
+  };
 
   const getDate = () => {
     const today = new Date();
@@ -69,7 +81,7 @@ function DashboardReservation() {
   const handleAllReservations = () => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      date: '',
+      date: "",
     }));
   };
 
@@ -93,6 +105,17 @@ function DashboardReservation() {
       ...selectedParams,
       name: value,
     }));
+  };
+
+  const fetchReservationById = async (id) => {
+    const response = await fetch(
+      `http://localhost:4000/api/reservations/singleReservation/${id}`
+    );
+    const json = await response.json();
+
+    if (response.ok) {
+      setReservationToEdit(json);
+    }
   };
 
   useEffect(() => {
@@ -127,38 +150,48 @@ function DashboardReservation() {
   }, [selectedParams]);
 
   return (
-    <div className="bg-gray-600 pt-5 h-full px-3 py-10">
-      <ReservationHeader
-        pageSizeOptions={pageSizeOptions}
-        tableOptions={tableOptions}
-        statusOptions={statusOptions}
-        pageSize={selectedParams.pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-        selectedTable={selectedParams.selectedTable}
-        selectedStatus={selectedParams.selectedStatus}
-        handleChangeDate={handleChangeDate}
-        handleChangeTable={handleChangeTable}
-        handleChangeStatus={handleChangeStatus}
-        handleChangeName={handleChangeName}
-        handleTodaysReservations={handleTodaysReservations}
-        handleAllReservations={handleAllReservations}
-      />
-      {reservations && (
-        <DashboardReserveTable
-          reservations={reservations}
+    <>
+      <div className="bg-gray-600 pt-5 h-full px-3 py-10">
+        <ReservationHeader
+          pageSizeOptions={pageSizeOptions}
+          tableOptions={tableOptions}
+          statusOptions={statusOptions}
           pageSize={selectedParams.pageSize}
-          pageNumber={selectedParams.pageNumber}
+          handlePageSizeChange={handlePageSizeChange}
+          selectedTable={selectedParams.selectedTable}
+          selectedStatus={selectedParams.selectedStatus}
+          handleChangeDate={handleChangeDate}
+          handleChangeTable={handleChangeTable}
+          handleChangeStatus={handleChangeStatus}
+          handleChangeName={handleChangeName}
+          handleTodaysReservations={handleTodaysReservations}
+          handleAllReservations={handleAllReservations}
+        />
+        {reservations && (
+          <DashboardReserveTable
+            reservations={reservations}
+            pageSize={selectedParams.pageSize}
+            pageNumber={selectedParams.pageNumber}
+            handleEditModalOpen={handleEditModalOpen}
+          />
+        )}
+        <TablePagination
+          handleNextPage={handleNextPage}
+          handlePreviousPage={handlePreviousPage}
+          pageSize={selectedParams.pageSize}
+          numberOfPages={numberOfPages}
+          numberOfItems={numberOfReservations}
+          selectedParams={selectedParams}
+        />
+      </div>
+      {reservationToEdit && (
+        <EditReservationForm
+          isEditModalOpen={isEditModalOpen}
+          handleEditModalClose={handleEditModalClose}
+          reservation={reservationToEdit}
         />
       )}
-      <TablePagination
-        handleNextPage={handleNextPage}
-        handlePreviousPage={handlePreviousPage}
-        pageSize={selectedParams.pageSize}
-        numberOfPages={numberOfPages}
-        numberOfItems={numberOfReservations}
-        selectedParams={selectedParams}
-      />
-    </div>
+    </>
   );
 }
 

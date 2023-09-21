@@ -34,7 +34,7 @@ function DashboardSidebar({ children, open }) {
               Reservation
             </span>
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/dashboard/payment"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
@@ -42,7 +42,7 @@ function DashboardSidebar({ children, open }) {
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Payment History
             </span>
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/dashboard/menu"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
@@ -88,7 +88,7 @@ function DashboardSidebar({ children, open }) {
               Staff
             </span>
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/dashboard/live-order"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
@@ -96,7 +96,7 @@ function DashboardSidebar({ children, open }) {
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Live Order
             </span>
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/dashboard/events"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"

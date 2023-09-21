@@ -15,7 +15,6 @@ const DashboardCustomerTable = (props) => {
             <th className="border-r-2 bg-white px-6 py-3">Phone</th>
             <th className="border-r-2 bg-white px-6 py-3">Email</th>
             <th className="border-r-2 bg-white px-6 py-3">Total orders</th>
-            <th className="border-r-2 bg-white px-6 py-3">Status</th>
             <th className="border-r-2 bg-white px-6 py-3">Action</th>
           </thead>
           <tbody className="divide-y">
@@ -26,11 +25,7 @@ const DashboardCustomerTable = (props) => {
               <td className="border-r-2 px-6 py-3">063-563-632</td>
               <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
               <td className="border-r-2 px-6 py-3">12</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Verified" />
-              </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
-                <LockButton />
                 <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
@@ -42,11 +37,7 @@ const DashboardCustomerTable = (props) => {
               <td className="border-r-2 px-6 py-3">063-563-632</td>
               <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
               <td className="border-r-2 px-6 py-3">12</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Verified" />
-              </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
-                <LockButton />
                 <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
@@ -58,11 +49,7 @@ const DashboardCustomerTable = (props) => {
               <td className="border-r-2 px-6 py-3">063-563-632</td>
               <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
               <td className="border-r-2 px-6 py-3">12</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Verified" />
-              </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
-                <LockButton />
                 <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
@@ -74,11 +61,7 @@ const DashboardCustomerTable = (props) => {
               <td className="border-r-2 px-6 py-3">063-563-632</td>
               <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
               <td className="border-r-2 px-6 py-3">12</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Verified" />
-              </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
-                <LockButton />
                 <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
@@ -90,11 +73,7 @@ const DashboardCustomerTable = (props) => {
               <td className="border-r-2 px-6 py-3">063-563-632</td>
               <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
               <td className="border-r-2 px-6 py-3">12</td>
-              <td className="border-r-2 px-6 py-3">
-                <ActiveButton text="Verified" />
-              </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
-                <LockButton />
                 <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>

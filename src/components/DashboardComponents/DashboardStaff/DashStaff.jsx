@@ -6,6 +6,9 @@ const DashStaff = (props) => {
       <DashboardStaffListTable
         handleEditStaffModalOpen={props.handleEditStaffModalOpen}
       />
+       <DashboardStaffListTable
+        handleEditStaffModalOpen={props.handleEditStaffModalOpen}
+      />
     </div>
   );
 };

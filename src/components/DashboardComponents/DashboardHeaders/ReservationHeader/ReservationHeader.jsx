@@ -1,9 +1,22 @@
 import { BsSearch } from "react-icons/bs";
 import { BiListUl } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
-import { FaFilter } from "react-icons/fa";
+import { BiSolidFileExport } from "react-icons/bi";
+import { useState } from "react";
 
 const ReservationHeader = (props) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleTodaysReservation = () => {
+    setIsActive(true);
+    props.handleTodaysReservations();
+  };
+
+  const handleAllReservations = () => {
+    setIsActive(false);
+    props.handleAllReservations();
+  };
+
   const handleChangeDate = (event) => {
     props.handleChangeDate(event.target.value);
   };
@@ -12,16 +25,24 @@ const ReservationHeader = (props) => {
     <>
       <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white">
         <div className="flex items-center gap-3">
-          <button onClick={props.handleTodaysReservations}>
-            Todays Reservation
-          </button>
-          <button
-            onClick={props.handleAllReservations}
-            className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
-          >
-            <BiListUl size="1.5rem" />
-            All Reservation list
-          </button>
+          {!isActive && (
+            <button
+              className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
+              onClick={handleTodaysReservation}
+            >
+              <BiListUl size="1.5rem" />
+              Todays Reservations
+            </button>
+          )}
+          {isActive && (
+            <button
+              onClick={handleAllReservations}
+              className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
+            >
+              <BiListUl size="1.5rem" />
+              All Reservation List
+            </button>
+          )}
           <button
             onClick={props.handleAddReservationModalOpen}
             className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
@@ -102,9 +123,9 @@ const ReservationHeader = (props) => {
               );
             })}
           </select>
-          <button className="flex items-center px-3 rounded-lg bg-primary h-8 text-white gap-2">
-            <FaFilter />
-            Filter
+          <button className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2">
+            <BiSolidFileExport size="1.2rem" />
+            Export
           </button>
         </div>
       </div>

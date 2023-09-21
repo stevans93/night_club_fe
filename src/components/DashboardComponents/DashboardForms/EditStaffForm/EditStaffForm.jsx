@@ -72,16 +72,6 @@ const EditStaffForm = (props) => {
                       <label htmlFor="reservation">Reservation</label>
                     </li>
                     <li className="flex gap-2 py-1">
-                      <span className="w-2">2</span>
-                      <input id="Payment" type="checkbox" />
-                      <label htmlFor="Payment">Payment history</label>
-                    </li>
-                    <li className="flex gap-2 py-1">
-                      <span className="w-2">3</span>
-                      <input id="liveOrder" type="checkbox" />
-                      <label htmlFor="liveOrder">Live order</label>
-                    </li>
-                    <li className="flex gap-2 py-1">
                       <span className="w-2">4</span>
                       <input id="Coupon" type="checkbox" />
                       <label htmlFor="Coupon">Coupon list</label>

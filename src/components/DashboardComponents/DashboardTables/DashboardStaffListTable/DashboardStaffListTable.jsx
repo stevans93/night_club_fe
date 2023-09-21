@@ -16,7 +16,6 @@ const DashboardStaffListTable = (props) => {
               <th className="border-r-2 bg-white px-6 py-3">Name</th>
               <th className="border-r-2 bg-white px-6 py-3">Email</th>
               <th className="border-r-2 bg-white px-6 py-3">Premission</th>
-              <th className="border-r-2 bg-white px-6 py-3">Status</th>
               <th className="border-r-2 bg-white px-6 py-3">Action</th>
             </thead>
             <tbody className="divide-y">
@@ -43,19 +42,8 @@ const DashboardStaffListTable = (props) => {
                         <td className="border-2 px-6 py-3">1</td>
                         <td className="border-2 px-6 py-3">Reservation</td>
                       </tr>
-                      <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <td className="border-2 px-6 py-3">1</td>
-                        <td className="border-2 px-6 py-3">Reservation</td>
-                      </tr>
-                      <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                        <td className="border-2 px-6 py-3">1</td>
-                        <td className="border-2 px-6 py-3">Reservation</td>
-                      </tr>
                     </tbody>
                   </table>
-                </td>
-                <td className="border-r-2 px-6 py-3 align-baseline">
-                  <ActiveButton text="Active" />
                 </td>
                 <td className="flex gap-1 border-r-2 px-6 py-3 align-baseline">
                   <LockButton />

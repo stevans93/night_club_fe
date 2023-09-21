@@ -10,10 +10,6 @@ const CustomerHeader = (props) => {
       <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
         <div className="flex items-center gap-3">
           <span>Customer List</span>
-          <button onClick={props.handleAddCustomerOpen} className="flex items-center px-5 py-3 rounded-lg bg-primary h-8 text-white gap-2">
-            <AiOutlinePlus size="1.3rem" />
-            Add new customer
-          </button>
           <div className="flex items-center gap-2">
             <span>Show</span>
             <select className="px-1 w-12 border rounded-xl" value="">
@@ -32,18 +28,6 @@ const CustomerHeader = (props) => {
             />
             <BsSearch />
           </div>
-          <select
-            className="h-8 w-20 border rounded-xlpx-1 border rounded-xl"
-            value=""
-          >
-            <option value="" disabled>
-              Status
-            </option>
-          </select>
-          <button className="flex items-center px-3 rounded-lg bg-primary h-8 text-white gap-2">
-            <FaFilter />
-            Filter
-          </button>
           <button className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2">
             <BiSolidFileExport size="1.2rem" />
             Export

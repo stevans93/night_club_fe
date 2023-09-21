@@ -12,7 +12,7 @@ const DashboardReserveTable = (props) => {
           <th className="border-r-2 bg-white px-6 py-3">Phone</th>
           <th className="border-r-2 bg-white px-6 py-3">Date</th>
           <th className="border-r-2 bg-white px-6 py-3">Overview</th>
-          <th className="border-r-2 bg-white px-6 py-3">Completed</th>
+          <th className="border-r-2 bg-white px-6 py-3">Status</th>
           <th className="border-r-2 bg-white px-6 py-3">Action</th>
         </thead>
         <tbody className="divide-y">

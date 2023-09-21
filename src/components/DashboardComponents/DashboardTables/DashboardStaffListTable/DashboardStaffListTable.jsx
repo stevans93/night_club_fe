@@ -2,19 +2,7 @@ import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
 import EditButton from "../../../Buttons/EditButton/EditButton";
 import LockButton from "../../../Buttons/LockButton/LockButton";
-import EditStaffForm from "../../DashboardForms/EditStaffForm/EditStaffForm";
-import { useState } from "react";
-
-const DashboardStaffListTable = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const DashboardStaffListTable = (props) => {
   return (
     <>
       <div className="flex flex-col ml-2 bg-white w-fit rounded-lg px-2 pb-10 w-8/12">
@@ -71,7 +59,7 @@ const DashboardStaffListTable = () => {
                 </td>
                 <td className="flex gap-1 border-r-2 px-6 py-3 align-baseline">
                   <LockButton />
-                  <EditButton onClick={handleOpenModal} />
+                  <EditButton onClick={props.handleEditStaffModalOpen} />
                   <DeleteButton />
                 </td>
               </tr>
@@ -79,10 +67,6 @@ const DashboardStaffListTable = () => {
           </table>
         </div>
       </div>
-      <EditStaffForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

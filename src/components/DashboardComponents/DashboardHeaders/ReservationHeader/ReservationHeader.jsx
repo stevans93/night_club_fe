@@ -2,20 +2,8 @@ import { BsSearch } from "react-icons/bs";
 import { BiListUl } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaFilter } from "react-icons/fa";
-import AddReservationForm from "../../DashboardForms/AddReservationForm/AddReservationForm";
-import { useState } from "react";
 
 const ReservationHeader = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   const handleChangeDate = (event) => {
     props.handleChangeDate(event.target.value);
   };
@@ -35,7 +23,7 @@ const ReservationHeader = (props) => {
             All Reservation list
           </button>
           <button
-            onClick={handleOpenModal}
+            onClick={props.handleAddReservationModalOpen}
             className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
           >
             <AiOutlinePlus size="1.2rem" />
@@ -120,10 +108,6 @@ const ReservationHeader = (props) => {
           </button>
         </div>
       </div>
-      <AddReservationForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

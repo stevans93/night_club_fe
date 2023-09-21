@@ -12,7 +12,7 @@ const AddReservationForm = (props) => {
 
   const handleSaveForm = async () => {
     await saveReservation();
-    props.handleCloseModal();
+    props.handleAddReservationModalClose();
   };
 
   const saveReservation = async () => {
@@ -39,13 +39,13 @@ const AddReservationForm = (props) => {
 
   return (
     <>
-      {props.isModalOpen && (
+      {props.isAddReservationModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isModalOpen}
-            onClose={props.handleCloseModal}
-            backdrop={props.isModalOpen}
+            open={props.isAddReservationModalOpen}
+            onClose={props.handleAddReservationModalClose}
+            backdrop={props.isAddReservationModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
               Add Reservation
@@ -140,7 +140,7 @@ const AddReservationForm = (props) => {
               >
                 Ok
               </Button>
-              <Button onClick={props.handleCloseModal} appearance="subtle">
+              <Button onClick={props.handleAddModalClose} appearance="subtle">
                 Cancel
               </Button>
             </Modal.Footer>

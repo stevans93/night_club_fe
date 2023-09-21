@@ -1,20 +1,8 @@
 import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
 import EditButton from "../../../Buttons/EditButton/EditButton";
-import { useState } from "react";
-import EditCouponForm from "../../DashboardForms/EditCouponForm/EditCouponForm";
 
 const DashboardCouponTable = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
@@ -54,7 +42,7 @@ const DashboardCouponTable = (props) => {
                     />
                   </td>
                   <td className="flex border-r-2 px-6 py-3 gap-2">
-                    <EditButton onClick={handleOpenModal} />
+                    <EditButton onClick={props.handleEditModalOpen} />
                     <DeleteButton />
                   </td>
                 </tr>
@@ -63,10 +51,6 @@ const DashboardCouponTable = (props) => {
           </tbody>
         </table>
       </div>
-      <EditCouponForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

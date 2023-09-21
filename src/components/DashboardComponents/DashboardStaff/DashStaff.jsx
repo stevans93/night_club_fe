@@ -1,11 +1,11 @@
-import DashboardPremissionTable from "../DashboardTables/DashboardPremissionTable/DashboardPremissionTable";
 import DashboardStaffListTable from "../DashboardTables/DashboardStaffListTable/DashboardStaffListTable";
 
-const DashStaff = () => {
+const DashStaff = (props) => {
   return (
     <div className="flex flex-wrap gap-10 mt-10 ml-2">
-      <DashboardStaffListTable />
-      <DashboardPremissionTable />
+      <DashboardStaffListTable
+        handleEditStaffModalOpen={props.handleEditStaffModalOpen}
+      />
     </div>
   );
 };

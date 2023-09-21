@@ -4,13 +4,13 @@ import { Modal, Button } from "rsuite";
 const EditStaffForm = (props) => {
   return (
     <>
-      {props.isModalOpen && (
+      {props.isEditStaffModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isModalOpen}
-            onClose={props.handleCloseModal}
-            backdrop={props.isModalOpen}
+            open={props.isEditStaffModalOpen}
+            onClose={props.handleEditStaffModalClose}
+            backdrop={props.isEditStaffModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
               Add new customer
@@ -91,10 +91,16 @@ const EditStaffForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleCloseModal} appearance="primary">
+              <Button
+                onClick={props.handleEditStaffModalClose}
+                appearance="primary"
+              >
                 Ok
               </Button>
-              <Button onClick={props.handleCloseModal} appearance="subtle">
+              <Button
+                onClick={props.handleEditStaffModalClose}
+                appearance="subtle"
+              >
                 Cancel
               </Button>
             </Modal.Footer>

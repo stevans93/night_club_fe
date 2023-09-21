@@ -4,6 +4,7 @@ import DashboardReserveTable from "../../../../components/DashboardComponents/Da
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import { useState, useEffect } from "react";
 import EditReservationForm from "../../../../components/DashboardComponents/DashboardForms/EditReservationForm/EditReservationForm";
+import AddReservationForm from "../../../../components/DashboardComponents/DashboardForms/AddReservationForm/AddReservationForm";
 
 function DashboardReservation() {
   const pageSizeOptions = [15, 30, 45];
@@ -19,6 +20,16 @@ function DashboardReservation() {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [reservationToEdit, setReservationToEdit] = useState(null);
+
+  const [isAddReservationModalOpen, setIsAddReservationModalOpen] = useState(false);
+
+  const handleAddReservationModalOpen = () => {
+    setIsAddReservationModalOpen(true);
+  };
+
+  const handleAddReservationModalClose = () => {
+    setIsAddReservationModalOpen(false);
+  };
 
   const handleEditModalClose = () => {
     setIsEditModalOpen(false);
@@ -183,6 +194,7 @@ function DashboardReservation() {
           handleChangeName={handleChangeName}
           handleTodaysReservations={handleTodaysReservations}
           handleAllReservations={handleAllReservations}
+          handleAddReservationModalOpen={handleAddReservationModalOpen}
         />
         {reservations && (
           <DashboardReserveTable
@@ -209,6 +221,10 @@ function DashboardReservation() {
           reservation={reservationToEdit}
         />
       )}
+      <AddReservationForm
+        isAddReservationModalOpen={isAddReservationModalOpen}
+        handleAddReservationModalClose={handleAddReservationModalClose}
+      />
     </>
   );
 }

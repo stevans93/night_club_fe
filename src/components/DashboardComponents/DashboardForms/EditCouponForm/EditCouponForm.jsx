@@ -4,16 +4,16 @@ import { Modal, Button } from "rsuite";
 const EditCouponForm = (props) => {
   return (
     <>
-      {props.isModalOpen && (
+      {props.isEditCouponModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isModalOpen}
-            onClose={props.handleCloseModal}
-            backdrop={props.isModalOpen}
+            open={props.isEditCouponModalOpen}
+            onClose={props.handleEditModalClose}
+            backdrop={props.isEditCouponModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add Coupon
+              Edit Coupon
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap">
@@ -89,10 +89,10 @@ const EditCouponForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleCloseModal} appearance="primary">
+              <Button onClick={props.handleEditModalClose} appearance="primary">
                 Ok
               </Button>
-              <Button onClick={props.handleCloseModal} appearance="subtle">
+              <Button onClick={props.handleEditModalClose} appearance="subtle">
                 Cancel
               </Button>
             </Modal.Footer>

@@ -3,6 +3,8 @@ import CouponHeader from "../../../../components/DashboardComponents/DashboardHe
 import DashboardCouponTable from "../../../../components/DashboardComponents/DashboardTables/DashboardCouponTable/DashboardCouponTable";
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import { useState, useEffect } from "react";
+import AddCouponForm from "../../../../components/DashboardComponents/DashboardForms/AddCouponForm/AddCouponForm";
+import EditCouponForm from "../../../../components/DashboardComponents/DashboardForms/EditCouponForm/EditCouponForm";
 
 function DashboardCoupon() {
   const pageSizeOptions = [15, 30, 45];
@@ -16,6 +18,25 @@ function DashboardCoupon() {
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
   });
+
+  const [isAddCouponModalOpen, setIsAddCouponModalOpen] = useState(false);
+  const [isEditCouponModalOpen, setIsEditCouponModalOpen] = useState(false);
+
+  const handleEditModalOpen = () => {
+    setIsEditCouponModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditCouponModalOpen(false);
+  };
+
+  const handleCouponModalOpen = () => {
+    setIsAddCouponModalOpen(true);
+  };
+
+  const handleCouponModalClose = () => {
+    setIsAddCouponModalOpen(false);
+  };
 
   const handlePageSizeChange = (value) => {
     setSelectedParams((selectedParams) => ({
@@ -75,12 +96,14 @@ function DashboardCoupon() {
         pageSizeOptions={pageSizeOptions}
         pageSize={selectedParams.pageSize}
         handlePageSizeChange={handlePageSizeChange}
+        handleCouponModalOpen={handleCouponModalOpen}
       />
       {coupons && (
         <DashboardCouponTable
           coupons={coupons}
           pageSize={selectedParams.pageSize}
           pageNumber={selectedParams.pageNumber}
+          handleEditModalOpen={handleEditModalOpen}
         />
       )}
       <TablePagination
@@ -90,6 +113,15 @@ function DashboardCoupon() {
         numberOfPages={numberOfPages}
         numberOfItems={numberOfCoupons}
         selectedParams={selectedParams}
+      />
+      <AddCouponForm
+        isAddCouponModalOpen={isAddCouponModalOpen}
+        handleCouponModalClose={handleCouponModalClose}
+      />
+
+      <EditCouponForm
+        isEditCouponModalOpen={isEditCouponModalOpen}
+        handleEditModalClose={handleEditModalClose}
       />
     </div>
   );

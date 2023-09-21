@@ -12,7 +12,7 @@ const AddCouponForm = (props) => {
 
   const handleSaveForm = async () => {
     await saveCoupon();
-    props.handleCloseModal();
+    props.handleCouponModalClose();
   };
 
   const saveCoupon = async () => {
@@ -38,13 +38,13 @@ const AddCouponForm = (props) => {
   };
   return (
     <>
-      {props.isModalOpen && (
+      {props.isAddCouponModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isModalOpen}
-            onClose={props.handleCloseModal}
-            backdrop={props.isModalOpen}
+            open={props.isAddCouponModalOpen}
+            onClose={props.handleCouponModalClose}
+            backdrop={props.isAddCouponModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
               Add Coupon
@@ -132,7 +132,7 @@ const AddCouponForm = (props) => {
               <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
-              <Button onClick={props.handleCloseModal} appearance="subtle">
+              <Button onClick={props.handleCouponModalClose} appearance="subtle">
                 Cancel
               </Button>
             </Modal.Footer>

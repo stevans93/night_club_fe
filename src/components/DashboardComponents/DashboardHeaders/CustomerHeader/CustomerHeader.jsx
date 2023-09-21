@@ -2,26 +2,15 @@ import { BsSearch } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaFilter } from "react-icons/fa";
 import { BiSolidFileExport } from "react-icons/bi";
-import { useState } from "react";
-import AddCustomerForm from "../../DashboardForms/AddCustomerForm/AddCustomerForm";
 
-const CustomerHeader = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const CustomerHeader = (props) => {
 
   return (
     <>
       <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
         <div className="flex items-center gap-3">
           <span>Customer List</span>
-          <button onClick={handleOpenModal} className="flex items-center px-5 py-3 rounded-lg bg-primary h-8 text-white gap-2">
+          <button onClick={props.handleAddCustomerOpen} className="flex items-center px-5 py-3 rounded-lg bg-primary h-8 text-white gap-2">
             <AiOutlinePlus size="1.3rem" />
             Add new customer
           </button>
@@ -61,10 +50,6 @@ const CustomerHeader = () => {
           </button>
         </div>
       </div>
-      <AddCustomerForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
       ;
     </>
   );

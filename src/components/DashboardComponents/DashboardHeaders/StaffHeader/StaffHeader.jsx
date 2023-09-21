@@ -1,17 +1,6 @@
 import { AiOutlinePlus } from "react-icons/ai";
-import { useState } from "react";
-import AddStaffForm from "../../DashboardForms/AddStaffForm/AddStaffForm";
 
-const StaffHeader = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const StaffHeader = (props) => {
   return (
     <>
       <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
@@ -20,7 +9,7 @@ const StaffHeader = () => {
         </div>
         <div className="flex items-center">
           <button
-            onClick={handleOpenModal}
+            onClick={props.handleAddStaffModalOpen}
             className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
           >
             <AiOutlinePlus />
@@ -28,10 +17,6 @@ const StaffHeader = () => {
           </button>
         </div>
       </div>
-      <AddStaffForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

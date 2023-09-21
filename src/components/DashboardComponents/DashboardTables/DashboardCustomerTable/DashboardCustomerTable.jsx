@@ -2,19 +2,8 @@ import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
 import EditButton from "../../../Buttons/EditButton/EditButton";
 import LockButton from "../../../Buttons/LockButton/LockButton";
-import EditCustomerForm from "../../DashboardForms/EditCustomerForm/EditCustomerForm";
-import { useState } from "react";
 
-const DashboardCustomerTable = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const DashboardCustomerTable = (props) => {
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
@@ -42,7 +31,7 @@ const DashboardCustomerTable = () => {
               </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
                 <LockButton />
-                <EditButton onClick={handleOpenModal} />
+                <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
             </tr>
@@ -58,7 +47,7 @@ const DashboardCustomerTable = () => {
               </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
                 <LockButton />
-                <EditButton onClick={handleOpenModal} />
+                <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
             </tr>
@@ -74,7 +63,7 @@ const DashboardCustomerTable = () => {
               </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
                 <LockButton />
-                <EditButton onClick={handleOpenModal} />
+                <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
             </tr>
@@ -90,7 +79,7 @@ const DashboardCustomerTable = () => {
               </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
                 <LockButton />
-                <EditButton onClick={handleOpenModal} />
+                <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
             </tr>
@@ -106,17 +95,13 @@ const DashboardCustomerTable = () => {
               </td>
               <td className="flex gap-1 border-r-2 px-6 py-3">
                 <LockButton />
-                <EditButton onClick={handleOpenModal} />
+                <EditButton onClick={props.handleEditCustomerOpen} />
                 <DeleteButton />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <EditCustomerForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

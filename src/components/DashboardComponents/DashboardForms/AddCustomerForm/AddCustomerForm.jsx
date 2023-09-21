@@ -4,19 +4,19 @@ import { Modal, Button } from "rsuite";
 const AddCustomerForm = (props) => {
   return (
     <>
-      {props.isModalOpen && (
+      {props.isAddCustomerModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isModalOpen}
-            onClose={props.handleCloseModal}
-            backdrop={props.isModalOpen}
+            open={props.isAddCustomerModalOpen}
+            onClose={props.handleAddCustomerClose}
+            backdrop={props.isAddCustomerModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
               Add new customer
             </Modal.Header>
             <Modal.Body>
-              <div className="flex flex-wrap">
+              <form className="flex flex-wrap">
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="name">
@@ -52,13 +52,19 @@ const AddCustomerForm = (props) => {
                     type="text"
                   />
                 </div>
-              </div>
+              </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleCloseModal} appearance="primary">
+              <Button
+                onClick={props.handleAddCustomerClose}
+                appearance="primary"
+              >
                 Ok
               </Button>
-              <Button onClick={props.handleCloseModal} appearance="subtle">
+              <Button
+                onClick={props.handleAddCustomerClose}
+                appearance="subtle"
+              >
                 Cancel
               </Button>
             </Modal.Footer>

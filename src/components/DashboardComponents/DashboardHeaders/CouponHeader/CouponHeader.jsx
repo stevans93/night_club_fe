@@ -1,17 +1,6 @@
 import { AiOutlinePlus } from "react-icons/ai";
-import { useState } from "react";
-import AddCouponForm from "../../DashboardForms/AddCouponForm/AddCouponForm";
 
 const CouponHeader = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
       <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
@@ -38,7 +27,7 @@ const CouponHeader = (props) => {
             </select>
           </div>
           <button
-            onClick={handleOpenModal}
+            onClick={props.handleCouponModalOpen}
             className="flex items-center px-5 py-3 rounded-lg bg-primary h-8 text-white gap-2"
           >
             <AiOutlinePlus size="1.3rem" />
@@ -46,10 +35,6 @@ const CouponHeader = (props) => {
           </button>
         </div>
       </div>
-      <AddCouponForm
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      />
     </>
   );
 };

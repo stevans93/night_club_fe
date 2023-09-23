@@ -7,7 +7,10 @@ import EditReservationForm from "../../../../components/DashboardComponents/Dash
 import AddReservationForm from "../../../../components/DashboardComponents/DashboardForms/AddReservationForm/AddReservationForm";
 
 function DashboardReservation() {
-  const pageSizeOptions = [15, 30, 45];
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+  const clubId = ncUser ? ncUser.clubId : null;
+
+  const pageSizeOptions = [2, 5, 10];
   const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
@@ -21,7 +24,8 @@ function DashboardReservation() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [reservationToEdit, setReservationToEdit] = useState(null);
 
-  const [isAddReservationModalOpen, setIsAddReservationModalOpen] = useState(false);
+  const [isAddReservationModalOpen, setIsAddReservationModalOpen] =
+    useState(false);
 
   const handleAddReservationModalOpen = () => {
     setIsAddReservationModalOpen(true);
@@ -105,6 +109,7 @@ function DashboardReservation() {
       ...selectedParams,
       table: value,
     }));
+    console.log(typeof value);
   };
 
   const handleChangeStatus = (value) => {
@@ -149,19 +154,28 @@ function DashboardReservation() {
   useEffect(() => {
     const fetchReservations = async () => {
       let queryString = ``;
+      if (clubId) {
+        queryString += `?clubId=${clubId}`;
+      }
       if (selectedParams) {
         for (const [index, [key, value]] of Object.entries(
           selectedParams
         ).entries()) {
-          if (index === 0) {
+          if (index === 0 && !clubId) {
             queryString += `?${key}=${value}`;
           } else {
             queryString += `&${key}=${value}`;
           }
         }
       }
+      const token = localStorage.getItem("nc_token");
       const response = await fetch(
-        `http://localhost:4000/api/reservations/allReservations/${queryString}`
+        `http://localhost:4000/api/reservations/allReservations/${queryString}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
       );
       const json = await response.json();
 

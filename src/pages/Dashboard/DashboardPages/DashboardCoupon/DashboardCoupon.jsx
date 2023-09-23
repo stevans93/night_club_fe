@@ -13,16 +13,17 @@ function DashboardCoupon() {
   const [coupons, setCoupons] = useState(null);
 
   const [selectedParams, setSelectedParams] = useState({
-    table: "",
-    status: "",
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
   });
 
   const [isAddCouponModalOpen, setIsAddCouponModalOpen] = useState(false);
   const [isEditCouponModalOpen, setIsEditCouponModalOpen] = useState(false);
+  const [couponToEdit, setCouponToEdit] = useState(null);
 
-  const handleEditModalOpen = () => {
+  const handleEditModalOpen = async (id) => {
+    console.log("here", id);
+    await fetchCouponById(id);
     setIsEditCouponModalOpen(true);
   };
 
@@ -58,6 +59,35 @@ function DashboardCoupon() {
       ...selectedParams,
       pageNumber: selectedParams.pageNumber - 1,
     }));
+  };
+
+  const handleDelete = async (id) => {
+    await fetchDeleteCouponById(id);
+  };
+
+  const fetchCouponById = async (id) => {
+    const response = await fetch(
+      `http://localhost:4000/api/coupons/singleCoupon/${id}`
+    );
+    const json = await response.json();
+
+    if (response.ok) {
+      setCouponToEdit(json);
+    }
+    console.log(couponToEdit);
+  };
+
+  const fetchDeleteCouponById = async (id) => {
+    const response = await fetch(
+      `http://localhost:4000/api/coupon/deleteCoupon/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.ok) {
+      console.log("deleted");
+    }
   };
 
   useEffect(() => {
@@ -104,6 +134,7 @@ function DashboardCoupon() {
           pageSize={selectedParams.pageSize}
           pageNumber={selectedParams.pageNumber}
           handleEditModalOpen={handleEditModalOpen}
+          handleDelete={handleDelete}
         />
       )}
       <TablePagination
@@ -119,10 +150,13 @@ function DashboardCoupon() {
         handleCouponModalClose={handleCouponModalClose}
       />
 
-      <EditCouponForm
-        isEditCouponModalOpen={isEditCouponModalOpen}
-        handleEditModalClose={handleEditModalClose}
-      />
+      {couponToEdit && (
+        <EditCouponForm
+          isEditCouponModalOpen={isEditCouponModalOpen}
+          handleEditModalClose={handleEditModalClose}
+          coupon={couponToEdit}
+        />
+      )}
     </div>
   );
 }

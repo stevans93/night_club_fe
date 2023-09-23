@@ -42,8 +42,12 @@ const DashboardCouponTable = (props) => {
                     />
                   </td>
                   <td className="flex border-r-2 px-6 py-3 gap-2">
-                    <EditButton onClick={props.handleEditModalOpen} />
-                    <DeleteButton />
+                    <EditButton
+                      onClick={() => props.handleEditModalOpen(coupon._id)}
+                    />
+                    <DeleteButton
+                      onClick={() => props.handleDelete(coupon._id)}
+                    />
                   </td>
                 </tr>
               );

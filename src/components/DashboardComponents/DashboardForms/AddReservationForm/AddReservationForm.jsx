@@ -140,7 +140,7 @@ const AddReservationForm = (props) => {
               >
                 Ok
               </Button>
-              <Button onClick={props.handleAddModalClose} appearance="subtle">
+              <Button onClick={props.handleAddReservationModalClose} appearance="subtle">
                 Cancel
               </Button>
             </Modal.Footer>

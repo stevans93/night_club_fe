@@ -1,8 +1,11 @@
 import { FaLock } from "react-icons/fa";
 
-const LockButton = () => {
+const LockButton = (props) => {
   return (
-    <button className="flex items-center bg-[#F5A623] text-white px-2 py-2 rounded-lg">
+    <button
+      onClick={props.onClick}
+      className="flex items-center bg-[#F5A623] text-white px-2 py-2 rounded-lg"
+    >
       <FaLock />
     </button>
   );

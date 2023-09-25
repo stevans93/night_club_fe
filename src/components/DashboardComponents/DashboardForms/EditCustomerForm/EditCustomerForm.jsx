@@ -1,7 +1,38 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
+import { useRef } from "react";
 
 const EditCustomerForm = (props) => {
+  const nameInputRef = useRef();
+  const phoneInputRef = useRef();
+  const emailInputRef = useRef();
+
+  const handleSaveForm = async () => {
+    await saveCustomer(props.customer._id);
+    props.handleEditModalClose();
+  };
+
+  const saveCustomer = async (customerId) => {
+    const customer = {
+      _id: customerId,
+      name: nameInputRef.current.value,
+      phone: phoneInputRef.current.value,
+      email: emailInputRef.current.value,
+    };
+
+    const token = localStorage.getItem("nc_token");
+    await fetch(
+      `http://localhost:4000/api/clubCustomers/singleCustomer/${customerId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify(customer),
+      }
+    );
+  };
   return (
     <>
       {props.isEditCustomerModalOpen && (
@@ -27,6 +58,7 @@ const EditCustomerForm = (props) => {
                       placeholder="Enter name"
                       id="name"
                       type="text"
+                      ref={nameInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
@@ -38,6 +70,7 @@ const EditCustomerForm = (props) => {
                       placeholder="Enter Phone"
                       id="phone"
                       type="text"
+                      ref={phoneInputRef}
                     />
                   </div>
                 </div>
@@ -50,15 +83,22 @@ const EditCustomerForm = (props) => {
                     placeholder="Enter email adress"
                     id="email"
                     type="text"
+                    ref={emailInputRef}
                   />
                 </div>
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleEditCustomerClose} appearance="primary">
+              <Button
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
                 Ok
               </Button>
-              <Button onClick={props.handleEditCustomerClose} appearance="subtle">
+              <Button
+                onClick={props.handleEditCustomerClose}
+                appearance="subtle"
+              >
                 Cancel
               </Button>
             </Modal.Footer>

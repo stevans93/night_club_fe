@@ -2,7 +2,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const TablePagination = (props) => {
   return (
-    <div className="bg-white flex w-full justify-center relative mt-10">
+    <div className="flex w-full justify-center relative mt-10">
       <span className="absolute left-0">
         Show{" "}
         <span>

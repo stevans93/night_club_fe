@@ -5,9 +5,11 @@ const DashStaff = (props) => {
     <div className="flex flex-wrap gap-10 mt-10 ml-2">
       <DashboardStaffListTable
         handleEditStaffModalOpen={props.handleEditStaffModalOpen}
-      />
-       <DashboardStaffListTable
-        handleEditStaffModalOpen={props.handleEditStaffModalOpen}
+        staff={props.staff}
+        handleDelete={props.handleDelete}
+        handleResetStaffPasswordModalOpen={
+          props.handleResetStaffPasswordModalOpen
+        }
       />
     </div>
   );

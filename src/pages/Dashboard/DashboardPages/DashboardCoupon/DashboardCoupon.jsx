@@ -13,16 +13,17 @@ function DashboardCoupon() {
   const [coupons, setCoupons] = useState(null);
 
   const [selectedParams, setSelectedParams] = useState({
-    table: "",
-    status: "",
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
   });
 
   const [isAddCouponModalOpen, setIsAddCouponModalOpen] = useState(false);
   const [isEditCouponModalOpen, setIsEditCouponModalOpen] = useState(false);
+  const [couponToEdit, setCouponToEdit] = useState(null);
 
-  const handleEditModalOpen = () => {
+  const handleEditModalOpen = async (id) => {
+    console.log("here", id);
+    await fetchCouponById(id);
     setIsEditCouponModalOpen(true);
   };
 
@@ -60,6 +61,45 @@ function DashboardCoupon() {
     }));
   };
 
+  const handleDelete = async (id) => {
+    await fetchDeleteCouponById(id);
+  };
+
+  const fetchCouponById = async (id) => {
+    const token = localStorage.getItem("nc_token");
+    const response = await fetch(
+      `http://localhost:4000/api/coupons/singleCoupon/${id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+
+    const json = await response.json();
+
+    if (response.ok) {
+      setCouponToEdit(json);
+    }
+  };
+
+  const fetchDeleteCouponById = async (id) => {
+    const token = localStorage.getItem("nc_token");
+    const response = await fetch(
+      `http://localhost:4000/api/coupons/deleteCoupon/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+
+    if (response.ok) {
+      console.log("deleted");
+    }
+  };
+
   useEffect(() => {
     const fetchCoupons = async () => {
       let queryString = ``;
@@ -74,8 +114,15 @@ function DashboardCoupon() {
           }
         }
       }
+      const token = localStorage.getItem("nc_token");
       const response = await fetch(
-        `http://localhost:4000/api/coupons/allCoupons/${queryString}`
+        `http://localhost:4000/api/coupons/allCoupons/${queryString}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
       );
       const json = await response.json();
 
@@ -91,7 +138,7 @@ function DashboardCoupon() {
   }, [selectedParams]);
 
   return (
-    <div className="bg-gray-600 pt-5 h-full">
+    <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
       <CouponHeader
         pageSizeOptions={pageSizeOptions}
         pageSize={selectedParams.pageSize}
@@ -104,6 +151,7 @@ function DashboardCoupon() {
           pageSize={selectedParams.pageSize}
           pageNumber={selectedParams.pageNumber}
           handleEditModalOpen={handleEditModalOpen}
+          handleDelete={handleDelete}
         />
       )}
       <TablePagination
@@ -119,10 +167,13 @@ function DashboardCoupon() {
         handleCouponModalClose={handleCouponModalClose}
       />
 
-      <EditCouponForm
-        isEditCouponModalOpen={isEditCouponModalOpen}
-        handleEditModalClose={handleEditModalClose}
-      />
+      {couponToEdit && (
+        <EditCouponForm
+          isEditCouponModalOpen={isEditCouponModalOpen}
+          handleEditModalClose={handleEditModalClose}
+          coupon={couponToEdit}
+        />
+      )}
     </div>
   );
 }

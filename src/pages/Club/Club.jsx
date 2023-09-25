@@ -1,4 +1,3 @@
-import { RiSearchLine } from "react-icons/ri";
 import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
 import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
 import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";

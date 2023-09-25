@@ -1,12 +1,7 @@
-import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
-import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
-import EditButton from "../../../Buttons/EditButton/EditButton";
-import LockButton from "../../../Buttons/LockButton/LockButton";
-
 const DashboardCustomerTable = (props) => {
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
+      <div className="relative shadow-lg rounded-lg mt-10">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
             <th className="border-r-2 bg-white px-6 py-3">SI</th>
@@ -15,69 +10,29 @@ const DashboardCustomerTable = (props) => {
             <th className="border-r-2 bg-white px-6 py-3">Phone</th>
             <th className="border-r-2 bg-white px-6 py-3">Email</th>
             <th className="border-r-2 bg-white px-6 py-3">Total orders</th>
-            <th className="border-r-2 bg-white px-6 py-3">Action</th>
           </thead>
           <tbody className="divide-y">
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">#3141</td>
-              <td className="border-r-2 px-6 py-3">Pera Peric</td>
-              <td className="border-r-2 px-6 py-3">063-563-632</td>
-              <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
-              <td className="border-r-2 px-6 py-3">12</td>
-              <td className="flex gap-1 border-r-2 px-6 py-3">
-                <EditButton onClick={props.handleEditCustomerOpen} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">#3141</td>
-              <td className="border-r-2 px-6 py-3">Pera Peric</td>
-              <td className="border-r-2 px-6 py-3">063-563-632</td>
-              <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
-              <td className="border-r-2 px-6 py-3">12</td>
-              <td className="flex gap-1 border-r-2 px-6 py-3">
-                <EditButton onClick={props.handleEditCustomerOpen} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">#3141</td>
-              <td className="border-r-2 px-6 py-3">Pera Peric</td>
-              <td className="border-r-2 px-6 py-3">063-563-632</td>
-              <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
-              <td className="border-r-2 px-6 py-3">12</td>
-              <td className="flex gap-1 border-r-2 px-6 py-3">
-                <EditButton onClick={props.handleEditCustomerOpen} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">#3141</td>
-              <td className="border-r-2 px-6 py-3">Pera Peric</td>
-              <td className="border-r-2 px-6 py-3">063-563-632</td>
-              <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
-              <td className="border-r-2 px-6 py-3">12</td>
-              <td className="flex gap-1 border-r-2 px-6 py-3">
-                <EditButton onClick={props.handleEditCustomerOpen} />
-                <DeleteButton />
-              </td>
-            </tr>
-            <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="border-r-2 px-6 py-3">1</td>
-              <td className="border-r-2 px-6 py-3">#3141</td>
-              <td className="border-r-2 px-6 py-3">Pera Peric</td>
-              <td className="border-r-2 px-6 py-3">063-563-632</td>
-              <td className="border-r-2 px-6 py-3">peraperic@gmail.com</td>
-              <td className="border-r-2 px-6 py-3">12</td>
-              <td className="flex gap-1 border-r-2 px-6 py-3">
-                <EditButton onClick={props.handleEditCustomerOpen} />
-                <DeleteButton />
-              </td>
-            </tr>
+            {props.customers.map((customer, i) => {
+              return (
+                <tr
+                  key={customer._id}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <td className="border-r-2 px-6 py-3">
+                    {i + 1 + props.pageSize * (props.pageNumber - 1)}
+                  </td>
+                  <td className="border-r-2 px-6 py-3">{customer._id}</td>
+                  <td className="border-r-2 px-6 py-3">{customer.name}</td>
+                  <td className="border-r-2 px-6 py-3">
+                    {customer.mobilePhone}
+                  </td>
+                  <td className="border-r-2 px-6 py-3">{customer.email}</td>
+                  <td className="border-r-2 px-6 py-3">
+                    {customer.totalReservations}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

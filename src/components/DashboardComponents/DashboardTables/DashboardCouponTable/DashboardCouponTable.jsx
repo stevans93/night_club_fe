@@ -5,7 +5,7 @@ import EditButton from "../../../Buttons/EditButton/EditButton";
 const DashboardCouponTable = (props) => {
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
+      <div className="relative shadow-lg rounded-lg mt-10">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
             <th className="border-r-2 bg-white px-6 py-3">#</th>
@@ -42,8 +42,12 @@ const DashboardCouponTable = (props) => {
                     />
                   </td>
                   <td className="flex border-r-2 px-6 py-3 gap-2">
-                    <EditButton onClick={props.handleEditModalOpen} />
-                    <DeleteButton />
+                    <EditButton
+                      onClick={() => props.handleEditModalOpen(coupon._id)}
+                    />
+                    <DeleteButton
+                      onClick={() => props.handleDelete(coupon._id)}
+                    />
                   </td>
                 </tr>
               );

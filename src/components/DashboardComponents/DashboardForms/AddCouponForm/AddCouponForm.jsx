@@ -25,12 +25,14 @@ const AddCouponForm = (props) => {
       endDate: endDateInputRef.current.value,
     };
 
+    const token = localStorage.getItem("nc_token");
     const response = await fetch(
       `http://localhost:4000/api/coupons/addCoupon`,
       {
         method: "post",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${token}`,
         },
         body: JSON.stringify(coupon),
       }
@@ -132,7 +134,10 @@ const AddCouponForm = (props) => {
               <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
-              <Button onClick={props.handleCouponModalClose} appearance="subtle">
+              <Button
+                onClick={props.handleCouponModalClose}
+                appearance="subtle"
+              >
                 Cancel
               </Button>
             </Modal.Footer>

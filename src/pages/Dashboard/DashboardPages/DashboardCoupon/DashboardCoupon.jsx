@@ -66,22 +66,32 @@ function DashboardCoupon() {
   };
 
   const fetchCouponById = async (id) => {
+    const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/coupons/singleCoupon/${id}`
+      `http://localhost:4000/api/coupons/singleCoupon/${id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
     );
+
     const json = await response.json();
 
     if (response.ok) {
       setCouponToEdit(json);
     }
-    console.log(couponToEdit);
   };
 
   const fetchDeleteCouponById = async (id) => {
+    const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/coupon/deleteCoupon/${id}`,
+      `http://localhost:4000/api/coupons/deleteCoupon/${id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `${token}`,
+        },
       }
     );
 
@@ -104,8 +114,15 @@ function DashboardCoupon() {
           }
         }
       }
+      const token = localStorage.getItem("nc_token");
       const response = await fetch(
-        `http://localhost:4000/api/coupons/allCoupons/${queryString}`
+        `http://localhost:4000/api/coupons/allCoupons/${queryString}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
       );
       const json = await response.json();
 
@@ -121,7 +138,7 @@ function DashboardCoupon() {
   }, [selectedParams]);
 
   return (
-    <div className="bg-gray-600 pt-5 h-full">
+    <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
       <CouponHeader
         pageSizeOptions={pageSizeOptions}
         pageSize={selectedParams.pageSize}

@@ -11,12 +11,13 @@ const EditCouponForm = (props) => {
   const endDateInputRef = useRef();
 
   const handleSaveForm = async () => {
-    await saveCoupon();
-    props.handleCouponModalClose();
+    await saveCoupon(props.coupon._id);
+    props.handleEditModalClose();
   };
 
-  const saveCoupon = async () => {
+  const saveCoupon = async (couponId) => {
     const coupon = {
+      _id: couponId,
       title: titleInputRef.current.value,
       code: codeInputRef.current.value,
       limit: limitInputRef.current.value,
@@ -25,12 +26,14 @@ const EditCouponForm = (props) => {
       endDate: endDateInputRef.current.value,
     };
 
+    const token = localStorage.getItem("nc_token");
     await fetch(`http://localhost:4000/api/coupons/updateCoupon/${couponId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `${token}`,
       },
-      body: JSON.stringify(reservation),
+      body: JSON.stringify(coupon),
     });
   };
   return (

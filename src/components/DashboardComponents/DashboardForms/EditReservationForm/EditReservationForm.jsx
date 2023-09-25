@@ -26,12 +26,14 @@ const EditReservationForm = (props) => {
       date: dateInputRef.current.value,
     };
 
+    const token = localStorage.getItem("nc_token");
     await fetch(
       `http://localhost:4000/api/reservations/updateReservation/${reservationId}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${token}`,
         },
         body: JSON.stringify(reservation),
       }

@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 
 const PaymentHeader = () => {
   return (
-    <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
+    <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white shadow-lg">
       <div className="flex items-center gap-3">
         <span>Payment History</span>
       </div>

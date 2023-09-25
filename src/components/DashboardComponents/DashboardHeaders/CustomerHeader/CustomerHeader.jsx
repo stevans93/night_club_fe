@@ -1,21 +1,29 @@
 import { BsSearch } from "react-icons/bs";
-import { AiOutlinePlus } from "react-icons/ai";
-import { FaFilter } from "react-icons/fa";
 import { BiSolidFileExport } from "react-icons/bi";
 
 const CustomerHeader = (props) => {
 
   return (
     <>
-      <div className="flex ml-3 mr-3 rounded-lg items-center h-16 justify-between px-5 bg-white">
+      <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white shadow-lg">
         <div className="flex items-center gap-3">
           <span>Customer List</span>
           <div className="flex items-center gap-2">
             <span>Show</span>
-            <select className="px-1 w-12 border rounded-xl" value="">
-              <option value="" disabled>
-                15
-              </option>
+            <select
+              className="px-1 w-16 border rounded-xl"
+              value={props.pageSize}
+              onChange={(event) =>
+                props.handlePageSizeChange(event.target.value)
+              }
+            >
+              {props.pageSizeOptions.map((x) => {
+                return (
+                  <option key={x} value={x}>
+                    {x}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>
@@ -25,6 +33,7 @@ const CustomerHeader = (props) => {
               className="focus-visible:outline-none"
               placeholder="Name"
               type="search"
+              onChange={(event) => props.handleChangeName(event.target.value)}
             />
             <BsSearch />
           </div>
@@ -34,7 +43,6 @@ const CustomerHeader = (props) => {
           </button>
         </div>
       </div>
-      ;
     </>
   );
 };

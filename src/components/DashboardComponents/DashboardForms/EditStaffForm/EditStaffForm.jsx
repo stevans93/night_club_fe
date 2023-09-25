@@ -1,7 +1,37 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
+import { useRef } from "react";
 
 const EditStaffForm = (props) => {
+  console.log(props.staff);
+
+  const firstNameInputRef = useRef();
+  const lastNameInputRef = useRef();
+  const emailInputRef = useRef();
+
+  const handleSaveForm = async () => {
+    await saveStaff(props.staff._id);
+    props.handleEditStaffModalClose();
+  };
+
+  const saveStaff = async (staffId) => {
+    const staff = {
+      _id: staffId,
+      firstName: firstNameInputRef.current.value,
+      lastName: lastNameInputRef.current.value,
+      email: emailInputRef.current.value,
+    };
+
+    const token = localStorage.getItem("nc_token");
+    await fetch(`http://localhost:4000/api/user/update/${staffId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify(staff),
+    });
+  };
   return (
     <>
       {props.isEditStaffModalOpen && (
@@ -19,14 +49,29 @@ const EditStaffForm = (props) => {
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col w-45 justify-between">
                   <div className="w-full flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="name">
-                      Name
+                    <label className="mb-2 mt-2" htmlFor="firstName">
+                      firstName
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter name"
-                      id="name"
+                      placeholder="Enter firstName"
+                      id="firstName"
                       type="text"
+                      ref={firstNameInputRef}
+                      defaultValue={props.staff.firstName}
+                    />
+                  </div>
+                  <div className="w-full flex flex-col">
+                    <label className="mb-2 mt-2" htmlFor="lastName">
+                      lastName
+                    </label>
+                    <input
+                      className="py-3 px-2 border-2 border-black rounded-lg"
+                      placeholder="Enter lastName"
+                      id="lastName"
+                      type="text"
+                      defaultValue={props.staff.lastName}
+                      ref={lastNameInputRef}
                     />
                   </div>
                   <div className="w-full flex flex-col">
@@ -38,28 +83,8 @@ const EditStaffForm = (props) => {
                       placeholder="Enter email adress"
                       id="email"
                       type="text"
-                    />
-                  </div>
-                  <div className="w-full flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="password">
-                      Password
-                    </label>
-                    <input
-                      className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter password"
-                      id="password"
-                      type="text"
-                    />
-                  </div>
-                  <div className="w-full flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="retypePassword">
-                      Retype password
-                    </label>
-                    <input
-                      className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter password"
-                      id="retypePassword"
-                      type="text"
+                      defaultValue={props.staff.email}
+                      ref={emailInputRef}
                     />
                   </div>
                 </div>
@@ -81,10 +106,7 @@ const EditStaffForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button
-                onClick={props.handleEditStaffModalClose}
-                appearance="primary"
-              >
+              <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button

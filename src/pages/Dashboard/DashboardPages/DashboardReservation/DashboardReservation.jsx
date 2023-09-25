@@ -10,7 +10,7 @@ function DashboardReservation() {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : null;
 
-  const pageSizeOptions = [2, 5, 10];
+  const pageSizeOptions = [15, 30, 45];
   const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
@@ -128,8 +128,14 @@ function DashboardReservation() {
   };
 
   const fetchReservationById = async (id) => {
+    const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/reservations/singleReservation/${id}`
+      `http://localhost:4000/api/reservations/singleReservation/${id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
     );
     const json = await response.json();
 
@@ -139,10 +145,14 @@ function DashboardReservation() {
   };
 
   const fetchDeleteReservationById = async (id) => {
+    const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/reservations/deleteReservation/${id}`,
+      `http://localhost:4000/api/reservations/delete/${id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `${token}`,
+        },
       }
     );
 
@@ -193,7 +203,7 @@ function DashboardReservation() {
 
   return (
     <>
-      <div className="bg-gray-600 pt-5 h-full px-3 py-10">
+      <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
         <ReservationHeader
           pageSizeOptions={pageSizeOptions}
           tableOptions={tableOptions}

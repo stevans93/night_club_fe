@@ -23,7 +23,6 @@ function DashboardStaff() {
   };
 
   const handleResetStaffPasswordModalClose = async (id) => {
-    await fetchStaffById(id);
     setIsResetStaffPasswordModalOpen(false);
   };
 

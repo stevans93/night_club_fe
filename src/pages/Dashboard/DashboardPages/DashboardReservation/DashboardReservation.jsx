@@ -8,7 +8,7 @@ import AddReservationForm from "../../../../components/DashboardComponents/Dashb
 
 function DashboardReservation() {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : null;
+  const clubId = ncUser ? ncUser.clubId : undefined;
 
   const pageSizeOptions = [15, 30, 45];
   const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -164,7 +164,7 @@ function DashboardReservation() {
   useEffect(() => {
     const fetchReservations = async () => {
       let queryString = ``;
-      if (clubId) {
+      if (clubId !== undefined) {
         queryString += `?clubId=${clubId}`;
       }
       if (selectedParams) {
@@ -178,6 +178,7 @@ function DashboardReservation() {
           }
         }
       }
+      console.log(queryString);
       const token = localStorage.getItem("nc_token");
       const response = await fetch(
         `http://localhost:4000/api/reservations/allReservations/${queryString}`,

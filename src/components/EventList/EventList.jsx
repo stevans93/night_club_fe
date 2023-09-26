@@ -25,9 +25,15 @@ const EventList = (props) => {
           }
         }
       }
-      console.log(queryString);
+      const token = localStorage.getItem("nc_token");
       const response = await fetch(
-        `http://localhost:4000/api/event/allEvents/${queryString}`
+        `http://localhost:4000/api/event/allEvents/${queryString}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
       );
       const json = await response.json();
 

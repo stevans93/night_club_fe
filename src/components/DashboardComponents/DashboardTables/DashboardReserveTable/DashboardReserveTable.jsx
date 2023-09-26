@@ -2,6 +2,11 @@ import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 import ActionButton from "../../../Buttons/ActionButton/ActionButton";
 
 const DashboardReserveTable = (props) => {
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+
+  // Get the user's role from the parsed user object
+  const userRole = ncUser ? ncUser.role : null;
+
   return (
     <div className="relative shadow-lg rounded-lg mt-10">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -11,7 +16,11 @@ const DashboardReserveTable = (props) => {
           <th className="border-r-2 bg-white px-6 py-3">Name</th>
           <th className="border-r-2 bg-white px-6 py-3">Phone</th>
           <th className="border-r-2 bg-white px-6 py-3">Date</th>
-          <th className="border-r-2 bg-white px-6 py-3">Overview</th>
+          <th className="border-r-2 bg-white px-6 py-3">
+            <td className="px-6 py-3">
+              {userRole === "admin" ? `clubId` : `Overview`}
+            </td>
+          </th>
           <th className="border-r-2 bg-white px-6 py-3">Status</th>
           <th className="border-r-2 bg-white px-6 py-3">Action</th>
         </thead>
@@ -30,8 +39,9 @@ const DashboardReserveTable = (props) => {
                 <td className="border-r-2 px-6 py-3">{reservation.phone}</td>
                 <td className="border-r-2 px-6 py-3">{reservation.date}</td>
                 <td className="border-r-2 px-6 py-3">
-                  Reservation - Total Person: {reservation.persons} - Table{" "}
-                  {reservation.table}
+                  {userRole === "admin"
+                    ? `${reservation.clubId}`
+                    : `Reservation - Total Person: ${reservation.persons} - Table ${reservation.table}`}
                 </td>
 
                 <td className="border-r-2 px-6 py-3">

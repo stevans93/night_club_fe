@@ -24,6 +24,7 @@ import DashboardCoupon from "./pages/Dashboard/DashboardPages/DashboardCoupon/Da
 import DashboardStaff from "./pages/Dashboard/DashboardPages/DashboardStaff/DashboardStaff";
 import DashboardLive from "./pages/Dashboard/DashboardPages/DashboardLive/DashboardLive";
 import DashboardEvents from "./pages/Dashboard/DashboardPages/DashboardEvents/DashboardEvents";
+import DashboardUserList from "./pages/Dashboard/DashboardPages/DashboardUserList/DashboardUserList";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +75,8 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [,
+    children: [
+      ,
       {
         path: "",
         element: <DashboardReservation />,
@@ -110,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <DashboardEvents />,
+      },
+      {
+        path: "user-list",
+        element: <DashboardUserList />,
       },
     ],
   },

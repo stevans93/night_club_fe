@@ -33,6 +33,9 @@ function Navbar() {
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
 
+  // Get the user's role from the parsed user object
+  const userRole = ncUser ? ncUser.role : null;
+
   // Extract the clubId if ncUser is available
   const clubId = ncUser ? ncUser.clubId : null;
 
@@ -85,12 +88,14 @@ function Navbar() {
               >
                 Događaji
               </NavLink>
-              <NavLink
-                to={`/dashboard`}
-                className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
-              >
-                Dashboard
-              </NavLink>
+              {userRole !== "user" && (
+                <NavLink
+                  to={`/dashboard`}
+                  className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
+                >
+                  Dashboard
+                </NavLink>
+              )}
               <button
                 onClick={handleLogOut}
                 className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
@@ -166,12 +171,14 @@ function Navbar() {
             >
               Događaji
             </NavLink>
-            <NavLink
-              to={`/dashboard`}
-              className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
-            >
-              Dashboard
-            </NavLink>
+            {userRole !== "user" && (
+              <NavLink
+                to={`/dashboard`}
+                className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
+              >
+                Dashboard
+              </NavLink>
+            )}
             <button
               onClick={handleLogOut}
               className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"

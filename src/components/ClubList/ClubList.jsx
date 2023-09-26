@@ -18,8 +18,15 @@ const ClubList = (props) => {
           }
         }
       }
+      const token = localStorage.getItem("nc_token");
       const response = await fetch(
-        `http://localhost:4000/api/club/all/${queryString}`
+        `http://localhost:4000/api/club/all/${queryString}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
       );
       const json = await response.json();
 

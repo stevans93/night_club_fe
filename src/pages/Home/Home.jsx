@@ -9,6 +9,7 @@ import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import { useState } from "react";
 
 function Home() {
+
   //events
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
@@ -36,7 +37,7 @@ function Home() {
   const [numberOfPremiumClubs, setNumberOfPremiumClubs] = useState();
 
   const handleNextPage = (value) => {
-    if (value === "premium") {
+    if (value === "premijum") {
       setSelectedPremiumParams((selectedPremiumParams) => ({
         ...selectedPremiumParams,
         pageNumber: selectedPremiumParams.pageNumber + 1,
@@ -59,7 +60,7 @@ function Home() {
   };
 
   const handlePrevPage = (value) => {
-    if (value === "premium") {
+    if (value === "premijum") {
       setSelectedPremiumParams((selectedPremiumParams) => ({
         ...selectedPremiumParams,
         pageNumber: selectedPremiumParams.pageNumber - 1,
@@ -96,7 +97,7 @@ function Home() {
             <div className="flex items-center">
               <Link className="mr-5">Vidi sve ({numberOfPremiumClubs})</Link>
               <button
-                onClick={() => handlePrevPage("premium")}
+                onClick={() => handlePrevPage("premijum")}
                 disabled={selectedPremiumParams.pageNumber === 1}
                 type="button"
                 className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
@@ -119,7 +120,7 @@ function Home() {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
-                onClick={() => handleNextPage("premium")}
+                onClick={() => handleNextPage("premijum")}
                 disabled={
                   selectedPremiumParams.pageNumber === numberOfPremiumPages
                 }

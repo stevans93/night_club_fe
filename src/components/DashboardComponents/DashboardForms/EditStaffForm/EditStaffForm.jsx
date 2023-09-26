@@ -3,11 +3,11 @@ import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 
 const EditStaffForm = (props) => {
-  console.log(props.staff);
-
   const firstNameInputRef = useRef();
   const lastNameInputRef = useRef();
   const emailInputRef = useRef();
+  const reservationInputRef = useRef();
+  const couponListInputRef = useRef();
 
   const handleSaveForm = async () => {
     await saveStaff(props.staff._id);
@@ -20,7 +20,15 @@ const EditStaffForm = (props) => {
       firstName: firstNameInputRef.current.value,
       lastName: lastNameInputRef.current.value,
       email: emailInputRef.current.value,
+      permissions: [],
     };
+
+    if (reservationInputRef.current.checked) {
+      staff.permissions.push(reservationInputRef.current.value);
+    }
+    if (couponListInputRef.current.checked) {
+      staff.permissions.push(couponListInputRef.current.value);
+    }
 
     const token = localStorage.getItem("nc_token");
     await fetch(`http://localhost:4000/api/user/update/${staffId}`, {
@@ -93,12 +101,22 @@ const EditStaffForm = (props) => {
                   <ul>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">1</span>
-                      <input id="reservation" type="checkbox" />
+                      <input
+                        id="reservation"
+                        type="checkbox"
+                        value="reservation"
+                        ref={reservationInputRef}
+                      />
                       <label htmlFor="reservation">Reservation</label>
                     </li>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">4</span>
-                      <input id="Coupon" type="checkbox" />
+                      <input
+                        id="Coupon"
+                        type="checkbox"
+                        value="coupons"
+                        ref={couponListInputRef}
+                      />
                       <label htmlFor="Coupon">Coupon list</label>
                     </li>
                   </ul>

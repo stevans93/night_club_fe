@@ -3,14 +3,16 @@ import { NavLink } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { RiCoupon2Line } from "react-icons/ri";
 import { BiFoodMenu, BiWrench } from "react-icons/bi";
-import { PiContactlessPayment } from "react-icons/pi";
-import { MdOutlineSupportAgent } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { BsCalendar2Event } from "react-icons/bs";
 import avatar from "../../../assets/avatar.png";
 import logo from "../../../assets/dashboard-logo.png";
 
 function DashboardSidebar({ children, open }) {
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+
+  const userRole = ncUser ? ncUser.role : null;
+
   return (
     <div className="flex">
       <div
@@ -43,34 +45,40 @@ function DashboardSidebar({ children, open }) {
               Payment History
             </span>
           </NavLink> */}
-          <NavLink
-            to="/dashboard/menu"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
-          >
-            <BiFoodMenu className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Menu
-            </span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/club-config"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <BiWrench className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Club Configuration
-            </span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/coupon"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <RiCoupon2Line className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Coupon List
-            </span>
-          </NavLink>
-          <NavLink
+          {userRole !== "admin" && (
+            <NavLink
+              to="/dashboard/menu"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
+            >
+              <BiFoodMenu className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Menu
+              </span>
+            </NavLink>
+          )}
+          {userRole !== "admin" && (
+            <NavLink
+              to="/dashboard/club-config"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <BiWrench className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Club Configuration
+              </span>
+            </NavLink>
+          )}
+          {userRole !== "admin" && (
+            <NavLink
+              to="/dashboard/coupon"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <RiCoupon2Line className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Coupon List
+              </span>
+            </NavLink>
+          )}
+          {userRole !== "admin" && <NavLink
             to="/dashboard/customer-list"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
@@ -78,16 +86,18 @@ function DashboardSidebar({ children, open }) {
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Custommer List
             </span>
-          </NavLink>
-          <NavLink
-            to="/dashboard/staff"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <HiOutlineUserGroup className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Staff
-            </span>
-          </NavLink>
+          </NavLink>}
+          {userRole !== "admin" && (
+            <NavLink
+              to="/dashboard/staff"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <HiOutlineUserGroup className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Staff
+              </span>
+            </NavLink>
+          )}
           {/* <NavLink
             to="/dashboard/live-order"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -97,7 +107,7 @@ function DashboardSidebar({ children, open }) {
               Live Order
             </span>
           </NavLink> */}
-          <NavLink
+          {userRole !== 'admin' && <NavLink
             to="/dashboard/events"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
           >
@@ -105,7 +115,16 @@ function DashboardSidebar({ children, open }) {
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
               Events
             </span>
-          </NavLink>
+          </NavLink>}
+          {userRole === "admin" && <NavLink
+            to="/dashboard/user-list"
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+          >
+            <HiOutlineUserGroup className="mr-2 text-2xl" />
+            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+              User List
+            </span>
+          </NavLink>}
         </div>
       </div>
       <main

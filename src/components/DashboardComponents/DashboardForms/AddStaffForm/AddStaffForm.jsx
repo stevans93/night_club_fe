@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { toast } from "react-toastify";
 
 const AddStaffForm = (props) => {
   const firstNameInputRef = useRef();
@@ -9,6 +8,8 @@ const AddStaffForm = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const repeatPasswordInputRef = useRef();
+  const reservationInputRef = useRef();
+  const couponListInputRef = useRef();
 
   const handleSaveForm = async () => {
     await saveStaff();
@@ -22,7 +23,15 @@ const AddStaffForm = (props) => {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
       repeatPassword: repeatPasswordInputRef.current.value,
+      permissions: [],
     };
+
+    if (reservationInputRef.current.checked) {
+      permissions.push(reservationInputRef.current.value);
+    }
+    if (couponListInputRef.current.checked) {
+      permissions.push(couponListInputRef.current.value);
+    }
 
     const token = localStorage.getItem("nc_token");
     const response = await fetch(`http://localhost:4000/api/user/addUser`, {
@@ -117,12 +126,22 @@ const AddStaffForm = (props) => {
                   <ul>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">1</span>
-                      <input id="reservation" type="checkbox" />
+                      <input
+                        id="reservation"
+                        type="checkbox"
+                        value="reservation"
+                        ref={reservationInputRef}
+                      />
                       <label htmlFor="reservation">Reservation</label>
                     </li>
                     <li className="flex gap-2 py-1">
-                      <span className="w-2">4</span>
-                      <input id="Coupon" type="checkbox" />
+                      <span className="w-2">2</span>
+                      <input
+                        id="Coupon"
+                        type="checkbox"
+                        value="coupons"
+                        ref={couponListInputRef}
+                      />
                       <label htmlFor="Coupon">Coupon list</label>
                     </li>
                   </ul>

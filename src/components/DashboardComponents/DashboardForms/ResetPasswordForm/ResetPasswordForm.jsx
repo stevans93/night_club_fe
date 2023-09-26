@@ -18,7 +18,7 @@ const ResetPasswordForm = (props) => {
     };
 
     const token = localStorage.getItem("nc_token");
-    await fetch(`http://localhost:4000/api/user/update/${staffId}`, {
+    await fetch(`http://localhost:4000/api/user/reset/${staffId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

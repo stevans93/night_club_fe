@@ -9,6 +9,7 @@ function DashboardUserList() {
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfUsers, setNumberOfUsers] = useState();
   const [users, setUsers] = useState(null);
+  const [usersForExport, setUsersForExport] = useState();
 
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
@@ -72,6 +73,12 @@ function DashboardUserList() {
 
       if (response.ok) {
         setUsers(json.users);
+        const toExp = json.users.map((x) => ({
+          name: `${x.firstName} ${x.lastName}`,
+          phone: x.mobilePhone,
+          email: x.email,
+        }));
+        setUsersForExport(toExp);
       }
 
       setNumberOfPages(json.numberOfPages);
@@ -83,12 +90,15 @@ function DashboardUserList() {
 
   return (
     <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
-      <UserHeader
-        pageSizeOptions={pageSizeOptions}
-        pageSize={selectedParams.pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-        handleChangeName={handleChangeName}
-      />
+      {usersForExport && (
+        <UserHeader
+          pageSizeOptions={pageSizeOptions}
+          pageSize={selectedParams.pageSize}
+          handlePageSizeChange={handlePageSizeChange}
+          handleChangeName={handleChangeName}
+          data={usersForExport}
+        />
+      )}
 
       {users && (
         <DashboardUsersTable

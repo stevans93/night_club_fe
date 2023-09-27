@@ -9,6 +9,7 @@ function DashboardCustomerList() {
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfCustomers, setNumberOfCustomers] = useState();
   const [customers, setCustomers] = useState(null);
+  const [customersToExport, setCustomersForExport] = useState();
 
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
@@ -72,6 +73,13 @@ function DashboardCustomerList() {
 
       if (response.ok) {
         setCustomers(json.customers);
+        setCustomers(json.customers);
+        const toExp = json.customers.map((x) => ({
+          name: x.name,
+          phone: x.mobilePhone,
+          email: x.email,
+        }));
+        setCustomersForExport(toExp);
       }
 
       setNumberOfPages(json.numberOfPages);
@@ -82,12 +90,15 @@ function DashboardCustomerList() {
   }, [selectedParams]);
   return (
     <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
-      <CustomerHeader
-        pageSizeOptions={pageSizeOptions}
-        pageSize={selectedParams.pageSize}
-        handlePageSizeChange={handlePageSizeChange}
-        handleChangeName={handleChangeName}
-      />
+      {customersToExport && (
+        <CustomerHeader
+          pageSizeOptions={pageSizeOptions}
+          pageSize={selectedParams.pageSize}
+          handlePageSizeChange={handlePageSizeChange}
+          handleChangeName={handleChangeName}
+          data={customersToExport}
+        />
+      )}
 
       {customers && (
         <DashboardCustomerTable

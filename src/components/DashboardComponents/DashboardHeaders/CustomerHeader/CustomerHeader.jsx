@@ -1,5 +1,6 @@
 import { BsSearch } from "react-icons/bs";
 import { BiSolidFileExport } from "react-icons/bi";
+import { CSVLink } from "react-csv";
 
 const CustomerHeader = (props) => {
 
@@ -37,10 +38,13 @@ const CustomerHeader = (props) => {
             />
             <BsSearch />
           </div>
-          <button className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2">
+          <CSVLink
+            data={props.data}
+            className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
+          >
             <BiSolidFileExport size="1.2rem" />
             Export
-          </button>
+          </CSVLink>
         </div>
       </div>
     </>

@@ -13,6 +13,8 @@ function DashboardSidebar({ children, open }) {
 
   const userRole = ncUser ? ncUser.role : null;
 
+  const userPermissions = ncUser ? ncUser.permissions : null;
+
   return (
     <div className="flex">
       <div
@@ -27,15 +29,18 @@ function DashboardSidebar({ children, open }) {
           <img src={avatar} alt="avatar" />
         </div>
         <div className="flex flex-col w-full">
-          <NavLink
-            to="/dashboard"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <FiUsers className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Reservation
-            </span>
-          </NavLink>
+          {(userRole === "manager" ||
+            userPermissions.includes("reservation")) && (
+            <NavLink
+              to="/dashboard"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <FiUsers className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Reservation
+              </span>
+            </NavLink>
+          )}
           {/* <NavLink
             to="/dashboard/payment"
             className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -45,7 +50,7 @@ function DashboardSidebar({ children, open }) {
               Payment History
             </span>
           </NavLink> */}
-          {userRole !== "admin" && (
+          {userRole === "manager" && (
             <NavLink
               to="/dashboard/menu"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
@@ -56,7 +61,7 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
-          {userRole !== "admin" && (
+          {userRole === "manager" && (
             <NavLink
               to="/dashboard/club-config"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -67,7 +72,8 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
-          {userRole !== "admin" && (
+          {(userRole === "manager" ||
+            userPermissions.includes("reservation")) && (
             <NavLink
               to="/dashboard/coupon"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -78,16 +84,18 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
-          {userRole !== "admin" && <NavLink
-            to="/dashboard/customer-list"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <HiOutlineUserGroup className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Custommer List
-            </span>
-          </NavLink>}
-          {userRole !== "admin" && (
+          {userRole === "manager" && (
+            <NavLink
+              to="/dashboard/customer-list"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <HiOutlineUserGroup className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Custommer List
+              </span>
+            </NavLink>
+          )}
+          {userRole === "manager" && (
             <NavLink
               to="/dashboard/staff"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -107,24 +115,28 @@ function DashboardSidebar({ children, open }) {
               Live Order
             </span>
           </NavLink> */}
-          {userRole !== 'admin' && <NavLink
-            to="/dashboard/events"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <BsCalendar2Event className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Events
-            </span>
-          </NavLink>}
-          {userRole === "admin" && <NavLink
-            to="/dashboard/user-list"
-            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-          >
-            <HiOutlineUserGroup className="mr-2 text-2xl" />
-            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              User List
-            </span>
-          </NavLink>}
+          {userRole === "manager" && (
+            <NavLink
+              to="/dashboard/events"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <BsCalendar2Event className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Events
+              </span>
+            </NavLink>
+          )}
+          {userRole === "admin" && (
+            <NavLink
+              to="/dashboard/user-list"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <HiOutlineUserGroup className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                User List
+              </span>
+            </NavLink>
+          )}
         </div>
       </div>
       <main

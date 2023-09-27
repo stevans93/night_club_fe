@@ -83,7 +83,7 @@ function DashboardStaff() {
       let queryString = ``;
       if (clubId) {
         // Pass the clubId as a query parameter
-        queryString += `?clubId=${clubId}`;
+        queryString += `?clubId=${clubId}&role=staff`;
       }
 
       const token = localStorage.getItem("nc_token");
@@ -98,7 +98,7 @@ function DashboardStaff() {
       const json = await response.json();
 
       if (response.ok) {
-        setStaff(json);
+        setStaff(json.users);
       }
     };
     fetchStaff();

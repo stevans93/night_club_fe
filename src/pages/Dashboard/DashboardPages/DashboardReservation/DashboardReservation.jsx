@@ -14,6 +14,7 @@ function DashboardReservation() {
   const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
+  const [reservationsForExport, setReservationsForExport] = useState(null);
   const [selectedParams, setSelectedParams] = useState({
     table: "",
     status: "",
@@ -192,6 +193,12 @@ function DashboardReservation() {
 
       if (response.ok) {
         setReservations(json.reservations);
+        const toExp = json.reservations.map((x) => ({
+          name: x.name,
+          phone: x.phone,
+          email: x.email,
+        }));
+        setReservationsForExport(toExp);
       }
 
       setNumberOfPages(json.numberOfPages);
@@ -205,22 +212,25 @@ function DashboardReservation() {
   return (
     <>
       <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
-        <ReservationHeader
-          pageSizeOptions={pageSizeOptions}
-          tableOptions={tableOptions}
-          statusOptions={statusOptions}
-          pageSize={selectedParams.pageSize}
-          handlePageSizeChange={handlePageSizeChange}
-          selectedTable={selectedParams.selectedTable}
-          selectedStatus={selectedParams.selectedStatus}
-          handleChangeDate={handleChangeDate}
-          handleChangeTable={handleChangeTable}
-          handleChangeStatus={handleChangeStatus}
-          handleChangeName={handleChangeName}
-          handleTodaysReservations={handleTodaysReservations}
-          handleAllReservations={handleAllReservations}
-          handleAddReservationModalOpen={handleAddReservationModalOpen}
-        />
+        {reservations && (
+          <ReservationHeader
+            pageSizeOptions={pageSizeOptions}
+            tableOptions={tableOptions}
+            statusOptions={statusOptions}
+            pageSize={selectedParams.pageSize}
+            handlePageSizeChange={handlePageSizeChange}
+            selectedTable={selectedParams.selectedTable}
+            selectedStatus={selectedParams.selectedStatus}
+            handleChangeDate={handleChangeDate}
+            handleChangeTable={handleChangeTable}
+            handleChangeStatus={handleChangeStatus}
+            handleChangeName={handleChangeName}
+            handleTodaysReservations={handleTodaysReservations}
+            handleAllReservations={handleAllReservations}
+            handleAddReservationModalOpen={handleAddReservationModalOpen}
+            data={reservationsForExport}
+          />
+        )}
         {reservations && (
           <DashboardReserveTable
             reservations={reservations}

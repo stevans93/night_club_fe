@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import EditButton from "../EditButton/EditButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 
 const ActionButton = (props) => {
-  const [isOpen, setIsOpen] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    let handler = () => {
+      setIsOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+  }, []);
 
   return (
     <>

@@ -3,6 +3,7 @@ import { BiListUl } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiSolidFileExport } from "react-icons/bi";
 import { useState } from "react";
+import { CSVLink } from "react-csv";
 
 const ReservationHeader = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -123,10 +124,13 @@ const ReservationHeader = (props) => {
               );
             })}
           </select>
-          <button className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2">
+          <CSVLink
+            data={props.data}
+            className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
+          >
             <BiSolidFileExport size="1.2rem" />
             Export
-          </button>
+          </CSVLink>
         </div>
       </div>
     </>

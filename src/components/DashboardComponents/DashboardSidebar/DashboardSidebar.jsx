@@ -15,6 +15,8 @@ function DashboardSidebar({ children, open }) {
 
   const userPermissions = ncUser ? ncUser.permissions : null;
 
+  console.log(ncUser);
+
   return (
     <div className="flex">
       <div
@@ -30,7 +32,8 @@ function DashboardSidebar({ children, open }) {
         </div>
         <div className="flex flex-col w-full">
           {(userRole === "manager" ||
-            userPermissions.includes("reservation")) && (
+            userPermissions.includes("reservation") ||
+            userRole === "admin") && (
             <NavLink
               to="/dashboard"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -73,7 +76,7 @@ function DashboardSidebar({ children, open }) {
             </NavLink>
           )}
           {(userRole === "manager" ||
-            userPermissions.includes("reservation")) && (
+            userPermissions.includes("coupons")) && (
             <NavLink
               to="/dashboard/coupon"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"

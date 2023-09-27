@@ -131,7 +131,7 @@ function DashboardReservation() {
   const fetchReservationById = async (id) => {
     const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/reservations/singleReservation/${id}`,
+      `http://localhost:4000/api/reservations/single/${id}`,
       {
         headers: {
           Authorization: `${token}`,

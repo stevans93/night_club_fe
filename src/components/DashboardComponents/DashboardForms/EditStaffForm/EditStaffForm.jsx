@@ -1,8 +1,9 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const EditStaffForm = (props) => {
+
   const firstNameInputRef = useRef();
   const lastNameInputRef = useRef();
   const emailInputRef = useRef();
@@ -105,6 +106,7 @@ const EditStaffForm = (props) => {
                         id="reservation"
                         type="checkbox"
                         value="reservation"
+                        defaultChecked={props.staff.permissions.includes("reservation")}
                         ref={reservationInputRef}
                       />
                       <label htmlFor="reservation">Reservation</label>
@@ -115,6 +117,7 @@ const EditStaffForm = (props) => {
                         id="Coupon"
                         type="checkbox"
                         value="coupons"
+                        defaultChecked={props.staff.permissions.includes("coupons")}
                         ref={couponListInputRef}
                       />
                       <label htmlFor="Coupon">Coupon list</label>

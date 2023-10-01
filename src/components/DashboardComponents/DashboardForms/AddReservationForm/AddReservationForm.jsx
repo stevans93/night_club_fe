@@ -1,6 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
+import ReservationsService from "../../../../services/reservationsService"
 
 const AddReservationForm = (props) => {
   const nameInputRef = useRef();
@@ -25,18 +26,13 @@ const AddReservationForm = (props) => {
       date: dateInputRef.current.value,
     };
 
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/reservations/add`,
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify(reservation),
-      }
-    );
+    try {
+      await ReservationsService.addReservation(reservation, token);
+      // Handle success, e.g., show a success message
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("An error occurred while saving the reservation:", error);
+    }
   };
 
   return (
@@ -142,7 +138,10 @@ const AddReservationForm = (props) => {
               >
                 Ok
               </Button>
-              <Button onClick={props.handleAddReservationModalClose} appearance="subtle">
+              <Button
+                onClick={props.handleAddReservationModalClose}
+                appearance="subtle"
+              >
                 Cancel
               </Button>
             </Modal.Footer>

@@ -1,6 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
+import ReservationsService from "../../../../services/reservationsService";
 
 const EditReservationForm = (props) => {
   const nameInputRef = useRef();
@@ -26,18 +27,13 @@ const EditReservationForm = (props) => {
       date: dateInputRef.current.value,
     };
 
-    const token = localStorage.getItem("nc_token");
-    await fetch(
-      `http://localhost:4000/api/reservations/updateReservation/${reservationId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify(reservation),
-      }
-    );
+    try {
+      await ReservationsService.updateReservation(reservationId, reservation);
+      // Handle success, e.g., show a success message
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("An error occurred while updating the reservation:", error);
+    }
   };
 
   return (

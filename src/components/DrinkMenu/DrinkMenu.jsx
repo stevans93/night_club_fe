@@ -4,6 +4,7 @@ import { Modal, Button } from "rsuite";
 import { useState, useEffect } from "react";
 import DrinksCarousel from "../DrinksCarousel/DrinksCarousel";
 import { useParams } from "react-router-dom";
+import ProductsService from "../../services/productsService";
 
 export default function DrinkMenu() {
   const { clubId } = useParams();
@@ -31,18 +32,17 @@ export default function DrinkMenu() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch(
-        `http://localhost:4000/api/product/allProducts/${clubId}`
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setProducts(json);
+      try {
+        const productsData = await ProductsService.getAllProducts(clubId);
+        setProducts(productsData); // Assuming productsData is the array of products you want to set
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching products:", error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [clubId]);
 
   return (
     <>

@@ -4,6 +4,7 @@ import { BsTwitter, BsInstagram, BsFillTelephoneFill } from "react-icons/bs";
 import { FaEnvelope } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ClubsService from "../../services/clubsService";
 
 const ClubHeader = () => {
   const [info, setInfo] = useState('');
@@ -11,18 +12,18 @@ const ClubHeader = () => {
 
   useEffect(() => {
     const fetchInfo = async () => {
-      const response = await fetch(
-        `http://localhost:4000/api/club/singleClub/${clubId}`
-      );
-      const json = await response.json();
-      if (response.ok) {
-        setInfo(json);
+      if (clubId) {
+        try {
+          const response = await ClubsService.getSingleClub(clubId);
+          setInfo(response);
+        } catch (error) {
+          // Handle any errors here
+          console.error("An error occurred while fetching club info:", error);
+        }
       }
     };
-
-    if (clubId) {
-      fetchInfo();
-    }
+  
+    fetchInfo();
   }, [clubId]);
 
   return (

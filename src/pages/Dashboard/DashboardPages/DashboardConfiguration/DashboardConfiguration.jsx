@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import ClubsService from "../../../../services/clubsService";
 
 function DashboardConfiguration() {
   const logoInputRef = useRef();
@@ -17,47 +18,38 @@ function DashboardConfiguration() {
   };
 
   const saveConfiguration = async (clubId) => {
-    const club = {
-      _id: clubId,
-      clubLogo: logoInputRef.current.value,
-      profileImage: imageInputRef.current.value,
-      location: locationInputRef.current.value,
-      email: emailInputRef.current.value,
-      mobile: phoneInputRef.current.value,
-    };
-
-    const token = localStorage.getItem("nc_token");
-    await fetch(`http://localhost:4000/api/club/updateClub/${clubId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify(club),
-    });
+    try {
+      const club = {
+        _id: clubId,
+        clubLogo: logoInputRef.current.value,
+        profileImage: imageInputRef.current.value,
+        location: locationInputRef.current.value,
+        email: emailInputRef.current.value,
+        mobile: phoneInputRef.current.value,
+      };
+      await ClubsService.updateClub(clubId, club);
+  
+      showToast("Club updated successfully", "success");
+    } catch (error) {
+      // Handle any errors here (e.g., show an error toast)
+      console.error("An error occurred while saving club configuration:", error);
+    }
   };
 
   useEffect(() => {
     const fetchClubById = async () => {
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/club/singleClub/${clubId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setClub(json);
+      try {
+        const clubInfo = await ClubsService.getSingleClub(clubId);
+  
+        setClub(clubInfo);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching club info:", error);
       }
     };
-
+  
     fetchClubById();
-  }, []);
+  }, [clubId]);
 
   return (
     <>

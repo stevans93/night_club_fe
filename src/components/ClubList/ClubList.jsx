@@ -1,47 +1,39 @@
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
+import ClubsService from "../../services/clubsService";
 
 const ClubList = (props) => {
   const [clubs, setClubs] = useState(null);
 
   useEffect(() => {
     const fetchClubs = async () => {
-      let queryString = ``;
-      if (props.params) {
-        for (const [index, [key, value]] of Object.entries(
-          props.params
-        ).entries()) {
-          if (index === 0) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
+      try {
+        const { params } = props;
+        debugger;
+        const clubsData = await ClubsService.getAllClubs(
+          params.pageNumber,
+          params.pageSize,
+          params.name,
+          params.location,
+          params.bannerImage,
+          params.date,
+          params.type
+        );
+  
+        setClubs(clubsData.clubs);
+  
+        if (props.setNumberOfPages) {
+          props.setNumberOfPages(clubsData.numberOfPages);
         }
-      }
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/club/all/${queryString}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
+        if (props.setNumberOfClubs) {
+          props.setNumberOfClubs(clubsData.numberOfClubs);
         }
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setClubs(json.clubs);
-      }
-
-      if (props.setNumberOfPages) {
-        props.setNumberOfPages(json.numberOfPages);
-      }
-      if (props.setNumberOfClubs) {
-        props.setNumberOfClubs(json.numberOfClubs);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching clubs:", error);
       }
     };
-
+  
     fetchClubs();
   }, [props.params]);
 

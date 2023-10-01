@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import { useParams } from "react-router-dom";
+import EventsService from "../../services/eventsService";
 
 const EventList = (props) => {
   const [events, setEvents] = useState(null);
@@ -10,46 +11,34 @@ const EventList = (props) => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      let queryString = ``;
-      if (clubId) {
-        queryString += `?clubId=${clubId}`;
-      }
-      if (props.params) {
-        for (const [index, [key, value]] of Object.entries(
-          props.params
-        ).entries()) {
-          if (index === 0 && !clubId) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
-        }
-      }
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/event/allEvents/${queryString}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
+      try {
+        const { params } = props;
+        const eventsData = await EventsService.getAllEvents(
+          params.pageNumber,
+          params.pageSize,
+          clubId,
+          params.date,
+          params.name,
+          params.location,
+          params.type
+        );
+        
+        setEvents(eventsData.events);
 
-      if (response.ok) {
-        setEvents(json.events);
         if (props.setNumberOfPages) {
-          props.setNumberOfPages(json.numberOfPages);
+          props.setNumberOfPages(eventsData.numberOfPages);
         }
         if (props.setNumberOfEvents) {
-          props.setNumberOfEvents(json.numberOfEvents);
+          props.setNumberOfEvents(eventsData.numberOfEvents);
         }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching events:", error);
       }
     };
 
     fetchEvents();
-  }, [props.date, props.params]);
+  }, [props.params]); // Include props.params as a dependency
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5">

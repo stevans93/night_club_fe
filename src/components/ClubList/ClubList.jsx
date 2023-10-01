@@ -9,7 +9,6 @@ const ClubList = (props) => {
     const fetchClubs = async () => {
       try {
         const { params } = props;
-        debugger;
         const clubsData = await ClubsService.getAllClubs(
           params.pageNumber,
           params.pageSize,

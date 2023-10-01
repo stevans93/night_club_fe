@@ -1,9 +1,38 @@
 import { http } from "../http/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const eventsPath = "/event"; // Common part of the path for events
+// Utility function to display toasts
+export const showToast = (message, type = "success") => {
+  toast[type](message, {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
+const eventsPath = "/event";
 
 class EventsService {
-  static getAllEvents = (
+  static async handleResponse(response) {
+    if (!(response.status >= 200 && response.status < 300)) {
+      console.error("Backend error:", response.statusText);
+      showToast(
+        "Error: An error occurred while processing your request",
+        "error"
+      );
+      throw new Error("Request failed");
+    }
+
+    return response.data;
+  }
+
+  static async getAllEvents(
     pageNumber,
     pageSize,
     clubId,
@@ -11,7 +40,7 @@ class EventsService {
     name,
     location,
     type
-  ) => {
+  ) {
     // Create an object with defined parameters
     const params = {
       pageNumber,
@@ -31,20 +60,32 @@ class EventsService {
     // Convert filteredParams to query string
     const queryParams = new URLSearchParams(filteredParams).toString();
 
-    return http.get(`${eventsPath}/allEvents?${queryParams}`);
-  };
+    const response = await http.get(`${eventsPath}/allEvents?${queryParams}`);
+    return this.handleResponse(response);
+  }
 
-  static getSingleEvent = (eventId) =>
-    http.get(`${eventsPath}/singleEvent/${eventId}`);
+  static async getSingleEvent(eventId) {
+    const response = await http.get(`${eventsPath}/singleEvent/${eventId}`);
+    return this.handleResponse(response);
+  }
 
-  static addEvent = (eventData) =>
-    http.post(`${eventsPath}/addEvent`, eventData);
+  static async addEvent(eventData) {
+    const response = await http.post(`${eventsPath}/addEvent`, eventData);
+    return this.handleResponse(response);
+  }
 
-  static updateEvent = (eventId, eventData) =>
-    http.put(`${eventsPath}/updateEvent/${eventId}`, eventData);
+  static async updateEvent(eventId, eventData) {
+    const response = await http.put(
+      `${eventsPath}/updateEvent/${eventId}`,
+      eventData
+    );
+    return this.handleResponse(response);
+  }
 
-  static deleteEvent = (eventId) =>
-    http.delete(`${eventsPath}/deleteEvent/${eventId}`);
+  static async deleteEvent(eventId) {
+    const response = await http.delete(`${eventsPath}/deleteEvent/${eventId}`);
+    return this.handleResponse(response);
+  }
 }
 
 export default EventsService;

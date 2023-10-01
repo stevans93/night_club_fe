@@ -1,9 +1,9 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import UsersService from "../../../../services/userService";
 
 const EditStaffForm = (props) => {
-
   const firstNameInputRef = useRef();
   const lastNameInputRef = useRef();
   const emailInputRef = useRef();
@@ -31,15 +31,19 @@ const EditStaffForm = (props) => {
       staff.permissions.push(couponListInputRef.current.value);
     }
 
-    const token = localStorage.getItem("nc_token");
-    await fetch(`http://localhost:4000/api/user/update/${staffId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify(staff),
-    });
+    try {
+      const response = await UsersService.updateUser(staffId, staff); // Use the UsersService to update a user
+
+      // Handle success
+      if (response) {
+        showToast("User updated successfully", "success");
+        // Additional code here if needed
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("An error occurred while updating the user:", error);
+      showToast("Error: An error occurred while updating the user", "error");
+    }
   };
   return (
     <>
@@ -106,7 +110,9 @@ const EditStaffForm = (props) => {
                         id="reservation"
                         type="checkbox"
                         value="reservation"
-                        defaultChecked={props.staff.permissions.includes("reservation")}
+                        defaultChecked={props.staff.permissions.includes(
+                          "reservation"
+                        )}
                         ref={reservationInputRef}
                       />
                       <label htmlFor="reservation">Reservation</label>
@@ -117,7 +123,9 @@ const EditStaffForm = (props) => {
                         id="Coupon"
                         type="checkbox"
                         value="coupons"
-                        defaultChecked={props.staff.permissions.includes("coupons")}
+                        defaultChecked={props.staff.permissions.includes(
+                          "coupons"
+                        )}
                         ref={couponListInputRef}
                       />
                       <label htmlFor="Coupon">Coupon list</label>

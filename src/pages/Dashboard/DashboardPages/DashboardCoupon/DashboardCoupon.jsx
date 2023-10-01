@@ -5,6 +5,7 @@ import TablePagination from "../../../../components/TablePagination/TablePaginat
 import { useState, useEffect } from "react";
 import AddCouponForm from "../../../../components/DashboardComponents/DashboardForms/AddCouponForm/AddCouponForm";
 import EditCouponForm from "../../../../components/DashboardComponents/DashboardForms/EditCouponForm/EditCouponForm";
+import CouponsService from "../../../../services/couponsService";
 
 function DashboardCoupon() {
   const pageSizeOptions = [15, 30, 45];
@@ -66,72 +67,63 @@ function DashboardCoupon() {
   };
 
   const fetchCouponById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/coupons/singleCoupon/${id}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
+    try {
+      const response = await CouponsService.getSingleCoupon(id);
+
+      if (response) {
+        // Handle success
+        setCouponToEdit(response); // Assuming setCouponToEdit is a state updater function
+        showToast("Coupon fetched successfully", "success");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        showToast("Failed to fetch coupon", "error");
+        // You can perform additional actions if needed
       }
-    );
-
-    const json = await response.json();
-
-    if (response.ok) {
-      setCouponToEdit(json);
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while fetching the coupon:", error);
+      showToast("Error: An error occurred while fetching the coupon", "error");
     }
   };
 
   const fetchDeleteCouponById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/coupons/deleteCoupon/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
+    try {
+      const response = await CouponsService.deleteCoupon(id);
 
-    if (response.ok) {
-      console.log("deleted");
+      if (response) {
+        // Handle success
+        console.log("Coupon deleted successfully");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        console.error("Failed to delete coupon");
+        // You can perform additional actions if needed
+      }
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while deleting the coupon:", error);
     }
   };
 
   useEffect(() => {
     const fetchCoupons = async () => {
-      let queryString = ``;
-      if (selectedParams) {
-        for (const [index, [key, value]] of Object.entries(
-          selectedParams
-        ).entries()) {
-          if (index === 0) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
-        }
-      }
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/coupons/allCoupons/${queryString}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
+      try {
+        const couponsData = await CouponsService.getAllCoupons(
+          selectedParams.pageNumber,
+          selectedParams.pageSize
+          // Include other parameters as needed
+        );
 
-      if (response.ok) {
-        setCoupons(json.coupons);
+        if (couponsData) {
+          setCoupons(couponsData.coupons);
+          setNumberOfPages(couponsData.numberOfPages);
+          setNumberOfCoupons(couponsData.numberOfCoupons);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching coupons:", error);
       }
-
-      setNumberOfPages(json.numberOfPages);
-      setNumberOfCoupons(json.numberOfCoupons);
     };
 
     fetchCoupons();

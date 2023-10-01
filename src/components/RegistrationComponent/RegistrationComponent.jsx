@@ -6,7 +6,7 @@ import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import UserService from '../../services/userService';
+import AuthService from '../../services/authService';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
@@ -63,7 +63,7 @@ function RegistrationComponent() {
                     return;
                 }
 
-                const response = await UserService.registerUser(values);
+                const response = await AuthService.registerUser(values);
                 
                 if(response.status === 200) {
                     toast.success('Registration is successful!', {

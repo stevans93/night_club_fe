@@ -7,7 +7,7 @@ import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import UserService from "../../services/userService";
+import AuthService from "../../services/authService";
 import { useDispatch } from "react-redux";
 import { loggedUser } from "../../store/userSlice";
 import { toast } from "react-toastify";
@@ -29,7 +29,7 @@ function LoginComponent() {
     }),
 
     onSubmit: (values) => {
-      UserService.loginUser(values)
+      AuthService.loginUser(values)
         .then((res) => {
           if (res.status === 200) {
             toast.success("You are logged in!", {

@@ -39,7 +39,6 @@ function DashboardUserList() {
   };
 
   const handleChangeName = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       name: value,

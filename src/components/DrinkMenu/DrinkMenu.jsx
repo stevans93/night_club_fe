@@ -3,8 +3,11 @@ import "../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useState, useEffect } from "react";
 import DrinksCarousel from "../DrinksCarousel/DrinksCarousel";
+import { useParams } from "react-router-dom";
 
-export default function DrinkMenu(props) {
+export default function DrinkMenu() {
+  const { clubId } = useParams();
+
   const [open, setOpen] = useState(false);
   const [backdrop, setBackdrop] = useState(false);
   const handleOpen = (value) => {
@@ -20,7 +23,7 @@ export default function DrinkMenu(props) {
 
   const selectCategory = (drinkType) => {
     const drinkList = products.filter(
-      (product) => product.productCategory === drinkType.toLowerCase()
+      (product) => product.subCategory === drinkType.toLowerCase()
     );
     setModalProducts(drinkList);
     setModalProductType(drinkType);
@@ -29,7 +32,7 @@ export default function DrinkMenu(props) {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(
-        `http://localhost:4000/api/product/allProducts/${props.clubId}`
+        `http://localhost:4000/api/product/allProducts/${clubId}`
       );
       const json = await response.json();
 
@@ -55,7 +58,11 @@ export default function DrinkMenu(props) {
             <Modal.Body>
               <ul>
                 {modalProducts.map((product) => {
-                  return <li key={product.id}>{product.name} {product.price}</li>;
+                  return (
+                    <li key={product.id}>
+                      {product.name} {product.price}
+                    </li>
+                  );
                 })}
               </ul>
             </Modal.Body>

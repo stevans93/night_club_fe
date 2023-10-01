@@ -27,7 +27,7 @@ const AddReservationForm = (props) => {
 
     const token = localStorage.getItem("nc_token");
     const response = await fetch(
-      `http://localhost:4000/api/reservations/addReservation`,
+      `http://localhost:4000/api/reservations/add`,
       {
         method: "post",
         headers: {

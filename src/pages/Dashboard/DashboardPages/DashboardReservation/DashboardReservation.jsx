@@ -84,7 +84,6 @@ function DashboardReservation() {
   };
 
   const handleChangeDate = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       date: value,
@@ -110,7 +109,6 @@ function DashboardReservation() {
       ...selectedParams,
       table: value,
     }));
-    console.log(typeof value);
   };
 
   const handleChangeStatus = (value) => {
@@ -121,7 +119,6 @@ function DashboardReservation() {
   };
 
   const handleChangeName = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       name: value,
@@ -179,7 +176,6 @@ function DashboardReservation() {
           }
         }
       }
-      console.log(queryString);
       const token = localStorage.getItem("nc_token");
       const response = await fetch(
         `http://localhost:4000/api/reservations/allReservations/${queryString}`,

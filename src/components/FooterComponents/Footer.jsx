@@ -17,7 +17,7 @@ function Footer() {
   useEffect(() => {
     const fetchInfo = async () => {
       const response = await fetch(
-        `http://localhost:4000/api/club/${clubId}`
+        `http://localhost:4000/api/club/singleClub/${clubId}`
       );
       const json = await response.json();
       if (response.ok) {

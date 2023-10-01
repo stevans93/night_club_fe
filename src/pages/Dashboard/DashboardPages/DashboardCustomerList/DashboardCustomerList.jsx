@@ -39,7 +39,6 @@ function DashboardCustomerList() {
   };
 
   const handleChangeName = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       name: value,

@@ -12,7 +12,8 @@ class EventsService {
     location,
     type
   ) => {
-    const queryParams = new URLSearchParams({
+    // Create an object with defined parameters
+    const params = {
       pageNumber,
       pageSize,
       clubId,
@@ -20,7 +21,15 @@ class EventsService {
       name,
       location,
       type,
-    }).toString();
+    };
+
+    // Filter out undefined parameters
+    const filteredParams = Object.fromEntries(
+      Object.entries(params).filter(([key, value]) => value !== undefined)
+    );
+
+    // Convert filteredParams to query string
+    const queryParams = new URLSearchParams(filteredParams).toString();
 
     return http.get(`${eventsPath}/allEvents?${queryParams}`);
   };

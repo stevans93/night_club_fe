@@ -3,33 +3,34 @@ import { useEffect, useState } from "react";
 import FooterBottom from "./FooterBottom/FooterBottom";
 import FooterTop from "./FooterTop/FooterTop";
 import { useParams } from "react-router-dom";
+import ClubsService from "../../services/clubsService";
 
 function Footer() {
-  const initalState = {
+  const initialState = {
     location: "Default Location",
     email: "someemail@kme.com",
     mobile: "044020404024",
   };
 
-  const [info, setInfo] = useState(initalState);
-  const {clubId} = useParams();
+  const [info, setInfo] = useState(initialState);
+  const { clubId } = useParams();
 
   useEffect(() => {
-    const fetchInfo = async () => {
-      const response = await fetch(
-        `http://localhost:4000/api/club/${clubId}`
-      );
-      const json = await response.json();
-      if (response.ok) {
-        setInfo(json);
+    const fetchClubInfo = async () => {
+      try {
+        if (clubId) {
+          const clubInfo = await ClubsService.getSingleClub(clubId);
+          setInfo(clubInfo);
+        } else {
+          setInfo(initialState);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching club info:", error);
       }
     };
 
-    if (clubId) {
-      fetchInfo();
-    } else {
-      setInfo(initalState);
-    }
+    fetchClubInfo();
   }, [clubId]);
 
   return (

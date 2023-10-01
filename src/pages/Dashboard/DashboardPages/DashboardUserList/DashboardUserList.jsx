@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import UserHeader from "../../../../components/DashboardComponents/DashboardHeaders/UsersHeader/UsersHeader";
 import DashboardUsersTable from "../../../../components/DashboardComponents/DashboardTables/DashboardUsersTable/DashboardUsersTable";
+import UsersService from "../../../../services/userService";
 
 function DashboardUserList() {
   const pageSizeOptions = [15, 30, 45];
@@ -39,7 +40,6 @@ function DashboardUserList() {
   };
 
   const handleChangeName = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       name: value,
@@ -48,41 +48,29 @@ function DashboardUserList() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      let queryString = ``;
-      if (selectedParams) {
-        for (const [index, [key, value]] of Object.entries(
-          selectedParams
-        ).entries()) {
-          if (index === 0) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
-        }
-      }
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/user/all/${queryString}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
+      try {
+        const usersData = await UsersService.getAllUsers(
+          selectedParams.pageNumber,
+          selectedParams.pageSize,
+          selectedParams.role
+        );
 
-      if (response.ok) {
-        setUsers(json.users);
-        const toExp = json.users.map((x) => ({
-          name: `${x.firstName} ${x.lastName}`,
-          phone: x.mobilePhone,
-          email: x.email,
-        }));
-        setUsersForExport(toExp);
-      }
+        if (usersData) {
+          setUsers(usersData.users);
 
-      setNumberOfPages(json.numberOfPages);
-      setNumberOfUsers(json.numberOfUsers);
+          const toExp = usersData.users.map((x) => ({
+            name: `${x.firstName} ${x.lastName}`,
+            phone: x.mobilePhone,
+            email: x.email,
+          }));
+          setUsersForExport(toExp);
+          setNumberOfPages(usersData.numberOfPages);
+          setNumberOfUsers(usersData.numberOfUsers);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching users:", error);
+      }
     };
 
     fetchUsers();

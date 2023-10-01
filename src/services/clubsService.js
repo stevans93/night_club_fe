@@ -16,9 +16,9 @@ export const showToast = (message, type = "success") => {
   });
 };
 
-const usersPath = "/user"; // Adjust the API path accordingly
+const clubsPath = "/club";
 
-class UsersService {
+class ClubsService {
   static async handleResponse(response) {
     if (!(response.status >= 200 && response.status < 300)) {
       console.error("Backend error:", response.statusText);
@@ -28,16 +28,28 @@ class UsersService {
       );
       throw new Error("Request failed");
     }
-
+    
     return response.data;
   }
 
-  static async getAllUsers(pageNumber = 1, pageSize = 10, role) {
+  static async getAllClubs(
+    pageNumber,
+    pageSize,
+    name,
+    location,
+    bannerImage,
+    date,
+    type
+  ) {
     // Create an object with defined parameters
     const params = {
       pageNumber,
       pageSize,
-      role,
+      name,
+      location,
+      bannerImage,
+      date,
+      type,
     };
 
     // Filter out undefined parameters
@@ -45,32 +57,35 @@ class UsersService {
       Object.entries(params).filter(([key, value]) => value !== undefined)
     );
 
-    // Convert filteredParams to a query string
+    // Convert filteredParams to query string
     const queryParams = new URLSearchParams(filteredParams).toString();
-
-    const response = await http.get(`${usersPath}/all?${queryParams}`);
+    
+    const response = await http.get(`${clubsPath}/all?${queryParams}`);
     return this.handleResponse(response);
   }
 
-  static async getSingleUser(userId) {
-    const response = await http.get(`${usersPath}/single/${userId}`);
+  static async getSingleClub(clubId) {
+    const response = await http.get(`${clubsPath}/singleClub/${clubId}`);
     return this.handleResponse(response);
   }
 
-  static async addUser(userData) {
-    const response = await http.post(`${usersPath}/addUser`, userData);
+  static async addClub(clubData) {
+    const response = await http.post(`${clubsPath}/addClub`, clubData);
     return this.handleResponse(response);
   }
 
-  static async updateUser(userId, userData) {
-    const response = await http.put(`${usersPath}/update/${userId}`, userData);
+  static async updateClub(clubId, updatedClubData) {
+    const response = await http.put(
+      `${clubsPath}/updateClub/${clubId}`,
+      updatedClubData
+    );
     return this.handleResponse(response);
   }
 
-  static async deleteUser(userId) {
-    const response = await http.delete(`${usersPath}/delete/${userId}`);
+  static async deleteClub(clubId) {
+    const response = await http.delete(`${clubsPath}/deleteClub/${clubId}`);
     return this.handleResponse(response);
   }
 }
 
-export default UsersService;
+export default ClubsService;

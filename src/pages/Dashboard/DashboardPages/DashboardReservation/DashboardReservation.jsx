@@ -5,6 +5,7 @@ import TablePagination from "../../../../components/TablePagination/TablePaginat
 import { useState, useEffect } from "react";
 import EditReservationForm from "../../../../components/DashboardComponents/DashboardForms/EditReservationForm/EditReservationForm";
 import AddReservationForm from "../../../../components/DashboardComponents/DashboardForms/AddReservationForm/AddReservationForm";
+import ReservationsService from "../../../../services/reservationsService";
 
 function DashboardReservation() {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
@@ -84,7 +85,6 @@ function DashboardReservation() {
   };
 
   const handleChangeDate = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       date: value,
@@ -110,7 +110,6 @@ function DashboardReservation() {
       ...selectedParams,
       table: value,
     }));
-    console.log(typeof value);
   };
 
   const handleChangeStatus = (value) => {
@@ -121,7 +120,6 @@ function DashboardReservation() {
   };
 
   const handleChangeName = (value) => {
-    console.log(value);
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
       name: value,
@@ -129,81 +127,55 @@ function DashboardReservation() {
   };
 
   const fetchReservationById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/reservations/single/${id}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-    const json = await response.json();
-
-    if (response.ok) {
-      setReservationToEdit(json);
+    try {
+      const reservation = await ReservationsService.getSingleReservation(id);
+      setReservationToEdit(reservation);
+      // Handle success, e.g., update the state with the fetched reservation
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("An error occurred while fetching the reservation:", error);
     }
   };
 
   const fetchDeleteReservationById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/reservations/delete/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
-
-    if (response.ok) {
-      console.log("deleted");
+    try {
+      await ReservationsService.deleteReservation(id);
+      console.log("Deleted");
+      // Handle success, e.g., show a success message
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("An error occurred while deleting the reservation:", error);
     }
   };
 
   useEffect(() => {
     const fetchReservations = async () => {
-      let queryString = ``;
-      if (clubId !== undefined) {
-        queryString += `?clubId=${clubId}`;
-      }
-      if (selectedParams) {
-        for (const [index, [key, value]] of Object.entries(
-          selectedParams
-        ).entries()) {
-          if (index === 0 && !clubId) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
+      try {
+        const reservationsData = await ReservationsService.getAllReservations(
+          selectedParams.name,
+          selectedParams.date,
+          selectedParams.table,
+          selectedParams.pageNumber,
+          selectedParams.pageSize,
+          selectedParams.status
+        );
+
+        if (reservationsData) {
+          setReservations(reservationsData.reservations);
+          setNumberOfPages(reservationsData.numberOfPages);
+          setNumberOfReservations(reservationsData.numberOfReservations);
+
+          const toExp = reservationsData.reservations.map((x) => ({
+            name: x.name,
+            phone: x.phone,
+            email: x.email,
+          }));
+          setReservationsForExport(toExp);
         }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching reservations:", error);
       }
-      console.log(queryString);
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/reservations/allReservations/${queryString}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setReservations(json.reservations);
-        const toExp = json.reservations.map((x) => ({
-          name: x.name,
-          phone: x.phone,
-          email: x.email,
-        }));
-        setReservationsForExport(toExp);
-      }
-
-      setNumberOfPages(json.numberOfPages);
-
-      setNumberOfReservations(json.numberOfReservations);
     };
 
     fetchReservations();

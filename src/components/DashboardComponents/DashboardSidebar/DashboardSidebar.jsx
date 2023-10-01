@@ -15,8 +15,6 @@ function DashboardSidebar({ children, open }) {
 
   const userPermissions = ncUser ? ncUser.permissions : null;
 
-  console.log(ncUser);
-
   return (
     <div className="flex">
       <div

@@ -11,16 +11,6 @@ import { useDispatch } from "react-redux";
 import { restoreUser } from "./store/userSlice";
 import ClubHeader from "./components/ClubHeader/ClubHeader";
 
-axios.defaults.baseURL = "http://localhost:4000/api";
-
-axios.interceptors.request.use((config) => {
-  if (localStorage.hasOwnProperty("nc_token")) {
-    config.headers.authorization = localStorage.getItem("nc_token");
-  }
-
-  return config;
-});
-
 function App() {
   const dispatch = useDispatch();
 

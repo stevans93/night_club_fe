@@ -1,6 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
+import UsersService from "../../../../services/userService";
 
 const AddStaffForm = (props) => {
   const firstNameInputRef = useRef();
@@ -27,21 +28,25 @@ const AddStaffForm = (props) => {
     };
 
     if (reservationInputRef.current.checked) {
-      permissions.push(reservationInputRef.current.value);
+      staff.permissions.push(reservationInputRef.current.value);
     }
     if (couponListInputRef.current.checked) {
-      permissions.push(couponListInputRef.current.value);
+      staff.permissions.push(couponListInputRef.current.value);
     }
 
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(`http://localhost:4000/api/user/addUser`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify(staff),
-    });
+    try {
+      const response = await UsersService.addUser(staff); // Use the UsersService to add a user
+
+      // Handle success
+      if (response) {
+        showToast("User added successfully", "success");
+        // Additional code here if needed
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("An error occurred while adding the user:", error);
+      showToast("Error: An error occurred while adding the user", "error");
+    }
   };
 
   return (

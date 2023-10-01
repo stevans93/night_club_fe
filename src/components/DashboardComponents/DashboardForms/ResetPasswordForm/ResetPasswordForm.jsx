@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Modal, Button } from "rsuite";
+import UsersService from "../../../../services/userService";
 
 const ResetPasswordForm = (props) => {
   const passwordInputRef = useRef();
@@ -17,15 +18,22 @@ const ResetPasswordForm = (props) => {
       confirmPassword: confirmPasswordInputRef.current.value,
     };
 
-    const token = localStorage.getItem("nc_token");
-    await fetch(`http://localhost:4000/api/user/reset/${staffId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify(staffPassword),
-    });
+    try {
+      const response = await UsersService.resetPassword(staffId, staffPassword); // Use the UsersService to reset the password
+
+      // Handle success
+      if (response) {
+        showToast("Password reset successfully", "success");
+        // Additional code here if needed
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("An error occurred while resetting the password:", error);
+      showToast(
+        "Error: An error occurred while resetting the password",
+        "error"
+      );
+    }
   };
   return (
     <>

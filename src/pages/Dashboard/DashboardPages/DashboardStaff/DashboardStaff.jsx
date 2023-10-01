@@ -5,6 +5,7 @@ import EditStaffForm from "../../../../components/DashboardComponents/DashboardF
 import ResetPasswordForm from "../../../../components/DashboardComponents/DashboardForms/ResetPasswordForm/ResetPasswordForm";
 import StaffHeader from "../../../../components/DashboardComponents/DashboardHeaders/StaffHeader/StaffHeader";
 import DashStaff from "../../../../components/DashboardComponents/DashboardStaff/DashStaff";
+import UsersService from "../../../../services/userService";
 
 function DashboardStaff() {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
@@ -48,60 +49,46 @@ function DashboardStaff() {
   };
 
   const fetchStaffById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(`http://localhost:4000/api/user/${id}`, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
-    const json = await response.json();
+    try {
+      const staffData = await UsersService.getSingleUser(id); // Use the UsersService to fetch staff by ID
 
-    if (response.ok) {
-      setStaffToEdit(json);
+      if (staffData) {
+        setStaffToEdit(staffData); // Set the staff data to state
+      }
+    } catch (error) {
+      // Handle errors
+      console.error("An error occurred while fetching staff data:", error);
+      // Display an error message if needed
     }
   };
 
   const fetchDeleteStaffById = async (id) => {
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/user/delete/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
+    try {
+      await UsersService.deleteUser(id); // Use the UsersService to delete staff by ID
 
-    if (response.ok) {
-      console.log("deleted");
+      console.log("Deleted"); // Log a message if the deletion is successful
+    } catch (error) {
+      // Handle errors
+      console.error("An error occurred while deleting staff:", error);
+      // Display an error message if needed
     }
   };
 
   useEffect(() => {
-    const fetchStaff = async () => {
-      let queryString = ``;
-      if (clubId) {
-        // Pass the clubId as a query parameter
-        queryString += `?clubId=${clubId}&role=staff`;
-      }
+    const fetchData = async () => {
+      try {
+        const staffData = await UsersService.getAllUsers();
 
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/user/all/${queryString}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
+        if (staffData) {
+          setStaff(staffData.users);
         }
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setStaff(json.users);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching staff:", error);
       }
     };
-    fetchStaff();
+
+    fetchData();
   }, []);
 
   return (

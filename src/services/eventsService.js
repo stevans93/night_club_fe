@@ -16,9 +16,9 @@ export const showToast = (message, type = "success") => {
   });
 };
 
-const usersPath = "/user"; // Adjust the API path accordingly
+const eventsPath = "/event";
 
-class UsersService {
+class EventsService {
   static async handleResponse(response) {
     if (!(response.status >= 200 && response.status < 300)) {
       console.error("Backend error:", response.statusText);
@@ -32,12 +32,24 @@ class UsersService {
     return response.data;
   }
 
-  static async getAllUsers(pageNumber = 1, pageSize = 10, role) {
+  static async getAllEvents(
+    pageNumber,
+    pageSize,
+    clubId,
+    date,
+    name,
+    location,
+    type
+  ) {
     // Create an object with defined parameters
     const params = {
       pageNumber,
       pageSize,
-      role,
+      clubId,
+      date,
+      name,
+      location,
+      type,
     };
 
     // Filter out undefined parameters
@@ -45,32 +57,35 @@ class UsersService {
       Object.entries(params).filter(([key, value]) => value !== undefined)
     );
 
-    // Convert filteredParams to a query string
+    // Convert filteredParams to query string
     const queryParams = new URLSearchParams(filteredParams).toString();
 
-    const response = await http.get(`${usersPath}/all?${queryParams}`);
+    const response = await http.get(`${eventsPath}/allEvents?${queryParams}`);
     return this.handleResponse(response);
   }
 
-  static async getSingleUser(userId) {
-    const response = await http.get(`${usersPath}/single/${userId}`);
+  static async getSingleEvent(eventId) {
+    const response = await http.get(`${eventsPath}/singleEvent/${eventId}`);
     return this.handleResponse(response);
   }
 
-  static async addUser(userData) {
-    const response = await http.post(`${usersPath}/addUser`, userData);
+  static async addEvent(eventData) {
+    const response = await http.post(`${eventsPath}/addEvent`, eventData);
     return this.handleResponse(response);
   }
 
-  static async updateUser(userId, userData) {
-    const response = await http.put(`${usersPath}/update/${userId}`, userData);
+  static async updateEvent(eventId, eventData) {
+    const response = await http.put(
+      `${eventsPath}/updateEvent/${eventId}`,
+      eventData
+    );
     return this.handleResponse(response);
   }
 
-  static async deleteUser(userId) {
-    const response = await http.delete(`${usersPath}/delete/${userId}`);
+  static async deleteEvent(eventId) {
+    const response = await http.delete(`${eventsPath}/deleteEvent/${eventId}`);
     return this.handleResponse(response);
   }
 }
 
-export default UsersService;
+export default EventsService;

@@ -16,9 +16,9 @@ export const showToast = (message, type = "success") => {
   });
 };
 
-const usersPath = "/user"; // Adjust the API path accordingly
+const reservationsPath = "/reservations";
 
-class UsersService {
+class ReservationsService {
   static async handleResponse(response) {
     if (!(response.status >= 200 && response.status < 300)) {
       console.error("Backend error:", response.statusText);
@@ -32,12 +32,22 @@ class UsersService {
     return response.data;
   }
 
-  static async getAllUsers(pageNumber = 1, pageSize = 10, role) {
+  static async getAllReservations(
+    name,
+    date,
+    table,
+    pageNumber = 1,
+    pageSize = 10,
+    status
+  ) {
     // Create an object with defined parameters
     const params = {
+      name,
+      date,
+      table,
       pageNumber,
       pageSize,
-      role,
+      status,
     };
 
     // Filter out undefined parameters
@@ -48,29 +58,48 @@ class UsersService {
     // Convert filteredParams to a query string
     const queryParams = new URLSearchParams(filteredParams).toString();
 
-    const response = await http.get(`${usersPath}/all?${queryParams}`);
+    const response = await http.get(
+      `${reservationsPath}/allReservations?${queryParams}`
+    );
     return this.handleResponse(response);
   }
 
-  static async getSingleUser(userId) {
-    const response = await http.get(`${usersPath}/single/${userId}`);
+  static async getSingleReservation(reservationId) {
+    const response = await http.get(
+      `${reservationsPath}/single/${reservationId}`
+    );
     return this.handleResponse(response);
   }
 
-  static async addUser(userData) {
-    const response = await http.post(`${usersPath}/addUser`, userData);
+  static async addReservation(reservationData) {
+    const response = await http.post(
+      `${reservationsPath}/add`,
+      reservationData
+    );
     return this.handleResponse(response);
   }
 
-  static async updateUser(userId, userData) {
-    const response = await http.put(`${usersPath}/update/${userId}`, userData);
+  static async completeReservation(reservationId) {
+    const response = await http.put(
+      `${reservationsPath}/complete/${reservationId}`
+    );
     return this.handleResponse(response);
   }
 
-  static async deleteUser(userId) {
-    const response = await http.delete(`${usersPath}/delete/${userId}`);
+  static async updateReservation(reservationId, reservationData) {
+    const response = await http.put(
+      `${reservationsPath}/update/${reservationId}`,
+      reservationData
+    );
+    return this.handleResponse(response);
+  }
+
+  static async deleteReservation(reservationId) {
+    const response = await http.delete(
+      `${reservationsPath}/delete/${reservationId}`
+    );
     return this.handleResponse(response);
   }
 }
 
-export default UsersService;
+export default ReservationsService;

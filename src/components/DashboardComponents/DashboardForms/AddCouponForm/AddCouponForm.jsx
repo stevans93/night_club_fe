@@ -1,6 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
+import CouponsService from "../../../../services/couponsService";
 
 const AddCouponForm = (props) => {
   const titleInputRef = useRef();
@@ -25,18 +26,24 @@ const AddCouponForm = (props) => {
       endDate: endDateInputRef.current.value,
     };
 
-    const token = localStorage.getItem("nc_token");
-    const response = await fetch(
-      `http://localhost:4000/api/coupons/addCoupon`,
-      {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify(coupon),
+    try {
+      const response = await CouponsService.addCoupon(coupon);
+
+      // Handle the response as needed
+      if (response) {
+        // Handle success
+        showToast("Coupon saved successfully", "success");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        showToast("Failed to save coupon", "error");
+        // You can perform additional actions if needed
       }
-    );
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while saving the coupon:", error);
+      showToast("Error: An error occurred while saving the coupon", "error");
+    }
   };
   return (
     <>

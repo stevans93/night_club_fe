@@ -26,15 +26,24 @@ const EditCouponForm = (props) => {
       endDate: endDateInputRef.current.value,
     };
 
-    const token = localStorage.getItem("nc_token");
-    await fetch(`http://localhost:4000/api/coupons/updateCoupon/${couponId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `${token}`,
-      },
-      body: JSON.stringify(coupon),
-    });
+    try {
+      const response = await CouponsService.updateCoupon(couponId, coupon);
+
+      // Handle the response as needed
+      if (response) {
+        // Handle success
+        showToast("Coupon updated successfully", "success");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        showToast("Failed to update coupon", "error");
+        // You can perform additional actions if needed
+      }
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while updating the coupon:", error);
+      showToast("Error: An error occurred while updating the coupon", "error");
+    }
   };
   return (
     <>

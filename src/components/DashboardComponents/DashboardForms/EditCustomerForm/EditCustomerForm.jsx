@@ -13,25 +13,26 @@ const EditCustomerForm = (props) => {
   };
 
   const saveCustomer = async (customerId) => {
-    const customer = {
-      _id: customerId,
-      name: nameInputRef.current.value,
-      phone: phoneInputRef.current.value,
-      email: emailInputRef.current.value,
-    };
+    try {
+      const customer = {
+        _id: customerId,
+        name: nameInputRef.current.value,
+        phone: phoneInputRef.current.value,
+        email: emailInputRef.current.value,
+      };
 
-    const token = localStorage.getItem("nc_token");
-    await fetch(
-      `http://localhost:4000/api/clubCustomers/singleCustomer/${customerId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify(customer),
-      }
-    );
+      // Use ClubCustomersService to update the customer
+      await ClubCustomersService.updateCustomer(customerId, customer);
+
+      // Display a success toast if the update is successful
+      showToast("Customer updated successfully", "success");
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while saving the customer:", error);
+
+      // Display an error toast if there's an error
+      showToast("Error: An error occurred while saving the customer", "error");
+    }
   };
   return (
     <>
@@ -89,10 +90,7 @@ const EditCustomerForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button
-                onClick={handleSaveForm}
-                appearance="primary"
-              >
+              <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button

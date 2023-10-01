@@ -3,6 +3,7 @@ import CustomerHeader from "../../../../components/DashboardComponents/Dashboard
 import DashboardCustomerTable from "../../../../components/DashboardComponents/DashboardTables/DashboardCustomerTable/DashboardCustomerTable";
 import { useState, useEffect } from "react";
 import TablePagination from "../../../../components/TablePagination/TablePagination";
+import ClubCustomersService from "../../../../services/clubCustomersService";
 
 function DashboardCustomerList() {
   const pageSizeOptions = [15, 30, 45];
@@ -47,46 +48,33 @@ function DashboardCustomerList() {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      let queryString = ``;
-      if (selectedParams) {
-        for (const [index, [key, value]] of Object.entries(
-          selectedParams
-        ).entries()) {
-          if (index === 0) {
-            queryString += `?${key}=${value}`;
-          } else {
-            queryString += `&${key}=${value}`;
-          }
-        }
-      }
-      const token = localStorage.getItem("nc_token");
-      const response = await fetch(
-        `http://localhost:4000/api/clubCustomers/allCustomers/${queryString}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const json = await response.json();
+      try {
+        // Fetch customers using ClubCustomersService
+        const customersData = await ClubCustomersService.getAllCustomers(
+          selectedParams.pageNumber,
+          selectedParams.pageSize,
+          selectedParams.name,
+          selectedParams.email,
+          selectedParams.mobilePhone
+        );
 
-      if (response.ok) {
-        setCustomers(json.customers);
-        setCustomers(json.customers);
-        const toExp = json.customers.map((x) => ({
-          name: x.name,
-          phone: x.mobilePhone,
-          email: x.email,
-        }));
-        setCustomersForExport(toExp);
-      }
+        // Update state with the fetched customer data
+        setCustomers(customersData.customers);
 
-      setNumberOfPages(json.numberOfPages);
-      setNumberOfCustomers(json.numberOfCustomers);
+        if (setNumberOfPages) {
+          setNumberOfPages(customersData.numberOfPages);
+        }
+        if (setNumberOfCustomers) {
+          setNumberOfCustomers(customersData.numberOfCustomers);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching customers:", error);
+      }
     };
 
     fetchCustomers();
-  }, [selectedParams]);
+  }, []); // Since 'selectedParams' comes from state, you may not need to include it in the dependency array
   return (
     <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
       {customersToExport && (

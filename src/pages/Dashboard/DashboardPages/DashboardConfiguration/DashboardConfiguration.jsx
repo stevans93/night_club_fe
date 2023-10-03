@@ -8,34 +8,15 @@ const DashboardConfiguration = () => {
   const [showGeneral, setShowGeneral] = useState(true);
   const [showTables, setShowTables] = useState(false);
 
+  const [numberOfPages, setNumberOfPages] = useState(1);
+  const [numberOfTables, setNumberOfTables] = useState();
+
   const pageSizeOptions = [15, 30, 45];
 
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
   });
-
-  const handlePageSizeChange = (value) => {
-    setSelectedParams((selectedParams) => ({
-      ...selectedParams,
-      pageSize: value,
-      pageNumber: 1,
-    }));
-  };
-
-  const handleNextPage = () => {
-    setSelectedParams((selectedParams) => ({
-      ...selectedParams,
-      pageNumber: selectedParams.pageNumber + 1,
-    }));
-  };
-
-  const handlePreviousPage = () => {
-    setSelectedParams((selectedParams) => ({
-      ...selectedParams,
-      pageNumber: selectedParams.pageNumber - 1,
-    }));
-  };
 
   const handleShowGeneral = () => {
     setShowGeneral(true);
@@ -49,35 +30,30 @@ const DashboardConfiguration = () => {
 
   const [tables, setTables] = useState(null);
 
-  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : undefined;
-
   useEffect(() => {
-    const fetchTables = async (clubId) => {
+    const fetchTables = async () => {
       try {
-        const response = await ClubsService.getTable(clubId);
+        const result = await ClubsService.getAllTables(
+          selectedParams.pageNumber,
+          selectedParams.pageSize
+        );
 
-        if (response) {
-          // Handle success
-          setTables(response.tables); // Assuming setTables is a state updater function
-          showToast("Coupon fetched successfully", "success");
-          // You can perform additional actions if needed
-        } else {
-          // Handle failure
-          showToast("Failed to fetch coupon", "error");
-          // You can perform additional actions if needed
+        setTables(result.tables);
+
+        if (setNumberOfPages) {
+          setNumberOfPages(result.numberOfPages);
+        }
+        if (setNumberOfTables) {
+          setNumberOfTables(result.numberOfTables);
         }
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching the coupon:", error);
-        showToast(
-          "Error: An error occurred while fetching the coupon",
-          "error"
-        );
+        console.error("An error occurred while fetching tables:", error);
       }
     };
+
     fetchTables();
-  }, [clubId]);
+  }, []);
 
   return (
     <div className="flex">
@@ -86,7 +62,16 @@ const DashboardConfiguration = () => {
         onShowTables={handleShowTables}
       />
       {showGeneral && <DashboardGeneralConfig />}
-      {showTables && <DashboardTablesConfig tables={tables} />}
+      {showTables && tables && (
+        <DashboardTablesConfig
+          tables={tables}
+          pageSizeOptions={pageSizeOptions}
+          selectedParams={selectedParams}
+          numberOfPages={numberOfPages}
+          numberOfTables={numberOfTables}
+          setSelectedParams={setSelectedParams}
+        />
+      )}
     </div>
   );
 };

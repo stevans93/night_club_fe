@@ -3,7 +3,6 @@ import { Outlet, useParams } from "react-router-dom";
 import Footer from "./components/FooterComponents/Footer";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";

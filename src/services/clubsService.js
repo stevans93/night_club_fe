@@ -1,6 +1,5 @@
 import { http } from "../http/api";
-import { showToast
- } from "../helpers/toast";
+import { showToast } from "../helpers/toast";
 const clubsPath = "/club";
 
 class ClubsService {
@@ -44,7 +43,7 @@ class ClubsService {
 
     // Convert filteredParams to query string
     const queryParams = new URLSearchParams(filteredParams).toString();
-    
+
     const response = await http.get(`${clubsPath}/all?${queryParams}`);
     return this.handleResponse(response);
   }
@@ -70,6 +69,37 @@ class ClubsService {
   static async deleteClub(clubId) {
     const response = await http.delete(`${clubsPath}/deleteClub/${clubId}`);
     return this.handleResponse(response);
+  }
+
+  static async getAllTables(pageNumber, pageSize) {
+    // Create an object with defined parameters
+    const params = {
+      pageNumber,
+      pageSize,
+    };
+    const filteredParams = Object.fromEntries(
+      Object.entries(params).filter(([key, value]) => value !== undefined)
+    );
+
+    // Convert filteredParams to query string
+    const queryParams = new URLSearchParams(filteredParams).toString();
+
+    const response = await http.get(`${clubsPath}/tables?${queryParams}`);
+    return this.handleResponse(response);
+  }
+
+  static async addTable(tableData) {
+    try {
+      const response = await http.post(
+        `${clubsPath}/addTable`,
+        tableData
+      );
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error adding table:", error);
+      showToast("Error: An error occurred while adding the table", "error");
+      throw error;
+    }
   }
 }
 

@@ -61,6 +61,13 @@ function DashboardCustomerList() {
         // Update state with the fetched customer data
         setCustomers(customersData.customers);
 
+        const toExp = customersData.customers.map((x) => ({
+          name: x.name,
+          phone: x.mobilePhone,
+          email: x.email,
+        }));
+        setCustomersForExport(toExp);
+
         if (setNumberOfPages) {
           setNumberOfPages(customersData.numberOfPages);
         }

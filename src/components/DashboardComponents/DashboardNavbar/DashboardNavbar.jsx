@@ -6,7 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 function DashboardNavbar({ handleOpen }) {
   return (
-    <nav className="flex justify-between h-[7vh] items-center relative w-[100%] flex right-0 px-4">
+    <nav className="flex justify-between h-[7vh] items-center relative w-[100%] flex right-0 px-4 shadow-lg">
       <div className="flex gap-5 items-center h-[5vh]">
           <GiHamburgerMenu className="text-2xl text-black" onClick={handleOpen} />
         <span className="w-px h-4/5 bg-gray-500 opacity-20"></span>

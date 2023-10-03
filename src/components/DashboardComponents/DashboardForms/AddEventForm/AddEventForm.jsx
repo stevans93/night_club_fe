@@ -1,138 +1,126 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import CouponsService from "../../../../services/couponsService";
 import { showToast } from "../../../../helpers/toast";
+import EventsService from "../../../../services/eventsService";
 
-const AddCouponForm = (props) => {
-  const titleInputRef = useRef();
-  const codeInputRef = useRef();
-  const limitInputRef = useRef();
-  const discountInputRef = useRef();
-  const startDateInputRef = useRef();
-  const endDateInputRef = useRef();
+const AddEventForm = (props) => {
+  const nameInputRef = useRef();
+  const descriptionInputRef = useRef();
+  const dateInputRef = useRef();
+  const ticketPriceInputRef = useRef();
+  const typeInputRef = useRef();
 
   const handleSaveForm = async () => {
-    await saveCoupon();
-    props.handleCouponModalClose();
+    await saveEvent();
+    props.handleEventModalClose();
   };
 
-  const saveCoupon = async () => {
-    const coupon = {
-      title: titleInputRef.current.value,
-      code: codeInputRef.current.value,
-      limit: limitInputRef.current.value,
-      discount: discountInputRef.current.value,
-      startDate: startDateInputRef.current.value,
-      endDate: endDateInputRef.current.value,
+  const saveEvent = async () => {
+    const event = {
+      name: nameInputRef.current.value,
+      description: descriptionInputRef.current.value,
+      date: dateInputRef.current.value,
+      ticketPrice: ticketPriceInputRef.current.value,
+      type: typeInputRef.current.value,
     };
 
     try {
-      const response = await CouponsService.addCoupon(coupon);
+      const response = await EventsService.addEvent(event);
 
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Coupon saved successfully", "success");
+        showToast("Event saved successfully", "success");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to save coupon", "error");
+        showToast("Failed to save event", "error");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
-      console.error("An error occurred while saving the coupon:", error);
-      showToast("Error: An error occurred while saving the coupon", "error");
+      console.error("An error occurred while saving the event:", error);
+      showToast("Error: An error occurred while saving the event", "error");
     }
   };
   return (
     <>
-      {props.isAddCouponModalOpen && (
+      {props.isAddEventModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isAddCouponModalOpen}
-            onClose={props.handleCouponModalClose}
-            backdrop={props.isAddCouponModalOpen}
+            open={props.isAddEventModalOpen}
+            onClose={props.handleEventModalClose}
+            backdrop={props.isAddEventModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add Coupon
+              Add Event
             </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Title
+                    Name
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter title"
+                    placeholder="Enter name"
                     id="name"
                     type="text"
-                    ref={titleInputRef}
+                    ref={nameInputRef}
                   />
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Coupon Code *
+                    Event description *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Coupon Code"
+                    placeholder="Enter Event description"
                     id="phone"
                     type="text"
-                    ref={codeInputRef}
+                    ref={descriptionInputRef}
                   />
                 </div>
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="limit">
-                      Limit
+                    <label className="mb-2 mt-2" htmlFor="date">
+                      Date
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set Limit"
-                      id="limit"
-                      type="text"
-                      ref={limitInputRef}
+                      placeholder="Set date"
+                      id="date"
+                      type="date"
+                      ref={dateInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="discount">
-                      Discount
+                    <label className="mb-2 mt-2" htmlFor="ticketPrice">
+                      Ticket Price
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set discount"
-                      id="discount"
+                      placeholder="Set ticketPrice"
+                      id="ticketPrice"
                       type="text"
-                      ref={discountInputRef}
+                      ref={ticketPriceInputRef}
                     />
                   </div>
                 </div>
 
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="startDate">
-                      Start Date
+                    <label className="mb-2 mt-2" htmlFor="type">
+                      Type
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      id="startDate"
-                      type="date"
-                      ref={startDateInputRef}
-                    />
-                  </div>
-                  <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="endDate">
-                      End Date
-                    </label>
-                    <input
-                      className="py-3 px-2 border-2 border-black rounded-lg"
-                      id="endDate"
-                      type="date"
-                      ref={endDateInputRef}
+                      id="type"
+                      placeholder="Enter type"
+                      type="text"
+                      ref={typeInputRef}
                     />
                   </div>
                 </div>
@@ -142,10 +130,7 @@ const AddCouponForm = (props) => {
               <Button onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
-              <Button
-                onClick={props.handleCouponModalClose}
-                appearance="subtle"
-              >
+              <Button onClick={props.handleEventModalClose} appearance="subtle">
                 Cancel
               </Button>
             </Modal.Footer>
@@ -156,4 +141,4 @@ const AddCouponForm = (props) => {
   );
 };
 
-export default AddCouponForm;
+export default AddEventForm;

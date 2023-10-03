@@ -2,143 +2,131 @@ import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import { showToast } from "../../../../helpers/toast";
+import EventsService from "../../../../services/eventsService";
 
-const EditCouponForm = (props) => {
-  const titleInputRef = useRef();
-  const codeInputRef = useRef();
-  const limitInputRef = useRef();
-  const discountInputRef = useRef();
-  const startDateInputRef = useRef();
-  const endDateInputRef = useRef();
+const EditEventForm = (props) => {
+  const nameInputRef = useRef();
+  const descriptionInputRef = useRef();
+  const dateInputRef = useRef();
+  const ticketPriceInputRef = useRef();
+  const typeInputRef = useRef();
 
   const handleSaveForm = async () => {
-    await saveCoupon(props.coupon._id);
+    await saveEvent(props.event._id);
     props.handleEditModalClose();
   };
 
-  const saveCoupon = async (couponId) => {
-    const coupon = {
-      _id: couponId,
-      title: titleInputRef.current.value,
-      code: codeInputRef.current.value,
-      limit: limitInputRef.current.value,
-      discount: discountInputRef.current.value,
-      startDate: startDateInputRef.current.value,
-      endDate: endDateInputRef.current.value,
+  const saveEvent = async (eventId) => {
+    const event = {
+      _id: eventId,
+      name: nameInputRef.current.value,
+      description: descriptionInputRef.current.value,
+      date: dateInputRef.current.value,
+      ticketPrice: ticketPriceInputRef.current.value,
+      type: typeInputRef.current.value,
     };
 
     try {
-      const response = await CouponsService.updateCoupon(couponId, coupon);
+      const response = await EventsService.updateEvent(eventId, event);
 
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Coupon updated successfully", "success");
+        showToast("Event updated successfully", "success");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to update coupon", "error");
+        showToast("Failed to update event", "error");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
-      console.error("An error occurred while updating the coupon:", error);
-      showToast("Error: An error occurred while updating the coupon", "error");
+      console.error("An error occurred while updating the event:", error);
+      showToast("Error: An error occurred while updating the event", "error");
     }
   };
   return (
     <>
-      {props.isEditCouponModalOpen && (
+      {props.isEditEventModalOpen && (
         <div className="flex m-auto text-center">
           <Modal
             size="md"
-            open={props.isEditCouponModalOpen}
+            open={props.isEditEventModalOpen}
             onClose={props.handleEditModalClose}
-            backdrop={props.isEditCouponModalOpen}
+            backdrop={props.isEditEventModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Edit Coupon
+              Edit Event
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Title
+                    Name
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter title"
+                    placeholder="Enter name"
                     id="name"
                     type="text"
-                    defaultValue={props.coupon.title}
-                    ref={titleInputRef}
+                    defaultValue={props.event.name}
+                    ref={nameInputRef}
                   />
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Coupon Code *
+                    Event description *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Coupon Code"
+                    placeholder="Enter Event description"
                     id="phone"
                     type="text"
-                    defaultValue={props.coupon.code}
-                    ref={codeInputRef}
+                    defaultValue={props.event.description}
+                    ref={descriptionInputRef}
                   />
                 </div>
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="limit">
-                      Limit
+                    <label className="mb-2 mt-2" htmlFor="date">
+                      Date
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set Limit"
-                      id="limit"
-                      type="text"
-                      defaultValue={props.coupon.limit}
-                      ref={limitInputRef}
+                      placeholder="Set date"
+                      id="date"
+                      type="date"
+                      defaultValue={props.event.dateOfEvent}
+                      ref={dateInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="discount">
-                      Discount
+                    <label className="mb-2 mt-2" htmlFor="ticketPrice">
+                      Ticket Price
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set discount"
-                      id="discount"
+                      placeholder="Set ticketPrice"
+                      id="ticketPrice"
                       type="text"
-                      defaultValue={props.coupon.discount}
-                      ref={discountInputRef}
+                      defaultValue={props.event.ticketPrice}
+                      ref={ticketPriceInputRef}
                     />
                   </div>
                 </div>
 
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="startDate">
-                      Start Date
+                    <label className="mb-2 mt-2" htmlFor="type">
+                      Type
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      id="startDate"
-                      type="date"
-                      defaultValue={props.coupon.startDate}
-                      ref={startDateInputRef}
-                    />
-                  </div>
-                  <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="endDate">
-                      End Date
-                    </label>
-                    <input
-                      className="py-3 px-2 border-2 border-black rounded-lg"
-                      id="endDate"
-                      type="date"
-                      defaultValue={props.coupon.endDate}
-                      ref={endDateInputRef}
+                      id="type"
+                      type="text"
+                      placeholder="Enter type"
+                      defaultValue={props.event.type}
+                      ref={typeInputRef}
                     />
                   </div>
                 </div>
@@ -159,4 +147,4 @@ const EditCouponForm = (props) => {
   );
 };
 
-export default EditCouponForm;
+export default EditEventForm;

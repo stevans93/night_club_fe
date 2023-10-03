@@ -14,7 +14,7 @@ const ActionButton = (props) => {
 
   useEffect(() => {
     let handler = (event) => {
-      if (!actionRef.current.contains(event.target)) {
+      if (actionRef.current && !actionRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -23,7 +23,10 @@ const ActionButton = (props) => {
 
   return (
     <>
-      <div ref={actionRef} className="flex flex-col relative bg-[#D0021B] w-24 rounded-lg">
+      <div
+        ref={actionRef}
+        className="flex flex-col relative bg-[#D0021B] w-24 rounded-lg"
+      >
         <button
           id={"actions"}
           className="flex items-center bg-[#D0021B] text-white gap-1 px-2 py-2 rounded-md"

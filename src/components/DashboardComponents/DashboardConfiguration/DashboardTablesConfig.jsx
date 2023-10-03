@@ -6,6 +6,7 @@ import TablesHeader from "../DashboardHeaders/TablesHeader/TablesHeader";
 
 const DashboardTablesConfig = (props) => {
   const [tables, setTables] = useState(null);
+  const pageSizeOptions = [15, 30, 45];
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : undefined;
@@ -29,7 +30,7 @@ const DashboardTablesConfig = (props) => {
 
   return (
     <>
-      {/* <TablesHeader /> */}
+      <TablesHeader pageSizeOptions={pageSizeOptions} />
       {tables && (
         <div className="relative h-fit w-full border-t-2">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 w-3/5 shadow-lg rounded-lg mt-10 ml-10 border-r-2 border-l-2">

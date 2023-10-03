@@ -38,7 +38,7 @@ class UsersService {
   }
 
   static async getSingleUser(userId) {
-    const response = await http.get(`${usersPath}/single/${userId}`);
+    const response = await http.get(`${usersPath}/${userId}`);
     return this.handleResponse(response);
   }
 

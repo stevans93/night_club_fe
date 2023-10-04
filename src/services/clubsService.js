@@ -90,14 +90,52 @@ class ClubsService {
 
   static async addTable(tableData) {
     try {
-      const response = await http.post(
-        `${clubsPath}/addTable`,
-        tableData
-      );
+      const response = await http.post(`${clubsPath}/addTable`, tableData);
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding table:", error);
       showToast("Error: An error occurred while adding the table", "error");
+      throw error;
+    }
+  }
+
+  static async updateTable(tableId, updatedTableData) {
+    try {
+      const response = await http.put(
+        `${clubsPath}/table/${tableId}`,
+        updatedTableData
+      );
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error updating table:", error);
+      showToast("Error: An error occurred while updating the table", "error");
+      throw error;
+    }
+  }
+
+  static async getSingleTable(tableId) {
+    try {
+      const response = await http.get(`${clubsPath}/tables/${tableId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error fetching single table:", error);
+      showToast(
+        "Error: An error occurred while fetching the single table",
+        "error"
+      );
+      throw error;
+    }
+  }
+
+  static async deleteTable(tableId) {
+    try {
+      const response = await http.delete(
+        `${clubsPath}/table/${tableId}`
+      );
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error deleting table:", error);
+      showToast("Error: An error occurred while deleting the table", "error");
       throw error;
     }
   }

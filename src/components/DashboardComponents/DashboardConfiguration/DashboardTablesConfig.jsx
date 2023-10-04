@@ -4,9 +4,14 @@ import TablesHeader from "../DashboardHeaders/TablesHeader/TablesHeader";
 import TablePagination from "../../TablePagination/TablePagination";
 import AddTableForm from "../DashboardForms/AddTableForm/AddTableForm";
 import { useState } from "react";
+import EditTableForm from "../DashboardForms/EditTableForm/EditTableForm";
+import ClubsService from "../../../services/clubsService";
+import { showToast } from "../../../helpers/toast";
 
 const DashboardTablesConfig = (props) => {
   const [isAddTableModalOpen, setIsAddTableModalOpen] = useState(false);
+  const [isEditTableModalOpen, setIsEditTableModalOpen] = useState(false);
+  const [tableToEdit, setTableToEdit] = useState(null);
 
   const handleTableModalOpen = () => {
     setIsAddTableModalOpen(true);
@@ -38,9 +43,69 @@ const DashboardTablesConfig = (props) => {
     }));
   };
 
+  const handleEditModalOpen = async (id) => {
+    console.log("here", id);
+    await fetchTableById(id);
+    setIsEditTableModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditTableModalOpen(false);
+  };
+
+  const handleDelete = async (id) => {
+    await fetchDeleteTableById(id);
+  };
+
+  const fetchTableById = async (id) => {
+    try {
+      const response = await ClubsService.getSingleTable(id);
+
+      if (response) {
+        // Handle success
+        setTableToEdit(response.table); // Assuming setTableToEdit is a state updater function
+        showToast("Table fetched successfully", "success");
+        console.log(response.table);
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        showToast("Failed to fetch Table", "error");
+        // You can perform additional actions if needed
+      }
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while fetching the Table:", error);
+      showToast("Error: An error occurred while fetching the Table", "error");
+    }
+  };
+
+  const fetchDeleteTableById = async (id) => {
+    try {
+      const response = await ClubsService.deleteTable(id);
+
+      console.log(response);
+
+      if (response) {
+        // Handle success
+        console.log("Table deleted successfully");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        console.error("Failed to delete Table");
+        // You can perform additional actions if needed
+      }
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while deleting the Table:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col mt-6 ml-4 shadow-lg w-3/6 px-5 border-t-2">
-      <TablesHeader pageSizeOptions={props.pageSizeOptions} handleTableModalOpen={handleTableModalOpen} />
+      <TablesHeader
+        pageSizeOptions={props.pageSizeOptions}
+        handleTableModalOpen={handleTableModalOpen}
+      />
       {props.tables && (
         <div className="relative h-fit w-full border-t-2">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-lg rounded-lg border-r-2 border-l-2">
@@ -64,11 +129,9 @@ const DashboardTablesConfig = (props) => {
                     <td className="border-r-2 px-6 py-3">{table.area}</td>
                     <td className="flex px-6 py-3 gap-2">
                       <EditButton
-                        onClick={() => props.handleEditModalOpen(table._id)}
+                        onClick={() => handleEditModalOpen(table._id)}
                       />
-                      <DeleteButton
-                        onClick={() => props.handleDelete(table._id)}
-                      />
+                      <DeleteButton onClick={() => handleDelete(table._id)} />
                     </td>
                   </tr>
                 );
@@ -90,6 +153,14 @@ const DashboardTablesConfig = (props) => {
         isAddTableModalOpen={isAddTableModalOpen}
         handleTableModalClose={handleTableModalClose}
       />
+
+      {tableToEdit && (
+        <EditTableForm
+          table={tableToEdit}
+          isEditTableModalOpen={isEditTableModalOpen}
+          handleEditModalClose={handleEditModalClose}
+        />
+      )}
     </div>
   );
 };

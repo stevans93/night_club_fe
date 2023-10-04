@@ -1,12 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { RiCoupon2Line } from "react-icons/ri";
 import { BiFoodMenu, BiWrench } from "react-icons/bi";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { BsCalendar2Event } from "react-icons/bs";
+import { CiLogout } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../../store/userSlice";
+import { toast } from "react-toastify";
 import avatar from "../../../assets/avatar.png";
 import logo from "../../../assets/dashboard-logo.png";
+import "./DashboardSidebar.css";
 
 function DashboardSidebar({ children, open }) {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
@@ -15,17 +20,35 @@ function DashboardSidebar({ children, open }) {
 
   const userPermissions = ncUser ? ncUser.permissions : null;
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    dispatch(logOutUser());
+    navigate("/");
+    toast.success("You have successfully logged out!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className="flex">
       <div
         className={`fixed ${
           open ? "w-20 md:w-60" : "w-60 md:w-20"
-        } duration-300 h-screen p-4 py-6 bg-dashboardPrimary text-white flex items-center flex-col bg-[#181818]`}
+        } duration-300 h-screen p-4 py-6 bg-dashboardPrimary text-white flex items-center flex-col bg-[#181818] dashboard-sidebar`}
       >
         <div>
-          <img src={logo} alt="" />
+          <Link to="/"><img src={logo} alt=""/></Link>
         </div>
-        <div className="my-7 w-3/4">
+        <div className="my-5 w-2/4">
           <img src={avatar} alt="avatar" />
         </div>
         <div className="flex flex-col w-full">
@@ -138,6 +161,14 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
+
+            <button
+              onClick={handleLogOut}
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <CiLogout className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>Log Out</span>
+            </button>
         </div>
       </div>
       <main

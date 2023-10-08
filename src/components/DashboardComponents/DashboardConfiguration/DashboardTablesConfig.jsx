@@ -101,14 +101,14 @@ const DashboardTablesConfig = (props) => {
   };
 
   return (
-    <div className="flex flex-col mt-6 ml-4 shadow-lg w-3/6 px-5 border-t-2">
+    <div className="flex flex-col mt-4 ml-4 shadow-lg w-3/6 px-5 bg-white h-fit py-3">
       <TablesHeader
         pageSizeOptions={props.pageSizeOptions}
         handleTableModalOpen={handleTableModalOpen}
       />
       {props.tables && (
         <div className="relative h-fit w-full border-t-2">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-lg rounded-lg border-r-2 border-l-2">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-lg border-r-2 border-l-2 border-b-2">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
               <th className="border-r-2 bg-white px-6 py-3">SI</th>
               <th className="border-r-2 bg-white px-6 py-3">Name</th>

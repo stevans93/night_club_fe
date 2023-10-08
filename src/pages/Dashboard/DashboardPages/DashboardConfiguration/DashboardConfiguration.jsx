@@ -56,7 +56,7 @@ const DashboardConfiguration = () => {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex bg-[#F9F9F9] h-[calc(100vh-70px)]">
       <DashboardConfigSidebar
         onShowGeneral={handleShowGeneral}
         onShowTables={handleShowTables}

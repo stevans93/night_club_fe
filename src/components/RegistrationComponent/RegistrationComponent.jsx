@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from '../../assets/where2go.png';
 import login from '../../assets/login.png';
-import { BsFacebook, BsGoogle } from 'react-icons/bs';
+import { BsGoogle } from 'react-icons/bs';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import AuthService from '../../services/authService';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 function RegistrationComponent() {
@@ -107,7 +107,7 @@ function RegistrationComponent() {
     <div className='flex justify-between bg-white text-others flex-grow h-[100vh] lg:mt-0'>
         <div className='flex flex-col justify-center mt-[350px] md:mt-[200px] lg:m-9 mx-auto'>
             <div className='flex flex-col items-center gap-2 m-4'>
-                <img src={logo} alt="login" className='w-[250px]'/>
+                <Link to="/"><img src={logo} alt="login" className='w-[250px]'/></Link>
                 <p className='text-xl text-center'>Registrujte se da biste pristupili svom profilu</p>
             </div>
             <div>
@@ -139,9 +139,9 @@ function RegistrationComponent() {
                             <label>Password {' '} <span className='text-[14px] text-red-600'> {showError('password')} </span></label>
                             <input name='password' type={visibility ? "password" : "text"} value={formik.values.password} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Insert password...' />
                             {visibility ? (
-                                <MdVisibility className='absolute top-[45px] right-4 text-2xl' onClick={handleVisibility}/>
+                                <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handleVisibility}/>
                             ) : (
-                                <MdVisibilityOff className='absolute top-[45px] right-4 text-2xl' onClick={handleVisibility}/>
+                                <MdVisibilityOff className='absolute top-[40px] right-4 text-2xl' onClick={handleVisibility}/>
                             )}
                         </div>
 
@@ -149,9 +149,9 @@ function RegistrationComponent() {
                             <label>Confirm Password {' '} <span className='text-[14px] text-red-600'> {showError('confPassword')} </span></label>
                             <input name='confPassword' type={secondVisibility ? "password" : "text"} value={formik.values.confPassword} onChange={formik.handleChange} className='border border-others w-[300px] lg:w-[300px] bg-white rounded-lg p-3' placeholder='Confirm Password...' />
                             {secondVisibility ? (
-                                <MdVisibility className='absolute top-[45px] right-4 text-2xl' onClick={handlesecondVisibility}/>
+                                <MdVisibility className='absolute top-[40px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             ) : (
-                                <MdVisibilityOff className='absolute top-[45px] right-4 text-2xl' onClick={handlesecondVisibility}/>
+                                <MdVisibilityOff className='absolute top-[40px] right-4 text-2xl' onClick={handlesecondVisibility}/>
                             )}
                     </div>
                     </div>
@@ -163,7 +163,6 @@ function RegistrationComponent() {
                 </form>
                 <div className='flex flex-col items-center gap-2 mt-[20px] lg:mt-[20px] mb-10 lg:mb-4'>
                     <div className='flex flex-col lg:flex-row gap-2'>
-                        <button className='flex flex-row border border-primary hover:bg-primary hover:text-white justify-center items-center text-primary text-lg w-[300px] h-[55px] rounded-[4px]'><BsFacebook className='text-3xl mr-2' />Prijavite se sa Facebook</button>
                         <button className='flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]'><BsGoogle className='text-3xl mr-2' />Prijavite se sa Google</button>
                     </div>
                 </div>

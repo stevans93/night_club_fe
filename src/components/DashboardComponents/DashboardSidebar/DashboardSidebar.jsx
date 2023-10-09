@@ -174,7 +174,7 @@ function DashboardSidebar({ children, open }) {
       <main
         className={`${
           open ? "ml-20 md:ml-60" : "ml-60 md:ml-20"
-        } duration-300 w-full`}
+        } duration-300 w-[100%]`}
       >
         {children}
       </main>

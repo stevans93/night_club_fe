@@ -17,8 +17,28 @@ class ProductsService {
     return response.data;
   }
 
-  static async getAllProducts(clubId) {
-    const response = await http.get(`${productsPath}/allProducts/${clubId}`);
+  static async getAllProducts(clubId, subCategory) {
+    // Create an object with defined parameters
+    const params = {
+      subCategory,
+    };
+
+    // Filter out undefined parameters
+    const filteredParams = Object.fromEntries(
+      Object.entries(params).filter(([key, value]) => value !== undefined)
+    );
+
+    // Convert filteredParams to query string
+    const queryParams = new URLSearchParams(filteredParams).toString();
+
+    let path = `${productsPath}/allProducts/${clubId}`;
+
+    if (queryParams) {
+      path += `?${queryParams}`;
+    }
+
+    const response = await http.get(`${path}`);
+
     return this.handleResponse(response);
   }
 

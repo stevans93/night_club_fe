@@ -129,13 +129,59 @@ class ClubsService {
 
   static async deleteTable(tableId) {
     try {
-      const response = await http.delete(
-        `${clubsPath}/table/${tableId}`
-      );
+      const response = await http.delete(`${clubsPath}/table/${tableId}`);
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error deleting table:", error);
       showToast("Error: An error occurred while deleting the table", "error");
+      throw error;
+    }
+  }
+
+  static async addDrinkCategory(newCategory) {
+    try {
+      const response = await http.post(`${clubsPath}/drinkCategory/addCategory`, {
+        newCategory,
+      });
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error adding category:", error);
+      showToast("Error: An error occurred while adding the category", "error");
+      throw error;
+    }
+  }
+
+  static async addFoodCategory(newCategory) {
+    try {
+      const response = await http.post(`${clubsPath}/foodCategory/addCategory`, {
+        newCategory,
+      });
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error adding category:", error);
+      showToast("Error: An error occurred while adding the category", "error");
+      throw error;
+    }
+  }
+
+  static async getDrinkCategories(clubId) {
+    try {
+      const response = await http.get(`${clubsPath}/drinkCategories/${clubId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      showToast("Error: An error occurred while fetching the categories", "error");
+      throw error;
+    }
+  }
+
+  static async getFoodCategories(clubId) {
+    try {
+      const response = await http.get(`${clubsPath}/foodCategories/${clubId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      showToast("Error: An error occurred while fetching the categories", "error");
       throw error;
     }
   }

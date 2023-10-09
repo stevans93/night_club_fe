@@ -1,17 +1,24 @@
 import { useState, useEffect } from "react";
 import ProductsService from "../../../services/productsService";
+import AddItemForm from "../DashboardForms/AddItemForm/AddItemForm";
 import MenuDrinksComponent from "./MenuDrinksComponents";
 import MenuFoodComponent from "./MenuFoodComponent";
+import ClubsService from "../../../services/clubsService";
+import EditItemForm from "../DashboardForms/EditItemForm/EditItemForm";
 
 const DashboardMenuComponent = () => {
   const [isDrinkCategoriesOpen, setIsDrinkCategoriesOpen] = useState(false);
   const [isFoodCategoriesOpen, setIsFoodCategoriesOpen] = useState(false);
+  const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
+  const [isEditItemModalOpen, setIsEditItemModalOpen] = useState(false);
   const [showDrinks, setShowDrinks] = useState(false);
   const [showFood, setShowFood] = useState(false);
   const [backdrop, setBackdrop] = useState(false);
   const [modalProductType, setModalProductType] = useState("");
   const [products, setProducts] = useState(null);
-  const [modalProducts, setModalProducts] = useState(null);
+  const [productToEdit, setProductToEdit] = useState(null);
+  const [drinkCategories, setDrinkCategories] = useState(null);
+  const [foodCategories, setFoodCategories] = useState(null);
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : undefined;
@@ -26,49 +33,89 @@ const DashboardMenuComponent = () => {
     setIsDrinkCategoriesOpen(false);
   };
 
+  const showItemModal = () => {
+    setIsAddItemModalOpen(true);
+  };
+
+  const showEditItemModal = async (id) => {
+    await fetchSingleProduct(id);
+    setIsEditItemModalOpen(true);
+  };
+
   const handleCloseDrinks = () => setShowDrinks(false);
   const handleCloseFood = () => setShowFood(false);
+  const handleAddItemModalClose = () => setIsAddItemModalOpen(false);
+  const handleEditItemModalClose = () => setIsEditItemModalOpen(false);
 
   const showDrinkItems = (value) => {
     setShowDrinks(true);
     setBackdrop(true);
-    selectDrinkCategory(value);
+    setModalProductType(value);
   };
 
   const showFoodItems = (value) => {
     setShowFood(true);
     setBackdrop(true);
-    selectFoodCategory(value);
+    setModalProductType(value);
   };
 
-  const selectDrinkCategory = (drinkType) => {
-    const drinkList = products.filter(
-      (product) => product.subCategory === drinkType.toLowerCase()
-    );
-    setModalProducts(drinkList);
-    setModalProductType(drinkType);
+  const fetchProducts = async (subCategory) => {
+    try {
+      const productsData = await ProductsService.getAllProducts(
+        clubId,
+        subCategory
+      );
+      setProducts(productsData); // Assuming productsData is the array of products you want to set
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while fetching products:", error);
+    }
   };
 
-  const selectFoodCategory = (foodType) => {
-    const foodList = products.filter(
-      (product) => product.subCategory === foodType.toLowerCase()
-    );
-    setModalProducts(foodList);
-    setModalProductType(foodType);
+  const fetchSingleProduct = async (id) => {
+    try {
+      const productData = await ProductsService.getSingleProduct(id);
+      setProductToEdit(productData);
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while fetching products:", error);
+    }
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchDrinkCategories = async () => {
       try {
-        const productsData = await ProductsService.getAllProducts(clubId);
-        setProducts(productsData); // Assuming productsData is the array of products you want to set
+        const categoryData = await ClubsService.getDrinkCategories(clubId);
+        if (categoryData) {
+          setDrinkCategories(categoryData);
+        }
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching products:", error);
+        console.error("An error occurred while fetching categories:", error);
       }
     };
 
-    fetchProducts();
+    fetchDrinkCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchFoodCategories = async () => {
+      try {
+        const categoryData = await ClubsService.getFoodCategories(clubId);
+        if (categoryData) {
+          setFoodCategories(categoryData);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching categories:", error);
+      }
+    };
+
+    fetchFoodCategories();
   }, []);
 
   return (
@@ -93,9 +140,12 @@ const DashboardMenuComponent = () => {
             showItems={showDrinkItems}
             show={showDrinks}
             backdrop={backdrop}
-            modalProducts={modalProducts}
+            modalProducts={products}
             modalProductType={modalProductType}
             handleClose={handleCloseDrinks}
+            categories={drinkCategories}
+            fetchProducts={fetchProducts}
+            showEditItemModal={showEditItemModal}
           />
         )}
         {isFoodCategoriesOpen && (
@@ -103,15 +153,39 @@ const DashboardMenuComponent = () => {
             showItems={showFoodItems}
             show={showFood}
             backdrop={backdrop}
-            modalProducts={modalProducts}
+            modalProducts={products}
             modalProductType={modalProductType}
             handleClose={handleCloseFood}
+            categories={foodCategories}
+            fetchProducts={fetchProducts}
+            showEditItemModal={showEditItemModal}
           />
         )}
-        <button className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit">
+        <button
+          onClick={showItemModal}
+          className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
+        >
           Add Item
         </button>
       </div>
+      {foodCategories && drinkCategories && (
+        <AddItemForm
+          isAddItemModalOpen={isAddItemModalOpen}
+          handleItemModalClose={handleAddItemModalClose}
+          foodCategories={foodCategories}
+          drinkCategories={drinkCategories}
+        />
+      )}
+
+      {productToEdit && (
+        <EditItemForm
+          isEditItemModalOpen={isEditItemModalOpen}
+          handleEditItemModalClose={handleEditItemModalClose}
+          product={productToEdit}
+          foodCategories={foodCategories}
+          drinkCategories={drinkCategories}
+        />
+      )}
     </>
   );
 };

@@ -1,6 +1,4 @@
 import { BsSearch } from "react-icons/bs";
-import { BiListUl } from "react-icons/bi";
-import { AiOutlinePlus } from "react-icons/ai";
 import { FaFilter } from "react-icons/fa";
 
 const PaymentHeader = () => {

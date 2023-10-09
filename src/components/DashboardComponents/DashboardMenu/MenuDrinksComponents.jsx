@@ -3,16 +3,10 @@ import { Modal, Button } from "rsuite";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import DeleteButton from "../../Buttons/DeleteButton/DeleteButton";
 import AddDrinkCategoryForm from "../DashboardForms/AddDrinkCategoryForm/AddDrinkCategoryForm";
-import { useState, useEffect } from "react";
-import ClubsService from "../../../services/clubsService";
+import { useState } from "react";
 
 const MenuDrinksComponent = (props) => {
-  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : undefined;
-
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
-
-  const [categories, setCategories] = useState(null);
 
   const handleCategoryModalOpen = () => {
     setIsAddCategoryModalOpen(true);
@@ -22,34 +16,23 @@ const MenuDrinksComponent = (props) => {
     setIsAddCategoryModalOpen(false);
   };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categoryData = await ClubsService.getDrinkCategories(clubId);
-        if (categoryData) {
-          setCategories(categoryData);
-        }
-      } catch (error) {
-        // Handle any errors here
-        console.error("An error occurred while fetching categories:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+  const fetchItems = async (value) => {
+    await props.fetchProducts(value);
+    props.showItems(value);
+  };
 
   return (
     <>
       <div className="flex flex-col gap-4">
         <span>Categories</span>
         <ul className="flex flex-col gap-4 items-center">
-          {categories &&
-            categories.map((category) => {
+          {props.categories &&
+            props.categories.map((category) => {
               return (
                 <li
                   key={category._id}
                   className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
-                  onClick={() => props.showItems(category.name)}
+                  onClick={() => fetchItems(category.name)}
                 >
                   {category.name}
                 </li>
@@ -98,7 +81,7 @@ const MenuDrinksComponent = (props) => {
                           <td className="flex border-r-2 px-6 py-3 gap-2">
                             <EditButton
                               onClick={() =>
-                                props.handleEditModalOpen(product._id)
+                                props.showEditItemModal(product._id)
                               }
                             />
                             <DeleteButton

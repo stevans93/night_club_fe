@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { showToast } from "../../../../helpers/toast";
 import EventsService from "../../../../services/eventsService";
 
 const EditEventForm = (props) => {
@@ -32,17 +31,16 @@ const EditEventForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Event updated successfully", "success");
+        console.log("Event updated successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to update event", "error");
+        console.log("Failed to update event");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while updating the event:", error);
-      showToast("Error: An error occurred while updating the event", "error");
     }
   };
   return (

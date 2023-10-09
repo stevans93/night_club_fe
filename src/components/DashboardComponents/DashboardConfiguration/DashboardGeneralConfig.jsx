@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import ClubsService from "../../../services/clubsService";
-import { showToast } from "../../../helpers/toast";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
 
@@ -38,7 +37,7 @@ function DashboardGeneralConfig() {
       };
 
       await ClubsService.updateClub(clubId, club);
-      showToast("Club updated successfully", "success");
+      
     } catch (error) {
       // Handle any errors here (e.g., show an error toast)
       console.error(

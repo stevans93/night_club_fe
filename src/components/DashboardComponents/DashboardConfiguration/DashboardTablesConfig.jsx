@@ -6,7 +6,6 @@ import AddTableForm from "../DashboardForms/AddTableForm/AddTableForm";
 import { useState } from "react";
 import EditTableForm from "../DashboardForms/EditTableForm/EditTableForm";
 import ClubsService from "../../../services/clubsService";
-import { showToast } from "../../../helpers/toast";
 
 const DashboardTablesConfig = (props) => {
   const [isAddTableModalOpen, setIsAddTableModalOpen] = useState(false);
@@ -64,18 +63,18 @@ const DashboardTablesConfig = (props) => {
       if (response) {
         // Handle success
         setTableToEdit(response.table); // Assuming setTableToEdit is a state updater function
-        showToast("Table fetched successfully", "success");
+        
         console.log(response.table);
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to fetch Table", "error");
+        
+        console.error("Failed to fetch Table", error);
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while fetching the Table:", error);
-      showToast("Error: An error occurred while fetching the Table", "error");
     }
   };
 

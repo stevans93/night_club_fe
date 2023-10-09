@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import AddCouponForm from "../../../../components/DashboardComponents/DashboardForms/AddCouponForm/AddCouponForm";
 import EditCouponForm from "../../../../components/DashboardComponents/DashboardForms/EditCouponForm/EditCouponForm";
 import CouponsService from "../../../../services/couponsService";
-import { showToast } from "../../../../helpers/toast";
 
 function DashboardCoupon() {
   const pageSizeOptions = [15, 30, 45];
@@ -74,17 +73,17 @@ function DashboardCoupon() {
       if (response) {
         // Handle success
         setCouponToEdit(response); // Assuming setCouponToEdit is a state updater function
-        showToast("Coupon fetched successfully", "success");
+
+        console.log("Coupon fetched successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to fetch coupon", "error");
+        console.log("Failed to fetch coupon");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while fetching the coupon:", error);
-      showToast("Error: An error occurred while fetching the coupon", "error");
     }
   };
 

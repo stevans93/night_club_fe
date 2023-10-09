@@ -2,7 +2,6 @@ import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import ClubsService from "../../../../services/clubsService";
-import { showToast } from "../../../../helpers/toast";
 
 const AddDrinkCategoryForm = (props) => {
   const nameInputRef = useRef();
@@ -23,17 +22,16 @@ const AddDrinkCategoryForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("category saved successfully", "success");
+        console.log("category saved successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to save category", "error");
+        console.log("Failed to save category");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while saving the category:", error);
-      showToast("Error: An error occurred while saving the category", "error");
     }
   };
   return (

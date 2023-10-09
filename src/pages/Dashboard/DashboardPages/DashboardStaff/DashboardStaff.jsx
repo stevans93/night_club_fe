@@ -5,7 +5,6 @@ import EditStaffForm from "../../../../components/DashboardComponents/DashboardF
 import ResetPasswordForm from "../../../../components/DashboardComponents/DashboardForms/ResetPasswordForm/ResetPasswordForm";
 import StaffHeader from "../../../../components/DashboardComponents/DashboardHeaders/StaffHeader/StaffHeader";
 import DashStaff from "../../../../components/DashboardComponents/DashboardStaff/DashStaff";
-import { showToast } from "../../../../helpers/toast";
 import UsersService from "../../../../services/userService";
 
 function DashboardStaff() {
@@ -55,7 +54,7 @@ function DashboardStaff() {
 
       if (staffData) {
         setStaffToEdit(staffData); // Set the staff data to state
-        showToast("success");
+        console.log("Success");
       }
     } catch (error) {
       // Handle errors

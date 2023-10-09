@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { showToast } from "../../../../helpers/toast";
 
 const EditCustomerForm = (props) => {
   const nameInputRef = useRef();
@@ -26,13 +25,10 @@ const EditCustomerForm = (props) => {
       await ClubCustomersService.updateCustomer(customerId, customer);
 
       // Display a success toast if the update is successful
-      showToast("Customer updated successfully", "success");
+      console.log("Customer updated successfully");
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while saving the customer:", error);
-
-      // Display an error toast if there's an error
-      showToast("Error: An error occurred while saving the customer", "error");
     }
   };
   return (

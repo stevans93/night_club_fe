@@ -2,7 +2,6 @@ import React from "react";
 import TablePagination from "../../../../components/TablePagination/TablePagination";
 import { useState, useEffect } from "react";
 import EventService from "../../../../services/eventsService";
-import { showToast } from "../../../../helpers/toast";
 import EventHeader from "../../../../components/DashboardComponents/DashboardHeaders/EventHeader/EventHeader";
 import DashboardEventsTable from "../../../../components/DashboardComponents/DashboardTables/DashboardEventsTable/DashboardEventsTable";
 import AddEventForm from "../../../../components/DashboardComponents/DashboardForms/AddEventForm/AddEventForm";
@@ -74,17 +73,17 @@ const DashboardEvents = () => {
       if (response) {
         // Handle success
         setEventToEdit(response); // Assuming setEventToEdit is a state updater function
-        showToast("Event fetched successfully", "success");
+
+        console.log("Event fetched successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to fetch event", "error");
+        console.log("Failed to fetch event");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while fetching the event:", error);
-      showToast("Error: An error occurred while fetching the event", "error");
     }
   };
 

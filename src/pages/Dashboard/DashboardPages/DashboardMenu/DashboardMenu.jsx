@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
+import DashboardMenuComponent from "../../../../components/DashboardComponents/DashboardMenu/DashboardMenuComponent";
 
 function DashboardMenu() {
-  return (
-    <div className=''>DashboardMenu</div>
-  )
+  return <DashboardMenuComponent />;
 }
 
 export default DashboardMenu;

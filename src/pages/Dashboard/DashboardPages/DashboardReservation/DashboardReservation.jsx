@@ -55,12 +55,14 @@ function DashboardReservation() {
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
     const date = today.getDate();
-    return `${year}-0${month}-${date}`;
+    return `${year}-${month}-${date}`;
   };
 
   const [currentDate, setCurrentDate] = useState(getDate());
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfReservations, setNumberOfReservations] = useState();
+
+  console.log(currentDate);
 
   const handlePageSizeChange = (value) => {
     setSelectedParams((selectedParams) => ({

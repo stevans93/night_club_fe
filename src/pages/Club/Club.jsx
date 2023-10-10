@@ -2,22 +2,37 @@ import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
 import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
 import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";
 import EventList from "../../components/EventList/EventList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ProductsService from "../../services/productsService";
+import { useParams } from "react-router-dom";
+import ClubsService from "../../services/clubsService";
+import FoodMenu from "../../components/FoodMenu/FoodMenu";
 
 const Club = () => {
+  const { clubId } = useParams();
   const [selectedParams, setSelectedParams] = useState({});
+  const [products, setProducts] = useState(null);
+  const [modalProductType, setModalProductType] = useState("");
+  const [drinkCategories, setDrinkCategories] = useState(null);
+  const [foodCategories, setFoodCategories] = useState(null);
+  const [backdrop, setBackdrop] = useState(false);
+  const [showDrinks, setShowDrinks] = useState(false);
+  const [showFood, setShowFood] = useState(false);
+
+  const handleClose = () => setShowDrinks(false);
+  const handleCloseFood = () => setShowFood(false);
 
   const handleChangIme = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      ime: value,
+      name: value,
     }));
   };
 
   const handleChangTip = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      tip: value,
+      type: value,
     }));
   };
 
@@ -27,6 +42,67 @@ const Club = () => {
       date: value,
     }));
   };
+
+  const showDrinkItems = (value) => {
+    setShowDrinks(true);
+    setBackdrop(true);
+    setModalProductType(value);
+  };
+
+  const showFoodItems = (value) => {
+    setShowFood(true);
+    setBackdrop(true);
+    setModalProductType(value);
+  };
+
+  useEffect(() => {
+    const fetchDrinkCategories = async () => {
+      try {
+        const categoryData = await ClubsService.getDrinkCategories(clubId);
+        if (categoryData) {
+          setDrinkCategories(categoryData);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching categories:", error);
+      }
+    };
+
+    fetchDrinkCategories();
+  }, []);
+
+  const fetchProducts = async (subCategory) => {
+    try {
+      const productsData = await ProductsService.getAllProducts(
+        clubId,
+        subCategory
+      );
+      setProducts(productsData); // Assuming productsData is the array of products you want to set
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchFoodCategories = async () => {
+      try {
+        const categoryData = await ClubsService.getFoodCategories(clubId);
+        if (categoryData) {
+          setFoodCategories(categoryData);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching categories:", error);
+      }
+    };
+
+    fetchFoodCategories();
+  }, []);
 
   return (
     <>
@@ -45,7 +121,30 @@ const Club = () => {
             </span>{" "}
             Category
           </h2>
-          <DrinkMenu clubId="64ee53cb2744ff39426bddff" />
+          {products && drinkCategories && (
+            <DrinkMenu
+              modalProductType={modalProductType}
+              drinkCategories={drinkCategories}
+              fetchProducts={fetchProducts}
+              showItems={showDrinkItems}
+              handleClose={handleClose}
+              backdrop={backdrop}
+              showDrinks={showDrinks}
+              products={products}
+            />
+          )}
+          {products && foodCategories && (
+            <FoodMenu
+              modalProductType={modalProductType}
+              foodCategories={foodCategories}
+              fetchProducts={fetchProducts}
+              showItems={showFoodItems}
+              handleClose={handleCloseFood}
+              backdrop={backdrop}
+              showFood={showFood}
+              products={products}
+            />
+          )}
         </div>
       </div>
       <div className="flex flex-col items-center">

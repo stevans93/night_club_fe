@@ -4,6 +4,7 @@ import EditButton from "../../Buttons/EditButton/EditButton";
 import DeleteButton from "../../Buttons/DeleteButton/DeleteButton";
 import AddDrinkCategoryForm from "../DashboardForms/AddDrinkCategoryForm/AddDrinkCategoryForm";
 import { useState } from "react";
+import { BiDrink } from "react-icons/bi";
 
 const MenuDrinksComponent = (props) => {
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
@@ -24,16 +25,16 @@ const MenuDrinksComponent = (props) => {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <span>Categories</span>
-        <ul className="flex flex-col gap-4 items-center">
+        <ul className="flex gap-4 items-center">
           {props.categories &&
             props.categories.map((category) => {
               return (
                 <li
                   key={category._id}
-                  className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
+                  className="flex flex-col items-center gap-3 w-fit bg-white shadow-lg py-10 px-24 rounded-lg h-fit"
                   onClick={() => fetchItems(category.name)}
                 >
+                  <BiDrink size='4rem' />
                   {category.name}
                 </li>
               );

@@ -13,6 +13,8 @@ const EventList = (props) => {
     const fetchEvents = async () => {
       try {
         const { params } = props;
+
+        console.log(params);
         const eventsData = await EventsService.getAllEvents(
           params.pageNumber,
           params.pageSize,

@@ -5,6 +5,7 @@ import MenuDrinksComponent from "./MenuDrinksComponents";
 import MenuFoodComponent from "./MenuFoodComponent";
 import ClubsService from "../../../services/clubsService";
 import EditItemForm from "../DashboardForms/EditItemForm/EditItemForm";
+import MenuHeader from "../DashboardHeaders/MenuHeader/MenuHeader";
 
 const DashboardMenuComponent = () => {
   const [isDrinkCategoriesOpen, setIsDrinkCategoriesOpen] = useState(false);
@@ -120,17 +121,18 @@ const DashboardMenuComponent = () => {
 
   return (
     <>
-      <div className="flex justify-around">
-        <div className="flex flex-col gap-4 items-center">
+      <MenuHeader onClick={showItemModal} />
+      <div className="flex py-10 gap-10 bg-[#F9F9F9] h-full">
+        <div className="flex flex-col gap-4 items-center h-fit shadow-lg px-4 py-4 bg-white h-full">
           <button
             onClick={showDrinkCategories}
-            className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg"
+            className="flex w-fit py-3 px-14 active:bg-primary active:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white rounded-lg"
           >
             Drinks
           </button>
           <button
             onClick={showFoodCategories}
-            className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg"
+            className="flex w-fit py-3 px-14 active:bg-primary active:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white rounded-lg"
           >
             Food
           </button>
@@ -161,12 +163,6 @@ const DashboardMenuComponent = () => {
             showEditItemModal={showEditItemModal}
           />
         )}
-        <button
-          onClick={showItemModal}
-          className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
-        >
-          Add Item
-        </button>
       </div>
       {foodCategories && drinkCategories && (
         <AddItemForm

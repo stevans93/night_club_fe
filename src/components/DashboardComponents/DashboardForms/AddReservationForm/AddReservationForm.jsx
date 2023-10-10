@@ -1,7 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import ReservationsService from "../../../../services/reservationsService"
+import ReservationsService from "../../../../services/reservationsService";
 
 const AddReservationForm = (props) => {
   const nameInputRef = useRef();
@@ -27,7 +27,7 @@ const AddReservationForm = (props) => {
     };
 
     try {
-      await ReservationsService.addReservation(reservation, token);
+      await ReservationsService.addReservation(reservation);
       // Handle success, e.g., show a success message
     } catch (error) {
       // Handle errors, e.g., show an error message

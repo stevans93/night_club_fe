@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { showToast } from "../../../../helpers/toast";
 import ClubsService from "../../../../services/clubsService";
 
 const AddTableForm = (props) => {
@@ -27,17 +26,16 @@ const AddTableForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Table saved successfully", "success");
+        console.log("Table saved successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to save table", "error");
+        console.log("Failed to save table");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while saving the table:", error);
-      showToast("Error: An error occurred while saving the table", "error");
     }
   };
   return (

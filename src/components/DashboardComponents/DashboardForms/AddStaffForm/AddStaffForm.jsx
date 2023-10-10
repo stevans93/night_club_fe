@@ -2,7 +2,6 @@ import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import UsersService from "../../../../services/userService";
-import { showToast } from "../../../../helpers/toast";
 
 const AddStaffForm = (props) => {
   const firstNameInputRef = useRef();
@@ -40,13 +39,12 @@ const AddStaffForm = (props) => {
 
       // Handle success
       if (response) {
-        showToast("User added successfully", "success");
+        console.log("User added successfully");
         // Additional code here if needed
       }
     } catch (error) {
       // Handle errors
       console.error("An error occurred while adding the user:", error);
-      showToast("Error: An error occurred while adding the user", "error");
     }
   };
 

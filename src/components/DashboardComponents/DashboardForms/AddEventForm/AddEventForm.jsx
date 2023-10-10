@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { showToast } from "../../../../helpers/toast";
 import EventsService from "../../../../services/eventsService";
 
 const AddEventForm = (props) => {
@@ -31,17 +30,16 @@ const AddEventForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Event saved successfully", "success");
+        console.log("Event saved successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to save event", "error");
+        console.log("Failed to save event");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while saving the event:", error);
-      showToast("Error: An error occurred while saving the event", "error");
     }
   };
   return (

@@ -1,18 +1,12 @@
 import { http } from "../http/api";
-import { showToast } from "../helpers/toast";
 const clubsPath = "/club";
 
 class ClubsService {
   static async handleResponse(response) {
     if (!(response.status >= 200 && response.status < 300)) {
       console.error("Backend error:", response.statusText);
-      showToast(
-        "Error: An error occurred while processing your request",
-        "error"
-      );
       throw new Error("Request failed");
     }
-    showToast("Success");
     return response.data;
   }
 
@@ -94,7 +88,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding table:", error);
-      showToast("Error: An error occurred while adding the table", "error");
+      
       throw error;
     }
   }
@@ -108,7 +102,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error updating table:", error);
-      showToast("Error: An error occurred while updating the table", "error");
+      
       throw error;
     }
   }
@@ -119,10 +113,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error fetching single table:", error);
-      showToast(
-        "Error: An error occurred while fetching the single table",
-        "error"
-      );
+
       throw error;
     }
   }
@@ -133,7 +124,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error deleting table:", error);
-      showToast("Error: An error occurred while deleting the table", "error");
+      
       throw error;
     }
   }
@@ -146,7 +137,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding category:", error);
-      showToast("Error: An error occurred while adding the category", "error");
+      
       throw error;
     }
   }
@@ -159,7 +150,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding category:", error);
-      showToast("Error: An error occurred while adding the category", "error");
+      
       throw error;
     }
   }
@@ -170,7 +161,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error fetching categories:", error);
-      showToast("Error: An error occurred while fetching the categories", "error");
+      
       throw error;
     }
   }
@@ -181,7 +172,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error fetching categories:", error);
-      showToast("Error: An error occurred while fetching the categories", "error");
+
       throw error;
     }
   }

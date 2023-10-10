@@ -2,7 +2,6 @@ import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import UsersService from "../../../../services/userService";
-import { showToast } from "../../../../helpers/toast";
 
 const EditStaffForm = (props) => {
   const firstNameInputRef = useRef();
@@ -37,13 +36,12 @@ const EditStaffForm = (props) => {
 
       // Handle success
       if (response) {
-        showToast("User updated successfully", "success");
+        console.log("User updated successfully");
         // Additional code here if needed
       }
     } catch (error) {
       // Handle errors
       console.error("An error occurred while updating the user:", error);
-      showToast("Error: An error occurred while updating the user", "error");
     }
   };
   return (

@@ -1,5 +1,5 @@
 import { http } from "../http/api";
-import { showToast } from "../helpers/toast";
+
 
 const couponsPath = "/coupons"; // Common part of the path for coupons
 
@@ -7,10 +7,7 @@ class CouponsService {
   static async handleResponse(response) {
     if (!(response.status >= 200 && response.status < 300)) {
       console.error("Backend error:", response.statusText);
-      showToast(
-        "Error: An error occurred while processing your request",
-        "error"
-      );
+      
       throw new Error("Request failed");
     }
 

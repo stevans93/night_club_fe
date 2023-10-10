@@ -2,7 +2,6 @@ import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import CouponsService from "../../../../services/couponsService";
-import { showToast } from "../../../../helpers/toast";
 
 const AddCouponForm = (props) => {
   const titleInputRef = useRef();
@@ -33,17 +32,16 @@ const AddCouponForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Coupon saved successfully", "success");
+        console.log("Coupon saved successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to save coupon", "error");
+        console.log("Failed to save coupon", error);
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while saving the coupon:", error);
-      showToast("Error: An error occurred while saving the coupon", "error");
     }
   };
   return (

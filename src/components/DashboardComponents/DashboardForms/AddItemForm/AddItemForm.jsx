@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Modal, Button } from "rsuite";
 import ProductsService from "../../../../services/productsService";
-import { showToast } from "../../../../helpers/toast";
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 
 const AddItemForm = (props) => {
@@ -30,13 +29,12 @@ const AddItemForm = (props) => {
       const response = await ProductsService.addProduct(item);
 
       if (response) {
-        showToast("Item saved successfully", "success");
+        console.log("Item saved successfully");
       } else {
-        showToast("Failed to save item", "error");
+        console.log("Failed to save item");
       }
     } catch (error) {
       console.error("An error occurred while saving the item:", error);
-      showToast("Error: An error occurred while saving the item", "error");
     }
   };
 

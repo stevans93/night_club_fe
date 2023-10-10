@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { Modal, Button } from "rsuite";
 import UsersService from "../../../../services/userService";
-import { showToast } from "../../../../helpers/toast";
 
 const ResetPasswordForm = (props) => {
   const passwordInputRef = useRef();
@@ -24,16 +23,12 @@ const ResetPasswordForm = (props) => {
 
       // Handle success
       if (response) {
-        showToast("Password reset successfully", "success");
+        console.log("Password reset successfully");
         // Additional code here if needed
       }
     } catch (error) {
       // Handle errors
       console.error("An error occurred while resetting the password:", error);
-      showToast(
-        "Error: An error occurred while resetting the password",
-        "error"
-      );
     }
   };
   return (

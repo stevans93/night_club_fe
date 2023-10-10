@@ -1,7 +1,6 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
-import { showToast } from "../../../../helpers/toast";
 
 const EditCouponForm = (props) => {
   const titleInputRef = useRef();
@@ -33,17 +32,16 @@ const EditCouponForm = (props) => {
       // Handle the response as needed
       if (response) {
         // Handle success
-        showToast("Coupon updated successfully", "success");
+        console.log("Coupon updated successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        showToast("Failed to update coupon", "error");
+        console.log("Failed to update coupon");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
       console.error("An error occurred while updating the coupon:", error);
-      showToast("Error: An error occurred while updating the coupon", "error");
     }
   };
   return (

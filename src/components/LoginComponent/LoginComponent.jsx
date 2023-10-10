@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/where2go.png";
 import login from "../../assets/login.png";
-import { BsFacebook, BsGoogle } from "react-icons/bs";
+import { BsGoogle } from "react-icons/bs";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
 import { useFormik } from "formik";
@@ -88,7 +88,7 @@ function LoginComponent() {
     <div className="flex flex-grow justify-between bg-white text-others h-[100vh]">
       <div className="flex flex-col justify-center mt-[100px] lg:mt-0 mx-auto">
         <div className="flex flex-col items-center gap-2">
-          <img src={logo} alt="login" className="w-[250px]" />
+          <Link to='/'><img src={logo} alt="login" className="w-[250px]" /></Link>
           <p className="text-xl text-center">
             Prijavite se da biste pristupili svom profilu
           </p>
@@ -134,12 +134,12 @@ function LoginComponent() {
               />
               {visibility ? (
                 <MdVisibility
-                  className="absolute top-[47px] right-4 text-2xl"
+                  className="absolute top-[40px] right-4 text-2xl"
                   onClick={handleVisibility}
                 />
               ) : (
                 <MdVisibilityOff
-                  className="absolute top-[47px] right-4 text-2xl"
+                  className="absolute top-[40px] right-4 text-2xl"
                   onClick={handleVisibility}
                 />
               )}
@@ -160,10 +160,6 @@ function LoginComponent() {
           </form>
           <div className="flex flex-col items-center gap-2 mt-[30px] lg:mt-[20px] mb-2">
             <div className="flex flex-col lg:flex-row gap-2">
-              <button className="flex flex-row border border-primary hover:bg-primary hover:text-white justify-center items-center text-primary text-lg w-[300px] h-[55px] rounded-[4px]">
-                <BsFacebook className="text-3xl mr-2" />
-                Prijavite se sa Facebook
-              </button>
               <button className="flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]">
                 <BsGoogle className="text-3xl mr-2" />
                 Prijavite se sa Google

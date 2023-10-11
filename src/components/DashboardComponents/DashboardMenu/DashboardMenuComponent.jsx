@@ -8,7 +8,7 @@ import EditItemForm from "../DashboardForms/EditItemForm/EditItemForm";
 import MenuHeader from "../DashboardHeaders/MenuHeader/MenuHeader";
 
 const DashboardMenuComponent = () => {
-  const [isDrinkCategoriesOpen, setIsDrinkCategoriesOpen] = useState(false);
+  const [isDrinkCategoriesOpen, setIsDrinkCategoriesOpen] = useState(true);
   const [isFoodCategoriesOpen, setIsFoodCategoriesOpen] = useState(false);
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
   const [isEditItemModalOpen, setIsEditItemModalOpen] = useState(false);
@@ -126,6 +126,7 @@ const DashboardMenuComponent = () => {
         <div className="flex flex-col gap-4 items-center h-fit shadow-lg px-4 py-4 bg-white h-full">
           <button
             onClick={showDrinkCategories}
+            autoFocus
             className="flex w-fit py-3 px-14 active:bg-primary active:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white rounded-lg"
           >
             Drinks

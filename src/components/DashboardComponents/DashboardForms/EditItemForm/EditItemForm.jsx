@@ -12,8 +12,8 @@ const EditItemForm = (props) => {
   const imageInputRef = useRef();
 
   const handleSaveForm = async () => {
-    await saveItem();
-    props.handleItemModalClose();
+    await saveItem(props.product._id);
+    props.handleEditItemModalClose();
   };
 
   const saveItem = async (itemId) => {

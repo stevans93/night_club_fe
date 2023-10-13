@@ -60,6 +60,10 @@ const DashboardMenuComponent = () => {
     setModalProductType(value);
   };
 
+  const handleDelete = async (id) => {
+    await fetchDeleteItemById(id);
+  };
+
   const fetchProducts = async (subCategory) => {
     try {
       const productsData = await ProductsService.getAllProducts(
@@ -119,6 +123,25 @@ const DashboardMenuComponent = () => {
     fetchFoodCategories();
   }, []);
 
+  const fetchDeleteItemById = async (id) => {
+    try {
+      const response = await ProductsService.deleteProduct(id);
+
+      if (response) {
+        // Handle success
+        console.log("Event deleted successfully");
+        // You can perform additional actions if needed
+      } else {
+        // Handle failure
+        console.error("Failed to delete event");
+        // You can perform additional actions if needed
+      }
+    } catch (error) {
+      // Handle any errors here
+      console.error("An error occurred while deleting the event:", error);
+    }
+  };
+
   return (
     <>
       <MenuHeader onClick={showItemModal} />
@@ -149,6 +172,7 @@ const DashboardMenuComponent = () => {
             categories={drinkCategories}
             fetchProducts={fetchProducts}
             showEditItemModal={showEditItemModal}
+            handleDelete={handleDelete}
           />
         )}
         {isFoodCategoriesOpen && (
@@ -162,6 +186,7 @@ const DashboardMenuComponent = () => {
             categories={foodCategories}
             fetchProducts={fetchProducts}
             showEditItemModal={showEditItemModal}
+            handleDelete={handleDelete}
           />
         )}
       </div>

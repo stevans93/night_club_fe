@@ -7,6 +7,7 @@ import ProductsService from "../../services/productsService";
 import { useParams } from "react-router-dom";
 import ClubsService from "../../services/clubsService";
 import FoodMenu from "../../components/FoodMenu/FoodMenu";
+import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 
 const Club = () => {
   const { clubId } = useParams();
@@ -15,6 +16,7 @@ const Club = () => {
   const [modalProductType, setModalProductType] = useState("");
   const [drinkCategories, setDrinkCategories] = useState(null);
   const [foodCategories, setFoodCategories] = useState(null);
+  const [sliderImages, setSliderImages] = useState(null);
   const [backdrop, setBackdrop] = useState(false);
   const [showDrinks, setShowDrinks] = useState(false);
   const [showFood, setShowFood] = useState(false);
@@ -104,15 +106,29 @@ const Club = () => {
     fetchFoodCategories();
   }, []);
 
+  useEffect(() => {
+    const fetchSliderImages = async () => {
+      try {
+        const sliderImages = await ClubsService.getAllSliderImages(clubId);
+        if (sliderImages) {
+          setSliderImages(sliderImages);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching categories:", error);
+      }
+    };
+
+    fetchSliderImages();
+  }, []);
+
+  console.log(sliderImages);
+
   return (
     <>
       <div className="flex flex-col bg-[#F0F4F9]">
-        <div className="flex h-h550 items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-          <img
-            className="w-full h-full object-cover"
-            alt="..."
-            src="../../../public/assets/party-image.jpg"
-          />
+        <div className="relative xl:h-h700 sm:h-96 xs:h-80">
+          {sliderImages && <ImageCarousel sliderImages={sliderImages} />}
         </div>
         <div className="flex flex-col items-center self-center w-full max-w-5xl bg-[#F0F4F9] mt-16 mb-16">
           <h2 className="text-3xl">

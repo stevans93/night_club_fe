@@ -23,7 +23,6 @@ function DashboardCoupon() {
   const [couponToEdit, setCouponToEdit] = useState(null);
 
   const handleEditModalOpen = async (id) => {
-    console.log("here", id);
     await fetchCouponById(id);
     setIsEditCouponModalOpen(true);
   };

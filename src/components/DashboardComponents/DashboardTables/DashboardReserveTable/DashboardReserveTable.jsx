@@ -4,6 +4,8 @@ import ActionButton from "../../../Buttons/ActionButton/ActionButton";
 const DashboardReserveTable = (props) => {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
 
+  console.log(props.reservations);
+
   // Get the user's role from the parsed user object
   const userRole = ncUser ? ncUser.role : null;
 
@@ -12,7 +14,7 @@ const DashboardReserveTable = (props) => {
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
           <th className="border-r-2 bg-white px-6 py-3">SI</th>
-          <th className="border-r-2 bg-white px-6 py-3">Order ID</th>
+          <th className="border-r-2 bg-white px-6 py-3">Event Title</th>
           <th className="border-r-2 bg-white px-6 py-3">Name</th>
           <th className="border-r-2 bg-white px-6 py-3">Phone</th>
           <th className="border-r-2 bg-white px-6 py-3">Date</th>
@@ -34,10 +36,10 @@ const DashboardReserveTable = (props) => {
                 <td className="border-r-2 px-6 py-3">
                   {i + 1 + props.pageSize * (props.pageNumber - 1)}
                 </td>
-                <td className="border-r-2 px-6 py-3">{reservation._id}</td>
+                <td className="border-r-2 px-6 py-3">{reservation.eventTitle}</td>
                 <td className="border-r-2 px-6 py-3">{reservation.name}</td>
                 <td className="border-r-2 px-6 py-3">{reservation.phone}</td>
-                <td className="border-r-2 px-6 py-3">{reservation.date}</td>
+                <td className="border-r-2 px-6 py-3">{new Date(reservation.date).toLocaleDateString()}</td>
                 <td className="border-r-2 px-6 py-3">
                   {userRole === "admin"
                     ? `${reservation.clubId}`

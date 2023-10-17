@@ -3,10 +3,20 @@ import { useState, useEffect } from "react";
 import DashboardGeneralConfig from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardGeneralConfig";
 import DashboardTablesConfig from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardTablesConfig";
 import ClubsService from "../../../../services/clubsService";
+import DashboardSliderConfig from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardSliderConfig";
+import DashboardAvaliableDays from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardAvaliableDays";
 
 const DashboardConfiguration = () => {
   const [showGeneral, setShowGeneral] = useState(true);
   const [showTables, setShowTables] = useState(false);
+  const [showSlider, setShowSlider] = useState(false);
+  const [showAvaliableDays, setShowAvaliableDays] = useState(false);
+
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+  const clubId = ncUser ? ncUser.clubId : undefined;
+
+  const [tables, setTables] = useState(null);
+  const [dashboardSliderImages, setDashboardSliderImages] = useState(null);
 
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfTables, setNumberOfTables] = useState();
@@ -21,14 +31,30 @@ const DashboardConfiguration = () => {
   const handleShowGeneral = () => {
     setShowGeneral(true);
     setShowTables(false);
+    setShowSlider(false);
+    setShowAvaliableDays(false);
   };
 
   const handleShowTables = () => {
     setShowTables(true);
     setShowGeneral(false);
+    setShowSlider(false);
+    setShowAvaliableDays(false);
   };
 
-  const [tables, setTables] = useState(null);
+  const handleShowSlider = () => {
+    setShowTables(false);
+    setShowGeneral(false);
+    setShowSlider(true);
+    setShowAvaliableDays(false);
+  };
+
+  const handleShowAvaliableDays = () => {
+    setShowTables(false);
+    setShowGeneral(false);
+    setShowSlider(false);
+    setShowAvaliableDays(true);
+  };
 
   useEffect(() => {
     const fetchTables = async () => {
@@ -55,11 +81,28 @@ const DashboardConfiguration = () => {
     fetchTables();
   }, []);
 
+  useEffect(() => {
+    const fetchDashboardSliderImages = async () => {
+      try {
+        const result = await ClubsService.getAllDashboardSliderImages(clubId);
+
+        setDashboardSliderImages(result.clubSliderImages);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching tables:", error);
+      }
+    };
+
+    fetchDashboardSliderImages();
+  }, []);
+
   return (
     <div className="flex bg-[#F9F9F9] h-[calc(100vh-70px)]">
       <DashboardConfigSidebar
         onShowGeneral={handleShowGeneral}
         onShowTables={handleShowTables}
+        onShowSlider={handleShowSlider}
+        onShowAvaliableDays={handleShowAvaliableDays}
       />
       {showGeneral && <DashboardGeneralConfig />}
       {showTables && tables && (
@@ -72,6 +115,11 @@ const DashboardConfiguration = () => {
           setSelectedParams={setSelectedParams}
         />
       )}
+      {showSlider && dashboardSliderImages && (
+        <DashboardSliderConfig dashboardSliderImages={dashboardSliderImages} />
+      )}
+
+      {showAvaliableDays && <DashboardAvaliableDays />}
     </div>
   );
 };

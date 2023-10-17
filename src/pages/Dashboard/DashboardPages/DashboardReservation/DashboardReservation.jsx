@@ -62,8 +62,6 @@ function DashboardReservation() {
   const [numberOfPages, setNumberOfPages] = useState(1);
   const [numberOfReservations, setNumberOfReservations] = useState();
 
-  console.log(currentDate);
-
   const handlePageSizeChange = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,

@@ -9,7 +9,6 @@ import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import { useState } from "react";
 
 function Home() {
-
   //events
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
@@ -85,8 +84,8 @@ function Home() {
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-        <ImageCarousel />
-        <CarouselText />
+        {/* <ImageCarousel />
+        <CarouselText /> */}
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
@@ -95,7 +94,9 @@ function Home() {
               Premijum Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve ({numberOfPremiumClubs})</Link>
+              <Link to="/clubs" className="mr-5">
+                Vidi sve ({numberOfPremiumClubs})
+              </Link>
               <button
                 onClick={() => handlePrevPage("premijum")}
                 disabled={selectedPremiumParams.pageNumber === 1}
@@ -162,7 +163,9 @@ function Home() {
               Regularna Mesta
             </h3>
             <div className="flex items-center">
-              <Link className="mr-5">Vidi sve ({numberOfRegularClubs})</Link>
+              <Link to="/clubs" className="mr-5">
+                Vidi sve ({numberOfRegularClubs})
+              </Link>
               <button
                 onClick={() => handlePrevPage("regular")}
                 disabled={selectedRegularParams.pageNumber === 1}

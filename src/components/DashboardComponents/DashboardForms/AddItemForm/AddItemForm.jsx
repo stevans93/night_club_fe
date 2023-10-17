@@ -148,7 +148,7 @@ const AddItemForm = (props) => {
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleItemModalClose} appearance="subtle">

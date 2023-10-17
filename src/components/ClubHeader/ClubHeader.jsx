@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import ClubsService from "../../services/clubsService";
 
 const ClubHeader = () => {
-  const [info, setInfo] = useState('');
+  const [info, setInfo] = useState("");
   const { clubId } = useParams();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ClubHeader = () => {
         }
       }
     };
-  
+
     fetchInfo();
   }, [clubId]);
 
@@ -51,23 +51,28 @@ const ClubHeader = () => {
             </ul>
           </div>
         </div>
-        <div className="flex items-center">
-          <Link to="#" className="m-2">
-            <FaEnvelope className="fill-primary" />
-          </Link>
-          <Link to="#" className="m-2">
-            <BsFillTelephoneFill className="fill-primary" />
-          </Link>
-          <Link to="#" className="m-2">
-            <BiLogoFacebook className="fill-primary" size="1.3rem" />
-          </Link>
-          <Link to="#" className="m-2">
-            <BsTwitter className="fill-primary" />
-          </Link>
-          <Link to="#" className="m-2">
-            <BsInstagram className="fill-primary" />
-          </Link>
-        </div>
+        {info && (
+          <div className="flex items-center">
+            <Link to="#" className="m-2">
+              <FaEnvelope className="fill-primary" />
+            </Link>
+            <Link to="#" className="m-2">
+              <BsFillTelephoneFill className="fill-primary" />
+            </Link>
+            <Link
+              to={info.socialMedia.find((x) => x.name === "Facebook").link}
+              className="m-2"
+            >
+              <BiLogoFacebook className="fill-primary" size="1.3rem" />
+            </Link>
+            <Link to="#" className="m-2">
+              <BsTwitter className="fill-primary" />
+            </Link>
+            <a href={info.socialMedia.find((x) => x.name === "Instagram").link} target="_blank" className="m-2">
+              <BsInstagram className="fill-primary" />
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -123,7 +123,7 @@ const EditCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="startDate"
                       type="date"
-                      defaultValue={props.coupon.startDate}
+                      defaultValue={new Date(props.coupon.startDate).toISOString().split('T')[0]}
                       ref={startDateInputRef}
                     />
                   </div>
@@ -135,7 +135,7 @@ const EditCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="endDate"
                       type="date"
-                      defaultValue={props.coupon.endDate}
+                      defaultValue={new Date(props.coupon.endDate).toISOString().split('T')[0]}
                       ref={endDateInputRef}
                     />
                   </div>
@@ -143,7 +143,7 @@ const EditCouponForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">

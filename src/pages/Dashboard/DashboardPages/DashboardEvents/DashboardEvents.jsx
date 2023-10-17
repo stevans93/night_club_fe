@@ -23,7 +23,6 @@ const DashboardEvents = () => {
   const [eventToEdit, setEventToEdit] = useState(null);
 
   const handleEditModalOpen = async (id) => {
-    console.log("here", id);
     await fetchEventById(id);
     setIsEditEventModalOpen(true);
   };

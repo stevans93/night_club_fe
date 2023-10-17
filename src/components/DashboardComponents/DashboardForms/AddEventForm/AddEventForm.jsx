@@ -17,9 +17,9 @@ const AddEventForm = (props) => {
 
   const saveEvent = async () => {
     const event = {
-      name: nameInputRef.current.value,
+      title: nameInputRef.current.value,
       description: descriptionInputRef.current.value,
-      date: dateInputRef.current.value,
+      dateOfEvent: dateInputRef.current.value,
       ticketPrice: ticketPriceInputRef.current.value,
       type: typeInputRef.current.value,
     };
@@ -125,7 +125,11 @@ const AddEventForm = (props) => {
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
                 Ok
               </Button>
               <Button onClick={props.handleEventModalClose} appearance="subtle">

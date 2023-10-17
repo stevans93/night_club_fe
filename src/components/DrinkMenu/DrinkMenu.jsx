@@ -31,7 +31,7 @@ export default function DrinkMenu(props) {
               </ul>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.handleClose} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={props.handleClose} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleClose} appearance="subtle">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Card from "../Card/Card";
 import ClubsService from "../../services/clubsService";
+import ClubCard from "../Card/ClubCard";
 
 const ClubList = (props) => {
   const [clubs, setClubs] = useState(null);
@@ -18,9 +18,9 @@ const ClubList = (props) => {
           params.date,
           params.type
         );
-  
+
         setClubs(clubsData.clubs);
-  
+
         if (props.setNumberOfPages) {
           props.setNumberOfPages(clubsData.numberOfPages);
         }
@@ -32,7 +32,7 @@ const ClubList = (props) => {
         console.error("An error occurred while fetching clubs:", error);
       }
     };
-  
+
     fetchClubs();
   }, [props.params]);
 
@@ -41,7 +41,7 @@ const ClubList = (props) => {
       {clubs &&
         clubs.map((card) => {
           return (
-            <Card
+            <ClubCard
               page={"/club/" + card._id}
               key={card._id}
               card={card}

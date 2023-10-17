@@ -31,13 +31,14 @@ function DashboardGeneralConfig() {
         email: emailInputRef.current.value,
         mobile: phoneInputRef.current.value,
         about: aboutInputRef.current.value,
-        facebook: facebookInputRef.current.value,
-        instagram: instagramInputRef.current.value,
-        whatsApp: whatsAppInputRef.current.value,
+        socialMedia: [
+          { name: "Facebook", link: facebookInputRef.current.value },
+          { name: "Instagram", link: instagramInputRef.current.value },
+          { name: "WhatsApp", link: whatsAppInputRef.current.value },
+        ],
       };
 
       await ClubsService.updateClub(clubId, club);
-      
     } catch (error) {
       // Handle any errors here (e.g., show an error toast)
       console.error(
@@ -63,9 +64,9 @@ function DashboardGeneralConfig() {
   }, [clubId]);
 
   return (
-    <div className="flex w-full h-fit">
+    <div className="flex w-9/12 h-fit">
       {club && (
-        <form className="flex flex-col gap-5 px-4 w-5/12 py-5 shadow-lg ml-10 mt-4 bg-white">
+        <form className="flex flex-col gap-5 px-4 w-6/12 py-5 shadow-lg ml-10 mt-4 bg-white">
           <div className="flex flex-col w-3/5 gap-2">
             <label htmlFor="logo">Logo</label>
             <input
@@ -131,7 +132,11 @@ function DashboardGeneralConfig() {
                 placeholder="Enter your facebook link"
                 id="facebook"
                 ref={facebookInputRef}
-                defaultValue={club.socialMedia.facebook}
+                defaultValue={
+                  club.socialMedia.find((x) => x.name === "Facebook")
+                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    : ""
+                }
               />
             </div>
           </div>
@@ -145,7 +150,11 @@ function DashboardGeneralConfig() {
                 placeholder="Enter your instagram link"
                 id="instagram"
                 ref={instagramInputRef}
-                defaultValue={club.socialMedia.instagram}
+                defaultValue={
+                  club.socialMedia.find((x) => x.name === "Instagram")
+                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    : ""
+                }
               />
             </div>
           </div>
@@ -159,7 +168,11 @@ function DashboardGeneralConfig() {
                 placeholder="Enter your whatsApp link"
                 id="whatsApp"
                 ref={whatsAppInputRef}
-                defaultValue={club.socialMedia.whatsApp}
+                defaultValue={
+                  club.socialMedia.find((x) => x.name === "WhatsApp")
+                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    : ""
+                }
               />
             </div>
           </div>
@@ -172,12 +185,12 @@ function DashboardGeneralConfig() {
         </form>
       )}
       <div className="flex flex-col w-4/12 ml-10">
-        <div className="flex flex-col gap-2 ml-10 mt-4 h-fit bg-white shadow-lg">
+        <div className="flex flex-col gap-2 mt-4 h-fit bg-white shadow-lg">
           <span className="border-b-2 py-2 px-3">Logo</span>
           <div className="flex flex-col px-2 py-2">
             <div className="flex items-center justify-center w-2/5 m-auto">
               <label
-                htmlFor ="dropzone-file"
+                htmlFor="dropzone-file"
                 className="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
               >
                 <div className="flex flex-col items-center justify-center">
@@ -208,7 +221,7 @@ function DashboardGeneralConfig() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col gap-2 shadow-lg bg-white ml-10 mt-8 h-fit">
+        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
           <span className="border-b-2 py-2 px-3">Thumbnail Photo</span>
           <div className="flex flex-col px-2 py-2">
             <div className="flex items-center justify-center w-full m-auto">

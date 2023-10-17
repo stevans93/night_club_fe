@@ -1,10 +1,7 @@
 import Badge from "../Badge/Badge";
+import { Link } from "react-router-dom";
 
-function Card(props) {
-  const handleOpenModal = async (eventId) => {
-    await props.fetchSingleEvent(eventId), props.onClick();
-  };
-
+function ClubCard(props) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="relative">
@@ -30,7 +27,7 @@ function Card(props) {
             </h5>
           </a>
           <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900 dark:text-white">
-            {new Date(props.card.dateOfEvent).toLocaleDateString()}
+            {props.card.dateOfEvent}
           </h5>
           <p className="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400">
             {props.card.description}
@@ -40,16 +37,16 @@ function Card(props) {
           </h5>
         </div>
         <div>
-          <button
-            onClick={() => handleOpenModal(props.card._id)}
+          <Link
+            to={props.page}
             className="inline-flex items-center xs:px-6 sm:px-10 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary"
           >
             {props.button}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default Card;
+export default ClubCard;

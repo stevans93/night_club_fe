@@ -134,7 +134,7 @@ const EditStaffForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button

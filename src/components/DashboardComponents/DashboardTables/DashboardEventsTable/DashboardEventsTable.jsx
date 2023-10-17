@@ -25,9 +25,9 @@ const DashboardEventsTable = (props) => {
                   <td className="border-r-2 px-6 py-3">
                     {i + 1 + props.pageSize * (props.pageNumber - 1)}
                   </td>
-                  <td className="border-r-2 px-6 py-3">{event.name}</td>
+                  <td className="border-r-2 px-6 py-3">{event.title}</td>
                   <td className="border-r-2 px-6 py-3">{event.description}</td>
-                  <td className="border-r-2 px-6 py-3">{event.dateOfEvent}</td>
+                  <td className="border-r-2 px-6 py-3">{new Date(event.dateOfEvent).toLocaleDateString()}</td>
                   <td className="border-r-2 px-6 py-3">{event.ticketPrice}</td>
                   <td className="border-r-2 px-6 py-3">{event.type}</td>
                   <td className="flex border-r-2 px-6 py-3 gap-2">

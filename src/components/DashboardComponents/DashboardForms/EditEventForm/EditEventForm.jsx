@@ -20,7 +20,7 @@ const EditEventForm = (props) => {
       _id: eventId,
       name: nameInputRef.current.value,
       description: descriptionInputRef.current.value,
-      date: dateInputRef.current.value,
+      dateOfEvent: dateInputRef.current.value,
       ticketPrice: ticketPriceInputRef.current.value,
       type: typeInputRef.current.value,
     };
@@ -94,7 +94,7 @@ const EditEventForm = (props) => {
                       placeholder="Set date"
                       id="date"
                       type="date"
-                      defaultValue={props.event.dateOfEvent}
+                      defaultValue={new Date(props.event.dateOfEvent).toISOString().split('T')[0]}
                       ref={dateInputRef}
                     />
                   </div>
@@ -131,7 +131,7 @@ const EditEventForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">

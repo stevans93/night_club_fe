@@ -88,7 +88,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding table:", error);
-      
+
       throw error;
     }
   }
@@ -102,7 +102,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error updating table:", error);
-      
+
       throw error;
     }
   }
@@ -124,33 +124,39 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error deleting table:", error);
-      
+
       throw error;
     }
   }
 
   static async addDrinkCategory(newCategory) {
     try {
-      const response = await http.post(`${clubsPath}/drinkCategory/addCategory`, {
-        newCategory,
-      });
+      const response = await http.post(
+        `${clubsPath}/drinkCategory/addCategory`,
+        {
+          newCategory,
+        }
+      );
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding category:", error);
-      
+
       throw error;
     }
   }
 
   static async addFoodCategory(newCategory) {
     try {
-      const response = await http.post(`${clubsPath}/foodCategory/addCategory`, {
-        newCategory,
-      });
+      const response = await http.post(
+        `${clubsPath}/foodCategory/addCategory`,
+        {
+          newCategory,
+        }
+      );
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error adding category:", error);
-      
+
       throw error;
     }
   }
@@ -161,7 +167,7 @@ class ClubsService {
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error fetching categories:", error);
-      
+
       throw error;
     }
   }
@@ -174,6 +180,26 @@ class ClubsService {
       console.error("Error fetching categories:", error);
 
       throw error;
+    }
+  }
+
+  static async getAllSliderImages(clubId) {
+    try {
+      const response = await http.get(`${clubsPath}/sliderImages/${clubId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error(error);
+      throw new Error("Internal server error"); // Or handle the error as needed
+    }
+  }
+
+  static async getAllDashboardSliderImages(clubId) {
+    try {
+      const response = await http.get(`${clubsPath}/dashboardSliderImages/${clubId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error(error);
+      throw new Error("Internal server error"); // Or handle the error as needed
     }
   }
 }

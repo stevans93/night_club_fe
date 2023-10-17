@@ -132,6 +132,7 @@ const AddReservationForm = (props) => {
             </Modal.Body>
             <Modal.Footer>
               <Button
+                className="bg-[#3498ff]"
                 type="submit"
                 onClick={handleSaveForm}
                 appearance="primary"

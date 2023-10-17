@@ -56,6 +56,7 @@ const AddCustomerForm = (props) => {
             </Modal.Body>
             <Modal.Footer>
               <Button
+                className="bg-[#3498ff]"
                 onClick={props.handleAddCustomerClose}
                 appearance="primary"
               >

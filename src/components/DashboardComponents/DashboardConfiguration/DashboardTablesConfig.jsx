@@ -43,7 +43,6 @@ const DashboardTablesConfig = (props) => {
   };
 
   const handleEditModalOpen = async (id) => {
-    console.log("here", id);
     await fetchTableById(id);
     setIsEditTableModalOpen(true);
   };
@@ -82,8 +81,6 @@ const DashboardTablesConfig = (props) => {
     try {
       const response = await ClubsService.deleteTable(id);
 
-      console.log(response);
-
       if (response) {
         // Handle success
         console.log("Table deleted successfully");
@@ -100,7 +97,7 @@ const DashboardTablesConfig = (props) => {
   };
 
   return (
-    <div className="flex flex-col mt-4 ml-4 shadow-lg w-3/6 px-5 bg-white h-fit py-3">
+    <div className="flex flex-col mt-4 ml-4 shadow-lg px-5 bg-white h-fit py-3">
       <TablesHeader
         pageSizeOptions={props.pageSizeOptions}
         handleTableModalOpen={handleTableModalOpen}

@@ -130,7 +130,7 @@ const EditReservationForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="date"
                       type="date"
-                      defaultValue={props.reservation.date}
+                      defaultValue={new Date(props.reservation.date).toISOString().split('T')[0]}
                       ref={dateInputRef}
                     />
                   </div>
@@ -138,7 +138,7 @@ const EditReservationForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={handleSaveForm} appearance="primary">
+              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">

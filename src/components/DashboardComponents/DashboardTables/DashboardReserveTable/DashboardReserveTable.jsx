@@ -41,7 +41,7 @@ const DashboardReserveTable = (props) => {
                 <td className="border-r-2 px-6 py-3">
                   {userRole === "admin"
                     ? `${reservation.clubId}`
-                    : `Reservation - Total Person: ${reservation.persons} - Table ${reservation.table}`}
+                    : `Reservation - Total Person: ${reservation.persons} - Table ${reservation.tableName}`}
                 </td>
 
                 <td className="border-r-2 px-6 py-3">

@@ -1,15 +1,33 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ReservationsService from "../../../../services/reservationsService";
 
 const AddReservationForm = (props) => {
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
   const emailInputRef = useRef();
-  const tableInputRef = useRef();
   const personsInputRef = useRef();
   const dateInputRef = useRef();
+
+  const [table, setTable] = useState(0);
+
+  const handlePersonsChange = () => {
+    let value = parseInt(personsInputRef.current.value, 10); // Parse the input value as an integer
+
+    // Check if the value is within the range of 0 to 3
+    if (isNaN(value)) {
+      // Handle non-integer input
+      value = 0;
+    } else if (value < 0) {
+      value = 0;
+    } else if (value > table.maxPersons) {
+      value = '';
+    }
+
+    // Update the input's value
+    personsInputRef.current.value = value;
+  };
 
   const handleSaveForm = async () => {
     await saveReservation();
@@ -21,7 +39,7 @@ const AddReservationForm = (props) => {
       name: nameInputRef.current.value,
       phone: phoneInputRef.current.value,
       email: emailInputRef.current.value,
-      table: tableInputRef.current.value,
+      tableId: table._id,
       persons: personsInputRef.current.value,
       date: dateInputRef.current.value,
     };
@@ -97,13 +115,13 @@ const AddReservationForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       value={props.selectedTable}
                       onChange={(event) => {
-                        props.handleChangeTable(event.target.value);
+                        setTable(JSON.parse(event.target.value));
                       }}
                     >
                       <option value="">Table</option>
                       {props.tables.map((x) => {
                         return (
-                          <option key={x._id} value={x}>
+                          <option key={x._id} value={JSON.stringify(x)}>
                             {x.name}
                           </option>
                         );
@@ -116,10 +134,13 @@ const AddReservationForm = (props) => {
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Select a person"
+                      placeholder={`Select max ${table.maxPersons}`}
                       id="person"
-                      type="text"
+                      type="number"
+                      min={0}
+                      max={table.maxPersons}
                       ref={personsInputRef}
+                      onChange={handlePersonsChange}
                     />
                   </div>
                 </div>

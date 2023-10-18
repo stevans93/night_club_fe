@@ -1,6 +1,7 @@
 import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { useRef } from "react";
+import CouponsService from "../../../../services/couponsService";
 
 const EditCouponForm = (props) => {
   const titleInputRef = useRef();
@@ -123,7 +124,11 @@ const EditCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="startDate"
                       type="date"
-                      defaultValue={new Date(props.coupon.startDate).toISOString().split('T')[0]}
+                      defaultValue={
+                        new Date(props.coupon.startDate)
+                          .toISOString()
+                          .split("T")[0]
+                      }
                       ref={startDateInputRef}
                     />
                   </div>
@@ -135,7 +140,11 @@ const EditCouponForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="endDate"
                       type="date"
-                      defaultValue={new Date(props.coupon.endDate).toISOString().split('T')[0]}
+                      defaultValue={
+                        new Date(props.coupon.endDate)
+                          .toISOString()
+                          .split("T")[0]
+                      }
                       ref={endDateInputRef}
                     />
                   </div>
@@ -143,7 +152,11 @@ const EditCouponForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">

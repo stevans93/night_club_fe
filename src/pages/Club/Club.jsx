@@ -122,8 +122,6 @@ const Club = () => {
     fetchSliderImages();
   }, []);
 
-  console.log(sliderImages);
-
   return (
     <>
       <div className="flex flex-col bg-[#F0F4F9]">

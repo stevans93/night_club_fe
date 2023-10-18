@@ -6,13 +6,12 @@ import { useState, useEffect } from "react";
 import EditReservationForm from "../../../../components/DashboardComponents/DashboardForms/EditReservationForm/EditReservationForm";
 import AddReservationForm from "../../../../components/DashboardComponents/DashboardForms/AddReservationForm/AddReservationForm";
 import ReservationsService from "../../../../services/reservationsService";
+import ClubsService from "../../../../services/clubsService";
 
 function DashboardReservation() {
-  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : undefined;
 
   const pageSizeOptions = [15, 30, 45];
-  const tableOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const [tables, setTables] = useState(null);
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
   const [reservationsForExport, setReservationsForExport] = useState(null);
@@ -181,13 +180,34 @@ function DashboardReservation() {
     fetchReservations();
   }, [selectedParams]);
 
+  useEffect(() => {
+    const fetchTables = async () => {
+      try {
+        const result = await ClubsService.getAllTables(
+          selectedParams.pageNumber,
+          selectedParams.pageSize
+        );
+
+        setTables(result.tables);
+        console.log(result);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching tables:", error);
+      }
+    };
+
+    fetchTables();
+  }, []);
+
+  console.log(tables);
+
   return (
     <>
       <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
-        {reservations && (
+        {reservations && tables && (
           <ReservationHeader
             pageSizeOptions={pageSizeOptions}
-            tableOptions={tableOptions}
+            tables={tables}
             statusOptions={statusOptions}
             pageSize={selectedParams.pageSize}
             handlePageSizeChange={handlePageSizeChange}
@@ -221,17 +241,22 @@ function DashboardReservation() {
           selectedParams={selectedParams}
         />
       </div>
-      {reservationToEdit && (
+      {reservationToEdit && tables && (
         <EditReservationForm
           isEditModalOpen={isEditModalOpen}
           handleEditModalClose={handleEditModalClose}
           reservation={reservationToEdit}
+          tables={tables}
         />
       )}
-      <AddReservationForm
-        isAddReservationModalOpen={isAddReservationModalOpen}
-        handleAddReservationModalClose={handleAddReservationModalClose}
-      />
+      {tables && (
+        <AddReservationForm
+          isAddReservationModalOpen={isAddReservationModalOpen}
+          handleAddReservationModalClose={handleAddReservationModalClose}
+          tables={tables}
+          handleChangeTable={handleChangeTable}
+        />
+      )}
     </>
   );
 }

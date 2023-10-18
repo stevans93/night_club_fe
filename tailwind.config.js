@@ -27,6 +27,10 @@ module.exports = {
         half: "50%",
         quater: "25%",
       },
+      minHeight: {
+        400: "400px",
+      },
+
       borderRadius: {
         circle: "50%",
       },

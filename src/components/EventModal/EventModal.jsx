@@ -34,9 +34,9 @@ const EventModal = (props) => {
             onClose={props.handleCloseEventModal}
             backdrop={props.showEventModal}
           >
-            <Modal.Body className="m-0 p-0">
-              <div className="flex">
-                <div className="flex w-1/2">
+            <Modal.Body className="m-0 p-0 min-h-400 h-fit">
+              <div className="flex h-full">
+                <div className="flex w-1/2 min-h-400">
                   <img className="flex w-full" src={props.event.image} alt="" />
                 </div>
                 <div className="flex flex-col flex-1 px-6 relative">
@@ -62,13 +62,6 @@ const EventModal = (props) => {
                         <span>***lokacija***</span>
                       </div>
                     </div>
-                    <div className="flex gap-4 border-l-2 flex-1 px-4 items-center">
-                      <BsFillMicFill className="text-primary" size="2rem" />
-                      <div className="flex flex-col gap-2">
-                        <span>Singer</span>
-                        <span>***Singer name ***</span>
-                      </div>
-                    </div>
                   </div>
                   <div className="flex flex-col w-1/2 items-center self-center mt-10 border-4 rounded-3xl py-10 gap-6 absolute bottom-0">
                     <span className="font-bold text-2xl">
@@ -82,11 +75,11 @@ const EventModal = (props) => {
                     </button>
                   </div>
                   <Button
-                    className="absolute bottom-0 right-0"
+                    className="absolute top-0 right-0"
                     onClick={props.handleCloseEventModal}
                     appearance="subtle"
                   >
-                    Cancel
+                    X
                   </Button>
                 </div>
               </div>

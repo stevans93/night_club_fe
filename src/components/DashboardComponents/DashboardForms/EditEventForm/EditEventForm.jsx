@@ -18,7 +18,7 @@ const EditEventForm = (props) => {
   const saveEvent = async (eventId) => {
     const event = {
       _id: eventId,
-      name: nameInputRef.current.value,
+      title: nameInputRef.current.value,
       description: descriptionInputRef.current.value,
       dateOfEvent: dateInputRef.current.value,
       ticketPrice: ticketPriceInputRef.current.value,
@@ -67,7 +67,7 @@ const EditEventForm = (props) => {
                     placeholder="Enter name"
                     id="name"
                     type="text"
-                    defaultValue={props.event.name}
+                    defaultValue={props.event.title}
                     ref={nameInputRef}
                   />
                 </div>

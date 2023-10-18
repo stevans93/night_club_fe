@@ -9,6 +9,7 @@ const AddEventForm = (props) => {
   const dateInputRef = useRef();
   const ticketPriceInputRef = useRef();
   const typeInputRef = useRef();
+  const imageInputRef = useRef();
 
   const handleSaveForm = async () => {
     await saveEvent();
@@ -22,6 +23,7 @@ const AddEventForm = (props) => {
       dateOfEvent: dateInputRef.current.value,
       ticketPrice: ticketPriceInputRef.current.value,
       type: typeInputRef.current.value,
+      image: imageInputRef.current.value,
     };
 
     try {
@@ -119,6 +121,18 @@ const AddEventForm = (props) => {
                       placeholder="Enter type"
                       type="text"
                       ref={typeInputRef}
+                    />
+                  </div>
+                  <div className="w-45 flex flex-col">
+                    <label className="mb-2 mt-2" htmlFor="image">
+                      Image
+                    </label>
+                    <input
+                      className="py-3 px-2 border-2 border-black rounded-lg"
+                      placeholder="Upload image"
+                      id="image"
+                      type="text"
+                      ref={imageInputRef}
                     />
                   </div>
                 </div>

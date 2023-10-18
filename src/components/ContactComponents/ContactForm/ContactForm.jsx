@@ -33,8 +33,6 @@ function ContactForm() {
                         theme: "light",
                     });
 
-                    console.log(values);
-
             } catch (errors) {
                 console.log(errors);
             }

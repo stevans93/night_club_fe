@@ -94,17 +94,25 @@ const EditReservationForm = (props) => {
                 </div>
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="table">
+                    <label className="mb-2 mt-2" htmlFor="">
                       Table
                     </label>
-                    <input
+                    <select
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Table"
-                      id="table"
-                      type="text"
-                      defaultValue={props.reservation.table}
-                      ref={tableInputRef}
-                    />
+                      value={props.selectedTable}
+                      onChange={(event) => {
+                        props.handleChangeTable(event.target.value);
+                      }}
+                    >
+                      <option value="">Table</option>
+                      {props.tables.map((x) => {
+                        return (
+                          <option key={x._id} value={x}>
+                            {x.name}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="person">
@@ -130,7 +138,11 @@ const EditReservationForm = (props) => {
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="date"
                       type="date"
-                      defaultValue={new Date(props.reservation.date).toISOString().split('T')[0]}
+                      defaultValue={
+                        new Date(props.reservation.date)
+                          .toISOString()
+                          .split("T")[0]
+                      }
                       ref={dateInputRef}
                     />
                   </div>
@@ -138,7 +150,11 @@ const EditReservationForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">

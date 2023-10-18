@@ -46,12 +46,14 @@ function DashboardSidebar({ children, open }) {
         } duration-300 h-screen p-4 py-6 bg-dashboardPrimary text-white flex items-center flex-col bg-[#181818] dashboard-sidebar`}
       >
         <div>
-          <Link to="/"><img src={logo} alt=""/></Link>
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <div className="my-5 w-2/4">
           <img src={avatar} alt="avatar" />
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full h-full">
           {(userRole === "manager" ||
             userPermissions.includes("reservation") ||
             userRole === "admin") && (
@@ -96,8 +98,7 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
-          {(userRole === "manager" ||
-            userPermissions.includes("coupons")) && (
+          {(userRole === "manager" || userPermissions.includes("coupons")) && (
             <NavLink
               to="/dashboard/coupon"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
@@ -162,13 +163,27 @@ function DashboardSidebar({ children, open }) {
             </NavLink>
           )}
 
-            <button
-              onClick={handleLogOut}
+          {userRole === "admin" && (
+            <NavLink
+              to="/dashboard/addClub"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
-              <CiLogout className="mr-2 text-2xl" />
-              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>Log Out</span>
-            </button>
+              <HiOutlineUserGroup className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Add Club
+              </span>
+            </NavLink>
+          )}
+
+          <button
+            onClick={handleLogOut}
+            className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline mt-auto"
+          >
+            <CiLogout className="mr-2 text-2xl" />
+            <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+              Log Out
+            </span>
+          </button>
         </div>
       </div>
       <main

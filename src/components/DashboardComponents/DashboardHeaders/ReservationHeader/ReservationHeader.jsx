@@ -98,10 +98,10 @@ const ReservationHeader = (props) => {
               }}
             >
               <option value="">Table</option>
-              {props.tableOptions.map((x) => {
+              {props.tables.map((x) => {
                 return (
-                  <option key={x} value={x}>
-                    {x}
+                  <option key={x._id} value={x}>
+                    {x.name}
                   </option>
                 );
               })}

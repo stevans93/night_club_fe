@@ -25,6 +25,7 @@ import DashboardStaff from "./pages/Dashboard/DashboardPages/DashboardStaff/Dash
 import DashboardLive from "./pages/Dashboard/DashboardPages/DashboardLive/DashboardLive";
 import DashboardEvents from "./pages/Dashboard/DashboardPages/DashboardEvents/DashboardEvents";
 import DashboardUserList from "./pages/Dashboard/DashboardPages/DashboardUserList/DashboardUserList";
+import DashboardAddClub from "./pages/Dashboard/DashboardPages/DashboardAddClub/DashboardAddClub";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
       {
         path: "user-list",
         element: <DashboardUserList />,
+      },
+      {
+        path: "addClub",
+        element: <DashboardAddClub />,
       },
     ],
   },

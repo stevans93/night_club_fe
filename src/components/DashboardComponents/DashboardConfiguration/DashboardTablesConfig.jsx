@@ -63,7 +63,6 @@ const DashboardTablesConfig = (props) => {
         // Handle success
         setTableToEdit(response.table); // Assuming setTableToEdit is a state updater function
         
-        console.log(response.table);
         // You can perform additional actions if needed
       } else {
         // Handle failure

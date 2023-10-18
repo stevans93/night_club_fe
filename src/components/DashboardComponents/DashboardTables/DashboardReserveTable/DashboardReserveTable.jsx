@@ -4,8 +4,6 @@ import ActionButton from "../../../Buttons/ActionButton/ActionButton";
 const DashboardReserveTable = (props) => {
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
 
-  console.log(props.reservations);
-
   // Get the user's role from the parsed user object
   const userRole = ncUser ? ncUser.role : null;
 

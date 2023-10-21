@@ -18,7 +18,7 @@ const DashboardReserveTable = (props) => {
           <th className="border-r-2 bg-white px-6 py-3">Date</th>
           <th className="border-r-2 bg-white px-6 py-3">
             <td className="px-6 py-3">
-              {userRole === "admin" ? `clubId` : `Overview`}
+              {userRole === "admin" ? `clubName` : `Overview`}
             </td>
           </th>
           <th className="border-r-2 bg-white px-6 py-3">Status</th>
@@ -40,7 +40,7 @@ const DashboardReserveTable = (props) => {
                 <td className="border-r-2 px-6 py-3">{new Date(reservation.date).toLocaleDateString()}</td>
                 <td className="border-r-2 px-6 py-3">
                   {userRole === "admin"
-                    ? `${reservation.clubId}`
+                    ? `${reservation.clubName}`
                     : `Reservation - Total Person: ${reservation.persons} - Table ${reservation.tableName}`}
                 </td>
 

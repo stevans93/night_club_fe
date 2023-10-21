@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BiLogoFacebook } from "react-icons/bi";
-import { BsTwitter, BsInstagram, BsFillTelephoneFill } from "react-icons/bs";
+import { BsInstagram, BsFillTelephoneFill } from "react-icons/bs";
 import { FaEnvelope } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -94,7 +94,10 @@ const ClubHeader = () => {
               <Link to="#" className="m-2">
                 <FaEnvelope className="fill-primary" />
               </Link>
-              <Link to="#" className="m-2">
+              <Link
+                to={info.socialMedia.find((x) => x.name === "WhatsApp").link}
+                className="m-2"
+              >
                 <BsFillTelephoneFill className="fill-primary" />
               </Link>
               <Link
@@ -102,9 +105,6 @@ const ClubHeader = () => {
                 className="m-2"
               >
                 <BiLogoFacebook className="fill-primary" size="1.3rem" />
-              </Link>
-              <Link to="#" className="m-2">
-                <BsTwitter className="fill-primary" />
               </Link>
               <a
                 href={info.socialMedia.find((x) => x.name === "Instagram").link}

@@ -10,7 +10,7 @@ const ReservationModal = (props) => {
   const tableInputRef = useRef();
   const personsInputRef = useRef();
   const dateInputRef = useRef();
-  const timeInputRef = useRef();
+  const couponInputRef = useRef();
 
   const handleSaveForm = async () => {
     await saveReservation();
@@ -25,7 +25,7 @@ const ReservationModal = (props) => {
       table: tableInputRef.current.value,
       persons: personsInputRef.current.value,
       date: dateInputRef.current.value,
-      time: timeInputRef.current.value,
+      coupon: couponInputRef.current.value,
     };
 
     try {
@@ -142,15 +142,15 @@ const ReservationModal = (props) => {
                       />
                     </div>
                     <div className="w-45 flex flex-col">
-                      <label className="mb-2 mt-2" htmlFor="time">
-                        time
+                      <label className="mb-2 mt-2" htmlFor="coupon">
+                        Coupon
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
-                        placeholder="Select a time"
-                        id="time"
-                        type="time"
-                        ref={timeInputRef}
+                        placeholder="Enter coupon code"
+                        id="coupon"
+                        type="text"
+                        ref={couponInputRef}
                       />
                     </div>
                   </div>

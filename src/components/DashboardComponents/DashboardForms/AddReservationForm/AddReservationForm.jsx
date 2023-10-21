@@ -9,6 +9,7 @@ const AddReservationForm = (props) => {
   const emailInputRef = useRef();
   const personsInputRef = useRef();
   const dateInputRef = useRef();
+  const couponInputRef = useRef();
 
   const [table, setTable] = useState(0);
 
@@ -22,7 +23,7 @@ const AddReservationForm = (props) => {
     } else if (value < 0) {
       value = 0;
     } else if (value > table.maxPersons) {
-      value = '';
+      value = "";
     }
 
     // Update the input's value
@@ -42,6 +43,7 @@ const AddReservationForm = (props) => {
       tableId: table._id,
       persons: personsInputRef.current.value,
       date: dateInputRef.current.value,
+      couponCode: couponInputRef.current.value,
     };
 
     try {
@@ -155,6 +157,18 @@ const AddReservationForm = (props) => {
                       id="date"
                       type="date"
                       ref={dateInputRef}
+                    />
+                  </div>
+                  <div className="w-45 flex flex-col">
+                    <label className="mb-2 mt-2" htmlFor="coupon">
+                      Coupon
+                    </label>
+                    <input
+                      className="py-3 px-2 border-2 border-black rounded-lg"
+                      id="coupon"
+                      type="text"
+                      placeholder="Enter coupon code"
+                      ref={couponInputRef}
                     />
                   </div>
                 </div>

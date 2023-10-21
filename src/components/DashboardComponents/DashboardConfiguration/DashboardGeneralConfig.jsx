@@ -152,7 +152,7 @@ function DashboardGeneralConfig() {
                 ref={instagramInputRef}
                 defaultValue={
                   club.socialMedia.find((x) => x.name === "Instagram")
-                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    ? club.socialMedia.find((x) => x.name === "Instagram").link
                     : ""
                 }
               />
@@ -170,7 +170,7 @@ function DashboardGeneralConfig() {
                 ref={whatsAppInputRef}
                 defaultValue={
                   club.socialMedia.find((x) => x.name === "WhatsApp")
-                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    ? club.socialMedia.find((x) => x.name === "WhatsApp").link
                     : ""
                 }
               />

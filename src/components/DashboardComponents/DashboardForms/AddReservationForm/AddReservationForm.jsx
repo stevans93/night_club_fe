@@ -116,11 +116,11 @@ const AddReservationForm = (props) => {
                     <select
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       value={props.selectedTable}
+                      disabled={props.isDateSelected}
                       onChange={(event) => {
                         setTable(JSON.parse(event.target.value));
                       }}
                     >
-                      <option value="">Table</option>
                       {props.tables.map((x) => {
                         return (
                           <option key={x._id} value={JSON.stringify(x)}>
@@ -157,6 +157,10 @@ const AddReservationForm = (props) => {
                       id="date"
                       type="date"
                       ref={dateInputRef}
+                      min={new Date().toISOString().split("T")[0]}
+                      onChange={(event) => {
+                        props.handleChangeReservationDate(event.target.value);
+                      }}
                     />
                   </div>
                   <div className="w-45 flex flex-col">

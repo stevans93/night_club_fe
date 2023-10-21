@@ -60,6 +60,8 @@ const DashboardConfiguration = () => {
     const fetchTables = async () => {
       try {
         const result = await ClubsService.getAllTables(
+          clubId,
+          undefined,
           selectedParams.pageNumber,
           selectedParams.pageSize
         );

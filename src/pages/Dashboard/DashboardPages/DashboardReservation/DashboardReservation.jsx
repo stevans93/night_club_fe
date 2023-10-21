@@ -9,8 +9,8 @@ import ReservationsService from "../../../../services/reservationsService";
 import ClubsService from "../../../../services/clubsService";
 
 function DashboardReservation() {
-
   const pageSizeOptions = [15, 30, 45];
+  const [reservationDate, setReservationDate] = useState();
   const [tables, setTables] = useState(null);
   const statusOptions = ["Pending", "Complete"];
   const [reservations, setReservations] = useState(null);
@@ -22,11 +22,18 @@ function DashboardReservation() {
     pageSize: pageSizeOptions[0],
   });
 
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+  const clubId = ncUser ? ncUser.clubId : undefined;
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [reservationToEdit, setReservationToEdit] = useState(null);
 
   const [isAddReservationModalOpen, setIsAddReservationModalOpen] =
     useState(false);
+
+  const handleChangeReservationDate = (value) => {
+    setReservationDate(value);
+  };
 
   const handleAddReservationModalOpen = () => {
     setIsAddReservationModalOpen(true);
@@ -129,6 +136,11 @@ function DashboardReservation() {
     try {
       const reservation = await ReservationsService.getSingleReservation(id);
       setReservationToEdit(reservation);
+      setReservationDate(reservation.date);
+      setTables((tables) => [
+        { name: reservation.tableName, tableId: reservation.tableId },
+        ...tables,
+      ]);
       // Handle success, e.g., update the state with the fetched reservation
     } catch (error) {
       // Handle errors, e.g., show an error message
@@ -183,13 +195,9 @@ function DashboardReservation() {
   useEffect(() => {
     const fetchTables = async () => {
       try {
-        const result = await ClubsService.getAllTables(
-          selectedParams.pageNumber,
-          selectedParams.pageSize
-        );
+        const result = await ClubsService.getAllTables(clubId, reservationDate);
 
         setTables(result.tables);
-        console.log(result);
       } catch (error) {
         // Handle any errors here
         console.error("An error occurred while fetching tables:", error);
@@ -197,9 +205,7 @@ function DashboardReservation() {
     };
 
     fetchTables();
-  }, []);
-
-  console.log(tables);
+  }, [reservationDate]);
 
   return (
     <>
@@ -247,6 +253,7 @@ function DashboardReservation() {
           handleEditModalClose={handleEditModalClose}
           reservation={reservationToEdit}
           tables={tables}
+          handleChangeReservationDate={handleChangeReservationDate}
         />
       )}
       {tables && (
@@ -254,7 +261,9 @@ function DashboardReservation() {
           isAddReservationModalOpen={isAddReservationModalOpen}
           handleAddReservationModalClose={handleAddReservationModalClose}
           tables={tables}
+          isDateSelected={reservationDate === undefined}
           handleChangeTable={handleChangeTable}
+          handleChangeReservationDate={handleChangeReservationDate}
         />
       )}
     </>

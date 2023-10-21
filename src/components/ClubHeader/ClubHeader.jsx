@@ -12,13 +12,11 @@ const ClubHeader = () => {
   const { clubId } = useParams();
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [tables, setTables] = useState(null);
-  const pageSizeOptions = [15, 30, 45];
-  const [selectedParams, setSelectedParams] = useState({
-    table: "",
-    status: "",
-    pageNumber: 1,
-    pageSize: pageSizeOptions[0],
-  });
+  const [reservationDate, setReservationDate] = useState();
+
+  const handleChangeDate = (value) => {
+    setReservationDate(value);
+  };
 
   const handleShowModal = () => {
     setShowReservationModal(true);
@@ -47,14 +45,8 @@ const ClubHeader = () => {
   useEffect(() => {
     const fetchTables = async () => {
       try {
-        const result = await ClubsService.getAllTables(
-          selectedParams.pageNumber,
-          selectedParams.pageSize,
-          clubId
-        );
-
+        const result = await ClubsService.getAllTables(clubId, reservationDate);
         setTables(result.tables);
-        console.log(result);
       } catch (error) {
         // Handle any errors here
         console.error("An error occurred while fetching tables:", error);
@@ -62,7 +54,7 @@ const ClubHeader = () => {
     };
 
     fetchTables();
-  }, []);
+  }, [reservationDate]);
 
   return (
     <>
@@ -123,6 +115,8 @@ const ClubHeader = () => {
           handleCloseReservationModal={handleCloseReservationModal}
           showReservationModal={showReservationModal}
           tables={tables}
+          isDateSelected={reservationDate === undefined}
+          handleChangeDate={handleChangeDate}
         />
       )}
     </>

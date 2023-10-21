@@ -49,7 +49,8 @@ const ClubHeader = () => {
       try {
         const result = await ClubsService.getAllTables(
           selectedParams.pageNumber,
-          selectedParams.pageSize
+          selectedParams.pageSize,
+          clubId
         );
 
         setTables(result.tables);

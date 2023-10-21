@@ -65,11 +65,12 @@ class ClubsService {
     return this.handleResponse(response);
   }
 
-  static async getAllTables(pageNumber, pageSize) {
+  static async getAllTables(pageNumber, pageSize, clubId) {
     // Create an object with defined parameters
     const params = {
       pageNumber,
       pageSize,
+      clubId
     };
     const filteredParams = Object.fromEntries(
       Object.entries(params).filter(([key, value]) => value !== undefined)

@@ -8,7 +8,6 @@ function getToken() {
         throw new Error("Token not found in localStorage");
       }
     } catch (error) {
-      console.error("Error while getting token:", error.message);
       return null;
     }
   }

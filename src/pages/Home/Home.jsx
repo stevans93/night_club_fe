@@ -4,9 +4,12 @@ import clocklIcon from "../../assets/clock.svg";
 import surfaceIcon from "../../assets/surface.svg";
 import EventList from "../../components/EventList/EventList";
 import ClubList from "../../components/ClubList/ClubList";
-import { useState } from "react";
+import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
+import SiteService from "../../services/siteService";
+import { useState, useEffect } from "react";
 
 function Home() {
+  const [sliderImages, setSliderImages] = useState(null);
   //events
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
@@ -79,11 +82,27 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    const fetchSliderImages = async () => {
+      try {
+        const sliderImages = await SiteService.getSiteSliderImages();
+        if (sliderImages) {
+          setSliderImages(sliderImages);
+        }
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching images:", error);
+      }
+    };
+
+    fetchSliderImages();
+  }, []);
+
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-        {/* <ImageCarousel />
-        <CarouselText /> */}
+      {sliderImages && <ImageCarousel images={sliderImages.siteSliderImages} />}
+        {/* <CarouselText /> */}
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">

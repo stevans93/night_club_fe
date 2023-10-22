@@ -4,6 +4,7 @@ import FooterBottom from "./FooterBottom/FooterBottom";
 import FooterTop from "./FooterTop/FooterTop";
 import { useParams } from "react-router-dom";
 import ClubsService from "../../services/clubsService";
+import SiteService from "../../services/siteService";
 
 function Footer() {
   const [info, setInfo] = useState();

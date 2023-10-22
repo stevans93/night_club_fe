@@ -5,6 +5,7 @@ import DashboardTablesConfig from "../../../../components/DashboardComponents/Da
 import ClubsService from "../../../../services/clubsService";
 import DashboardSliderConfig from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardSliderConfig";
 import DashboardAvaliableDays from "../../../../components/DashboardComponents/DashboardConfiguration/DashboardAvaliableDays";
+import SiteService from "../../../../services/siteService";
 
 const DashboardConfiguration = () => {
   const [showGeneral, setShowGeneral] = useState(true);
@@ -96,8 +97,22 @@ const DashboardConfiguration = () => {
         console.error("An error occurred while fetching tables:", error);
       }
     };
+
+    const fetchDashboardSiteSliderImages = async () => {
+      try {
+        const result = await SiteService.getSiteSliderImages();
+
+        setDashboardSliderImages(result.siteSliderImages);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching tables:", error);
+      }
+    };
+
     if (userRole !== "admin") {
       fetchDashboardSliderImages();
+    } else {
+      fetchDashboardSiteSliderImages();
     }
   }, []);
 

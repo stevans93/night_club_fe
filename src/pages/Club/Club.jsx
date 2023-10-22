@@ -126,7 +126,7 @@ const Club = () => {
     <>
       <div className="flex flex-col bg-[#F0F4F9]">
         <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-          {sliderImages && <ImageCarousel sliderImages={sliderImages} />}
+          {sliderImages && <ImageCarousel images={sliderImages.clubSliderImages} />}
         </div>
         <div className="flex flex-col items-center self-center w-full max-w-5xl bg-[#F0F4F9] mt-16 mb-16">
           <h2 className="text-3xl">

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ClubsService from "../../../services/clubsService";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsInstagram, BsWhatsapp } from "react-icons/bs";
+import SiteService from "../../../services/siteService";
 
 function DashboardGeneralConfig() {
   const logoInputRef = useRef();
@@ -19,8 +20,10 @@ function DashboardGeneralConfig() {
   const clubId = ncUser ? ncUser.clubId : undefined;
   const userRole = ncUser ? ncUser.role : null;
 
-  const handleConfigurationForm = async () => {
+  const handleConfigurationForm = async (event) => {
+    event.preventDefault();
     await saveConfiguration(clubId);
+    window.location.reload();
   };
 
   const saveConfiguration = async (clubId) => {
@@ -38,8 +41,11 @@ function DashboardGeneralConfig() {
           { name: "WhatsApp", link: whatsAppInputRef.current.value },
         ],
       };
-
-      await ClubsService.updateClub(clubId, club);
+      if (userRole !== "admin") {
+        await ClubsService.updateClub(clubId, club);
+      } else {
+        await SiteService.editSingleSite(club);
+      }
     } catch (error) {
       // Handle any errors here (e.g., show an error toast)
       console.error(
@@ -60,8 +66,21 @@ function DashboardGeneralConfig() {
         console.error("An error occurred while fetching club info:", error);
       }
     };
+
+    const fetchSiteInfo = async () => {
+      try {
+        const siteInfo = await SiteService.getSingleSite();
+        setClub(siteInfo);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching site info:", error);
+      }
+    };
+
     if (userRole !== "admin") {
       fetchClubById();
+    } else {
+      fetchSiteInfo();
     }
   }, [clubId]);
 

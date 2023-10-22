@@ -4,7 +4,7 @@ export default function ImageCarousel(props) {
   return (
     <div className="h-full">
       <Carousel slideInterval={5000}>
-        {props.sliderImages.clubSliderImages
+        {props.images
           .filter((x) => x.link !== "")
           .map((image) => {
             return (

@@ -17,6 +17,7 @@ function DashboardGeneralConfig() {
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : undefined;
+  const userRole = ncUser ? ncUser.role : null;
 
   const handleConfigurationForm = async () => {
     await saveConfiguration(clubId);
@@ -59,8 +60,9 @@ function DashboardGeneralConfig() {
         console.error("An error occurred while fetching club info:", error);
       }
     };
-
-    fetchClubById();
+    if (userRole !== "admin") {
+      fetchClubById();
+    }
   }, [clubId]);
 
   return (

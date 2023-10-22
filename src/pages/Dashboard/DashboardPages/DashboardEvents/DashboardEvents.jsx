@@ -13,9 +13,13 @@ const DashboardEvents = () => {
   const [numberOfEvents, setNumberOfEvents] = useState();
   const [events, setEvents] = useState(null);
 
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+  const clubId = ncUser ? ncUser.clubId : undefined;
+
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
     pageSize: pageSizeOptions[0],
+    clubId: clubId,
   });
 
   const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false);
@@ -110,7 +114,8 @@ const DashboardEvents = () => {
       try {
         const eventsData = await EventService.getAllEvents(
           selectedParams.pageNumber,
-          selectedParams.pageSize
+          selectedParams.pageSize,
+          selectedParams.clubId
           // Include other parameters as needed
         );
 

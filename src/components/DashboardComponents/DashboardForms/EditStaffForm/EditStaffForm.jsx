@@ -117,7 +117,7 @@ const EditStaffForm = (props) => {
                       <label htmlFor="reservation">Reservation</label>
                     </li>
                     <li className="flex gap-2 py-1">
-                      <span className="w-2">4</span>
+                      <span className="w-2">2</span>
                       <input
                         id="Coupon"
                         type="checkbox"

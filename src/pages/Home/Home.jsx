@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import pathIcon from "../../assets/path.svg";
 import clocklIcon from "../../assets/clock.svg";
 import surfaceIcon from "../../assets/surface.svg";
-import CarouselText from "../../components/CarouselText/CarouselText";
 import EventList from "../../components/EventList/EventList";
 import ClubList from "../../components/ClubList/ClubList";
-import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import { useState } from "react";
 
 function Home() {

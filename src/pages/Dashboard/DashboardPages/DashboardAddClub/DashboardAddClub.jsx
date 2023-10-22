@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import ClubsService from "../../../../services/clubsService";
 
 const DashboardAddClub = () => {
   const bannerImageInputRef = useRef();
@@ -10,6 +11,37 @@ const DashboardAddClub = () => {
   const passwordInputRef = useRef();
   const mobilePhoneInputRef = useRef();
   const birthDateInputRef = useRef();
+
+  const handleSaveForm = async (event) => {
+    event.preventDefault();
+    await saveClub();
+  };
+
+  const saveClub = async () => {
+    const club = {
+      name: nameInputRef.current.value,
+      bannerImage: bannerImageInputRef.current.value,
+      type: typeInputRef.current.value,
+    };
+
+    const user = {
+      firstName: firstNameInputRef.current.value,
+      lastName: lastNameInputRef.current.value,
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
+      mobilePhone: mobilePhoneInputRef.current.value,
+      birthDate: birthDateInputRef.current.value,
+    };
+
+    const clubAndUserData = { club: club, user: user };
+    try {
+      await ClubsService.addClub(clubAndUserData);
+      // Handle success, e.g., show a success message
+    } catch (error) {
+      // Handle errors, e.g., show an error message
+      console.error("An error occurred while saving the club:", error);
+    }
+  };
 
   return (
     <form className="flex flex-col">
@@ -134,7 +166,10 @@ const DashboardAddClub = () => {
         </div>
       </div>
 
-      <button className="flex mt-10 self-center bg-primary w-fit text-white py-2 px-20 rounded-lg">
+      <button
+        onClick={handleSaveForm}
+        className="flex mt-10 self-center bg-primary w-fit text-white py-2 px-20 rounded-lg"
+      >
         Confirm
       </button>
     </form>

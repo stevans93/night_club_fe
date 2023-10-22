@@ -24,6 +24,7 @@ function DashboardReservation() {
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : undefined;
+  const userRole = ncUser ? ncUser.role : null;
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [reservationToEdit, setReservationToEdit] = useState(null);
@@ -203,8 +204,9 @@ function DashboardReservation() {
         console.error("An error occurred while fetching tables:", error);
       }
     };
-
-    fetchTables();
+    if (userRole !== "admin") {
+      fetchTables();
+    }
   }, [reservationDate]);
 
   return (

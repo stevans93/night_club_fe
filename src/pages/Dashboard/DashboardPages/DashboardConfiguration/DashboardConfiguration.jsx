@@ -14,6 +14,7 @@ const DashboardConfiguration = () => {
 
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
   const clubId = ncUser ? ncUser.clubId : undefined;
+  const userRole = ncUser ? ncUser.role : null;
 
   const [tables, setTables] = useState(null);
   const [dashboardSliderImages, setDashboardSliderImages] = useState(null);
@@ -79,8 +80,9 @@ const DashboardConfiguration = () => {
         console.error("An error occurred while fetching tables:", error);
       }
     };
-
-    fetchTables();
+    if (userRole !== "admin") {
+      fetchTables();
+    }
   }, []);
 
   useEffect(() => {
@@ -94,8 +96,9 @@ const DashboardConfiguration = () => {
         console.error("An error occurred while fetching tables:", error);
       }
     };
-
-    fetchDashboardSliderImages();
+    if (userRole !== "admin") {
+      fetchDashboardSliderImages();
+    }
   }, []);
 
   return (

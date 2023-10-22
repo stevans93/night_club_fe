@@ -6,13 +6,7 @@ import { useParams } from "react-router-dom";
 import ClubsService from "../../services/clubsService";
 
 function Footer() {
-  const initialState = {
-    location: "Default Location",
-    email: "someemail@kme.com",
-    mobile: "044020404024",
-  };
-
-  const [info, setInfo] = useState(initialState);
+  const [info, setInfo] = useState();
   const { clubId } = useParams();
 
   useEffect(() => {
@@ -21,8 +15,6 @@ function Footer() {
         if (clubId) {
           const clubInfo = await ClubsService.getSingleClub(clubId);
           setInfo(clubInfo);
-        } else {
-          setInfo(initialState);
         }
       } catch (error) {
         // Handle any errors here
@@ -30,7 +22,22 @@ function Footer() {
       }
     };
 
-    fetchClubInfo();
+    const fetchSiteInfo = async () => {
+      try {
+        const siteInfo = await SiteService.getSingleSite();
+        setInfo(siteInfo);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching site info:", error);
+      }
+    };
+
+    if (clubId) {
+      fetchClubInfo();
+    }
+    {
+      fetchSiteInfo();
+    }
   }, [clubId]);
 
   return (

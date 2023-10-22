@@ -4,6 +4,10 @@ import { BsImages } from "react-icons/bs";
 import { IoMdMegaphone } from "react-icons/io";
 
 const DashboardConfigSidebar = (props) => {
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+
+  const userRole = ncUser ? ncUser.role : null;
+
   return (
     <div className="flex flex-col w-2/12 h-fit bg-white p-4 shadow-lg mt-4">
       <button
@@ -13,13 +17,15 @@ const DashboardConfigSidebar = (props) => {
         <IoMdSettings />
         General
       </button>
-      <button
-        onClick={props.onShowTables}
-        className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
-      >
-        <MdTableRestaurant />
-        Tables
-      </button>
+      {userRole === "manager" && (
+        <button
+          onClick={props.onShowTables}
+          className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
+        >
+          <MdTableRestaurant />
+          Tables
+        </button>
+      )}
       <button
         onClick={props.onShowSlider}
         className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
@@ -27,13 +33,15 @@ const DashboardConfigSidebar = (props) => {
         <BsImages />
         Slider
       </button>
-      <button
-        onClick={props.onShowAvaliableDays}
-        className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
-      >
-        <IoMdMegaphone />
-        Awaliable days
-      </button>
+      {userRole === "manager" && (
+        <button
+          onClick={props.onShowAvaliableDays}
+          className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
+        >
+          <IoMdMegaphone />
+          Awaliable days
+        </button>
+      )}
     </div>
   );
 };

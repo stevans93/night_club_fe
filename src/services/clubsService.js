@@ -47,8 +47,8 @@ class ClubsService {
     return this.handleResponse(response);
   }
 
-  static async addClub(clubData) {
-    const response = await http.post(`${clubsPath}/addClub`, clubData);
+  static async addClub(clubAndUserData) {
+    const response = await http.post(`${clubsPath}/addClub`, clubAndUserData);
     return this.handleResponse(response);
   }
 

@@ -87,18 +87,17 @@ function DashboardSidebar({ children, open }) {
               </span>
             </NavLink>
           )}
-          {userRole === "manager" ||
-            ("admin" && (
-              <NavLink
-                to="/dashboard/club-config"
-                className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
-              >
-                <BiWrench className="mr-2 text-2xl" />
-                <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                  Club Configuration
-                </span>
-              </NavLink>
-            ))}
+          {(userRole === "manager" || userRole === "admin") && (
+            <NavLink
+              to="/dashboard/club-config"
+              className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
+            >
+              <BiWrench className="mr-2 text-2xl" />
+              <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
+                Club Configuration
+              </span>
+            </NavLink>
+          )}
           {(userRole === "manager" || userPermissions.includes("coupons")) && (
             <NavLink
               to="/dashboard/coupon"

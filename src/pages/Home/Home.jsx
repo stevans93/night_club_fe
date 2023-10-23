@@ -8,7 +8,7 @@ import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 import SiteService from "../../services/siteService";
 import { useState, useEffect } from "react";
 
-function Home() {
+function Home(props) {
   const [sliderImages, setSliderImages] = useState(null);
   //events
   const [selectedParams, setSelectedParams] = useState({
@@ -101,7 +101,9 @@ function Home() {
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-      {sliderImages && <ImageCarousel images={sliderImages.siteSliderImages} />}
+        {sliderImages && (
+          <ImageCarousel images={sliderImages.siteSliderImages} />
+        )}
         {/* <CarouselText /> */}
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">

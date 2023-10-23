@@ -1,29 +1,9 @@
 import "../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
-import { BsCalendar4, BsFillMicFill } from "react-icons/bs";
+import { BsCalendar4 } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
-import ReservationsService from "../../services/reservationsService";
 
 const EventModal = (props) => {
-  const handleSaveForm = async () => {
-    await saveReservation();
-    props.handleCloseEventModal();
-  };
-
-  const saveReservation = async () => {
-    const reservation = {
-      _id: props.event._id,
-      title: props.event.name,
-    };
-
-    try {
-      await ReservationsService.addReservation(reservation);
-      // Handle success, e.g., show a success message
-    } catch (error) {
-      // Handle errors, e.g., show an error message
-      console.error("An error occurred while saving the reservation:", error);
-    }
-  };
   return (
     <>
       {props.showEventModal && (
@@ -67,10 +47,7 @@ const EventModal = (props) => {
                     <span className="font-bold text-2xl">
                       {props.event.ticketPrice}.rsd
                     </span>
-                    <button
-                      onClick={handleSaveForm}
-                      className="bg-primary text-white py-2 px-10 rounded-lg"
-                    >
+                    <button className="bg-primary text-white py-2 px-10 rounded-lg">
                       Rezervisi
                     </button>
                   </div>

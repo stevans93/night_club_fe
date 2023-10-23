@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BiLogoFacebook } from "react-icons/bi";
 import { BsInstagram, BsFillTelephoneFill } from "react-icons/bs";
 import { FaEnvelope } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ClubsService from "../../services/clubsService";
 import ReservationModal from "../ReservationModal/ReservationModal";
@@ -13,6 +13,15 @@ const ClubHeader = () => {
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [tables, setTables] = useState(null);
   const [reservationDate, setReservationDate] = useState();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (state && state.event) {
+      window.scrollTo(0, 0);
+      setReservationDate(state.event.dateOfEvent);
+      setShowReservationModal(true);
+    }
+  }, [state]);
 
   const handleChangeDate = (value) => {
     setReservationDate(value);
@@ -117,6 +126,7 @@ const ClubHeader = () => {
           tables={tables}
           isDateSelected={reservationDate === undefined}
           handleChangeDate={handleChangeDate}
+          event={state && state.event ? state.event : undefined}
         />
       )}
     </>

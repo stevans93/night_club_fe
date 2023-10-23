@@ -2,8 +2,10 @@ import "../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { BsCalendar4 } from "react-icons/bs";
 import { ImLocation2 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 
 const EventModal = (props) => {
+  const navigate = useNavigate();
   return (
     <>
       {props.showEventModal && (
@@ -47,7 +49,12 @@ const EventModal = (props) => {
                     <span className="font-bold text-2xl">
                       {props.event.ticketPrice}.rsd
                     </span>
-                    <button className="bg-primary text-white py-2 px-10 rounded-lg">
+                    <button
+                      onClick={() => {
+                        navigate(`/club/${props.event.clubId}`, { state: { event: props.event } });
+                      }}
+                      className="bg-primary text-white py-2 px-10 rounded-lg"
+                    >
                       Rezervisi
                     </button>
                   </div>

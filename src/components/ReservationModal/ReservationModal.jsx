@@ -4,9 +4,10 @@ import ReservationsService from "../../services/reservationsService";
 import { useRef, useState } from "react";
 
 const ReservationModal = (props) => {
-  const [table, setTable] = useState(0);
+  const [table, setTable] = useState({ maxPersons: "of selected table" });
 
   const handlePersonsChange = () => {
+    console.log("event", JSON.stringify(props.event));
     let value = parseInt(personsInputRef.current.value, 10); // Parse the input value as an integer
 
     // Check if the value is within the range of 0 to 3
@@ -121,9 +122,14 @@ const ReservationModal = (props) => {
                         value={props.selectedTable}
                         disabled={props.isDateSelected}
                         onChange={(event) => {
-                          setTable(JSON.parse(event.target.value));
+                          if (event.target.value) {
+                            setTable(JSON.parse(event.target.value));
+                          } else {
+                            setTable({ maxPersons: "of selected table" });
+                          }
                         }}
                       >
+                        <option value="">Select your table</option>
                         {props.tables.map((x) => {
                           return (
                             <option key={x._id} value={JSON.stringify(x)}>
@@ -160,6 +166,11 @@ const ReservationModal = (props) => {
                         id="date"
                         type="date"
                         ref={dateInputRef}
+                        defaultValue={
+                          props.event
+                            ? props.event.dateOfEvent.split("T")[0]
+                            : new Date().toISOString().split("T")[0]
+                        }
                         min={new Date().toISOString().split("T")[0]}
                         onChange={(event) => {
                           props.handleChangeDate(event.target.value);

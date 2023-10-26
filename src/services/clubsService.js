@@ -71,7 +71,7 @@ class ClubsService {
       pageNumber,
       pageSize,
       clubId,
-      date
+      date,
     };
     const filteredParams = Object.fromEntries(
       Object.entries(params).filter(([key, value]) => value !== undefined)
@@ -197,11 +197,47 @@ class ClubsService {
 
   static async getAllDashboardSliderImages(clubId) {
     try {
-      const response = await http.get(`${clubsPath}/dashboardSliderImages/${clubId}`);
+      const response = await http.get(
+        `${clubsPath}/dashboardSliderImages/${clubId}`
+      );
       return this.handleResponse(response);
     } catch (error) {
       console.error(error);
       throw new Error("Internal server error"); // Or handle the error as needed
+    }
+  }
+
+  static async getWorkingHours(clubId) {
+    try {
+      const response = await http.get(`${clubsPath}/workingHours/${clubId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error fetching working hours:", error);
+      throw error;
+    }
+  }
+
+  static async getDashboardWorkingHours() {
+    try {
+      const response = await http.get(
+        `${clubsPath}/dashboardWorkingHours`
+      );
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error fetching working hours:", error);
+      throw error;
+    }
+  }
+
+  static async updateWorkingHours(updatedWorkingHours) {
+    try {
+      const response = await http.put(`${clubsPath}/updateWorkingHours`, {
+        workingHours: updatedWorkingHours,
+      });
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error updating working hours:", error);
+      throw error;
     }
   }
 }

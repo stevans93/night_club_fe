@@ -97,19 +97,31 @@ const ClubHeader = () => {
                 <FaEnvelope className="fill-primary" />
               </Link>
               <Link
-                to={info.socialMedia.find((x) => x.name === "WhatsApp").link}
+                to={
+                  info.socialMedia.find((x) => x.name === "WhatsApp")
+                    ? info.socialMedia.find((x) => x.name === "WhatsApp").link
+                    : "#"
+                }
                 className="m-2"
               >
                 <BsFillTelephoneFill className="fill-primary" />
               </Link>
               <Link
-                to={info.socialMedia.find((x) => x.name === "Facebook").link}
+                to={
+                  info.socialMedia.find((x) => x.name === "Facebook")
+                    ? info.socialMedia.find((x) => x.name === "Facebook").link
+                    : "#"
+                }
                 className="m-2"
               >
                 <BiLogoFacebook className="fill-primary" size="1.3rem" />
               </Link>
               <a
-                href={info.socialMedia.find((x) => x.name === "Instagram").link}
+                href={
+                  info.socialMedia.find((x) => x.name === "Instagram")
+                    ? info.socialMedia.find((x) => x.name === "Instagram").link
+                    : "#"
+                }
                 target="_blank"
                 className="m-2"
               >

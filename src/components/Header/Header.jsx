@@ -39,7 +39,7 @@ function Header() {
 
             <div className="flex items-center justify-center">
               <Link
-                to={info.socialMedia.find((x) => x.name === "Facebook").link}
+                to={info.socialMedia.find((x) => x.name === "Facebook")}
                 className="m-2"
               >
                 <BiLogoFacebook className="fill-white" size="1.1rem" />

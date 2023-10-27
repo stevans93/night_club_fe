@@ -1,4 +1,5 @@
 import { http } from "../http/api";
+import { uploadHttp } from '../http/api';
 const clubsPath = "/club";
 
 class ClubsService {
@@ -53,7 +54,7 @@ class ClubsService {
   }
 
   static async updateClub(clubId, updatedClubData) {
-    const response = await http.put(
+    const response = await uploadHttp.put(
       `${clubsPath}/updateClub/${clubId}`,
       updatedClubData
     );

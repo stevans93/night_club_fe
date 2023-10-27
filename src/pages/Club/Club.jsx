@@ -138,7 +138,7 @@ const Club = () => {
             </span>{" "}
             Category
           </h2>
-          {products && drinkCategories && (
+          {products && drinkCategories && drinkCategories.length !== 0 && (
             <DrinkMenu
               modalProductType={modalProductType}
               drinkCategories={drinkCategories}
@@ -150,7 +150,7 @@ const Club = () => {
               products={products}
             />
           )}
-          {(products && foodCategories) && (
+          {products && foodCategories && foodCategories.length !== 0 && (
             <FoodMenu
               modalProductType={modalProductType}
               foodCategories={foodCategories}

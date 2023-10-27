@@ -94,6 +94,7 @@ const Club = () => {
     const fetchFoodCategories = async () => {
       try {
         const categoryData = await ClubsService.getFoodCategories(clubId);
+        console.log("here", categoryData);
         if (categoryData) {
           setFoodCategories(categoryData);
         }
@@ -149,7 +150,7 @@ const Club = () => {
               products={products}
             />
           )}
-          {products && foodCategories && (
+          {(products && foodCategories) && (
             <FoodMenu
               modalProductType={modalProductType}
               foodCategories={foodCategories}

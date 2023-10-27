@@ -51,6 +51,8 @@ const ClubHeader = () => {
     fetchInfo();
   }, [clubId]);
 
+  console.log(info);
+
   useEffect(() => {
     const fetchTables = async () => {
       try {
@@ -70,21 +72,18 @@ const ClubHeader = () => {
       <div className="flex h-20 justify-center">
         <div className="flex w-full max-w-5xl justify-between">
           <div className="flex gap-10 items-center">
-            <img
-              className="h-4/5"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxtomcAhqHu3X2B8Haxa3bK3mXFYqhMtDYJg&usqp=CAU"
-            />
+            {info && <img className="h-4/5" src={info.clubLogo} />}
             <div className="flex">
               <ul className="flex gap-5 items-center m-0">
                 <li>
                   <Link to="">Home</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="">Menu</Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link to="">Events</Link>
-                </li>
+                </li> */}
                 <li>
                   <button onClick={handleShowModal}>Reservation</button>
                 </li>
@@ -131,7 +130,7 @@ const ClubHeader = () => {
           )}
         </div>
       </div>
-      {showReservationModal && tables && (
+      {showReservationModal && tables && info && (
         <ReservationModal
           handleCloseReservationModal={handleCloseReservationModal}
           showReservationModal={showReservationModal}
@@ -139,6 +138,7 @@ const ClubHeader = () => {
           isDateSelected={reservationDate === undefined}
           handleChangeDate={handleChangeDate}
           event={state && state.event ? state.event : undefined}
+          clubMap={info.clubMap}
         />
       )}
     </>

@@ -1,16 +1,32 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import logo from "../../assets/where2go.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../../store/userSlice";
 import { toast } from "react-toastify";
+import UserProfile from "../UserProfile/UserProfile";
+import SiteService from "../../services/siteService";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [info, setInfo] = useState();
+
+  useEffect(() => {
+    const fetchSiteInfo = async () => {
+      try {
+        const siteInfo = await SiteService.getSingleSite();
+        setInfo(siteInfo);
+      } catch (error) {
+        // Handle any errors here
+        console.error("An error occurred while fetching site info:", error);
+      }
+    };
+
+    fetchSiteInfo();
+  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -47,13 +63,17 @@ function Navbar() {
     console.log("clubId not found in ncUser");
   }
 
+  console.log(info);
+
   return (
     <>
-      <nav className="bg-secondary">
-        <div className="relative flex justify-between items-center container mx-auto px-4 py-5 text-sm">
-          <a href="/" className="m-2">
-            <img src={logo} alt="where2go" className="w-[150px]" />
-          </a>
+      <nav className="bg-secondary relative">
+        <div className=" flex justify-between items-center container mx-auto px-4 py-5 text-sm">
+          {info && (
+            <a href="/" className="m-2">
+              <img src={info.clubLogo} alt="where2go" className="w-[150px]" />
+            </a>
+          )}
 
           <div className="lg:hidden">
             <button
@@ -69,43 +89,46 @@ function Navbar() {
           </div>
 
           {localStorage.hasOwnProperty("nc_user") ? (
-            <div className="hidden lg:flex lg:justify-center lg:items-center">
-              <NavLink to="/" className="m-2">
-                Početna
-              </NavLink>
-              <NavLink to="/clubs" className="m-2">
-                Ugostiteljski Objekti
-              </NavLink>
-              <NavLink to="/about" className="m-2">
-                O Nama
-              </NavLink>
-              <NavLink to="/contact" className="m-2">
-                Kontakt
-              </NavLink>
-              <NavLink
-                to="/events"
-                className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
-              >
-                Događaji
-              </NavLink>
-              {userRole !== "user" && (
+            <div className="flex w-full">
+              <div className="hidden lg:flex lg:justify-center lg:items-center w-full">
+                <NavLink to="/" className="m-2">
+                  Početna
+                </NavLink>
+                <NavLink to="/clubs" className="m-2">
+                  Ugostiteljski Objekti
+                </NavLink>
+                <NavLink to="/about" className="m-2">
+                  O Nama
+                </NavLink>
+                <NavLink to="/contact" className="m-2">
+                  Kontakt
+                </NavLink>
                 <NavLink
-                  to={`/dashboard`}
+                  to="/events"
+                  className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
+                >
+                  Događaji
+                </NavLink>
+                {userRole !== "user" && (
+                  <NavLink
+                    to={`/dashboard`}
+                    className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
+                  >
+                    Dashboard
+                  </NavLink>
+                )}
+                <button
+                  onClick={handleLogOut}
                   className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
                 >
-                  Dashboard
-                </NavLink>
-              )}
-              <button
-                onClick={handleLogOut}
-                className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
-              >
-                Log Out
-              </button>
-              <select className="bg-secondary ml-2">
-                <option>SR</option>
-                <option>EN</option>
-              </select>
+                  Log Out
+                </button>
+                <select className="bg-secondary ml-2">
+                  <option>SR</option>
+                  <option>EN</option>
+                </select>
+              </div>
+              <UserProfile />
             </div>
           ) : (
             <div className="hidden lg:inline-block">

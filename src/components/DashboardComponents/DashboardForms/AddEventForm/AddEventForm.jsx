@@ -14,6 +14,7 @@ const AddEventForm = (props) => {
   const handleSaveForm = async () => {
     await saveEvent();
     props.handleEventModalClose();
+    window.location.reload();
   };
 
   const saveEvent = async () => {

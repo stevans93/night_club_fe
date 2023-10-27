@@ -35,20 +35,25 @@ const DashboardStaffListTable = (props) => {
                           <th className="border-2 bg-white px-6 py-3">SI</th>
                           <th className="border-2 bg-white px-6 py-3">Name</th>
                         </thead>
-                        {<tbody className="divide-y">
-                          {staff.permissions.map((permission, i) => {
-                            return (
-                              <tr className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                <td className="border-2 px-6 py-3">
-                                  {i++ + 1}
-                                </td>
-                                <td className="border-2 px-6 py-3">
-                                  {permission}
-                                </td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>}
+                        {
+                          <tbody className="divide-y">
+                            {staff.permissions.map((permission, i) => {
+                              return (
+                                <tr
+                                  key={i++}
+                                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                                >
+                                  <td className="border-2 px-6 py-3">
+                                    {i++ + 1}
+                                  </td>
+                                  <td className="border-2 px-6 py-3">
+                                    {permission}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        }
                       </table>
                     </td>
 

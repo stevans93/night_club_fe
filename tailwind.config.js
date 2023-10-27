@@ -22,6 +22,7 @@ module.exports = {
       height: {
         h700: "700px",
         h550: "550px",
+        h500: "500px",
       },
       maxWidth: {
         half: "50%",

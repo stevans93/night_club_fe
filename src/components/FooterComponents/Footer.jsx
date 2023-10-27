@@ -35,8 +35,7 @@ function Footer() {
 
     if (clubId) {
       fetchClubInfo();
-    }
-    {
+    } else {
       fetchSiteInfo();
     }
   }, [clubId]);
@@ -50,6 +49,8 @@ function Footer() {
               location={info.location}
               email={info.email}
               mobile={info.mobile}
+              logo={info.clubLogo}
+              description={info.description}
             />
           )}
         </div>

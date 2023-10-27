@@ -67,14 +67,18 @@ const ReservationModal = (props) => {
           >
             <Modal.Body className="m-0 p-0 min-h-400 h-fit">
               <div className="flex h-full">
-                <div className="flex w-1/2 min-h-400 flex-1">
-                  <img className="flex w-full" src="" alt="" />
+                <div className="flex w-1/2 h-h500 flex-1">
+                  <img
+                    className="flex w-full"
+                    src={props.clubMap ? props.clubMap : ""}
+                    alt=""
+                  />
                 </div>
                 <div className="flex flex-col flex-1 px-6 pb-6">
                   <Modal.Header className="border-b-2 text-2xl py-2 text-center w-full">
                     Rezervacija
                   </Modal.Header>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between mt-4">
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="name">
                         Name

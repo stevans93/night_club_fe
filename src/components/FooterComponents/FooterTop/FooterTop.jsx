@@ -1,6 +1,7 @@
 import React from "react";
 import FooterTopInfo from "./FooterTopInfo/FooterTopInfo";
 import WorkingHours from "./FooterTopLinks/WorkingHours";
+import FooterTopAbout from "./FooterTopSupport/FooterTopAbout";
 
 function FooterTop(props) {
   return (
@@ -9,7 +10,9 @@ function FooterTop(props) {
         location={props.location}
         email={props.email}
         mobile={props.mobile}
+        logo={props.logo}
       />
+      <FooterTopAbout description={props.description} />
       <WorkingHours />
     </div>
   );

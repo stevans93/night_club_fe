@@ -34,7 +34,7 @@ function DashboardGeneralConfig() {
         location: locationInputRef.current.value,
         email: emailInputRef.current.value,
         mobile: phoneInputRef.current.value,
-        about: aboutInputRef.current.value,
+        description: aboutInputRef.current.value,
         socialMedia: [
           { name: "Facebook", link: facebookInputRef.current.value },
           { name: "Instagram", link: instagramInputRef.current.value },
@@ -140,7 +140,7 @@ function DashboardGeneralConfig() {
               placeholder="Enter your text"
               id="about"
               ref={aboutInputRef}
-              defaultValue={club.about}
+              defaultValue={club.description}
             />
           </div>
           <div className="flex flex-col w-3/5 gap-2">
@@ -268,6 +268,42 @@ function DashboardGeneralConfig() {
                   </svg>
                   <p className="mb-2 text-sm dark:text-gray-400">
                     <span>upload Thumbnail image</span>
+                  </p>
+                </div>
+                <input id="dropzone-file" type="file" className="hidden" />
+              </label>
+            </div>
+            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">
+              Submit
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
+          <span className="border-b-2 py-2 px-3">Mapa cluba</span>
+          <div className="flex flex-col px-2 py-2">
+            <div className="flex items-center justify-center w-full m-auto">
+              <label
+                htmlFor="dropzone-file"
+                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+              >
+                <div className="flex flex-col items-center justify-center w-full">
+                  <svg
+                    className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-2 text-sm dark:text-gray-400">
+                    <span>Mapa cluba</span>
                   </p>
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />

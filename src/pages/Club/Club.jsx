@@ -1,5 +1,4 @@
 import ClubInputForm from "../../components/ClubInputForm/ClubInputForm";
-import ContactMap from "../../components/ContactComponents/ContactMap/ContactMap";
 import DrinkMenu from "../../components/DrinkMenu/DrinkMenu";
 import EventList from "../../components/EventList/EventList";
 import { useState, useEffect } from "react";
@@ -167,20 +166,19 @@ const Club = () => {
       <div className="flex flex-col items-center">
         <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5">
           <span className="text-primary font-bold mt-6 mb-4">
-            IZABERI DOGADJAJ
+            SELECT EVENT
           </span>
           <h3 className="mb-10 text-5xl font-bold dark:text-white">
-            Dogadjaji
+            Events
           </h3>
           <ClubInputForm
             handleChangIme={handleChangIme}
             handleChangTip={handleChangTip}
             handleChangeDate={handleChangeDate}
           />
-          <EventList button="Bookiraj" params={selectedParams} />
+          <EventList button="Book now" params={selectedParams} />
         </div>
       </div>
-      <ContactMap bg="#F0F4F9" />
     </>
   );
 };

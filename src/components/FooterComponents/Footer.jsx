@@ -5,6 +5,8 @@ import FooterTop from "./FooterTop/FooterTop";
 import { useParams } from "react-router-dom";
 import ClubsService from "../../services/clubsService";
 import SiteService from "../../services/siteService";
+import logo from '../../assets/where2go.png';
+
 
 function Footer() {
   const [info, setInfo] = useState();
@@ -49,7 +51,7 @@ function Footer() {
               location={info.location}
               email={info.email}
               mobile={info.mobile}
-              logo={info.clubLogo}
+              logo={logo}
               description={info.description}
             />
           )}

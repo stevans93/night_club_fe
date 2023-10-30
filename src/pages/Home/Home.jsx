@@ -110,11 +110,11 @@ function Home(props) {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Premijum Mesta
+              Premium 
             </h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
-                Vidi sve ({numberOfPremiumClubs})
+                See all ({numberOfPremiumClubs})
               </Link>
               <button
                 onClick={() => handlePrevPage("premijum")}
@@ -171,7 +171,7 @@ function Home(props) {
             setNumberOfPages={setNumberOfPremiumPages}
             setNumberOfClubs={setNumberOfPremiumClubs}
             bannerImage="Premijum Mesto"
-            button="Istrazi"
+            button="View"
           />
         </div>
       </div>
@@ -179,11 +179,11 @@ function Home(props) {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Regularna Mesta
+              Regular
             </h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
-                Vidi sve ({numberOfRegularClubs})
+                See all ({numberOfRegularClubs})
               </Link>
               <button
                 onClick={() => handlePrevPage("regular")}
@@ -240,7 +240,7 @@ function Home(props) {
             setNumberOfPages={setNumberOfRegularPages}
             setNumberOfClubs={setNumberOfRegularClubs}
             bannerImage="Regularno Mesto"
-            button="Istrazi"
+            button="View"
           />
         </div>
       </div>
@@ -248,11 +248,11 @@ function Home(props) {
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Dogadjaji
+              Events
             </h3>
             <div className="flex items-center">
               <Link to="/events" className="mr-5">
-                Vidi sve ({numberOfEvents})
+                See all ({numberOfEvents})
               </Link>
               <button
                 onClick={handlePrevPage}
@@ -306,14 +306,14 @@ function Home(props) {
             params={selectedParams}
             setNumberOfPages={setNumberOfPages}
             setNumberOfEvents={setNumberOfEvents}
-            button="Bookiraj"
+            button="Book now"
           />
         </div>
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col items-center max-w-screen-xl px-20 py-20">
           <h2 className="mb-6 text-3xl font-bold datext-blackrk:text-white text-center">
-            Zasto <span className="text-primary">Izabrati nas</span>
+            Why <span className="text-primary">choose us?</span>
           </h2>
           <div className="flex md:flex-row xs:flex-col gap-5">
             <div className="flex flex-col items-center">
@@ -321,7 +321,7 @@ function Home(props) {
                 <img className="w-18 h-18" src={clocklIcon} alt="" />
               </div>
               <h6 className="text-lg font-bold text-black mb-3">
-                Izaberite vreme
+                Choose a time
               </h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -339,7 +339,7 @@ function Home(props) {
                 />
               </div>
               <h6 className="text-lg font-bold text-black mb-3">
-                Rezervisete odmah
+                Book now
               </h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -353,7 +353,7 @@ function Home(props) {
                 <img className="w-18 h-18 bg-primary" src={pathIcon} alt="" />
               </div>
               <h6 className="text-lg font-bold text-black mb-3">
-                100% bezbedno
+                100% safe
               </h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.

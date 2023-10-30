@@ -20,15 +20,6 @@ function DashboardNavbar({ handleOpen }) {
           <BsEye size="1.1rem" /> View page
         </button>
       </div>
-      <div className="flex gap-5 items-center">
-        <div className="flex rounded-circle items-center justify-center h-8 w-8 bg-primary">
-          <BiSolidBellRing className="text-white" size="1.1rem" />
-        </div>
-        <div className="flex items-center gap-2">
-          <span>English</span>
-          <IoIosArrowDown className="text-primary" />
-        </div>
-      </div>
     </nav>
   );
 }

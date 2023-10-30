@@ -27,7 +27,7 @@ const InputForm = (props) => {
   return (
     <div className="flex xs:flex-col sm:flex-row flex-wrap gap-5 mb-10">
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="ime">Ime</label>
+        <label htmlFor="ime">Name</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedName}
@@ -36,7 +36,7 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="tip">Tip</label>
+        <label htmlFor="tip">Type</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedTip}
@@ -45,7 +45,7 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="gde">Gde</label>
+        <label htmlFor="gde">Where</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedLocation}
@@ -54,7 +54,7 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="kada">Kada</label>
+        <label htmlFor="kada">When</label>
         <input
           id="kada"
           className="border-black border-2 px-3 py-1 rounded h-full"

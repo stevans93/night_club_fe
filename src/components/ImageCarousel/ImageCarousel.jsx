@@ -3,7 +3,7 @@ import { Carousel } from "flowbite-react";
 export default function ImageCarousel(props) {
   return (
     <div className="h-full">
-      <Carousel slideInterval={5000}>
+      <Carousel slideInterval={5000} className="z-0">
         {props.images
           .filter((x) => x.link !== "")
           .map((image, index) => {

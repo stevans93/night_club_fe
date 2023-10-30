@@ -9,15 +9,15 @@ const DashboardAvaliableDays = () => {
   const clubId = ncUser ? ncUser.clubId : undefined;
 
   const handleChange = (item) => {
-    setHours((hours) => [
-      ...hours.map((i) => {
+    setHours((hours) =>
+      hours.map((i) => {
         if (i._id === item._id) {
           return item;
         } else {
           return i;
         }
-      }),
-    ]);
+      })
+    );
   };
 
   const handleConfirm = async (event) => {

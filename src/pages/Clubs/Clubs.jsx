@@ -48,10 +48,10 @@ const Clubs = () => {
     <div className="flex flex-col items-center bg-gradient-to-b from-white from-30% to-30% to-[#F0F4F9]">
       <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5">
         <span className="text-primary font-bold mt-6 mb-4">
-          IZABERI GDE IZLAZIS
+        CHOOSE WHERE YOU GO OUT
         </span>
         <h3 className="mb-10 text-5xl font-bold dark:text-white">
-          Ugostiteljski objekti
+          Clubs
         </h3>
         <InputForm
           handleChangeName={handleChangeName}
@@ -59,13 +59,13 @@ const Clubs = () => {
           handleChangeDate={handleChangeDate}
           handleChangeType={handleChangeType}
         />
-        <ClubList params={selectedParams} button="Istrazi" />
+        <ClubList params={selectedParams} button="View" />
       </div>
       <button
         onClick={handleLoadMore}
         className="mt-10 inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-primary rounded-full hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary"
       >
-        Vidi jos
+        See more
       </button>
     </div>
   );

@@ -19,14 +19,26 @@ input:-webkit-autofill{
   background: transparent;
 }
 
+@media screen and (max-width: 820px) {
+  .dropdown {
+    top: 70px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .dropdown {
+    top: 70px;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .dropdown {
-    top: 15%;
+    top: 70px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .dropdown {
-    top: 18%;
+    top: 120px;
   }
 }

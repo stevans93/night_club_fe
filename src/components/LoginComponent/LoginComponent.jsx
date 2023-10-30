@@ -152,23 +152,7 @@ function LoginComponent() {
                 Sign in
               </button>
             </div>
-            <div className="text-center">
-              <Link href="/" className="hover:text-primary">
-                Zaboravili ste lozinku?
-              </Link>
-            </div>
           </form>
-          <div className="flex flex-col items-center gap-2 mt-[30px] lg:mt-[20px] mb-2">
-            <div className="flex flex-col lg:flex-row gap-2">
-              <button className="flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]">
-                <BsGoogle className="text-3xl mr-2" />
-                Prijavite se sa Google
-              </button>
-            </div>
-            <Link to="/main/register" className="hover:text-primary">
-              <p>Nemate nalog? Kreiraje ovde</p>
-            </Link>
-          </div>
         </div>
       </div>
       <div>

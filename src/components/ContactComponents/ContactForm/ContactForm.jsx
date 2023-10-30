@@ -22,7 +22,7 @@ function ContactForm() {
 
         onSubmit: (values) => {
             try {
-                    toast.success('Registration is successful!', {
+                    toast.success('Message successful sent!', {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -71,7 +71,7 @@ function ContactForm() {
                 <div className='flex flex-col gap-2'>
                     <label>Message {' '} <span className='text-[14px] text-red-600'> {showError('message')} </span></label>
                     <textarea name="message" value={formik.values.message} onChange={formik.handleChange} className='border border-others rounded-lg w-[300px] h-[100%]'></textarea>
-                    <button type='submit' className='flex items-center justify-center border border-primary bg-primary text-white hover:bg-primary rounded-[4px] mt-3 py-2 hover:text-white'>Posalji <BsSend className='ml-2' /></button>
+                    <button type='submit' className='flex items-center justify-center border border-primary bg-primary text-white hover:bg-primary rounded-[4px] mt-3 py-2 hover:text-white'>Send <BsSend className='ml-2' /></button>
                 </div>
                 
             </form>

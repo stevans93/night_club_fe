@@ -1,7 +1,6 @@
 import "../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { BsCalendar4 } from "react-icons/bs";
-import { ImLocation2 } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 
 const EventModal = (props) => {
@@ -23,7 +22,7 @@ const EventModal = (props) => {
                 </div>
                 <div className="flex flex-col flex-1 px-6 relative">
                   <span className="text-2xl font-bold">{props.event.name}</span>
-                  <span className="text-lg font-bold">Naziv kluba</span>
+                  <span className="text-lg font-bold">Club name</span>
                   <span className="mt-6 mb-6">{props.event.description}</span>
                   <div className="flex">
                     <div className="flex gap-4 flex-1 px-4 items-center">
@@ -37,13 +36,6 @@ const EventModal = (props) => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex gap-4 border-l-2 flex-1 px-4 items-center">
-                      <ImLocation2 className="text-primary" size="2rem" />
-                      <div className="flex flex-col gap-2">
-                        <span>Location</span>
-                        <span>***lokacija***</span>
-                      </div>
-                    </div>
                   </div>
                   <div className="flex flex-col w-1/2 items-center self-center mt-10 border-4 rounded-3xl py-10 gap-6 absolute bottom-0">
                     <span className="font-bold text-2xl">
@@ -55,7 +47,7 @@ const EventModal = (props) => {
                       }}
                       className="bg-primary text-white py-2 px-10 rounded-lg"
                     >
-                      Rezervisi
+                      Make Reservations
                     </button>
                   </div>
                   <Button

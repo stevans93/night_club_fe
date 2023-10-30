@@ -44,13 +44,6 @@ const ReservationHeader = (props) => {
               All Reservation List
             </button>
           )}
-          <button
-            onClick={props.handleAddReservationModalOpen}
-            className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
-          >
-            <AiOutlinePlus size="1.2rem" />
-            Add reservation
-          </button>
           <div className="flex items-center gap-2">
             <span>Show</span>
             <select
@@ -89,7 +82,7 @@ const ReservationHeader = (props) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <select
               className="h-8 w-20 border rounded-xlpx-1 border rounded-xl"
               value={props.selectedTable}
@@ -106,7 +99,7 @@ const ReservationHeader = (props) => {
                 );
               })}
             </select>
-          </div>
+          </div> */}
 
           <select
             className="h-8 w-20 border rounded-xlpx-1 border rounded-xl"

@@ -105,7 +105,7 @@ function RegistrationComponent() {
 
   return (
     <div className='flex justify-between bg-white text-others flex-grow h-[100vh] lg:mt-0'>
-        <div className='flex flex-col justify-center mt-[350px] md:mt-[200px] lg:m-9 mx-auto'>
+        <div className='flex flex-col justify-center mx-auto'>
             <div className='flex flex-col items-center gap-2 m-4'>
                 <Link to="/"><img src={logo} alt="login" className='w-[250px]'/></Link>
                 <p className='text-xl text-center'>Registrujte se da biste pristupili svom profilu</p>
@@ -161,11 +161,6 @@ function RegistrationComponent() {
                     </div>
 
                 </form>
-                <div className='flex flex-col items-center gap-2 mt-[20px] lg:mt-[20px] mb-10 lg:mb-4'>
-                    <div className='flex flex-col lg:flex-row gap-2'>
-                        <button className='flex flex-row border border-red-500 hover:bg-red-500 hover:text-white justify-center items-center text-red-500 text-lg w-[300px] h-[55px] rounded-[4px]'><BsGoogle className='text-3xl mr-2' />Prijavite se sa Google</button>
-                    </div>
-                </div>
             </div>
         </div>
         <div>

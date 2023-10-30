@@ -205,7 +205,7 @@ function DashboardGeneralConfig() {
           </button>
         </form>
       )}
-      <div className="flex flex-col w-4/12 ml-10">
+      {/* <div className="flex flex-col w-4/12 ml-10">
         <div className="flex flex-col gap-2 mt-4 h-fit bg-white shadow-lg">
           <span className="border-b-2 py-2 px-3">Logo</span>
           <div className="flex flex-col px-2 py-2">
@@ -314,7 +314,7 @@ function DashboardGeneralConfig() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

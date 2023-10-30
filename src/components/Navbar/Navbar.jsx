@@ -7,6 +7,7 @@ import { logOutUser } from "../../store/userSlice";
 import { toast } from "react-toastify";
 import UserProfile from "../UserProfile/UserProfile";
 import SiteService from "../../services/siteService";
+import logo from '../../assets/where2go.png';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -67,15 +68,13 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-secondary relative">
+      <nav className="bg-secondary relative z-10">
         <div className=" flex justify-between items-center container mx-auto px-4 py-5 text-sm">
-          {info && (
             <a href="/" className="m-2">
-              <img src={info.clubLogo} alt="where2go" className="w-[150px]" />
+              <img src={logo} alt="where2go" className="w-[150px]" />
             </a>
-          )}
 
-          <div className="lg:hidden">
+          <div className="lg:hidden right-4 absolute">
             <button
               className="navbar-burger flex items-center text-blue-600 p-3"
               position="right"
@@ -89,25 +88,25 @@ function Navbar() {
           </div>
 
           {localStorage.hasOwnProperty("nc_user") ? (
-            <div className="flex w-full">
+            <div className="flex items-center">
               <div className="hidden lg:flex lg:justify-center lg:items-center w-full">
                 <NavLink to="/" className="m-2">
-                  Početna
+                  Home
                 </NavLink>
                 <NavLink to="/clubs" className="m-2">
-                  Ugostiteljski Objekti
+                  Clubs
                 </NavLink>
                 <NavLink to="/about" className="m-2">
-                  O Nama
+                  About Us
                 </NavLink>
                 <NavLink to="/contact" className="m-2">
-                  Kontakt
+                  Contact Us
                 </NavLink>
                 <NavLink
                   to="/events"
                   className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
                 >
-                  Događaji
+                  Events
                 </NavLink>
                 {userRole !== "user" && (
                   <NavLink
@@ -123,32 +122,30 @@ function Navbar() {
                 >
                   Log Out
                 </button>
-                <select className="bg-secondary ml-2">
-                  <option>SR</option>
-                  <option>EN</option>
-                </select>
+
+                <UserProfile user={ncUser}/>
               </div>
-              <UserProfile />
+              
             </div>
           ) : (
             <div className="hidden lg:inline-block">
               <NavLink to="/" className="m-2">
-                Početna
+                Home
               </NavLink>
               <NavLink to="/clubs" className="m-2">
-                Ugostiteljski Objekti
+                Clubs
               </NavLink>
               <NavLink to="/about" className="m-2">
-                O Nama
+                About Us
               </NavLink>
               <NavLink to="/contact" className="m-2">
-                Kontakt
+                Contact Us
               </NavLink>
               <NavLink
                 to="/events"
                 className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
               >
-                Događaji
+                Events
               </NavLink>
               <NavLink
                 to="/main/login"
@@ -162,10 +159,6 @@ function Navbar() {
               >
                 Register
               </NavLink>
-              <select className="bg-secondary ml-2">
-                <option>SR</option>
-                <option>EN</option>
-              </select>
             </div>
           )}
         </div>
@@ -174,25 +167,25 @@ function Navbar() {
           <div
             className={`${
               open ? "" : "hidden"
-            } dropdown absolute flex flex-col justify-center items-center top-[13%] sm:top-[10%] md:top-[9%] left-0 text-center bg-secondary w-[100%]`}
+            } dropdown absolute flex flex-col justify-center items-center left-0 text-center bg-secondary w-[100%]`}
           >
             <NavLink to="/" className="m-2">
-              Početna
+              Home
             </NavLink>
             <NavLink to="/clubs" className="m-2">
-              Ugostiteljski Objekti
+              Clubs
             </NavLink>
             <NavLink to="/about" className="m-2">
-              O Nama
+              About Us
             </NavLink>
             <NavLink to="/contact" className="m-2">
-              Kontakt
+              Contact Us
             </NavLink>
             <NavLink
               to="/events"
               className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
             >
-              Događaji
+              Events
             </NavLink>
             {userRole !== "user" && (
               <NavLink
@@ -208,34 +201,30 @@ function Navbar() {
             >
               Log Out
             </button>
-            <select className="bg-secondary mt-2 mb-3">
-              <option>SR</option>
-              <option>EN</option>
-            </select>
           </div>
         ) : (
           <div
             className={`${
               open ? "" : "hidden"
-            } dropdown absolute flex flex-col justify-center items-center top-[13%] sm:top-[10%] md:top-[9%] left-0 text-center bg-secondary w-[100%]`}
+            } dropdown absolute flex flex-col justify-center items-center left-0 text-center bg-secondary w-[100%]`}
           >
             <NavLink to="/" className="m-2">
-              Početna
+              Home
             </NavLink>
             <NavLink to="/clubs" className="m-2">
-              Ugostiteljski Objekti
+              Clubs
             </NavLink>
             <NavLink to="/about" className="m-2">
-              O Nama
+              About Us
             </NavLink>
             <NavLink to="/contact" className="m-2">
-              Kontakt
+              Contact Us
             </NavLink>
             <NavLink
               to="/events"
               className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
             >
-              Događaji
+              Events
             </NavLink>
             <NavLink
               to="/main/login"
@@ -249,10 +238,6 @@ function Navbar() {
             >
               Register
             </NavLink>
-            <select className="bg-secondary mt-2 mb-3">
-              <option>SR</option>
-              <option>EN</option>
-            </select>
           </div>
         )}
       </nav>

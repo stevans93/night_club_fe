@@ -1,134 +1,130 @@
-import { Link } from "react-router-dom";
-import pathIcon from "../../assets/path.svg";
-import clocklIcon from "../../assets/clock.svg";
-import surfaceIcon from "../../assets/surface.svg";
-import EventList from "../../components/EventList/EventList";
-import ClubList from "../../components/ClubList/ClubList";
-import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
-import SiteService from "../../services/siteService";
-import { useState, useEffect } from "react";
+import {useEffect, useState} from 'react'
+
+import ClubList from '../../components/ClubList/ClubList'
+import EventList from '../../components/EventList/EventList'
+import ImageCarousel from '../../components/ImageCarousel/ImageCarousel'
+import {Link} from 'react-router-dom'
+import SiteService from '../../services/siteService'
+import clocklIcon from '../../assets/clock.svg'
+import pathIcon from '../../assets/path.svg'
+import surfaceIcon from '../../assets/surface.svg'
 
 function Home(props) {
-  const [sliderImages, setSliderImages] = useState(null);
+  const [sliderImages, setSliderImages] = useState(null)
   //events
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
-    pageSize: 6,
-  });
-  const [numberOfPages, setNumberOfPages] = useState(1);
-  const [numberOfEvents, setNumberOfEvents] = useState();
+    pageSize: 6
+  })
+  const [numberOfPages, setNumberOfPages] = useState(1)
+  const [numberOfEvents, setNumberOfEvents] = useState()
 
   //regular places
   const [selectedRegularParams, setSelectedRegularParams] = useState({
     pageNumber: 1,
     pageSize: 6,
-    bannerImage: "Regular",
-  });
-  const [numberOfRegularPages, setNumberOfRegularPages] = useState(1);
-  const [numberOfRegularClubs, setNumberOfRegularClubs] = useState();
+    bannerImage: 'Regular'
+  })
+  const [numberOfRegularPages, setNumberOfRegularPages] = useState(1)
+  const [numberOfRegularClubs, setNumberOfRegularClubs] = useState()
 
   //premium places
   const [selectedPremiumParams, setSelectedPremiumParams] = useState({
     pageNumber: 1,
     pageSize: 6,
-    bannerImage: "Premijum",
-  });
-  const [numberOfPremiumPages, setNumberOfPremiumPages] = useState(1);
-  const [numberOfPremiumClubs, setNumberOfPremiumClubs] = useState();
+    bannerImage: 'Premijum'
+  })
+  const [numberOfPremiumPages, setNumberOfPremiumPages] = useState(1)
+  const [numberOfPremiumClubs, setNumberOfPremiumClubs] = useState()
 
   const handleNextPage = (value) => {
-    if (value === "premijum") {
+    if (value === 'premijum') {
       setSelectedPremiumParams((selectedPremiumParams) => ({
         ...selectedPremiumParams,
-        pageNumber: selectedPremiumParams.pageNumber + 1,
-      }));
+        pageNumber: selectedPremiumParams.pageNumber + 1
+      }))
     }
 
-    if (value === "regular") {
+    if (value === 'regular') {
       setSelectedRegularParams((selectedRegularParams) => ({
         ...selectedRegularParams,
-        pageNumber: selectedRegularParams.pageNumber + 1,
-      }));
+        pageNumber: selectedRegularParams.pageNumber + 1
+      }))
     }
 
-    if (value === "events") {
+    if (value === 'events') {
       setSelectedParams((selectedParams) => ({
         ...selectedParams,
-        pageNumber: selectedParams.pageNumber + 1,
-      }));
+        pageNumber: selectedParams.pageNumber + 1
+      }))
     }
-  };
+  }
 
   const handlePrevPage = (value) => {
-    if (value === "premijum") {
+    if (value === 'premijum') {
       setSelectedPremiumParams((selectedPremiumParams) => ({
         ...selectedPremiumParams,
-        pageNumber: selectedPremiumParams.pageNumber - 1,
-      }));
+        pageNumber: selectedPremiumParams.pageNumber - 1
+      }))
     }
 
-    if (value === "regular") {
+    if (value === 'regular') {
       setSelectedRegularParams((selectedRegularParams) => ({
         ...selectedRegularParams,
-        pageNumber: selectedRegularParams.pageNumber - 1,
-      }));
+        pageNumber: selectedRegularParams.pageNumber - 1
+      }))
     }
 
-    if (value === "events") {
+    if (value === 'events') {
       setSelectedParams((selectedParams) => ({
         ...selectedParams,
-        pageNumber: selectedParams.pageNumber - 1,
-      }));
+        pageNumber: selectedParams.pageNumber - 1
+      }))
     }
-  };
+  }
 
   useEffect(() => {
     const fetchSliderImages = async () => {
       try {
-        const sliderImages = await SiteService.getSiteSliderImages();
+        const sliderImages = await SiteService.getSiteSliderImages()
         if (sliderImages) {
-          setSliderImages(sliderImages);
+          console.log(sliderImages)
+          setSliderImages(sliderImages)
         }
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching images:", error);
+        console.error('An error occurred while fetching images:', error)
       }
-    };
+    }
 
-    fetchSliderImages();
-  }, []);
+    fetchSliderImages()
+  }, [])
 
   return (
     <div className="flex flex-col w-full">
       <div className="relative xl:h-h700 sm:h-96 xs:h-80">
-        {sliderImages && (
-          <ImageCarousel images={sliderImages.siteSliderImages} />
-        )}
+        {sliderImages && <ImageCarousel images={sliderImages.siteSliderImages} />}
         {/* <CarouselText /> */}
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Premium 
-            </h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Premium</h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
                 See all ({numberOfPremiumClubs})
               </Link>
               <button
-                onClick={() => handlePrevPage("premijum")}
+                onClick={() => handlePrevPage('premijum')}
                 disabled={selectedPremiumParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
-              >
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -140,20 +136,16 @@ function Home(props) {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
-                onClick={() => handleNextPage("premijum")}
-                disabled={
-                  selectedPremiumParams.pageNumber === numberOfPremiumPages
-                }
+                onClick={() => handleNextPage('premijum')}
+                disabled={selectedPremiumParams.pageNumber === numberOfPremiumPages}
                 type="button"
-                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
-              >
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -178,26 +170,22 @@ function Home(props) {
       <div className="flex justify-center py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Regular
-            </h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Regular</h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
                 See all ({numberOfRegularClubs})
               </Link>
               <button
-                onClick={() => handlePrevPage("regular")}
+                onClick={() => handlePrevPage('regular')}
                 disabled={selectedRegularParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary"
-              >
+                className="rotate-180 text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -209,20 +197,16 @@ function Home(props) {
                 <span className="sr-only">Icon description</span>
               </button>
               <button
-                onClick={() => handleNextPage("regular")}
-                disabled={
-                  selectedRegularParams.pageNumber === numberOfRegularPages
-                }
+                onClick={() => handleNextPage('regular')}
+                disabled={selectedRegularParams.pageNumber === numberOfRegularPages}
                 type="button"
-                className="text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary"
-              >
+                className="text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -247,9 +231,7 @@ function Home(props) {
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">
-              Events
-            </h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Events</h3>
             <div className="flex items-center">
               <Link to="/events" className="mr-5">
                 See all ({numberOfEvents})
@@ -258,15 +240,13 @@ function Home(props) {
                 onClick={handlePrevPage}
                 disabled={selectedParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
-              >
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -281,15 +261,13 @@ function Home(props) {
                 onClick={handleNextPage}
                 disabled={selectedParams.pageNumber === numberOfPages}
                 type="button"
-                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary"
-              >
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  viewBox="0 0 14 10"
-                >
+                  viewBox="0 0 14 10">
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -320,53 +298,40 @@ function Home(props) {
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18" src={clocklIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">
-                Choose a time
-              </h6>
+              <h6 className="text-lg font-bold text-black mb-3">Choose a time</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Perferendis vero sit facilis, laborum corrupti sunt quaerat
-                aperiam voluptas placeat similique modi sed ut a in distinctio
-                atque earum consequatur porro?
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
+                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
+                porro?
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
-                <img
-                  className="w-18 h-18 bg-primary"
-                  src={surfaceIcon}
-                  alt=""
-                />
+                <img className="w-18 h-18 bg-primary" src={surfaceIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">
-                Book now
-              </h6>
+              <h6 className="text-lg font-bold text-black mb-3">Book now</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Perferendis vero sit facilis, laborum corrupti sunt quaerat
-                aperiam voluptas placeat similique modi sed ut a in distinctio
-                atque earum consequatur porro?
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
+                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
+                porro?
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18 bg-primary" src={pathIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">
-                100% safe
-              </h6>
+              <h6 className="text-lg font-bold text-black mb-3">100% safe</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Perferendis vero sit facilis, laborum corrupti sunt quaerat
-                aperiam voluptas placeat similique modi sed ut a in distinctio
-                atque earum consequatur porro?
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
+                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
+                porro?
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

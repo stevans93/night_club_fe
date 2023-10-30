@@ -1,65 +1,69 @@
-import { useRef, useState } from "react";
-import ClubsService from "../../../services/clubsService";
-import SiteService from "../../../services/siteService";
+import {useRef, useState} from 'react'
+
+import ClubsService from '../../../services/clubsService'
+import SiteService from '../../../services/siteService'
+import convertToBase64 from '../../../helpers/base64Converter'
 
 const DashboardSliderConfig = (props) => {
-  const [imageNames, setImageNames] = useState(Array(6).fill("")); // Initialize with empty strings
-  const imageRefs = Array.from({ length: 6 }, () => useRef());
+  const [imageNames, setImageNames] = useState(Array(6).fill('')) // Initialize with empty strings
+  const imageRefs = Array.from({length: 6}, () => useRef())
 
-  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : undefined;
-  const userRole = ncUser ? ncUser.role : null;
+  const ncUser = JSON.parse(localStorage.getItem('nc_user'))
+  console.log('ncUser')
+  console.log(ncUser)
+  const clubId = ncUser ? ncUser.clubId : undefined
+  const userRole = ncUser ? ncUser.role : null
 
   const handleImageChange = (index) => {
-    const file = imageRefs[index].current.files[0];
+    const file = imageRefs[index].current.files[0]
     if (file) {
       setImageNames((imageNames) => [
         ...imageNames.slice(0, index), // Keep the previous image names as they are
         file.name, // Set the image name
-        ...imageNames.slice(index + 1), // Keep the rest of the image names as they are
-      ]);
+        ...imageNames.slice(index + 1) // Keep the rest of the image names as they are
+      ])
     }
-  };
+  }
 
   const handleImagesForm = async (event) => {
-    event.preventDefault();
-    if (userRole !== "admin") {
-      await ClubsService.updateClub(clubId, getFormData());
+    event.preventDefault()
+    const dataToSend = await getDataToUpload()
+    if (userRole !== 'admin') {
+      await ClubsService.updateClub(clubId, dataToSend)
     } else {
-      await SiteService.editSingleSite(clubId, getFormData());
+      await SiteService.editSingleSite(dataToSend)
     }
-    window.location.reload();
-  };
+    window.location.reload()
+  }
 
-  const getFormData = () => {
-    const formData = new FormData();
-    formData.append("clubId", clubId);
+  const getDataToUpload = async () => {
+    let dataToUpload = {}
+    dataToUpload.clubId = clubId
+
+    dataToUpload.sliderImages = []
 
     for (let i = 0; i < 6; i++) {
       if (imageRefs[i].current.files[0]) {
-        formData.append(`image${i + 1}`, imageRefs[i].current.files[0]);
+        dataToUpload.sliderImages.push({
+          name: `image${i + 1}`,
+          link: await convertToBase64(imageRefs[i].current.files[0])
+        })
       }
     }
-    return formData;
-  };
+
+    return dataToUpload
+  }
 
   return (
     <>
       <form className="flex flex-col items-center w-4/12 ml-10 mt-4 bg-white shadow-lg px-4 py-4 gap-4 h-fit">
         <span className="flex">Slider images</span>
         <div className="flex w-full justify-between flex-col">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              className="flex flex-col w-9/12 gap-2"
-              key={`image${index + 1}`}
-            >
+          {Array.from({length: 6}).map((_, index) => (
+            <div className="flex flex-col w-9/12 gap-2" key={`image${index + 1}`}>
               <div className="flex gap-5">
-                <label htmlFor={`image${index + 1}`}>{`Image ${
-                  index + 1
-                } :`}</label>
-                {imageNames[index] && (
-                  <span className="z-10">{imageNames[index]}</span>
-                )}
+                <label htmlFor={`image${index + 1}`}>{`Image ${index + 1} :`}</label>
+                {imageNames[index] && <span className="z-10">{imageNames[index]}</span>}
               </div>
               <div className="flex items-center relative rounded-lg overflow-hidden">
                 <input
@@ -71,23 +75,19 @@ const DashboardSliderConfig = (props) => {
                 />
                 <label
                   htmlFor={`image${index + 1}`}
-                  className="absolute right-0 left-0 top-0 bottom-0 cursor-pointer z-1 rounded-lg bg-gray-200 text-gray-700 hover-bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out text-center p-2"
-                >
+                  className="absolute right-0 left-0 top-0 bottom-0 cursor-pointer z-1 rounded-lg bg-gray-200 text-gray-700 hover-bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out text-center p-2">
                   Upload
                 </label>
               </div>
             </div>
           ))}
         </div>
-        <button
-          onClick={handleImagesForm}
-          className="flex bg-primary text-white py-3 px-12 rounded-lg"
-        >
+        <button onClick={handleImagesForm} className="flex bg-primary text-white py-3 px-12 rounded-lg">
           Confirm
         </button>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default DashboardSliderConfig;
+export default DashboardSliderConfig

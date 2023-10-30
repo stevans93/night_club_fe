@@ -3,7 +3,7 @@ import { getToken } from "../helpers/auth";
 
 // Base instance with application/json content type
 const instance = axios.create({
-  baseURL: "https://api.where2go.vip/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 instance.interceptors.request.use((config) => {
@@ -17,7 +17,7 @@ instance.interceptors.request.use((config) => {
 
 // Create a new instance specifically for file uploads
 const uploadInstance = axios.create({
-  baseURL: "https://api.where2go.vip/api", // Change the base URL if necessary
+  baseURL: import.meta.env.VITE_API_URL, // Change the base URL if necessary
 });
 
 uploadInstance.interceptors.request.use((config) => {

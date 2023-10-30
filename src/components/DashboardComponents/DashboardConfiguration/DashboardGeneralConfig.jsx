@@ -1,94 +1,105 @@
-import { useRef, useState, useEffect } from "react";
-import ClubsService from "../../../services/clubsService";
-import { FaFacebookF } from "react-icons/fa6";
-import { BsInstagram, BsWhatsapp } from "react-icons/bs";
-import SiteService from "../../../services/siteService";
+import {BsInstagram, BsWhatsapp} from 'react-icons/bs'
+import {useEffect, useRef, useState} from 'react'
+
+import ClubsService from '../../../services/clubsService'
+import {FaFacebookF} from 'react-icons/fa6'
+import SiteService from '../../../services/siteService'
+import convertToBase64 from '../../../helpers/base64Converter'
 
 function DashboardGeneralConfig() {
-  const logoInputRef = useRef();
-  const locationInputRef = useRef();
-  const emailInputRef = useRef();
-  const phoneInputRef = useRef();
-  const aboutInputRef = useRef();
-  const facebookInputRef = useRef();
-  const instagramInputRef = useRef();
-  const whatsAppInputRef = useRef();
+  const logoInputRef = useRef()
+  const locationInputRef = useRef()
+  const emailInputRef = useRef()
+  const phoneInputRef = useRef()
+  const aboutInputRef = useRef()
+  const facebookInputRef = useRef()
+  const instagramInputRef = useRef()
+  const whatsAppInputRef = useRef()
 
-  const [club, setClub] = useState();
+  const [logoInput, setLogoInput] = useState(null)
+  const [thumbnailInput, setThumbnailInput] = useState(null)
+  const [mapClubInput, setMapClubInput] = useState(null)
+  const [club, setClub] = useState()
 
-  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
-  const clubId = ncUser ? ncUser.clubId : undefined;
-  const userRole = ncUser ? ncUser.role : null;
+  const ncUser = JSON.parse(localStorage.getItem('nc_user'))
+  const clubId = ncUser ? ncUser.clubId : undefined
+  const userRole = ncUser ? ncUser.role : null
 
   const handleConfigurationForm = async (event) => {
-    event.preventDefault();
-    await saveConfiguration(clubId);
-    window.location.reload();
-  };
+    event.preventDefault()
+    const newData = await saveConfiguration(clubId)
+    setClub(newData)
+    window.location.reload()
+  }
 
   const saveConfiguration = async (clubId) => {
     try {
       const club = {
         _id: clubId,
-        clubLogo: logoInputRef.current.value,
+        clubLogo: logoInput,
         location: locationInputRef.current.value,
         email: emailInputRef.current.value,
         mobile: phoneInputRef.current.value,
         description: aboutInputRef.current.value,
         socialMedia: [
-          { name: "Facebook", link: facebookInputRef.current.value },
-          { name: "Instagram", link: instagramInputRef.current.value },
-          { name: "WhatsApp", link: whatsAppInputRef.current.value },
+          {name: 'Facebook', link: facebookInputRef.current.value},
+          {name: 'Instagram', link: instagramInputRef.current.value},
+          {name: 'WhatsApp', link: whatsAppInputRef.current.value}
         ],
-      };
-      if (userRole !== "admin") {
-        await ClubsService.updateClub(clubId, club);
+        profileImage: thumbnailInput,
+        clubMap: mapClubInput
+      }
+      if (userRole !== 'admin') {
+        await ClubsService.updateClub(clubId, club)
       } else {
-        await SiteService.editSingleSite(club);
+        await SiteService.editSingleSite(club)
       }
     } catch (error) {
       // Handle any errors here (e.g., show an error toast)
-      console.error(
-        "An error occurred while saving club configuration:",
-        error
-      );
+      console.error('An error occurred while saving club configuration:', error)
     }
-  };
+  }
+
+  async function handleChange(e) {
+    console.log(e.target.name)
+    if (e.target.name === 'logoInput') setLogoInput(await convertToBase64(e.target.files[0]))
+    if (e.target.name === 'thumbnailInput') setThumbnailInput(await convertToBase64(e.target.files[0]))
+    if (e.target.name === 'mapClubInput') setMapClubInput(await convertToBase64(e.target.files[0]))
+  }
 
   useEffect(() => {
     const fetchClubById = async () => {
       try {
-        const clubInfo = await ClubsService.getSingleClub(clubId);
+        const clubInfo = await ClubsService.getSingleClub(clubId)
 
-        setClub(clubInfo);
+        setClub(clubInfo)
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching club info:", error);
+        console.error('An error occurred while fetching club info:', error)
       }
-    };
+    }
 
     const fetchSiteInfo = async () => {
       try {
-        const siteInfo = await SiteService.getSingleSite();
-        setClub(siteInfo);
+        const siteInfo = await SiteService.getSingleSite()
+        setClub(siteInfo)
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching site info:", error);
+        console.error('An error occurred while fetching site info:', error)
       }
-    };
-
-    if (userRole !== "admin") {
-      fetchClubById();
-    } else {
-      fetchSiteInfo();
     }
-  }, [clubId]);
+    if (userRole !== 'admin') {
+      fetchClubById()
+    } else {
+      fetchSiteInfo()
+    }
+  }, [clubId])
 
   return (
     <div className="flex w-9/12 h-fit">
       {club && (
         <form className="flex flex-col gap-5 px-4 w-6/12 py-5 shadow-lg ml-10 mt-4 bg-white">
-          <div className="flex flex-col w-3/5 gap-2">
+          {/* <div className="flex flex-col w-3/5 gap-2">
             <label htmlFor="logo">Logo</label>
             <input
               className="border-2 rounded-lg px-2 h-10"
@@ -98,7 +109,7 @@ function DashboardGeneralConfig() {
               ref={logoInputRef}
               defaultValue={club.clubLogo}
             />
-          </div>
+          </div> */}
           <div className="flex flex-col w-3/5 gap-2">
             <label htmlFor="location">Location</label>
             <input
@@ -154,9 +165,9 @@ function DashboardGeneralConfig() {
                 id="facebook"
                 ref={facebookInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === "Facebook")
-                    ? club.socialMedia.find((x) => x.name === "Facebook").link
-                    : ""
+                  club.socialMedia.find((x) => x.name === 'Facebook')
+                    ? club.socialMedia.find((x) => x.name === 'Facebook').link
+                    : ''
                 }
               />
             </div>
@@ -172,9 +183,9 @@ function DashboardGeneralConfig() {
                 id="instagram"
                 ref={instagramInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === "Instagram")
-                    ? club.socialMedia.find((x) => x.name === "Instagram").link
-                    : ""
+                  club.socialMedia.find((x) => x.name === 'Instagram')
+                    ? club.socialMedia.find((x) => x.name === 'Instagram').link
+                    : ''
                 }
               />
             </div>
@@ -190,38 +201,35 @@ function DashboardGeneralConfig() {
                 id="whatsApp"
                 ref={whatsAppInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === "WhatsApp")
-                    ? club.socialMedia.find((x) => x.name === "WhatsApp").link
-                    : ""
+                  club.socialMedia.find((x) => x.name === 'WhatsApp')
+                    ? club.socialMedia.find((x) => x.name === 'WhatsApp').link
+                    : ''
                 }
               />
             </div>
           </div>
           <button
             onClick={handleConfigurationForm}
-            className="flex border-2 w-fit px-10 py-2 rounded-lg bg-primary text-white"
-          >
+            className="flex border-2 w-fit px-10 py-2 rounded-lg bg-primary text-white">
             Confirm
           </button>
         </form>
       )}
-      {/* <div className="flex flex-col w-4/12 ml-10">
+      <div className="flex flex-col w-4/12 ml-10">
         <div className="flex flex-col gap-2 mt-4 h-fit bg-white shadow-lg">
           <span className="border-b-2 py-2 px-3">Logo</span>
           <div className="flex flex-col px-2 py-2">
             <div className="flex items-center justify-center w-2/5 m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-              >
+                className="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div className="flex flex-col items-center justify-center">
-                  <svg
+                  {/* <svg
                     className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 20 16"
-                  >
+                    viewBox="0 0 20 16">
                     <path
                       stroke="currentColor"
                       strokeLinecap="round"
@@ -229,17 +237,19 @@ function DashboardGeneralConfig() {
                       strokeWidth="2"
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
-                  </svg>
-                  <p className="mb-2 text-sm dark:text-gray-400">
+                  </svg> */}
+                  {/* <img src={}></img> */}
+                  <label htmlFor="logoInput">Chose File</label>
+                  <input name="logoInput" type="file" onChange={handleChange} />
+                  {logoInput ? <img src={logoInput} /> : null}
+                  {/* <p className="mb-2 text-sm dark:text-gray-400">
                     <span>upload logo image</span>
-                  </p>
+                  </p> */}
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                {/* <input id="dropzone-file" type="file" className="hidden" /> */}
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-3 w-fit self-end">
-              Submit
-            </button>
+            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-3 w-fit self-end">Submit</button>
           </div>
         </div>
         <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
@@ -248,16 +258,14 @@ function DashboardGeneralConfig() {
             <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-              >
+                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div className="flex flex-col items-center justify-center w-full">
-                  <svg
+                  {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 20 16"
-                  >
+                    viewBox="0 0 20 16">
                     <path
                       stroke="currentColor"
                       strokeLinecap="round"
@@ -268,14 +276,16 @@ function DashboardGeneralConfig() {
                   </svg>
                   <p className="mb-2 text-sm dark:text-gray-400">
                     <span>upload Thumbnail image</span>
-                  </p>
+                  </p> */}
+
+                  <label htmlFor="thumbnailInput">Chose File</label>
+                  <input name="thumbnailInput" type="file" onChange={handleChange} />
+                  <img src={thumbnailInput} />
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">
-              Submit
-            </button>
+            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">Submit</button>
           </div>
         </div>
         <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
@@ -284,16 +294,14 @@ function DashboardGeneralConfig() {
             <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-              >
+                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div className="flex flex-col items-center justify-center w-full">
-                  <svg
+                  {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 20 16"
-                  >
+                    viewBox="0 0 20 16">
                     <path
                       stroke="currentColor"
                       strokeLinecap="round"
@@ -304,19 +312,20 @@ function DashboardGeneralConfig() {
                   </svg>
                   <p className="mb-2 text-sm dark:text-gray-400">
                     <span>Mapa cluba</span>
-                  </p>
+                  </p> */}
+                  <label htmlFor="mapClubInput">Chose File</label>
+                  <input name="mapClubInput" type="file" onChange={handleChange} />
+                  <img src={mapClubInput} />
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">
-              Submit
-            </button>
+            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">Submit</button>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
-  );
+  )
 }
 
-export default DashboardGeneralConfig;
+export default DashboardGeneralConfig

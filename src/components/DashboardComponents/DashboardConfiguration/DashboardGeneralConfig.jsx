@@ -17,7 +17,7 @@ function DashboardGeneralConfig() {
   const whatsAppInputRef = useRef()
 
   const [logoInput, setLogoInput] = useState(null)
-  
+
   const [thumbnailInput, setThumbnailInput] = useState(null)
   const [mapClubInput, setMapClubInput] = useState(null)
   const [club, setClub] = useState()
@@ -216,15 +216,15 @@ function DashboardGeneralConfig() {
           </button>
         </form>
       )}
-      <div className="flex flex-col w-4/12 ml-10">
-        <div className="flex flex-col gap-2 mt-4 h-fit bg-white shadow-lg">
+      <div className="flex flex-col  ml-10">
+        <div className="flex flex-col gap-2 mt-4 bg-white shadow-lg">
           <span className="border-b-2 py-2 px-3">Logo</span>
           <div className="flex flex-col px-2 py-2">
-            <div className="flex items-center justify-center w-full m-auto">
+            <div className="flex items-center justify-center  m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
-                <div className="flex flex-col items-center justify-center w-full">
+                className="flex flex-col items-center justify-center  rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+                <div className="flex flex-col items-center justify-center">
                   {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
@@ -243,22 +243,26 @@ function DashboardGeneralConfig() {
                     <span>upload Thumbnail image</span>
                   </p> */}
 
-                  <label htmlFor="logoInput">Chose File</label>
-                  <input name="logoInput" type="file" onChange={handleChange} className='opacity-0'/>
-                  <img src={logoInput} className='w-[30%]'/>
+                  {logoInput ? null : (
+                    <label htmlFor="logoInput" className="py-10 px-20">
+                      Chose image
+                    </label>
+                  )}
+                  <input name="logoInput" id="logoInput" type="file" onChange={handleChange} className="hidden" />
+                  <img src={logoInput} className="max-h-[200px]" />
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
+        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8">
           <span className="border-b-2 py-2 px-3">Thumbnail Photo</span>
           <div className="flex flex-col px-2 py-2">
             <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+                className="flex flex-col items-center justify-center w-full rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
                 <div className="flex flex-col items-center justify-center w-full">
                   {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
@@ -278,23 +282,33 @@ function DashboardGeneralConfig() {
                     <span>upload Thumbnail image</span>
                   </p> */}
 
-                  <label htmlFor="thumbnailInput">Chose File</label>
-                  <input name="thumbnailInput" type="file" onChange={handleChange} className='opacity-0'/>
-                  <img src={thumbnailInput} className='w-[30%]'/>
+                  {thumbnailInput ? null : (
+                    <label htmlFor="thumbnailInput" className="py-10 px-20">
+                      Chose image
+                    </label>
+                  )}
+                  <input
+                    name="thumbnailInput"
+                    id="thumbnailInput"
+                    type="file"
+                    onChange={handleChange}
+                    className="hidden"
+                  />
+                  <img src={thumbnailInput} className="max-h-[200px]" />
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
+        <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 ">
           <span className="border-b-2 py-2 px-3">Mapa cluba</span>
           <div className="flex flex-col px-2 py-2">
-            <div className="flex items-center justify-center w-full m-auto">
+            <div className="flex items-center justify-center   m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
-                <div className="flex flex-col items-center justify-center w-full">
+                className="flex flex-col items-center justify-center rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+                <div className="flex flex-col items-center justify-center">
                   {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
@@ -312,9 +326,13 @@ function DashboardGeneralConfig() {
                   <p className="mb-2 text-sm dark:text-gray-400">
                     <span>Mapa cluba</span>
                   </p> */}
-                  <label htmlFor="mapClubInput">Chose File</label>
-                  <input name="mapClubInput" type="file" onChange={handleChange} className='opacity-0'/>
-                  <img src={mapClubInput} className='w-[30%]'/>
+                  {mapClubInput ? null : (
+                    <label htmlFor="mapClubInput" className="py-10 px-20">
+                      Chose image
+                    </label>
+                  )}
+                  <input name="mapClubInput" id="mapClubInput" type="file" onChange={handleChange} className="hidden" />
+                  <img src={mapClubInput} className="max-h-[400px]" />
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>

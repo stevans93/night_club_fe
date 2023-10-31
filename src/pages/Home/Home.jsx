@@ -300,9 +300,9 @@ function Home(props) {
               </div>
               <h6 className="text-lg font-bold text-black mb-3">Choose a time</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
-                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
-                porro?
+                Where do you want to be and at what time? With Where2Go, you can easily reserve tables, VIP booths or
+                tickets to the best night spots in town. All you have to do is find a date and time that works for you,
+                and we'll make sure your night is unforgettable.
               </p>
             </div>
             <div className="flex flex-col items-center">
@@ -311,9 +311,9 @@ function Home(props) {
               </div>
               <h6 className="text-lg font-bold text-black mb-3">Book now</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
-                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
-                porro?
+                Choose your preferred date and time, and secure your spot at the hottest clubs and cozy lounges in town.
+                Don't miss out on the fun – reserve your table, VIP booth, or tickets now to ensure a fantastic night
+                out.
               </p>
             </div>
             <div className="flex flex-col items-center">
@@ -322,9 +322,9 @@ function Home(props) {
               </div>
               <h6 className="text-lg font-bold text-black mb-3">100% safe</h6>
               <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vero sit facilis, laborum corrupti
-                sunt quaerat aperiam voluptas placeat similique modi sed ut a in distinctio atque earum consequatur
-                porro?
+                Rest assured, your reservation with Where2Go is 100% safe and secure. Your privacy and information are
+                our top priority. We are committed to providing you with a worry-free and enjoyable experience. Book
+                with confidence, and let us take care of the rest!
               </p>
             </div>
           </div>

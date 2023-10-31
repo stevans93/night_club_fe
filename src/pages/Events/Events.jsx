@@ -1,55 +1,53 @@
-import React from "react";
-import { useState } from "react";
-import EventList from "../../components/EventList/EventList";
-import InputForm from "../../components/InputForm/InputForm";
+import EventList from '../../components/EventList/EventList'
+import InputForm from '../../components/InputForm/InputForm'
+import React from 'react'
+import {useState} from 'react'
 
 const Events = () => {
   const [selectedParams, setSelectedParams] = useState({
     pageNumber: 1,
-    pageSize: 6,
-  });
+    pageSize: 6
+  })
 
   const handleLoadMore = () => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      pageSize: selectedParams.pageSize + 6,
-    }));
-  };
+      pageSize: selectedParams.pageSize + 6
+    }))
+  }
 
   const handleChangeName = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      name: value,
-    }));
-  };
+      name: value
+    }))
+  }
 
   const handleChangeLocation = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      location: value,
-    }));
-  };
+      location: value
+    }))
+  }
 
   const handleChangeType = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      type: value,
-    }));
-  };
+      type: value
+    }))
+  }
 
   const handleChangeDate = (value) => {
     setSelectedParams((selectedParams) => ({
       ...selectedParams,
-      date: value,
-    }));
-  };
+      date: value
+    }))
+  }
 
   return (
-    <div className="flex flex-col items-center bg-gradient-to-b from-white from-30% to-30% to-[#F0F4F9]">
-      <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5">
-        <span className="text-primary font-bold mt-6 mb-4">
-          SELECT EVENT
-        </span>
+    <div className="flex flex-col items-center bg-gradient-to-b from-white from-30% to-30% to-[#F0F4F9] ">
+      <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5 ">
+        <span className="text-primary font-bold mt-6 mb-4">SELECT EVENT</span>
         <h3 className="mb-10 text-5xl font-bold dark:text-white">Events</h3>
         <InputForm
           handleChangeName={handleChangeName}
@@ -61,12 +59,11 @@ const Events = () => {
       </div>
       <button
         onClick={handleLoadMore}
-        className="mt-10 inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-primary rounded-full hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary"
-      >
-       See more 
+        className="mt-10 inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-primary rounded-full hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary dark:bg-primary dark:hover:bg-primary dark:focus:ring-primary">
+        See more
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Events;
+export default Events

@@ -33,7 +33,7 @@ const DashboardSliderConfig = (props) => {
     } else {
       await SiteService.editSingleSite(dataToSend)
     }
-    window.location.reload()
+    // window.location.reload()
   }
 
   const getDataToUpload = async () => {

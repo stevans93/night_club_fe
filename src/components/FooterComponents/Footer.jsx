@@ -1,46 +1,48 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import FooterBottom from "./FooterBottom/FooterBottom";
-import FooterTop from "./FooterTop/FooterTop";
-import { useParams } from "react-router-dom";
-import ClubsService from "../../services/clubsService";
-import SiteService from "../../services/siteService";
-import logo from '../../assets/where2go.png';
+import {useEffect, useState} from 'react'
 
+import ClubsService from '../../services/clubsService'
+import FooterBottom from './FooterBottom/FooterBottom'
+import FooterTop from './FooterTop/FooterTop'
+import React from 'react'
+import SiteService from '../../services/siteService'
+import logo from '../../assets/where2go.png'
+import {useParams} from 'react-router-dom'
 
 function Footer() {
-  const [info, setInfo] = useState();
-  const { clubId } = useParams();
+  const [info, setInfo] = useState()
+  const {clubId} = useParams()
 
   useEffect(() => {
     const fetchClubInfo = async () => {
       try {
         if (clubId) {
-          const clubInfo = await ClubsService.getSingleClub(clubId);
-          setInfo(clubInfo);
+          const clubInfo = await ClubsService.getSingleClub(clubId)
+          setInfo(clubInfo)
         }
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching club info:", error);
+        console.error('An error occurred while fetching club info:', error)
       }
-    };
+    }
 
     const fetchSiteInfo = async () => {
       try {
-        const siteInfo = await SiteService.getSingleSite();
-        setInfo(siteInfo);
+        const siteInfo = await SiteService.getSingleSite()
+        // console.log('siteInfo')
+        // console.log(siteInfo)
+        setInfo(siteInfo)
       } catch (error) {
         // Handle any errors here
-        console.error("An error occurred while fetching site info:", error);
+        console.error('An error occurred while fetching site info:', error)
       }
-    };
+    }
 
     if (clubId) {
-      fetchClubInfo();
+      fetchClubInfo()
     } else {
-      fetchSiteInfo();
+      fetchSiteInfo()
     }
-  }, [clubId]);
+  }, [clubId])
 
   return (
     <div className="static bottom-0">
@@ -63,7 +65,7 @@ function Footer() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

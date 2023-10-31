@@ -60,7 +60,7 @@ const DashboardSliderConfig = (props) => {
         <span className="flex">Slider images</span>
         <div className="flex w-full justify-between flex-col">
           {Array.from({length: 6}).map((_, index) => (
-            <div className="flex flex-col w-9/12 gap-2" key={`image${index + 1}`}>
+            <div className="flex flex-col gap-2" key={`image${index + 1}`}>
               <div className="flex gap-5">
                 <label htmlFor={`image${index + 1}`}>{`Image ${index + 1} :`}</label>
                 {imageNames[index] && <span className="z-10">{imageNames[index]}</span>}

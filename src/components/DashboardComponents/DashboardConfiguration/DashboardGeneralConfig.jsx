@@ -17,6 +17,7 @@ function DashboardGeneralConfig() {
   const whatsAppInputRef = useRef()
 
   const [logoInput, setLogoInput] = useState(null)
+  
   const [thumbnailInput, setThumbnailInput] = useState(null)
   const [mapClubInput, setMapClubInput] = useState(null)
   const [club, setClub] = useState()
@@ -219,13 +220,13 @@ function DashboardGeneralConfig() {
         <div className="flex flex-col gap-2 mt-4 h-fit bg-white shadow-lg">
           <span className="border-b-2 py-2 px-3">Logo</span>
           <div className="flex flex-col px-2 py-2">
-            <div className="flex items-center justify-center w-2/5 m-auto">
+            <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div className="flex flex-col items-center justify-center">
+                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+                <div className="flex flex-col items-center justify-center w-full">
                   {/* <svg
-                    className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                    className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -237,19 +238,18 @@ function DashboardGeneralConfig() {
                       strokeWidth="2"
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
-                  </svg> */}
-                  {/* <img src={}></img> */}
-                  <label htmlFor="logoInput">Chose File</label>
-                  <input name="logoInput" type="file" onChange={handleChange} />
-                  {logoInput ? <img src={logoInput} /> : null}
-                  {/* <p className="mb-2 text-sm dark:text-gray-400">
-                    <span>upload logo image</span>
+                  </svg>
+                  <p className="mb-2 text-sm dark:text-gray-400">
+                    <span>upload Thumbnail image</span>
                   </p> */}
+
+                  <label htmlFor="logoInput">Chose File</label>
+                  <input name="logoInput" type="file" onChange={handleChange} className='opacity-0'/>
+                  <img src={logoInput} className='w-[30%]'/>
                 </div>
-                {/* <input id="dropzone-file" type="file" className="hidden" /> */}
+                <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-3 w-fit self-end">Submit</button>
           </div>
         </div>
         <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
@@ -258,7 +258,7 @@ function DashboardGeneralConfig() {
             <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
                 <div className="flex flex-col items-center justify-center w-full">
                   {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
@@ -279,13 +279,12 @@ function DashboardGeneralConfig() {
                   </p> */}
 
                   <label htmlFor="thumbnailInput">Chose File</label>
-                  <input name="thumbnailInput" type="file" onChange={handleChange} />
-                  <img src={thumbnailInput} />
+                  <input name="thumbnailInput" type="file" onChange={handleChange} className='opacity-0'/>
+                  <img src={thumbnailInput} className='w-[30%]'/>
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">Submit</button>
           </div>
         </div>
         <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 h-fit">
@@ -294,7 +293,7 @@ function DashboardGeneralConfig() {
             <div className="flex items-center justify-center w-full m-auto">
               <label
                 htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                className="flex flex-col items-center justify-center w-full h-24 rounded-lg cursor-pointer dark:hover:bg-bray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
                 <div className="flex flex-col items-center justify-center w-full">
                   {/* <svg
                     className="w-8 h-8 mb-2 text-gray-500 dark:text-gray-400"
@@ -314,13 +313,12 @@ function DashboardGeneralConfig() {
                     <span>Mapa cluba</span>
                   </p> */}
                   <label htmlFor="mapClubInput">Chose File</label>
-                  <input name="mapClubInput" type="file" onChange={handleChange} />
-                  <img src={mapClubInput} />
+                  <input name="mapClubInput" type="file" onChange={handleChange} className='opacity-0'/>
+                  <img src={mapClubInput} className='w-[30%]'/>
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
               </label>
             </div>
-            <button className="bg-[#475DDB] text-white py-2 px-8 rounded-md mt-5 w-fit self-end">Submit</button>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ class ClubsService {
   }
 
   static async updateClub(clubId, updatedClubData) {
-    const response = await http.put(
+    const response = await uploadHttp.put(
       `${clubsPath}/updateClub/${clubId}`,
       updatedClubData
     );

@@ -37,21 +37,24 @@ const DashboardSliderConfig = (props) => {
   }
 
   const getDataToUpload = async () => {
-    let dataToUpload = {}
-    dataToUpload.clubId = clubId
+    let formData = new FormData()
 
-    dataToUpload.sliderImages = []
+    formData.append('clubId', clubId)
+
+    const sliderImages = []
 
     for (let i = 0; i < 6; i++) {
       if (imageRefs[i].current.files[0]) {
-        dataToUpload.sliderImages.push({
+        formData.append('files', imageRefs[i].current.files[0])
+        sliderImages.push({
           name: `image${i + 1}`,
-          link: await convertToBase64(imageRefs[i].current.files[0])
+          originalname: imageRefs[i].current.files[0].name
         })
       }
     }
+    formData.append('sliderImages', JSON.stringify(sliderImages))
 
-    return dataToUpload
+    return formData
   }
 
   return (

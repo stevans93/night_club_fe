@@ -23,7 +23,6 @@ const UserProfile = ({user}) => {
     }
   }, []);
 
-  console.log(user.firstName.slice(0,1));
 
   return (
     <div className="flex flex-col z-50 items-center relative m-2">

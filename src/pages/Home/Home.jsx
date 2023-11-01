@@ -88,12 +88,12 @@ function Home(props) {
       try {
         const sliderImages = await SiteService.getSiteSliderImages()
         if (sliderImages) {
-          console.log(sliderImages)
+          
           setSliderImages(sliderImages)
         }
       } catch (error) {
         // Handle any errors here
-        console.error('An error occurred while fetching images:', error)
+        
       }
     }
 
@@ -109,16 +109,16 @@ function Home(props) {
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Premium</h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Premium Mesta</h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
-                See all ({numberOfPremiumClubs})
+                Vidite sve ({numberOfPremiumClubs})
               </Link>
               <button
                 onClick={() => handlePrevPage('premijum')}
                 disabled={selectedPremiumParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -139,7 +139,7 @@ function Home(props) {
                 onClick={() => handleNextPage('premijum')}
                 disabled={selectedPremiumParams.pageNumber === numberOfPremiumPages}
                 type="button"
-                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center ">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -163,23 +163,23 @@ function Home(props) {
             setNumberOfPages={setNumberOfPremiumPages}
             setNumberOfClubs={setNumberOfPremiumClubs}
             bannerImage="Premijum Mesto"
-            button="View"
+            button="Istraži"
           />
         </div>
       </div>
       <div className="flex justify-center py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
-          <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Regular</h3>
+          <div className="flex xs:flex-col sm:flex-row justify-between mb-6 gap-3">
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Regularna Mesta</h3>
             <div className="flex items-center">
               <Link to="/clubs" className="mr-5">
-                See all ({numberOfRegularClubs})
+              Vidite sve ({numberOfRegularClubs})
               </Link>
               <button
                 onClick={() => handlePrevPage('regular')}
                 disabled={selectedRegularParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary">
+                className="rotate-180 text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center ">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -200,7 +200,7 @@ function Home(props) {
                 onClick={() => handleNextPage('regular')}
                 disabled={selectedRegularParams.pageNumber === numberOfRegularPages}
                 type="button"
-                className="text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-[#F0F4F9] dark:hover:bg-primary">
+                className="text-primary bg-[#F0F4F9] hover:bg-primary hover:text-[#F0F4F9] font-medium text-sm p-2.5 text-center inline-flex items-center ">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -231,16 +231,16 @@ function Home(props) {
       <div className="flex justify-center bg-[#F0F4F9] py-12">
         <div className="max-w-screen-xl lg:px-20 xs:px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Events</h3>
+            <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Događaji</h3>
             <div className="flex items-center">
               <Link to="/events" className="mr-5">
-                See all ({numberOfEvents})
+              Vidite sve ({numberOfEvents})
               </Link>
               <button
                 onClick={handlePrevPage}
                 disabled={selectedParams.pageNumber === 1}
                 type="button"
-                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
+                className="rotate-180 text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center ">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -261,7 +261,7 @@ function Home(props) {
                 onClick={handleNextPage}
                 disabled={selectedParams.pageNumber === numberOfPages}
                 type="button"
-                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center dark:bg-white dark:hover:bg-primary">
+                className="text-primary bg-white hover:bg-primary hover:text-white font-medium text-sm p-2.5 text-center inline-flex items-center ">
                 <svg
                   className="w-5 h-5"
                   aria-hidden="true"
@@ -291,40 +291,34 @@ function Home(props) {
       <div className="flex justify-center">
         <div className="flex flex-col items-center max-w-screen-xl px-20 py-20">
           <h2 className="mb-6 text-3xl font-bold datext-blackrk:text-white text-center">
-            Why <span className="text-primary">choose us?</span>
+            Zašto <span className="text-primary">izabrati nas?</span>
           </h2>
           <div className="flex md:flex-row xs:flex-col gap-5">
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18" src={clocklIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">Choose a time</h6>
-              <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Where do you want to be and at what time? With Where2Go, you can easily reserve tables, VIP booths or
-                tickets to the best night spots in town. All you have to do is find a date and time that works for you,
-                and we'll make sure your night is unforgettable.
+              <h6 className="text-lg font-bold text-black mb-3">Izaberite Vreme</h6>
+              <p className="leading-6 text-center text-sm font-light text-gray-500 ">
+              Gde želite da budete i u koje vreme? Uz Where2Go, lako možete rezervisati stolove, VIP kabine ili karte za najbolja noćna mesta u gradu. Sve što treba da uradite je da pronađete datum i vreme koji vam odgovaraju, a mi ćemo se pobrinuti da vaša noć bude nezaboravna.
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18 bg-primary" src={surfaceIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">Book now</h6>
-              <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Choose your preferred date and time, and secure your spot at the hottest clubs and cozy lounges in town.
-                Don't miss out on the fun – reserve your table, VIP booth, or tickets now to ensure a fantastic night
-                out.
+              <h6 className="text-lg font-bold text-black mb-3">Rezervišite Odmah</h6>
+              <p className="leading-6 text-center text-sm font-light text-gray-500 ">
+              Izaberite željeni datum i vreme i obezbedite svoje mesto u klubovima i kafanama u gradu. Ne propustite zabavu – rezervišite svoj sto, VIP kabinu ili karte odmah da biste obezbedili fantastičan izlazak.
               </p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex justify-center items-center w-32 h-32 rounded-full bg-primary mb-5">
                 <img className="w-18 h-18 bg-primary" src={pathIcon} alt="" />
               </div>
-              <h6 className="text-lg font-bold text-black mb-3">100% safe</h6>
-              <p className="leading-6 text-center text-sm font-light text-gray-500 dark:text-gray-400">
-                Rest assured, your reservation with Where2Go is 100% safe and secure. Your privacy and information are
-                our top priority. We are committed to providing you with a worry-free and enjoyable experience. Book
-                with confidence, and let us take care of the rest!
+              <h6 className="text-lg font-bold text-black mb-3">100% Bezbedno</h6>
+              <p className="leading-6 text-center text-sm font-light text-gray-500 ">
+              Budite sigurni, vaša rezervacija sa Where2Go je 100% sigurna i bezbedna. Vaša privatnost i informacije su naš glavni prioritet. Posvećeni smo tome da vam pružimo bezbrižno i prijatno iskustvo. Rezervišite sa poverenjem, a mi ćemo se pobrinuti za ostalo!
               </p>
             </div>
           </div>

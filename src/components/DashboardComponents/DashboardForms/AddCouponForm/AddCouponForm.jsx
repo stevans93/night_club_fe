@@ -55,17 +55,17 @@ const AddCouponForm = (props) => {
             backdrop={props.isAddCouponModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add Coupon
+              Dodaj Kupon
             </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Title
+                    Naslov
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter title"
+                    placeholder="Unesite Naslov"
                     id="name"
                     type="text"
                     ref={titleInputRef}
@@ -73,11 +73,11 @@ const AddCouponForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Coupon Code *
+                    Kod Kupona *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Coupon Code"
+                    placeholder="Unesite Kod Kupona"
                     id="phone"
                     type="text"
                     ref={codeInputRef}
@@ -90,7 +90,7 @@ const AddCouponForm = (props) => {
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set Limit"
+                      placeholder="Unesite Limit"
                       id="limit"
                       type="text"
                       ref={limitInputRef}
@@ -98,11 +98,11 @@ const AddCouponForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="discount">
-                      Discount
+                      Popust
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set discount"
+                      placeholder="Unesite Popust"
                       id="discount"
                       type="text"
                       ref={discountInputRef}
@@ -113,7 +113,7 @@ const AddCouponForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="startDate">
-                      Start Date
+                      Početni Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -124,7 +124,7 @@ const AddCouponForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="endDate">
-                      End Date
+                      Krajnji Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -148,7 +148,7 @@ const AddCouponForm = (props) => {
                 onClick={props.handleCouponModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

@@ -56,17 +56,17 @@ const EditCouponForm = (props) => {
             backdrop={props.isEditCouponModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Edit Coupon
+              Uredi Kupon
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Title
+                    Ime
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter title"
+                    placeholder="Unesite Ime Kupona..."
                     id="name"
                     type="text"
                     defaultValue={props.coupon.title}
@@ -75,11 +75,11 @@ const EditCouponForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Coupon Code *
+                    Kupon Kod *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Coupon Code"
+                    placeholder="Unesite Kupon Kod"
                     id="phone"
                     type="text"
                     defaultValue={props.coupon.code}
@@ -93,7 +93,7 @@ const EditCouponForm = (props) => {
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set Limit"
+                      placeholder="Unesite Limit"
                       id="limit"
                       type="text"
                       defaultValue={props.coupon.limit}
@@ -102,11 +102,11 @@ const EditCouponForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="discount">
-                      Discount
+                      Popust
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set discount"
+                      placeholder="Unesite Popust"
                       id="discount"
                       type="text"
                       defaultValue={props.coupon.discount}
@@ -118,7 +118,7 @@ const EditCouponForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="startDate">
-                      Start Date
+                      Pocetni Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -134,7 +134,7 @@ const EditCouponForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="endDate">
-                      End Date
+                    Krajnji Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -160,7 +160,7 @@ const EditCouponForm = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

@@ -21,8 +21,7 @@ const EventModal = (props) => {
                   <img className="flex w-full" src={props.event.image} alt="" />
                 </div>
                 <div className="flex flex-col flex-1 px-6 relative">
-                  <span className="text-2xl font-bold">{props.event.name}</span>
-                  <span className="text-lg font-bold">Club name</span>
+                  <span className="text-2xl font-bold">{props.event.title}</span>
                   <span className="mt-6 mb-6">{props.event.description}</span>
                   <div className="flex">
                     <div className="flex gap-4 flex-1 px-4 items-center">

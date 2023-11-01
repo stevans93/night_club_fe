@@ -91,13 +91,13 @@ const Club = () => {
     const fetchFoodCategories = async () => {
       try {
         const categoryData = await ClubsService.getFoodCategories(clubId)
-        console.log('here', categoryData)
+        
         if (categoryData) {
           setFoodCategories(categoryData)
         }
       } catch (error) {
         // Handle any errors here
-        console.error('An error occurred while fetching categories:', error)
+        
       }
     }
 
@@ -159,7 +159,7 @@ const Club = () => {
       <div className="flex flex-col items-center">
         <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5 pb-10">
           <span className="text-primary font-bold mt-6 mb-4">SELECT EVENT</span>
-          <h3 className="mb-10 text-5xl font-bold dark:text-white">Events</h3>
+          <h3 className="mb-10 text-5xl font-bold">Events</h3>
           <ClubInputForm
             handleChangIme={handleChangIme}
             handleChangTip={handleChangTip}

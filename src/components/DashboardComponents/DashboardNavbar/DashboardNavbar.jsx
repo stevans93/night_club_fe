@@ -17,7 +17,7 @@ function DashboardNavbar({ handleOpen }) {
           <GiHamburgerMenu className="text-2xl text-black cursor-pointer" onClick={handleOpen} />
         <span className="w-px h-4/5 bg-gray-500 opacity-20"></span>
         <button className="flex h-8 items-center px-5 bg-primary text-white rounded-lg gap-2" onClick={handleBack}>
-          <BsEye size="1.1rem" /> View page
+          <BsEye size="1.1rem" /> Početna
         </button>
       </div>
     </nav>

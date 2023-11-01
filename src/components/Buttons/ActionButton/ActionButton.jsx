@@ -32,10 +32,10 @@ const ActionButton = (props) => {
           className="flex items-center bg-[#D0021B] text-white gap-1 px-2 py-2 rounded-md"
           onClick={handleOpen}
         >
-          Action <MdKeyboardArrowDown id={"actions-svg"} size="1rem" />
+          Opcije <MdKeyboardArrowDown id={"actions-svg"} size="1rem" />
         </button>
         {isOpen && (
-          <div className="flex flex-col absolute top-9 z-10 w-full bg-[#979797] p-1 rounded-md">
+          <div className="flex flex-col absolute top-9 z-10 w-full bg-[#efeded] p-1 rounded-md gap-1">
             <EditButton onClick={props.handleEditModalOpen}></EditButton>
             <DeleteButton onClick={props.handleDelete} />
           </div>

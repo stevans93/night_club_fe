@@ -62,16 +62,16 @@ const AddEventForm = (props) => {
             open={props.isAddEventModalOpen}
             onClose={props.handleEventModalClose}
             backdrop={props.isAddEventModalOpen}>
-            <Modal.Header className="border-b-2 text-2xl py-2">Add Event</Modal.Header>
+            <Modal.Header className="border-b-2 text-2xl py-2">Dodaj Događaja</Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Name
+                    Ime
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter name"
+                    placeholder="Unesite Ime..."
                     id="name"
                     type="text"
                     ref={nameInputRef}
@@ -79,11 +79,11 @@ const AddEventForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Event description *
+                    Opis Događaja *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Event description"
+                    placeholder="Unesite Opis Događaja..."
                     id="phone"
                     type="text"
                     ref={descriptionInputRef}
@@ -92,7 +92,7 @@ const AddEventForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="date">
-                      Date
+                      Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -104,11 +104,11 @@ const AddEventForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="ticketPrice">
-                      Ticket Price
+                      Cena Ulaznice
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set ticketPrice"
+                      placeholder="Unesite Cenu Ulaznice..."
                       id="ticketPrice"
                       type="text"
                       ref={ticketPriceInputRef}
@@ -119,19 +119,19 @@ const AddEventForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="type">
-                      Type
+                      Tip
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="type"
-                      placeholder="Enter type"
+                      placeholder="Unesite Tip Događaja..."
                       type="text"
                       ref={typeInputRef}
                     />
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="image">
-                      Image
+                      Slika
                     </label>
                     <label htmlFor="eventImage">Chose File</label>
                     <input name="eventImage" type="file" onChange={handleChange} />
@@ -145,7 +145,7 @@ const AddEventForm = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleEventModalClose} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

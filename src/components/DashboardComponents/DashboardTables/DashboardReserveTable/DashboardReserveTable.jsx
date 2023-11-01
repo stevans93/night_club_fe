@@ -9,27 +9,33 @@ const DashboardReserveTable = (props) => {
 
   return (
     <div className="relative shadow-lg rounded-lg mt-10">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
+      <table className="w-full text-sm text-left text-gray-500 ">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
           <th className="border-r-2 bg-white px-6 py-3">SI</th>
-          <th className="border-r-2 bg-white px-6 py-3">Event Title</th>
-          <th className="border-r-2 bg-white px-6 py-3">Name</th>
-          <th className="border-r-2 bg-white px-6 py-3">Phone</th>
-          <th className="border-r-2 bg-white px-6 py-3">Date</th>
+          <th className="border-r-2 bg-white px-6 py-3">Naslov Događaja</th>
+          <th className="border-r-2 bg-white px-6 py-3">Ime i Prezime</th>
+          <th className="border-r-2 bg-white px-6 py-3">Mobilni Telefon</th>
+          <th className="border-r-2 bg-white px-6 py-3">Datum</th>
           <th className="border-r-2 bg-white px-6 py-3">
             <td className="px-6 py-3">
-              {userRole === "admin" ? `clubName` : `Overview`}
+              {userRole === "admin" ? `Ime Kluba` : `Pregled`}
             </td>
           </th>
           <th className="border-r-2 bg-white px-6 py-3">Status</th>
-          <th className="border-r-2 bg-white px-6 py-3">Action</th>
+
+          {userRole === 'admin' ? (
+            <></>
+          ) : (
+            <th className="border-r-2 bg-white px-6 py-3">Opcije</th>
+          )}
+
         </thead>
         <tbody className="divide-y">
           {props.reservations.map((reservation, i) => {
             return (
               <tr
                 key={reservation._id}
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                className="bg-white  "
               >
                 <td className="border-r-2 px-6 py-3">
                   {i + 1 + props.pageSize * (props.pageNumber - 1)}
@@ -45,16 +51,25 @@ const DashboardReserveTable = (props) => {
                 </td>
 
                 <td className="border-r-2 px-6 py-3">
-                  <ActiveButton text={reservation.status} />
-                </td>
-                <td className="border-r-2 px-6 py-3">
-                  <ActionButton
-                    handleEditModalOpen={() =>
-                      props.handleEditModalOpen(reservation._id)
-                    }
-                    handleDelete={() => props.handleDelete(reservation._id)}
-                  />
-                </td>
+                    <ActiveButton text={reservation.status} />
+                  </td>
+
+                {userRole === "admin" ? (
+                  <></>
+                ) : (
+                  <>
+                    <td className="border-r-2 px-6 py-3">
+                      <ActionButton
+                        handleEditModalOpen={() =>
+                          props.handleEditModalOpen(reservation._id)
+                        }
+                        handleDelete={() => props.handleDelete(reservation._id)}
+                      />
+                    </td>
+                  </>
+                ) }
+
+                
               </tr>
             );
           })}

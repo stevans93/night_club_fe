@@ -103,20 +103,20 @@ const DashboardTablesConfig = (props) => {
       />
       {props.tables && (
         <div className="relative h-fit w-full border-t-2">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-lg border-r-2 border-l-2 border-b-2">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
+          <table className="w-full text-sm text-left text-gray-500  rounded-lg border-r-2 border-l-2 border-b-2">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
               <th className="border-r-2 bg-white px-6 py-3">SI</th>
-              <th className="border-r-2 bg-white px-6 py-3">Name</th>
-              <th className="border-r-2 bg-white px-6 py-3">Max people</th>
-              <th className="border-r-2 bg-white px-6 py-3">Area</th>
-              <th className="bg-white px-6 py-3">Actions</th>
+              <th className="border-r-2 bg-white px-6 py-3">Ime</th>
+              <th className="border-r-2 bg-white px-6 py-3">Maksimalan Broj Ljudi</th>
+              <th className="border-r-2 bg-white px-6 py-3">Mesto u Klubu</th>
+              <th className="bg-white px-6 py-3">Opcije</th>
             </thead>
             <tbody className="divide-y">
               {props.tables.map((table, i) => {
                 return (
                   <tr
                     key={table._id}
-                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                    className="bg-white  "
                   >
                     <td className="border-r-2 px-6 py-3">{i++ + 1}</td>
                     <td className="border-r-2 px-6 py-3">{table.name}</td>

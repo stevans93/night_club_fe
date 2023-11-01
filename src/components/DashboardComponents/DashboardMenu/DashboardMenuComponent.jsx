@@ -152,13 +152,13 @@ const DashboardMenuComponent = () => {
             autoFocus
             className="flex w-fit py-3 px-14 active:bg-primary active:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white rounded-lg"
           >
-            Drinks
+            Pića
           </button>
           <button
             onClick={showFoodCategories}
             className="flex w-fit py-3 px-14 active:bg-primary active:text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white rounded-lg"
           >
-            Food
+            Hrana
           </button>
         </div>
         {isDrinkCategoriesOpen && (

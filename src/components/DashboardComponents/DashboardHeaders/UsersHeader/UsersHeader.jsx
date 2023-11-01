@@ -7,9 +7,9 @@ const UserHeader = (props) => {
     <>
       <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white shadow-lg">
         <div className="flex items-center gap-3">
-          <span>Customer List</span>
+          <span>Lista Korisnika</span>
           <div className="flex items-center gap-2">
-            <span>Show</span>
+            <span>Prikaži</span>
             <select
               className="px-1 w-16 border rounded-xl"
               value={props.pageSize}

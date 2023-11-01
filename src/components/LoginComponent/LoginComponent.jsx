@@ -11,6 +11,7 @@ import AuthService from "../../services/authService";
 import { useDispatch } from "react-redux";
 import { loggedUser } from "../../store/userSlice";
 import { toast } from "react-toastify";
+import { BsArrowLeftSquare } from 'react-icons/bs';
 
 function LoginComponent() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function LoginComponent() {
       AuthService.loginUser(values)
         .then((res) => {
           if (res.status === 200) {
-            toast.success("You are logged in!", {
+            toast.success("Prijavljeni ste!", {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,
@@ -50,7 +51,7 @@ function LoginComponent() {
               navigate("/");
             }, 3000);
           } else {
-            toast.warning("You are not logged in, wrong password!", {
+            toast.warning("Niste prijavljeni, pogrešna lozinka!", {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,
@@ -100,7 +101,7 @@ function LoginComponent() {
           >
             <div className="flex flex-col lg:items-start gap-2">
               <label>
-                Email{" "}
+                E-mail Adresa{" "}
                 <span className="text-[14px] text-red-600">
                   {" "}
                   {showError("email")}{" "}
@@ -112,13 +113,13 @@ function LoginComponent() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 className="border border-others w-[300px] lg:w-[616px] focus:bg-white rounded-lg p-3"
-                placeholder="Insert email..."
+                placeholder="Unesite E-mail Adresu..."
               />
             </div>
 
             <div className="flex flex-col lg:items-start gap-2 relative">
               <label>
-                Password{" "}
+                Lozinka{" "}
                 <span className="text-[14px] text-red-600">
                   {" "}
                   {showError("password")}{" "}
@@ -130,7 +131,7 @@ function LoginComponent() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 className="border border-others w-[300px] lg:w-[616px] bg-white rounded-lg p-3"
-                placeholder="Insert password..."
+                placeholder="Unesite Lozinku..."
               />
               {visibility ? (
                 <MdVisibility
@@ -149,8 +150,9 @@ function LoginComponent() {
                 type="submit"
                 className="border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-16 py-2"
               >
-                Sign in
+                Ulogujte se
               </button>
+              <Link className='flex items-center gap-3 mt-4 text-primary' to={'/'}><BsArrowLeftSquare className='text-3xl'/> Vratite se na početnu</Link> 
             </div>
           </form>
         </div>

@@ -43,12 +43,12 @@ const DashboardAvaliableDays = () => {
   }, [clubId]);
 
   return (
-    <form className="flex flex-col w-2/5 bg-white ml-10 mt-4 rounded-lg shadow-lg">
-      <div className="flex w-full mt-4 border-b-2 h-fit py-2">
-        <span className="flex w-1/4 ml-10 text-center">days</span>
-        <span className="flex w-1/4">start time</span>
-        <span className="flex w-1/4">end time</span>
-        <span>open 24 hours</span>
+    <form className="flex flex-col w-[60%] h-fit bg-white ml-10 my-4 rounded-lg shadow-lg">
+      <div className="flex w-full mt-4 border-b-2 h-fit py-2 justify-between">
+        <span className=" ml-10">Dan</span>
+        <span className="flex ml-[130px]">Početak Radnog Vremena</span>
+        <span className="flex mr-10">Kraj Radnog Vremena</span>
+        <span className="flex mr-12">Otvoren 24 Sata</span>
       </div>
       {hours && (
         <div className="flex flex-col gap-3">
@@ -105,9 +105,9 @@ const DashboardAvaliableDays = () => {
       )}
       <button
         onClick={handleConfirm}
-        className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg"
+        className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6"
       >
-        Confirm
+        Potvrdi
       </button>
     </form>
   );

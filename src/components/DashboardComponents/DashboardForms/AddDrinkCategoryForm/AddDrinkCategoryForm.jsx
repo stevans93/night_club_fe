@@ -45,17 +45,17 @@ const AddDrinkCategoryForm = (props) => {
             backdrop={props.isAddCategoryModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add Category
+              Dodaj Kategoriju
             </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Name
+                    Ime
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter name"
+                    placeholder="Unesi Ime..."
                     id="name"
                     type="text"
                     ref={nameInputRef}
@@ -75,7 +75,7 @@ const AddDrinkCategoryForm = (props) => {
                 onClick={props.handleCategoryModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

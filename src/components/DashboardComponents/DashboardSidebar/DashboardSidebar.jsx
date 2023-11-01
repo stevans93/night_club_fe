@@ -9,7 +9,6 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../../../store/userSlice";
 import { toast } from "react-toastify";
-import avatar from "../../../assets/avatar.png";
 import logo from "../../../assets/dashboard-logo.png";
 import "./DashboardSidebar.css";
 
@@ -50,9 +49,15 @@ function DashboardSidebar({ children, open }) {
             <img src={logo} alt="" />
           </Link>
         </div>
-        <div className="my-5 w-2/4">
-          <img src={avatar} alt="avatar" />
+        {open ? (
+          <div className="flex my-5 w-[50%] h-[15%] bg-primary rounded-circle">
+            <p className="text-white text-2xl mx-auto flex items-center">{ncUser.firstName.slice(0,1)}</p>
         </div>
+        ) : (
+          <div className="flex my-5 w-10 h-10 bg-primary rounded-circle">
+            <p className="text-white text-2xl mx-auto flex items-center">{ncUser.firstName.slice(0,1)}</p>
+        </div>
+        )}
         <div className="flex flex-col w-full h-full">
           {(userRole === "manager" ||
             userPermissions.includes("reservation") ||
@@ -63,7 +68,7 @@ function DashboardSidebar({ children, open }) {
             >
               <FiUsers className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Reservation
+                Rezervacije
               </span>
             </NavLink>
           )}
@@ -83,7 +88,7 @@ function DashboardSidebar({ children, open }) {
             >
               <BiFoodMenu className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Menu
+                Meni
               </span>
             </NavLink>
           )}
@@ -94,7 +99,7 @@ function DashboardSidebar({ children, open }) {
             >
               <BiWrench className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Club Configuration
+                Konfiguracija Objekta
               </span>
             </NavLink>
           )}
@@ -105,7 +110,7 @@ function DashboardSidebar({ children, open }) {
             >
               <RiCoupon2Line className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Coupon List
+                Lista Kupona
               </span>
             </NavLink>
           )}
@@ -116,7 +121,7 @@ function DashboardSidebar({ children, open }) {
             >
               <HiOutlineUserGroup className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Custommer List
+                Lista Korisnika
               </span>
             </NavLink>
           )}
@@ -127,7 +132,7 @@ function DashboardSidebar({ children, open }) {
             >
               <HiOutlineUserGroup className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Staff
+                Osoblje
               </span>
             </NavLink>
           )}
@@ -147,7 +152,7 @@ function DashboardSidebar({ children, open }) {
             >
               <BsCalendar2Event className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Events
+                Događaji
               </span>
             </NavLink>
           )}
@@ -158,7 +163,7 @@ function DashboardSidebar({ children, open }) {
             >
               <HiOutlineUserGroup className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                User List
+                Lista Korisnika
               </span>
             </NavLink>
           )}
@@ -170,7 +175,7 @@ function DashboardSidebar({ children, open }) {
             >
               <HiOutlineUserGroup className="mr-2 text-2xl" />
               <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-                Add Club
+                Dodaj Objekat
               </span>
             </NavLink>
           )}
@@ -181,7 +186,7 @@ function DashboardSidebar({ children, open }) {
           >
             <CiLogout className="mr-2 text-2xl" />
             <span className={` ${open ? "hidden md:block" : "md:hidden"}`}>
-              Log Out
+              Odjaviti se
             </span>
           </button>
         </div>

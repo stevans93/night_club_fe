@@ -30,7 +30,6 @@ const ClubList = (props) => {
         }
       } catch (error) {
         // Handle any errors here
-        console.error('An error occurred while fetching clubs:', error)
       }
     }
 

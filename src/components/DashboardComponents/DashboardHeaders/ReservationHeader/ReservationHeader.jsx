@@ -32,7 +32,7 @@ const ReservationHeader = (props) => {
               onClick={handleTodaysReservation}
             >
               <BiListUl size="1.5rem" />
-              Todays Reservations
+              Današnje Rezervacije
             </button>
           )}
           {isActive && (
@@ -41,13 +41,13 @@ const ReservationHeader = (props) => {
               className="flex items-center px-3 rounded-lg bg-primary h-8 text-white"
             >
               <BiListUl size="1.5rem" />
-              All Reservation List
+              Lista Rezervacija
             </button>
           )}
           <div className="flex items-center gap-2">
-            <span>Show</span>
+            <span>Prikaži</span>
             <select
-              className="px-1 w-16 border rounded-xl"
+              className="px-1 w-16 border rounded-xl text-center"
               value={props.pageSize}
               onChange={(event) =>
                 props.handlePageSizeChange(event.target.value)
@@ -67,7 +67,7 @@ const ReservationHeader = (props) => {
           <div className="flex items-center border rounded-xl w-fit h-8 px-2">
             <input
               className="focus-visible:outline-none"
-              placeholder="Name"
+              placeholder="Ime i Prezime"
               type="search"
               onChange={(event) => props.handleChangeName(event.target.value)}
             />
@@ -102,7 +102,7 @@ const ReservationHeader = (props) => {
           </div> */}
 
           <select
-            className="h-8 w-20 border rounded-xlpx-1 border rounded-xl"
+            className="h-8 w-20 border rounded-xlpx-1 border rounded-xl text-center"
             value={props.selectedStatus}
             onChange={(event) => {
               props.handleChangeStatus(event.target.value);
@@ -122,7 +122,7 @@ const ReservationHeader = (props) => {
             className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
           >
             <BiSolidFileExport size="1.2rem" />
-            Export
+            Izvezi
           </CSVLink>
         </div>
       </div>

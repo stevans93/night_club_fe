@@ -55,18 +55,18 @@ const EditStaffForm = (props) => {
             backdrop={props.isEditStaffModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add new customer
+              Uredi Osoblje
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col w-45 justify-between">
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="firstName">
-                      firstName
+                      Ime
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter firstName"
+                      placeholder="Unesite Ime..."
                       id="firstName"
                       type="text"
                       ref={firstNameInputRef}
@@ -75,11 +75,11 @@ const EditStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="lastName">
-                      lastName
+                      Prezime
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter lastName"
+                      placeholder="Unesite Prezime"
                       id="lastName"
                       type="text"
                       defaultValue={props.staff.lastName}
@@ -88,11 +88,11 @@ const EditStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="email">
-                      Email
+                      E-mail Adresa
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter email adress"
+                      placeholder="Unesite E-mail Adresa"
                       id="email"
                       type="text"
                       defaultValue={props.staff.email}
@@ -101,7 +101,7 @@ const EditStaffForm = (props) => {
                   </div>
                 </div>
                 <div className="w-45 flex flex-col">
-                  <span className="py-2 mb-2">Permission list</span>
+                  <span className="py-2 mb-2">Lista Dozvola</span>
                   <ul>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">1</span>
@@ -114,7 +114,7 @@ const EditStaffForm = (props) => {
                         )}
                         ref={reservationInputRef}
                       />
-                      <label htmlFor="reservation">Reservation</label>
+                      <label htmlFor="reservation">Rezervacije</label>
                     </li>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">2</span>
@@ -127,7 +127,7 @@ const EditStaffForm = (props) => {
                         )}
                         ref={couponListInputRef}
                       />
-                      <label htmlFor="Coupon">Coupon list</label>
+                      <label htmlFor="Coupon">Lista Kupona</label>
                     </li>
                   </ul>
                 </div>
@@ -141,7 +141,7 @@ const EditStaffForm = (props) => {
                 onClick={props.handleEditStaffModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

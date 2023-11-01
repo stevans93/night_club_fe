@@ -57,12 +57,12 @@ const DashboardSliderConfig = (props) => {
   return (
     <>
       <form className="flex flex-col items-center w-4/12 ml-10 mt-4 bg-white shadow-lg px-4 py-4 gap-4 h-fit">
-        <span className="flex">Slider images</span>
+        <span className="flex">Slider Slike</span>
         <div className="flex w-full justify-between flex-col">
           {Array.from({length: 6}).map((_, index) => (
             <div className="flex flex-col gap-2" key={`image${index + 1}`}>
               <div className="flex gap-5">
-                <label htmlFor={`image${index + 1}`}>{`Image ${index + 1} :`}</label>
+                <label htmlFor={`image${index + 1}`}>{`Slika ${index + 1} :`}</label>
                 {imageNames[index] && <span className="z-10">{imageNames[index]}</span>}
               </div>
               <div className="flex items-center relative rounded-lg overflow-hidden">
@@ -76,14 +76,14 @@ const DashboardSliderConfig = (props) => {
                 <label
                   htmlFor={`image${index + 1}`}
                   className="absolute right-0 left-0 top-0 bottom-0 cursor-pointer z-1 rounded-lg bg-gray-200 text-gray-700 hover-bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out text-center p-2">
-                  Upload
+                  Postavi
                 </label>
               </div>
             </div>
           ))}
         </div>
         <button onClick={handleImagesForm} className="flex bg-primary text-white py-3 px-12 rounded-lg">
-          Confirm
+          Potvrdi
         </button>
       </form>
     </>

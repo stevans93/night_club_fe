@@ -43,7 +43,7 @@ const MenuFoodComponent = (props) => {
             onClick={handleCategoryModalOpen}
             className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
           >
-            + Add category
+            + Dodaj Kategoriju
           </li>
         </ul>
       </div>
@@ -58,19 +58,19 @@ const MenuFoodComponent = (props) => {
             <Modal.Header>{props.modalProductType}</Modal.Header>
             <Modal.Body>
               {props.modalProducts && (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2">
+                <table className="w-full text-sm text-left text-gray-500 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
                     <th className="border-r-2 bg-white px-6 py-3">SI</th>
-                    <th className="border-r-2 bg-white px-6 py-3">Name</th>
-                    <th className="border-r-2 bg-white px-6 py-3">Price</th>
-                    <th className="border-r-2 bg-white px-6 py-3">Actions</th>
+                    <th className="border-r-2 bg-white px-6 py-3">Ime</th>
+                    <th className="border-r-2 bg-white px-6 py-3">Cena</th>
+                    <th className="border-r-2 bg-white px-6 py-3">Opcije</th>
                   </thead>
                   <tbody className="divide-y">
                     {props.modalProducts.map((product, i) => {
                       return (
                         <tr
                           key={product._id}
-                          className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                          className="bg-white  "
                         >
                           <td className="border-r-2 px-6 py-3">{i++ + 1}</td>
                           <td className="border-r-2 px-6 py-3">
@@ -101,7 +101,7 @@ const MenuFoodComponent = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleClose} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

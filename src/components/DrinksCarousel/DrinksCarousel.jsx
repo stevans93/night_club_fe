@@ -9,7 +9,7 @@ export default function DrinksCarousel(props) {
 
   return (
     <div className="flex h-fit w-full mt-10">
-      <div className="flex h-44 w-full items-center justify-center bg-transparent dark:bg-gray-700 dark:text-white gap-2">
+      <div className="flex h-44 w-full items-center justify-center bg-transparent  gap-2">
         {props.drinkCategories.map((category) => {
           return (
             <button

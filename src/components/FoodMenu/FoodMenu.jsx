@@ -11,7 +11,7 @@ const FoodMenu = (props) => {
   return (
     <>
       <div className="flex h-fit w-1/5 mt-10 bg-white items-center">
-        <div className="flex h-44 w-full items-center justify-center bg-transparent dark:bg-gray-700 dark:text-white gap-2">
+        <div className="flex h-44 w-full items-center justify-center bg-transparent  gap-2">
           <button
             onClick={fetchItems}
             className="flex flex-col items-center justify-center w-full h-full gap-4"

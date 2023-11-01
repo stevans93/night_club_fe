@@ -59,16 +59,16 @@ const EditEventForm = (props) => {
             open={props.isEditEventModalOpen}
             onClose={props.handleEditModalClose}
             backdrop={props.isEditEventModalOpen}>
-            <Modal.Header className="border-b-2 text-2xl py-2">Edit Event</Modal.Header>
+            <Modal.Header className="border-b-2 text-2xl py-2">Uredi Događaja</Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
-                    Name
+                    Ime
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter name"
+                    placeholder="Unesite Ime..."
                     id="name"
                     type="text"
                     defaultValue={props.event.title}
@@ -77,11 +77,11 @@ const EditEventForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Event description *
+                    Opis Događaja *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Event description"
+                    placeholder="Unesite Opis Događaja..."
                     id="phone"
                     type="text"
                     defaultValue={props.event.description}
@@ -91,11 +91,11 @@ const EditEventForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="date">
-                      Date
+                      Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set date"
+                      placeholder="Unesite Datum..."
                       id="date"
                       type="date"
                       defaultValue={new Date(props.event.dateOfEvent).toISOString().split('T')[0]}
@@ -104,11 +104,11 @@ const EditEventForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="ticketPrice">
-                      Ticket Price
+                      Cena Ulaznice
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set ticketPrice"
+                      placeholder="Unesite Cenu Ulaznice"
                       id="ticketPrice"
                       type="text"
                       defaultValue={props.event.ticketPrice}
@@ -120,13 +120,13 @@ const EditEventForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="type">
-                      Type
+                      Tip Događaja 
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
                       id="type"
                       type="text"
-                      placeholder="Enter type"
+                      placeholder="Unesite Tip Događaja..."
                       defaultValue={props.event.type}
                       ref={typeInputRef}
                     />
@@ -139,7 +139,7 @@ const EditEventForm = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

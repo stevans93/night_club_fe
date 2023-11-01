@@ -42,17 +42,17 @@ const ResetPasswordForm = (props) => {
             backdrop={props.isResetStaffPasswordModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Reset Password
+              Resetuj Lozinku
             </Modal.Header>
             <Modal.Body>
               <div className="flex justify-between flex-wrap">
                 <div className="w-5/12 flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="password">
-                    Password
+                    Lozinka
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter password"
+                    placeholder="Unesite Lozinka..."
                     id="password"
                     type="text"
                     ref={passwordInputRef}
@@ -60,11 +60,11 @@ const ResetPasswordForm = (props) => {
                 </div>
                 <div className="w-5/12 flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="confirmPassword">
-                    Confirm password
+                    Potvrdi Lozinku
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter password"
+                    placeholder="Potvrdi Lozinku..."
                     id="confirmPassword"
                     type="text"
                     ref={confirmPasswordInputRef}
@@ -80,7 +80,7 @@ const ResetPasswordForm = (props) => {
                 onClick={props.handleResetStaffPasswordModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

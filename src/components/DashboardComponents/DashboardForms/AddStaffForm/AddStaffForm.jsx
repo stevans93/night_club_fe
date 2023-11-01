@@ -59,18 +59,18 @@ const AddStaffForm = (props) => {
             backdrop={props.isAddStaffModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add new staff
+              Dodaj Novo Osoblje
             </Modal.Header>
             <Modal.Body>
               <div className="flex flex-wrap justify-between">
                 <div className="flex flex-col w-45 justify-between">
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="firstName">
-                      firstName
+                      Ime
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter firstName"
+                      placeholder="Unesite Ime..."
                       id="firstName"
                       type="text"
                       ref={firstNameInputRef}
@@ -78,11 +78,11 @@ const AddStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="lastName">
-                      lastName
+                      Prezime
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter lastName"
+                      placeholder="Unesite Prezime..."
                       id="lastName"
                       type="text"
                       ref={lastNameInputRef}
@@ -90,11 +90,11 @@ const AddStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="email">
-                      Email
+                      E-mail Adresa
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter email adress"
+                      placeholder="Unesite E-mail Adresu..."
                       id="email"
                       type="text"
                       ref={emailInputRef}
@@ -102,11 +102,11 @@ const AddStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="password">
-                      Password
+                      Lozinka
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter password"
+                      placeholder="Unesite Lozinku..."
                       id="password"
                       type="text"
                       ref={passwordInputRef}
@@ -114,11 +114,11 @@ const AddStaffForm = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="retypePassword">
-                      Retype password
+                      Potvrdi Lozinku
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter password"
+                      placeholder="Potvrdi Lozinku..."
                       id="retypePassword"
                       type="text"
                       ref={repeatPasswordInputRef}
@@ -126,7 +126,7 @@ const AddStaffForm = (props) => {
                   </div>
                 </div>
                 <div className="w-45 flex flex-col">
-                  <span className="py-2 mb-2">Permission list</span>
+                  <span className="py-2 mb-2">Lista Dozvola</span>
                   <ul>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">1</span>
@@ -136,7 +136,7 @@ const AddStaffForm = (props) => {
                         value="reservation"
                         ref={reservationInputRef}
                       />
-                      <label htmlFor="reservation">Reservation</label>
+                      <label htmlFor="reservation">Rezervacije</label>
                     </li>
                     <li className="flex gap-2 py-1">
                       <span className="w-2">2</span>
@@ -146,7 +146,7 @@ const AddStaffForm = (props) => {
                         value="coupons"
                         ref={couponListInputRef}
                       />
-                      <label htmlFor="Coupon">Coupon list</label>
+                      <label htmlFor="Coupon">Lista Kupona</label>
                     </li>
                   </ul>
                 </div>
@@ -160,7 +160,7 @@ const AddStaffForm = (props) => {
                 onClick={props.handleAddStaffModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

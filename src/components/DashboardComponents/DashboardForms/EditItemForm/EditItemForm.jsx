@@ -42,14 +42,14 @@ const EditItemForm = (props) => {
   const renderCategoryOptions = () => {
     return (
       <>
-        <option value="drink">Drink</option>
-        <option value="food">Food</option>
+        <option value="Piće">Piće</option>
+        <option value="Hrana">Hrana</option>
       </>
     );
   };
 
   const renderSubCategoryOptions = () => {
-    if (category === "drink") {
+    if (category === "Piće") {
       return props.drinkCategories.map((category) => (
         <option
           defaultValue={props.product.category}
@@ -83,13 +83,13 @@ const EditItemForm = (props) => {
             backdrop={props.isEditItemModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Edit Item
+              Uredi Stavku
             </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="category">
-                    Category
+                    Kategorija
                   </label>
                   <select
                     className="py-3 px-2 border-2 border-black rounded-lg"
@@ -104,7 +104,7 @@ const EditItemForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="subCategory">
-                    Subcategory
+                    Podkategorija
                   </label>
                   <select
                     className="py-3 px-2 border-2 border-black rounded-lg"
@@ -119,7 +119,7 @@ const EditItemForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="name">
-                      Name
+                      Ime
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -132,7 +132,7 @@ const EditItemForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="price">
-                      Price
+                      Cena
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -147,7 +147,7 @@ const EditItemForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="image">
-                      Image
+                      Slika
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -169,7 +169,7 @@ const EditItemForm = (props) => {
                 onClick={props.handleEditItemModalClose}
                 appearance="subtle"
               >
-                Cancel
+                Otkaži 
               </Button>
             </Modal.Footer>
           </Modal>

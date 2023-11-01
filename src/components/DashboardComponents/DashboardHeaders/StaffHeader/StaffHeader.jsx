@@ -5,7 +5,7 @@ const StaffHeader = (props) => {
     <>
       <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white shadow-lg">
         <div className="flex items-center">
-          <span>Staff list</span>
+          <span>Spisak Osoblja</span>
         </div>
         <div className="flex items-center">
           <button
@@ -13,7 +13,7 @@ const StaffHeader = (props) => {
             className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
           >
             <AiOutlinePlus />
-            Add new staff
+            Dodaj Novo Osoblje
           </button>
         </div>
       </div>

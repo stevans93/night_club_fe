@@ -49,17 +49,17 @@ const AddTableForm = (props) => {
             backdrop={props.isAddTableModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Add Table
+              Dodaj Sto
             </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
-                  <label className="mb-2 mt-2" htmlFor="name">
-                    Name
+                  <label className="mb-2 mt-2" htmlFor="name"> 
+                    Ime
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter name"
+                    placeholder="Unesite Ime..."
                     id="name"
                     type="text"
                     ref={nameInputRef}
@@ -67,11 +67,11 @@ const AddTableForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                    Max People *
+                  Maksimalan Broj Ljudi *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
-                    placeholder="Enter Table maxPeople"
+                    placeholder="Unesite Maksimalan Broj Ljudi..."
                     id="phone"
                     type="text"
                     ref={maxPeopleInputRef}
@@ -80,11 +80,11 @@ const AddTableForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="area">
-                      Area
+                      Mesto u Klubu
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Set area"
+                      placeholder="Unesite Mesto u Klubu..."
                       id="area"
                       type="text"
                       ref={areaInputRef}
@@ -98,7 +98,7 @@ const AddTableForm = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleTableModalClose} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

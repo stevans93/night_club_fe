@@ -23,7 +23,7 @@ const DashboardConfigSidebar = (props) => {
           className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
         >
           <MdTableRestaurant />
-          Tables
+          Stolovi
         </button>
       )}
       <button
@@ -31,7 +31,7 @@ const DashboardConfigSidebar = (props) => {
         className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
       >
         <BsImages />
-        Slider
+        Slider Slike
       </button>
       {userRole === "manager" && (
         <button
@@ -39,7 +39,7 @@ const DashboardConfigSidebar = (props) => {
           className="flex items-center gap-1 px-2 py-4 focus:bg-[#475DDB] focus:text-white rounded-md"
         >
           <IoMdMegaphone />
-          Awaliable days
+          Radno Vreme
         </button>
       )}
     </div>

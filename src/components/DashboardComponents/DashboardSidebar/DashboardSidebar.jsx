@@ -25,7 +25,7 @@ function DashboardSidebar({ children, open }) {
   const handleLogOut = () => {
     dispatch(logOutUser());
     navigate("/");
-    toast.success("You have successfully logged out!", {
+    toast.success("Uspešno ste se odjavili!", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -64,6 +64,7 @@ function DashboardSidebar({ children, open }) {
             userRole === "admin") && (
             <NavLink
               to="/dashboard"
+              style={{textDecoration: 'none'}}
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
               <FiUsers className="mr-2 text-2xl" />
@@ -83,6 +84,7 @@ function DashboardSidebar({ children, open }) {
           </NavLink> */}
           {userRole === "manager" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/menu"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
             >
@@ -94,6 +96,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {(userRole === "manager" || userRole === "admin") && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/club-config"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -105,6 +108,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {(userRole === "manager" || userPermissions.includes("coupons")) && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/coupon"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -116,6 +120,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "manager" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/customer-list"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -127,6 +132,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "manager" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/staff"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -147,6 +153,7 @@ function DashboardSidebar({ children, open }) {
           </NavLink> */}
           {userRole === "manager" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/events"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -158,6 +165,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "admin" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/user-list"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -170,6 +178,7 @@ function DashboardSidebar({ children, open }) {
 
           {userRole === "admin" && (
             <NavLink
+            style={{textDecoration: 'none'}}
               to="/dashboard/addClub"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >

@@ -28,7 +28,7 @@ const InputForm = (props) => {
   return (
     <div className="flex xs:flex-col sm:flex-row flex-wrap gap-5 mb-10">
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="ime">Ime dogadjaja</label>
+        <label htmlFor="ime">Ime Događaja</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedName}
@@ -37,7 +37,7 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="tip">Tip mesta</label>
+        <label htmlFor="tip">Tip Mesta</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedTip}
@@ -46,7 +46,7 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="gde">Izaberi grad</label>
+        <label htmlFor="gde">Izaberi Grad</label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedLocation}

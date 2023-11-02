@@ -6,7 +6,7 @@ import {useRef, useState} from 'react'
 import ReservationsService from '../../services/reservationsService'
 
 const ReservationModal = (props) => {
-  const [table, setTable] = useState({maxPersons: 'of selected table'})
+  const [table, setTable] = useState({maxPersons: ''})
   console.log('props in modal')
   console.log(props)
   const handlePersonsChange = () => {
@@ -77,11 +77,11 @@ const ReservationModal = (props) => {
                   <div className="flex justify-between mt-4">
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="name">
-                        Name
+                        Ime
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
-                        placeholder="Enter name"
+                        placeholder="Unesite Ime..."
                         id="name"
                         type="text"
                         ref={nameInputRef}
@@ -89,11 +89,11 @@ const ReservationModal = (props) => {
                     </div>
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="phone">
-                        Phone
+                        Mobilni Telefon
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
-                        placeholder="Enter Phone"
+                        placeholder="Unesite Mobilni Telefon..."
                         id="phone"
                         type="text"
                         ref={phoneInputRef}
@@ -102,11 +102,11 @@ const ReservationModal = (props) => {
                   </div>
                   <div className="w-full flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="email">
-                      Email
+                      E-mail Adresa
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
-                      placeholder="Enter email adress"
+                      placeholder="Unesite E-mail Adresu..."
                       id="email"
                       type="text"
                       ref={emailInputRef}
@@ -115,7 +115,7 @@ const ReservationModal = (props) => {
                   <div className="flex w-full justify-between">
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="">
-                        Table
+                        Sto
                       </label>
                       <select
                         className="py-3 px-2 border-2 border-black rounded-lg"
@@ -125,10 +125,10 @@ const ReservationModal = (props) => {
                           if (event.target.value) {
                             setTable(JSON.parse(event.target.value))
                           } else {
-                            setTable({maxPersons: 'of selected table'})
+                            setTable({maxPersons: 'Po Izabranom Stolu...'})
                           }
                         }}>
-                        <option value="">Select your table</option>
+                        <option value="">Izaberite Sto...</option>
                         {props.tables.map((x) => {
                           return (
                             <option key={x._id} value={JSON.stringify(x)}>
@@ -140,11 +140,11 @@ const ReservationModal = (props) => {
                     </div>
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="person">
-                        Person
+                        Broj Osoba
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
-                        placeholder={`Select max ${table.maxPersons}`}
+                        placeholder={`Maksimalan Broj Osoba Za Stolom ${table.maxPersons}`}
                         id="person"
                         type="number"
                         min={0}
@@ -157,7 +157,7 @@ const ReservationModal = (props) => {
                   <div className="flex w-full justify-between">
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="date">
-                        Date
+                        Datum
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
@@ -176,11 +176,11 @@ const ReservationModal = (props) => {
                     </div>
                     <div className="w-45 flex flex-col">
                       <label className="mb-2 mt-2" htmlFor="coupon">
-                        Coupon
+                        Kupon Kod
                       </label>
                       <input
                         className="py-3 px-2 border-2 border-black rounded-lg"
-                        placeholder="Enter coupon code"
+                        placeholder="Unesite Kupon Kod..."
                         id="coupon"
                         type="text"
                         ref={couponInputRef}
@@ -195,7 +195,7 @@ const ReservationModal = (props) => {
                 Ok
               </Button>
               <Button onClick={props.handleCloseReservationModal} appearance="subtle">
-                Cancel
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

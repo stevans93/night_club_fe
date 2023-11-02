@@ -23,11 +23,66 @@ input:-webkit-autofill{
   .dropdown {
     top: 70px;
   }
+  
 }
 
 @media screen and (max-width: 430px) {
   .dropdown {
     top: 70px;
+  }
+
+  .clubHeader {
+    height: 20vh;
+  }
+
+  .clubBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .clubBlockTwo {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .clubSocial {
+    display: flex;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .clubBlockTwo img {
+    width: 50%;
+  }
+
+  .reservation {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eventBody {
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .eventTime {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    height: 35vh;
+  }
+
+  .eventPrice {
+    margin-top: 50px;
+    height: 10vh;
+  }
+
+  .eventBtn {
+    position: absolute;
+    bottom: 0;
   }
 }
 

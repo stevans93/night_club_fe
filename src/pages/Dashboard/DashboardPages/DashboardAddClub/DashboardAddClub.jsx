@@ -44,19 +44,19 @@ const DashboardAddClub = () => {
   };
 
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col mt-5">
       <div className="flex justify-around">
         <div className="flex flex-col w-3/12">
           <span className="text-2xl text-center border-b-2 py-2">
-            Club Info
+            Informacije Kluba
           </span>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="name">
-              name
+              Ime
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Set name"
+              placeholder="Unesite Ime..."
               id="name"
               type="text"
               ref={nameInputRef}
@@ -64,11 +64,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="bannerImage">
-              Banner Image
+              Tag Objekta
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter banner Image"
+              placeholder="Unesite Tag Objekta..."
               id="bannerImage"
               type="text"
               ref={bannerImageInputRef}
@@ -76,11 +76,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="type">
-              type
+              Tip Objekta
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter type"
+              placeholder="Unesite Tip Objekta..."
               id="type"
               type="text"
               ref={typeInputRef}
@@ -89,15 +89,15 @@ const DashboardAddClub = () => {
         </div>
         <div className="flex flex-col w-3/12">
           <span className="text-2xl text-center border-b-2 py-2">
-            Manager Info
+            Informacije Menadzera
           </span>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="firstName">
-              firstName
+              Ime
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Set firstName"
+              placeholder="Unesite Ime..."
               id="firstName"
               type="text"
               ref={firstNameInputRef}
@@ -105,11 +105,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="lastName">
-              lastName
+              Prezime
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter lastName"
+              placeholder="Unesite Prezime..."
               id="lastName"
               type="text"
               ref={lastNameInputRef}
@@ -117,11 +117,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="email">
-              email
+              E-mail Adresa
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter email"
+              placeholder="Unesite E-mail Adresu..."
               id="email"
               type="text"
               ref={emailInputRef}
@@ -129,11 +129,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="password">
-              password
+              Lozinka
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Set password"
+              placeholder="Unesite Lozinku..."
               id="password"
               type="text"
               ref={passwordInputRef}
@@ -141,11 +141,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="mobilePhone">
-              Mobile Phone
+              Mobilni Telefon
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter mobilePhone"
+              placeholder="Unesite Mobilni Telefon..."
               id="mobilePhone"
               type="text"
               ref={mobilePhoneInputRef}
@@ -153,11 +153,11 @@ const DashboardAddClub = () => {
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="birthDate">
-              Birth Date
+              Datum Rođenja
             </label>
             <input
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Enter birthDate"
+              placeholder="Unesite Datum"
               id="type"
               type="date"
               ref={birthDateInputRef}
@@ -170,7 +170,7 @@ const DashboardAddClub = () => {
         onClick={handleSaveForm}
         className="flex mt-10 self-center bg-primary w-fit text-white py-2 px-20 rounded-lg"
       >
-        Confirm
+        Potvrdi
       </button>
     </form>
   );

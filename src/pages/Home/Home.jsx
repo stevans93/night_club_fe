@@ -224,7 +224,7 @@ function Home(props) {
             setNumberOfPages={setNumberOfRegularPages}
             setNumberOfClubs={setNumberOfRegularClubs}
             bannerImage="Regularno Mesto"
-            button="View"
+            button="Istraži"
           />
         </div>
       </div>
@@ -284,7 +284,7 @@ function Home(props) {
             params={selectedParams}
             setNumberOfPages={setNumberOfPages}
             setNumberOfEvents={setNumberOfEvents}
-            button="Book now"
+            button="Rezerviši"
           />
         </div>
       </div>

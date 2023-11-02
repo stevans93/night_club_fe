@@ -25,8 +25,9 @@ function ClubCard(props) {
         </div>
         <div>
           <Link
+          style={{ textDecoration: 'none' }}
             to={props.page}
-            className="inline-flex items-center xs:px-6 sm:px-10 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary ">
+            className="inline-flex items-center xs:px-6 sm:px-10 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:outline-none focus:ring-primary ">
             {props.button}
           </Link>
         </div>

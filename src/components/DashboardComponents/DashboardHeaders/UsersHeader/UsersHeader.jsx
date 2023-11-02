@@ -11,7 +11,7 @@ const UserHeader = (props) => {
           <div className="flex items-center gap-2">
             <span>Prikaži</span>
             <select
-              className="px-1 w-16 border rounded-xl"
+              className="px-1 w-16 border rounded-xl text-center"
               value={props.pageSize}
               onChange={(event) =>
                 props.handlePageSizeChange(event.target.value)
@@ -31,7 +31,7 @@ const UserHeader = (props) => {
           <div className="flex items-center border rounded-xl w-fit h-8 px-2">
             <input
               className="focus-visible:outline-none"
-              placeholder="Name"
+              placeholder="Ime i Prezime"
               type="search"
               onChange={(event) => props.handleChangeName(event.target.value)}
             />
@@ -42,7 +42,7 @@ const UserHeader = (props) => {
             className="flex items-center px-3 rounded-xl bg-primary h-8 text-white gap-2"
           >
             <BiSolidFileExport size="1.2rem" />
-            Export
+            Izvezi
           </CSVLink>
         </div>
       </div>

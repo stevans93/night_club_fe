@@ -128,7 +128,7 @@ const Club = () => {
         </div>
         <div className="flex flex-col items-center self-center w-full max-w-5xl bg-[#F0F4F9] mt-16 mb-16">
           <h2 className="text-3xl">
-            <span className="font-bold text-3xl underline decoration-primary">Drinks</span> Category
+            <span className="font-bold text-3xl underline decoration-primary">Karta Pića i Hrane</span>
           </h2>
           {products && drinkCategories && drinkCategories.length !== 0 && (
             <DrinkMenu
@@ -158,14 +158,14 @@ const Club = () => {
       </div>
       <div className="flex flex-col items-center">
         <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5 pb-10">
-          <span className="text-primary font-bold mt-6 mb-4">SELECT EVENT</span>
-          <h3 className="mb-10 text-5xl font-bold">Events</h3>
+          <span className="text-primary font-bold mt-6 mb-4">Izaberi Događaj</span>
+          <h3 className="mb-10 text-5xl font-bold">Događaj</h3>
           <ClubInputForm
             handleChangIme={handleChangIme}
             handleChangTip={handleChangTip}
             handleChangeDate={handleChangeDate}
           />
-          <EventList button="Book now" params={selectedParams} />
+          <EventList button="Rezerviši" params={selectedParams} />
         </div>
       </div>
     </>

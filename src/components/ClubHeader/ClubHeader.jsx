@@ -72,14 +72,14 @@ const ClubHeader = () => {
 
   return (
     <>
-      <div className="flex h-20 justify-center">
-        <div className="flex w-full max-w-5xl justify-between">
-          <div className="flex gap-10 items-center">
+      <div className="flex h-20 justify-center clubHeader">
+        <div className="flex w-full max-w-5xl justify-between clubBlock">
+          <div className="flex gap-10 items-center clubBlockTwo">
             {info && <img className="h-4/5" src={info.clubLogo} />}
             <div className="flex">
               <ul className="flex gap-5 items-center m-0">
                 <li>
-                  <Link to="">Home</Link>
+                  <Link to="">Početna</Link>
                 </li>
                 {/* <li>
                   <Link to="">Menu</Link>
@@ -88,13 +88,13 @@ const ClubHeader = () => {
                   <Link to="">Events</Link>
                 </li> */}
                 <li>
-                  <button onClick={handleShowModal}>Reservation</button>
+                  <button onClick={handleShowModal}>Rezervacija</button>
                 </li>
               </ul>
             </div>
           </div>
           {info && (
-            <div className="flex items-center">
+            <div className="flex items-center clubSocial">
               <Link to="#" className="m-2">
                 <FaEnvelope className="fill-primary" />
               </Link>

@@ -53,9 +53,22 @@ class ClubsService {
     return this.handleResponse(response);
   }
 
+  static async addClubImage(clubId, formData) {
+    const response = await uploadHttp.put(`${clubsPath}/addClubImage/${clubId}`, formData);
+    return this.handleResponse(response);
+  }
+
   static async updateClub(clubId, updatedClubData) {
-    const response = await uploadHttp.put(
+    const response = await http.put(
       `${clubsPath}/updateClub/${clubId}`,
+      updatedClubData
+    );
+    return this.handleResponse(response);
+  }
+
+  static async updateClubSliders(clubId, updatedClubData) {
+    const response = await uploadHttp.put(
+      `${clubsPath}/sliders/${clubId}`,
       updatedClubData
     );
     return this.handleResponse(response);

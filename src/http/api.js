@@ -2,6 +2,8 @@ import axios from "axios";
 import { getToken } from "../helpers/auth";
 
 // Base instance with application/json content type
+//https://api.where2go.vip
+//http://localhost:4000
 const instance = axios.create({
   baseURL: 'http://localhost:4000/api',
 });
@@ -16,6 +18,8 @@ instance.interceptors.request.use((config) => {
 });
 
 // Create a new instance specifically for file uploads
+//https://api.where2go.vip
+//http://localhost:4000
 const uploadInstance = axios.create({
   baseURL: 'http://localhost:4000/api', // Change the base URL if necessary
 });

@@ -17,9 +17,12 @@ function DashboardGeneralConfig() {
   const whatsAppInputRef = useRef()
 
   const [logoInput, setLogoInput] = useState(null)
-
   const [thumbnailInput, setThumbnailInput] = useState(null)
   const [mapClubInput, setMapClubInput] = useState(null)
+
+  const [logoInputPreview, setLogoInputPreview] = useState(null)
+  const [thumbnailInputPreview, setThumbnailInputPreview] = useState(null)
+  const [mapClubInputPreview, setMapClubInputPreview] = useState(null)
   const [club, setClub] = useState()
 
   const ncUser = JSON.parse(localStorage.getItem('nc_user'))
@@ -37,7 +40,7 @@ function DashboardGeneralConfig() {
     try {
       const club = {
         _id: clubId,
-        clubLogo: logoInput,
+        // clubLogo: logoInput,
         location: locationInputRef.current.value,
         email: emailInputRef.current.value,
         mobile: phoneInputRef.current.value,
@@ -46,11 +49,12 @@ function DashboardGeneralConfig() {
           {name: 'Facebook', link: facebookInputRef.current.value},
           {name: 'Instagram', link: instagramInputRef.current.value},
           {name: 'WhatsApp', link: whatsAppInputRef.current.value}
-        ],
-        profileImage: thumbnailInput,
-        clubMap: mapClubInput
+        ]
+        // profileImage: thumbnailInput,
+        // clubMap: mapClubInput
       }
       if (userRole !== 'admin') {
+        console.log('IDE I OVO')
         await ClubsService.updateClub(clubId, club)
       } else {
         await SiteService.editSingleSite(club)
@@ -62,10 +66,19 @@ function DashboardGeneralConfig() {
   }
 
   async function handleChange(e) {
-    console.log(e.target.name)
-    if (e.target.name === 'logoInput') setLogoInput(await convertToBase64(e.target.files[0]))
-    if (e.target.name === 'thumbnailInput') setThumbnailInput(await convertToBase64(e.target.files[0]))
-    if (e.target.name === 'mapClubInput') setMapClubInput(await convertToBase64(e.target.files[0]))
+    console.log(e.target.files[0])
+    if (e.target.name === 'logoInput') {
+      setLogoInput(e.target.files[0])
+      setLogoInputPreview(await convertToBase64(e.target.files[0]))
+    }
+    if (e.target.name === 'thumbnailInput') {
+      setThumbnailInput(e.target.files[0])
+      setThumbnailInputPreview(await convertToBase64(e.target.files[0]))
+    }
+    if (e.target.name === 'mapClubInput') {
+      setMapClubInput(e.target.files[0])
+      setMapClubInputPreview(await convertToBase64(e.target.files[0]))
+    }
   }
 
   useEffect(() => {
@@ -95,6 +108,22 @@ function DashboardGeneralConfig() {
       fetchSiteInfo()
     }
   }, [clubId])
+
+  const uploadImage = async (imageName) => {
+    const formData = new FormData()
+
+    formData.append('imageName', imageName)
+    console.log(logoInput)
+    if (imageName === 'logo') formData.append('files', logoInput)
+    if (imageName === 'thumbnail') formData.append('files', thumbnailInput)
+    if (imageName === 'mapClub') formData.append('files', mapClubInput)
+
+    try {
+      await ClubsService.addClubImage(clubId, formData)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div className="flex w-9/12 h-fit">
@@ -224,7 +253,7 @@ function DashboardGeneralConfig() {
           <div className="flex flex-col gap-2 mt-4 bg-white shadow-lg">
             <span className="border-b-2 py-2 px-3">Logo</span>
             <div className="flex flex-col px-2 py-2">
-              <div className="flex items-center justify-center  m-auto">
+              <div className="flex items-center justify-center  m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center  rounded-lg cursor-pointer  hover:bg-gray-100   ">
@@ -253,17 +282,23 @@ function DashboardGeneralConfig() {
                       </label>
                     )}
                     <input name="logoInput" id="logoInput" type="file" onChange={handleChange} className="hidden" />
-                    <img src={logoInput} className="max-h-[200px]" />
+                    <img src={logoInputPreview} className="max-h-[200px]" />
                   </div>
+
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
+                <button
+                  onClick={() => uploadImage('logo')}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  Upload
+                </button>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-2 shadow-lg bg-white mt-8">
             <span className="border-b-2 py-2 px-3">Thumbnail Slika</span>
             <div className="flex flex-col px-2 py-2">
-              <div className="flex items-center justify-center w-full m-auto">
+              <div className="flex items-center justify-center w-full m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full rounded-lg cursor-pointer  hover:bg-gray-100   ">
@@ -298,17 +333,22 @@ function DashboardGeneralConfig() {
                       onChange={handleChange}
                       className="hidden"
                     />
-                    <img src={thumbnailInput} className="max-h-[200px]" />
+                    <img src={thumbnailInputPreview} className="max-h-[200px]" />
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
+                <button
+                  onClick={() => uploadImage('thumbnail')}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  Upload
+                </button>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-2 shadow-lg bg-white mt-8 ">
             <span className="border-b-2 py-2 px-3">Mapa Objekta</span>
             <div className="flex flex-col px-2 py-2">
-              <div className="flex items-center justify-center   m-auto">
+              <div className="flex items-center justify-center   m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center rounded-lg cursor-pointer  hover:bg-gray-100   ">
@@ -335,17 +375,27 @@ function DashboardGeneralConfig() {
                         Izaberite Sliku
                       </label>
                     )}
-                    <input name="mapClubInput" id="mapClubInput" type="file" onChange={handleChange} className="hidden" />
-                    <img src={mapClubInput} className="max-h-[400px]" />
+                    <input
+                      name="mapClubInput"
+                      id="mapClubInput"
+                      type="file"
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                    <img src={mapClubInputPreview} className="max-h-[400px]" />
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
+                <button
+                  onClick={() => uploadImage('mapClub')}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  Upload
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
-      
     </div>
   )
 }

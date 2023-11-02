@@ -29,9 +29,9 @@ const DashboardSliderConfig = (props) => {
     event.preventDefault()
     const dataToSend = await getDataToUpload()
     if (userRole !== 'admin') {
-      await ClubsService.updateClub(clubId, dataToSend)
+      await ClubsService.updateClubSliders(clubId, dataToSend)
     } else {
-      await SiteService.editSingleSite(dataToSend)
+      await SiteService.editSiteSliders(dataToSend)
     }
     // window.location.reload()
   }

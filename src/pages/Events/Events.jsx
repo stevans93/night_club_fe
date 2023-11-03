@@ -47,8 +47,8 @@ const Events = () => {
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-white from-30% to-30% to-[#F0F4F9] ">
       <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5 ">
-        <span className="text-primary font-bold mt-6 mb-4">SELECT EVENT</span>
-        <h3 className="mb-10 text-5xl font-bold">Events</h3>
+        <span className="text-primary font-bold mt-6 mb-4">Izaberi Događaj</span>
+        <h3 className="mb-10 text-5xl font-bold">Događaj</h3>
         <InputForm
           handleChangeName={handleChangeName}
           handleChangeDate={handleChangeDate}

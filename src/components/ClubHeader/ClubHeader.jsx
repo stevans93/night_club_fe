@@ -75,7 +75,7 @@ const ClubHeader = () => {
       <div className="flex h-20 justify-center clubHeader">
         <div className="flex w-full max-w-5xl justify-between clubBlock">
           <div className="flex gap-10 items-center clubBlockTwo">
-            {info && <img className="h-4/5" src={info.clubLogo} />}
+            {info && <img className=" h-1/2 md:h-4/5" src={info.clubLogo} />}
             <div className="flex">
               <ul className="flex gap-5 items-center m-0">
                 <li>

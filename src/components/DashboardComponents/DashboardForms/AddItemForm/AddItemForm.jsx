@@ -4,7 +4,6 @@ import {Button, Modal} from 'rsuite'
 import {useRef, useState} from 'react'
 
 import ProductsService from '../../../../services/productsService'
-import convertToBase64 from '../../../../helpers/base64Converter'
 
 const AddItemForm = (props) => {
   const [category, setCategory] = useState('Piće')
@@ -15,10 +14,8 @@ const AddItemForm = (props) => {
   const imageInputRef = useRef()
 
   const [itemImage, setItemImage] = useState(null)
-  const [itemImagePreview, setItemImagePreview] = useState(null)
 
   async function handleChange(e) {
-    setItemImagePreview(await convertToBase64(e.target.files[0]))
     setItemImage(e.target.files[0])
   }
 
@@ -33,7 +30,7 @@ const AddItemForm = (props) => {
       subCategory: subCategoryInputRef.current.value,
       name: nameInputRef.current.value,
       price: priceInputRef.current.value,
-      image: itemImagePreview
+      image: URL.createObjectURL(itemImage)
     }
 
     const formData = new FormData()
@@ -154,7 +151,7 @@ const AddItemForm = (props) => {
                       Choose a picture
                     </label>
                     <input name="itemImage" id="itemImage" hidden type="file" onChange={handleChange} />
-                    {itemImage ? <img src={itemImagePreview} /> : null}
+                    {itemImage ? <img src={URL.createObjectURL(itemImage)} /> : null}
                   </div>
                 </div>
               </form>

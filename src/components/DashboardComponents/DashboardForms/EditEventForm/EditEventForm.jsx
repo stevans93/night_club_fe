@@ -12,11 +12,6 @@ const EditEventForm = (props) => {
   const ticketPriceInputRef = useRef()
   const typeInputRef = useRef()
 
-  // const [eventImage, setEventImage] = useState(null)
-  // async function handleChange(e) {
-  //   setEventImage(await convertToBase64(e.target.files[0]))
-  // }
-
   const handleSaveForm = async () => {
     await saveEvent(props.event._id)
     props.handleEditModalClose()
@@ -120,7 +115,7 @@ const EditEventForm = (props) => {
                 <div className="flex w-full justify-between">
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="type">
-                      Tip Događaja 
+                      Tip Događaja
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"

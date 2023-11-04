@@ -4,7 +4,6 @@ import {Button, Modal} from 'rsuite'
 import {useRef, useState} from 'react'
 
 import EventsService from '../../../../services/eventsService'
-import convertToBase64 from '../../../../helpers/base64Converter'
 
 const AddEventForm = (props) => {
   const nameInputRef = useRef()
@@ -15,10 +14,8 @@ const AddEventForm = (props) => {
   const imageInputRef = useRef()
 
   const [eventImage, setEventImage] = useState(null)
-  const [eventImagePreview, setEventImagePreview] = useState(null)
 
   async function handleChange(e) {
-    setEventImagePreview(await convertToBase64(e.target.files[0]))
     setEventImage(e.target.files[0])
   }
 
@@ -148,7 +145,7 @@ const AddEventForm = (props) => {
                       Choose a picture
                     </label>
                     <input name="eventImage" id="eventImage" hidden type="file" onChange={handleChange} />
-                    {eventImage ? <img src={eventImagePreview} /> : null}
+                    {eventImage ? <img src={URL.createObjectURL(eventImage)} /> : null}
                   </div>
                 </div>
               </form>

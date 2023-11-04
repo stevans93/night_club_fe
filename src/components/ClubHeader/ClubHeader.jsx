@@ -54,8 +54,6 @@ const ClubHeader = () => {
     fetchInfo()
   }, [clubId])
 
-  console.log(info)
-
   useEffect(() => {
     const fetchTables = async () => {
       try {

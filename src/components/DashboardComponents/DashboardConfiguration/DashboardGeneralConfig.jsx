@@ -54,7 +54,6 @@ function DashboardGeneralConfig() {
         // clubMap: mapClubInput
       }
       if (userRole !== 'admin') {
-        console.log('IDE I OVO')
         await ClubsService.updateClub(clubId, club)
       } else {
         await SiteService.editSingleSite(club)
@@ -66,7 +65,6 @@ function DashboardGeneralConfig() {
   }
 
   async function handleChange(e) {
-    console.log(e.target.files[0])
     if (e.target.name === 'logoInput') {
       setLogoInput(e.target.files[0])
       setLogoInputPreview(await convertToBase64(e.target.files[0]))
@@ -113,7 +111,6 @@ function DashboardGeneralConfig() {
     const formData = new FormData()
 
     formData.append('imageName', imageName)
-    console.log(logoInput)
     if (imageName === 'logo') formData.append('files', logoInput)
     if (imageName === 'thumbnail') formData.append('files', thumbnailInput)
     if (imageName === 'mapClub') formData.append('files', mapClubInput)

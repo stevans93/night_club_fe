@@ -15,8 +15,11 @@ const AddEventForm = (props) => {
   const imageInputRef = useRef()
 
   const [eventImage, setEventImage] = useState(null)
+  const [eventImagePreview, setEventImagePreview] = useState(null)
+
   async function handleChange(e) {
-    setEventImage(await convertToBase64(e.target.files[0]))
+    setEventImagePreview(await convertToBase64(e.target.files[0]))
+    setEventImage(e.target.files[0])
   }
 
   const handleSaveForm = async () => {
@@ -35,8 +38,16 @@ const AddEventForm = (props) => {
       image: eventImage
     }
 
+    const formData = new FormData()
+    formData.append('title', nameInputRef.current.value)
+    formData.append('description', descriptionInputRef.current.value)
+    formData.append('dateOfEvent', dateInputRef.current.value)
+    formData.append('ticketPrice', ticketPriceInputRef.current.value)
+    formData.append('type', typeInputRef.current.value)
+    formData.append('image', eventImage)
+
     try {
-      const response = await EventsService.addEvent(event)
+      const response = await EventsService.addEvent(formData)
 
       // Handle the response as needed
       if (response) {
@@ -133,9 +144,11 @@ const AddEventForm = (props) => {
                     <label className="mb-2 mt-2" htmlFor="image">
                       Slika
                     </label>
-                    <label htmlFor="eventImage">Chose File</label>
-                    <input name="eventImage" type="file" onChange={handleChange} />
-                    {eventImage ? <img src={eventImage} /> : null}
+                    <label htmlFor="eventImage" className="py-6 px-16 bg-slate-50 m-auto rounded-lg">
+                      Choose a picture
+                    </label>
+                    <input name="eventImage" id="eventImage" hidden type="file" onChange={handleChange} />
+                    {eventImage ? <img src={eventImagePreview} /> : null}
                   </div>
                 </div>
               </form>

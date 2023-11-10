@@ -70,7 +70,7 @@ function Navbar() {
   return (
     <>
       <nav className="bg-secondary relative z-10">
-        <div className=" flex justify-between items-center container mx-auto px-4 py-5 text-sm">
+        <div className=" flex justify-between items-center mx-auto px-4 py-5 text-sm">
           <a href="/" className="m-2">
             <img src={logo} alt="where2go" className="w-[150px]" />
           </a>
@@ -83,7 +83,7 @@ function Navbar() {
 
           {localStorage.hasOwnProperty('nc_user') ? (
             <div className="flex items-center">
-              <div className="hidden lg:flex lg:justify-center lg:items-center w-full">
+              <div className="hidden lg:flex lg:justify-center lg:items-center w-full text-center">
                 <NavLink to="/" className="m-2" style={{ textDecoration: 'none' }}>
                   Početna
                 </NavLink>

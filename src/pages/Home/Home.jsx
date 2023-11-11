@@ -102,7 +102,7 @@ function Home(props) {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="relative xl:h-h700 sm:h-96 xs:h-80">
+      <div className="relative xl:h-h800 sm:h-96 xs:h-48 lg:h-h500 ">
         {sliderImages && <ImageCarousel images={sliderImages.siteSliderImages} />}
         {/* <CarouselText /> */}
       </div>

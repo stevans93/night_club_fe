@@ -24,7 +24,7 @@ const ReservationHeader = (props) => {
 
   return (
     <>
-      <div className="flex rounded-lg items-center h-16 justify-between px-5 bg-white shadow-lg">
+      <div className="flex flex-wrap w-full rounded-lg items-center min-h-16 justify-between px-5 py-2 bg-white shadow-lg">
         <div className="flex items-center gap-3">
           {!isActive && (
             <button

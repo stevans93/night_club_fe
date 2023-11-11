@@ -2,8 +2,8 @@ import ActiveButton from "../../../Buttons/ActiveButton/ActiveButton";
 
 const DashboardPaymentTable = () => {
   return (
-    <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
-      <table className="w-full text-sm text-left text-gray-500 ">
+    <div className="relative overflow-auto shadow-md rounded-lg mt-10 ml-3 mr-3">
+      <table className="w-full text-sm text-left text-gray-500 overflow-x-scroll">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
           <th className="border-r-2 bg-white px-6 py-3">SI</th>
           <th className="border-r-2 bg-white px-6 py-3">Order number</th>

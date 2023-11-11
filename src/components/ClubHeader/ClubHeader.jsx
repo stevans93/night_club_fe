@@ -72,10 +72,12 @@ const ClubHeader = () => {
 
   return (
     <>
-      <div className="flex h-20 justify-center xs:h-fit">
-        <div className="flex w-full max-w-5xl sm:justify-between xs:flex-col xs:gap-4 xs:items-center sm:flex-row">
-          <div className="flex sm:max-h-20 gap-10 items-center xs:order-2 sm:order-1 xs:pb-4 sm:pb-0">
-            <div className="flex xs:h-16 sm:h-20 sm:w-32">{info && <img className="w-full" src={info.clubLogo} />}</div>
+      <div className="flex h-20 xs:h-fit w-full">
+        <div className="flex w-full sm:justify-between xs:flex-col xs:gap-4 xs:items-center sm:flex-row">
+          <div className="flex w-full sm:max-h-20 gap-10 items-center xs:order-2 sm:order-1 xs:pb-4 sm:pb-0 sm:justify-between xs:justify-center">
+            <div className="flex xs:h-16 sm:h-20 sm:w-32">
+              {info && <img className="w-full" src={info.clubLogo} />}
+            </div>
             <div className="flex xs:text-2xl sm:text-xl">
               <ul className="flex gap-5 items-center m-0 xs:text-xl sm:text-2xl">
                 <li>

@@ -6,7 +6,7 @@ const ActiveButton = (props) => {
 
   return (
     <button
-      className={`flex gap-1 items-center text-white w-3/4 px-2 py-1 rounded-lg ${
+      className={`flex gap-1 items-center text-white w-3/4 px-2 py-1 rounded-lg min-w-fit ${
         props.text === "Inactive" ? inactiveStyle : activeStyle
       }`}
     >

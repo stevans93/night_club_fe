@@ -14,7 +14,7 @@ function Dashboard() {
   return (
     <div className="flex w-full">
       <DashboardSidebar open={sidebarOpen} />
-      <div className="flex flex-col w-full px-3">
+      <div className="flex flex-col w-full px-3 overflow-x-scroll">
         <DashboardNavbar handleOpen={handleSidebarToggle} />
         <Outlet />
       </div>

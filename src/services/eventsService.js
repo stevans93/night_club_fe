@@ -18,7 +18,7 @@ class EventsService {
     pageSize,
     clubId,
     date,
-    name,
+    title,
     location,
     type
   ) {
@@ -28,7 +28,7 @@ class EventsService {
       pageSize,
       clubId,
       date,
-      name,
+      title,
       location,
       type,
     };

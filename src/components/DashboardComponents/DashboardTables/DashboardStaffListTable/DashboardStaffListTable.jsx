@@ -4,7 +4,7 @@ import LockButton from "../../../Buttons/LockButton/LockButton";
 const DashboardStaffListTable = (props) => {
   return (
     <>
-      <div className="relative rounded-lg w-8/12 bg-white shadow-lg">
+      <div className="relative rounded-lg w-10/12 bg-white shadow-lg">
         <div className="flex border-b-2 w-full h-14 items-center px-3">
           <span>Spisak Osoblja</span>
         </div>

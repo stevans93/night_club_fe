@@ -12,11 +12,6 @@ const EditEventForm = (props) => {
   const ticketPriceInputRef = useRef();
   const typeInputRef = useRef();
 
-  // const [eventImage, setEventImage] = useState(null)
-  // async function handleChange(e) {
-  //   setEventImage(await convertToBase64(e.target.files[0]))
-  // }
-
   const handleSaveForm = async () => {
     await saveEvent(props.event._id);
     props.handleEditModalClose();

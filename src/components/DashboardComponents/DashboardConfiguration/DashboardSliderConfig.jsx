@@ -2,15 +2,12 @@ import {useRef, useState} from 'react'
 
 import ClubsService from '../../../services/clubsService'
 import SiteService from '../../../services/siteService'
-import convertToBase64 from '../../../helpers/base64Converter'
 
 const DashboardSliderConfig = (props) => {
   const [imageNames, setImageNames] = useState(Array(6).fill('')) // Initialize with empty strings
   const imageRefs = Array.from({length: 6}, () => useRef())
 
   const ncUser = JSON.parse(localStorage.getItem('nc_user'))
-  console.log('ncUser')
-  console.log(ncUser)
   const clubId = ncUser ? ncUser.clubId : undefined
   const userRole = ncUser ? ncUser.role : null
 
@@ -31,7 +28,7 @@ const DashboardSliderConfig = (props) => {
     if (userRole !== 'admin') {
       await ClubsService.updateClubSliders(clubId, dataToSend)
     } else {
-      await SiteService.editSiteSliders(dataToSend)
+      await SiteService.updateSiteSlider(dataToSend)
     }
     // window.location.reload()
   }

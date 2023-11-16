@@ -4,7 +4,6 @@ import {useEffect, useRef, useState} from 'react'
 import ClubsService from '../../../services/clubsService'
 import {FaFacebookF} from 'react-icons/fa6'
 import SiteService from '../../../services/siteService'
-import convertToBase64 from '../../../helpers/base64Converter'
 
 function DashboardGeneralConfig() {
   const logoInputRef = useRef()
@@ -20,9 +19,6 @@ function DashboardGeneralConfig() {
   const [thumbnailInput, setThumbnailInput] = useState(null)
   const [mapClubInput, setMapClubInput] = useState(null)
 
-  const [logoInputPreview, setLogoInputPreview] = useState(null)
-  const [thumbnailInputPreview, setThumbnailInputPreview] = useState(null)
-  const [mapClubInputPreview, setMapClubInputPreview] = useState(null)
   const [club, setClub] = useState()
 
   const ncUser = JSON.parse(localStorage.getItem('nc_user'))
@@ -54,7 +50,6 @@ function DashboardGeneralConfig() {
         // clubMap: mapClubInput
       }
       if (userRole !== 'admin') {
-        console.log('IDE I OVO')
         await ClubsService.updateClub(clubId, club)
       } else {
         await SiteService.editSingleSite(club)
@@ -66,18 +61,14 @@ function DashboardGeneralConfig() {
   }
 
   async function handleChange(e) {
-    console.log(e.target.files[0])
     if (e.target.name === 'logoInput') {
       setLogoInput(e.target.files[0])
-      setLogoInputPreview(await convertToBase64(e.target.files[0]))
     }
     if (e.target.name === 'thumbnailInput') {
       setThumbnailInput(e.target.files[0])
-      setThumbnailInputPreview(await convertToBase64(e.target.files[0]))
     }
     if (e.target.name === 'mapClubInput') {
       setMapClubInput(e.target.files[0])
-      setMapClubInputPreview(await convertToBase64(e.target.files[0]))
     }
   }
 
@@ -113,7 +104,6 @@ function DashboardGeneralConfig() {
     const formData = new FormData()
 
     formData.append('imageName', imageName)
-    console.log(logoInput)
     if (imageName === 'logo') formData.append('files', logoInput)
     if (imageName === 'thumbnail') formData.append('files', thumbnailInput)
     if (imageName === 'mapClub') formData.append('files', mapClubInput)
@@ -282,7 +272,7 @@ function DashboardGeneralConfig() {
                       </label>
                     )}
                     <input name="logoInput" id="logoInput" type="file" onChange={handleChange} className="hidden" />
-                    <img src={logoInputPreview} className="max-h-[200px]" />
+                    {logoInput ? <img src={URL.createObjectURL(logoInput)} className="max-h-[200px]" /> : null}
                   </div>
 
                   <input id="dropzone-file" type="file" className="hidden" />
@@ -333,7 +323,9 @@ function DashboardGeneralConfig() {
                       onChange={handleChange}
                       className="hidden"
                     />
-                    <img src={thumbnailInputPreview} className="max-h-[200px]" />
+                    {thumbnailInput ? (
+                      <img src={URL.createObjectURL(thumbnailInput)} className="max-h-[200px]" />
+                    ) : null}
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
@@ -382,7 +374,7 @@ function DashboardGeneralConfig() {
                       onChange={handleChange}
                       className="hidden"
                     />
-                    <img src={mapClubInputPreview} className="max-h-[400px]" />
+                    {mapClubInput ? <img src={URL.createObjectURL(mapClubInput)} className="max-h-[400px]" /> : null}
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>

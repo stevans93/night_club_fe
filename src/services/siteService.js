@@ -1,4 +1,4 @@
-import { http } from "../http/api";
+import { http, uploadHttp } from "../http/api";
 
 const sitePath = "/site"; // Common part of the path
 
@@ -24,6 +24,11 @@ class SiteService {
   static async editSingleSite(siteData) {
     const response = await http.put(`${sitePath}`, siteData);
     console.log(response);
+    return this.handleResponse(response);
+  }
+
+  static async updateSiteSlider(formData) {
+    const response = await uploadHttp.put(`${sitePath}/sliders`, formData);
     return this.handleResponse(response);
   }
 }

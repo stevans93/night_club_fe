@@ -1,4 +1,4 @@
-import { http } from "../http/api";
+import { http, uploadHttp } from "../http/api";
 
 const eventsPath = "/event";
 
@@ -51,7 +51,7 @@ class EventsService {
   }
 
   static async addEvent(eventData) {
-    const response = await http.post(`${eventsPath}/addEvent`, eventData);
+    const response = await uploadHttp.post(`${eventsPath}/addEvent`, eventData);
     return this.handleResponse(response);
   }
 

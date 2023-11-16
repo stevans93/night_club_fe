@@ -1,5 +1,4 @@
-import { http } from "../http/api";
-
+import { http, uploadHttp } from "../http/api";
 
 const productsPath = "/product";
 
@@ -47,7 +46,7 @@ class ProductsService {
   }
 
   static async addProduct(productData) {
-    const response = await http.post(`${productsPath}/addProduct`, productData);
+    const response = await uploadHttp.post(`${productsPath}/addProduct`, productData);
     return this.handleResponse(response);
   }
 

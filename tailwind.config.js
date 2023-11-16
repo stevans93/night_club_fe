@@ -20,6 +20,7 @@ module.exports = {
         dashboardPrimary: "#343A40",
       },
       height: {
+        h800: "830px",
         h700: "700px",
         h550: "550px",
         h500: "500px",

@@ -10,10 +10,10 @@ export default function ImageCarousel(props) {
             return (
               <div
                 key={index}
-                className="flex items-center justify-center bg-gray-400"
+                className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white"
               >
                 <img
-                  className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:h-auto"
+                  className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 xs:h-full"
                   alt="..."
                   src={image.link}
                 />

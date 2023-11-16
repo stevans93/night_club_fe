@@ -35,7 +35,7 @@ const UserProfile = ({user}) => {
         </span>
       </div>
       {showDetails && info && (
-        <div className="flex flex-col w-[200px] bg-secondary absolute top-12 w-72 items-center rounded-lg mr-6">
+        <div className="flex flex-col w-[200px] bg-secondary absolute top-12 right-0 w-72 items-center rounded-lg mr-6">
           <span className="text-2xl py-2 border-b-2 w-full text-center">
             {info.firstName + " " + info.lastName}
           </span>

@@ -211,7 +211,7 @@ function DashboardReservation() {
 
   return (
     <>
-      <div className="bg-[#F9F9F9] pt-5 h-full px-3 py-10 shadow-lg">
+      <div className="bg-[#F9F9F9] pt-5 h-full py-10 shadow-lg">
         {reservations && tables && (
           <ReservationHeader
             pageSizeOptions={pageSizeOptions}

@@ -11,7 +11,6 @@ const AddEventForm = (props) => {
   const dateInputRef = useRef()
   const ticketPriceInputRef = useRef()
   const typeInputRef = useRef()
-  const imageInputRef = useRef()
 
   const [eventImage, setEventImage] = useState(null)
 
@@ -152,7 +151,7 @@ const AddEventForm = (props) => {
             </Modal.Body>
             <Modal.Footer>
               <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
-                Ok
+                Potvrdi
               </Button>
               <Button onClick={props.handleEventModalClose} appearance="subtle">
                 Otkaži

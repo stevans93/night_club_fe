@@ -40,9 +40,9 @@ function DashboardSidebar({ children, open }) {
   return (
     <div className="flex">
       <div
-        className={`fixed ${
+        className={` ${
           open ? "w-20 md:w-60" : "w-60 md:w-20"
-        } duration-300 h-screen p-4 py-6 bg-dashboardPrimary text-white flex items-center flex-col bg-[#181818] dashboard-sidebar`}
+        } duration-300 h-screen p-4 py-6 bg-dashboardPrimary text-white flex items-center flex-col bg-[#181818] z-20`}
       >
         <div>
           <Link to="/">
@@ -51,12 +51,16 @@ function DashboardSidebar({ children, open }) {
         </div>
         {open ? (
           <div className="flex my-5 w-[50%] h-[15%] bg-primary rounded-circle">
-            <p className="text-white text-2xl mx-auto flex items-center">{ncUser.firstName.slice(0,1)}</p>
-        </div>
+            <p className="text-white text-2xl mx-auto flex items-center">
+              {ncUser.firstName.slice(0, 1)}
+            </p>
+          </div>
         ) : (
           <div className="flex my-5 w-10 h-10 bg-primary rounded-circle">
-            <p className="text-white text-2xl mx-auto flex items-center">{ncUser.firstName.slice(0,1)}</p>
-        </div>
+            <p className="text-white text-2xl mx-auto flex items-center">
+              {ncUser.firstName.slice(0, 1)}
+            </p>
+          </div>
         )}
         <div className="flex flex-col w-full h-full">
           {(userRole === "manager" ||
@@ -64,7 +68,7 @@ function DashboardSidebar({ children, open }) {
             userRole === "admin") && (
             <NavLink
               to="/dashboard"
-              style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
               <FiUsers className="mr-2 text-2xl" />
@@ -84,7 +88,7 @@ function DashboardSidebar({ children, open }) {
           </NavLink> */}
           {userRole === "manager" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/menu"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline active:text-white"
             >
@@ -96,7 +100,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {(userRole === "manager" || userRole === "admin") && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/club-config"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -108,7 +112,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {(userRole === "manager" || userPermissions.includes("coupons")) && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/coupon"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -120,7 +124,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "manager" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/customer-list"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -132,7 +136,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "manager" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/staff"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -153,7 +157,7 @@ function DashboardSidebar({ children, open }) {
           </NavLink> */}
           {userRole === "manager" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/events"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -165,7 +169,7 @@ function DashboardSidebar({ children, open }) {
           )}
           {userRole === "admin" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/user-list"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -178,7 +182,7 @@ function DashboardSidebar({ children, open }) {
 
           {userRole === "admin" && (
             <NavLink
-            style={{textDecoration: 'none'}}
+              style={{ textDecoration: "none" }}
               to="/dashboard/addClub"
               className="flex py-3 px-2 rounded-md text-gray-500 focus:text-white focus:bg-primary hover:bg-primary hover:text-white hover:no-underline"
             >
@@ -200,13 +204,6 @@ function DashboardSidebar({ children, open }) {
           </button>
         </div>
       </div>
-      <main
-        className={`${
-          open ? "ml-20 md:ml-60" : "ml-60 md:ml-20"
-        } duration-300 w-[100%]`}
-      >
-        {children}
-      </main>
     </div>
   );
 }

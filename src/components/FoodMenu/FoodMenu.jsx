@@ -10,7 +10,7 @@ const FoodMenu = (props) => {
 
   return (
     <>
-      <div className="flex h-fit w-1/5 mt-10 bg-white items-center">
+      <div className="flex h-fit w-60 sm:mt-10 xs:mt-0 bg-white items-center">
         <div className="flex h-44 w-full items-center justify-center bg-transparent  gap-2">
           <button
             onClick={fetchItems}
@@ -23,7 +23,7 @@ const FoodMenu = (props) => {
       </div>
 
       {props.showFood && (
-        <div style={{textAlign: "center" }}>
+        <div style={{ textAlign: "center" }}>
           <Modal
             open={props.showFood}
             onClose={props.handleClose}
@@ -38,7 +38,9 @@ const FoodMenu = (props) => {
                       {category.name}
                       <ul className="ml-4">
                         {props.products
-                          .filter((x) => x.subCategory === category.name.toLowerCase())
+                          .filter(
+                            (x) => x.subCategory === category.name.toLowerCase()
+                          )
                           .map((product) => {
                             return (
                               <li key={product._id}>
@@ -52,14 +54,6 @@ const FoodMenu = (props) => {
                 })}
               </ul>
             </Modal.Body>
-            <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={props.handleClose} appearance="primary">
-                Ok
-              </Button>
-              <Button onClick={props.handleClose} appearance="subtle">
-                Cancel
-              </Button>
-            </Modal.Footer>
           </Modal>
         </div>
       )}

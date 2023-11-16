@@ -12,7 +12,7 @@ function DashboardNavbar({ handleOpen }) {
   }
 
   return (
-    <nav className={`flex justify-between h-[10vh] items-center relative right-0 px-4 shadow-lg`}>
+    <nav className={`flex justify-between h-[10vh] items-center relative pl-4 shadow-lg`}>
       <div className="flex gap-5 items-center h-[5vh]">
           <GiHamburgerMenu className="text-2xl text-black cursor-pointer" onClick={handleOpen} />
         <span className="w-px h-4/5 bg-gray-500 opacity-20"></span>

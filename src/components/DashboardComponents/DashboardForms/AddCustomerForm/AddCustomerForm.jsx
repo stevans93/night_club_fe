@@ -60,7 +60,7 @@ const AddCustomerForm = (props) => {
                 onClick={props.handleAddCustomerClose}
                 appearance="primary"
               >
-                Ok
+                Potvrdi
               </Button>
               <Button
                 onClick={props.handleAddCustomerClose}

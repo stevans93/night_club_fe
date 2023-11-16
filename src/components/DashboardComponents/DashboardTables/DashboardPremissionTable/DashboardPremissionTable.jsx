@@ -4,8 +4,8 @@ const DashboardPremissionTable = () => {
       <div className="flex border-b-2 w-full h-14 items-center">
         <span>Premission list</span>
       </div>
-      <div className="relative overflow-x-auto shadow-md rounded-lg mt-10 mt-2">
-        <table className="text-sm text-left text-gray-500 ">
+      <div className="relative overflow-auto shadow-md rounded-lg mt-10 mt-2">
+        <table className="text-sm text-left text-gray-500 overflow-x-scroll">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
             <th className="border-r-2 bg-white px-6 py-3">#</th>
             <th className="border-r-2 bg-white px-6 py-3 w-full">Title</th>

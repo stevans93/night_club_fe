@@ -54,7 +54,7 @@ const AddTableForm = (props) => {
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
-                  <label className="mb-2 mt-2" htmlFor="name"> 
+                  <label className="mb-2 mt-2" htmlFor="name">
                     Ime
                   </label>
                   <input
@@ -67,7 +67,7 @@ const AddTableForm = (props) => {
                 </div>
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="phone">
-                  Maksimalan Broj Ljudi *
+                    Maksimalan Broj Ljudi *
                   </label>
                   <input
                     className="py-3 px-2 border-2 border-black rounded-lg"
@@ -94,8 +94,12 @@ const AddTableForm = (props) => {
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
-                Ok
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
+                Potvrdi
               </Button>
               <Button onClick={props.handleTableModalClose} appearance="subtle">
                 Otkaži

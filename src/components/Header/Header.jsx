@@ -27,7 +27,7 @@ function Header() {
     <>
       {info && (
         <header className="relative bg-primary">
-          <div className="container mx-auto px-4 flex items-center justify-center lg:justify-between text-white">
+          <div className="mx-auto px-4 flex items-center justify-center lg:justify-between text-white xs:justify-end">
             <div>
               <a href="mailto:info@where2go.vip" className="lg:flex items-center justify-center hidden lg:inline-block">
                 <FaEnvelope className="m-2 fill-white" />

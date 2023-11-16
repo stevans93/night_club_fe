@@ -8,8 +8,8 @@ const DashboardReserveTable = (props) => {
   const userRole = ncUser ? ncUser.role : null;
 
   return (
-    <div className="relative shadow-lg rounded-lg mt-10">
-      <table className="w-full text-sm text-left text-gray-500 ">
+    <div className="relative shadow-lg rounded-lg mt-10 overflow-auto">
+      <table className="w-full text-sm text-left text-gray-500 overflow-x-scroll">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
           <th className="border-r-2 bg-white px-6 py-3">SI</th>
           <th className="border-r-2 bg-white px-6 py-3">Naslov Događaja</th>
@@ -23,27 +23,36 @@ const DashboardReserveTable = (props) => {
           </th>
           <th className="border-r-2 bg-white px-6 py-3">Status</th>
 
-          {userRole === 'admin' ? (
+          {userRole === "admin" ? (
             <></>
           ) : (
             <th className="border-r-2 bg-white px-6 py-3">Opcije</th>
           )}
-
         </thead>
         <tbody className="divide-y">
           {props.reservations.map((reservation, i) => {
             return (
-              <tr
-                key={reservation._id}
-                className="bg-white  "
-              >
+              <tr key={reservation._id} className="bg-white  ">
                 <td className="border-r-2 px-6 py-3">
                   {i + 1 + props.pageSize * (props.pageNumber - 1)}
                 </td>
-                <td className="border-r-2 px-6 py-3">{reservation.eventTitle}</td>
+                <td className="border-r-2 px-6 py-3">
+                  {reservation.eventTitle}
+                </td>
                 <td className="border-r-2 px-6 py-3">{reservation.name}</td>
                 <td className="border-r-2 px-6 py-3">{reservation.phone}</td>
-                <td className="border-r-2 px-6 py-3">{new Date(reservation.date).toLocaleDateString()}</td>
+                {/* <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td>
+                <td className="border-r-2 px-6 py-3">kme</td> */}
+                <td className="border-r-2 px-6 py-3">
+                  {new Date(reservation.date).toLocaleDateString()}
+                </td>
                 <td className="border-r-2 px-6 py-3">
                   {userRole === "admin"
                     ? `${reservation.clubName}`
@@ -51,8 +60,8 @@ const DashboardReserveTable = (props) => {
                 </td>
 
                 <td className="border-r-2 px-6 py-3">
-                    <ActiveButton text={reservation.status} />
-                  </td>
+                  <ActiveButton text={reservation.status} />
+                </td>
 
                 {userRole === "admin" ? (
                   <></>
@@ -67,9 +76,7 @@ const DashboardReserveTable = (props) => {
                       />
                     </td>
                   </>
-                ) }
-
-                
+                )}
               </tr>
             );
           })}

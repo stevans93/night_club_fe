@@ -185,7 +185,7 @@ const AddReservationForm = (props) => {
                 onClick={handleSaveForm}
                 appearance="primary"
               >
-                Ok
+                Potvrdi
               </Button>
               <Button
                 onClick={props.handleAddReservationModalClose}

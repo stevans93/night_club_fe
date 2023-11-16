@@ -30,7 +30,7 @@ function WorkingHours() {
   return (
     <>
       {hours && (
-        <div className="flex flex-col w-3/12 gap-3">
+        <div className="flex flex-col gap-3">
           {hours.map((item) => {
             const fromToSpans = (
               <>

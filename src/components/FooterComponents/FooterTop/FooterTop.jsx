@@ -5,7 +5,7 @@ import FooterTopAbout from "./FooterTopSupport/FooterTopAbout";
 
 function FooterTop(props) {
   return (
-    <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-5">
       <FooterTopInfo
         location={props.location}
         email={props.email}

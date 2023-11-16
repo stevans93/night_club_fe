@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const InputForm = (props) => {
-  
   const [selectedName, setSelectedName] = useState("");
   const [selectedTip, setSelectedType] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -37,12 +36,14 @@ const InputForm = (props) => {
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">
-        <label htmlFor="tip">Tip Mesta</label>
+        <label htmlFor="tip">
+          {props.inputName ? props.inputName : "Tip mesta"}
+        </label>
         <input
           className="border-black border-2 px-3 py-1 h-full rounded"
           value={selectedTip}
           onChange={handleChangeType}
-          placeholder="Tip mesta"
+          placeholder={props.inputName ? props.inputName : "Tip mesta"}
         />
       </div>
       <div className="flex flex-col sm:grow sm:w-2/5 lg:w-auto lg:max-w-half xs:max-w-full">

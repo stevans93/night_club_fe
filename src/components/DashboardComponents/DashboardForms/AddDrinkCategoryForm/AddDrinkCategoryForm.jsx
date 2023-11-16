@@ -69,7 +69,7 @@ const AddDrinkCategoryForm = (props) => {
                 onClick={handleSaveForm}
                 appearance="primary"
               >
-                Ok
+                Potvrdi
               </Button>
               <Button
                 onClick={props.handleCategoryModalClose}

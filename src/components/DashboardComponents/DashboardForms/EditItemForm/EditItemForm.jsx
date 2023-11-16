@@ -162,14 +162,18 @@ const EditItemForm = (props) => {
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
-                Ok
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
+                Potvrdi
               </Button>
               <Button
                 onClick={props.handleEditItemModalClose}
                 appearance="subtle"
               >
-                Otkaži 
+                Otkaži
               </Button>
             </Modal.Footer>
           </Modal>

@@ -34,7 +34,7 @@ const MenuFoodComponent = (props) => {
                   className="flex flex-col items-center gap-3 w-fit bg-white shadow-lg py-10 px-24 rounded-lg h-fit"
                   onClick={() => fetchItems(category.name)}
                 >
-                  <GiKnifeFork size='3rem' />
+                  <GiKnifeFork size="3rem" />
                   {category.name}
                 </li>
               );
@@ -68,10 +68,7 @@ const MenuFoodComponent = (props) => {
                   <tbody className="divide-y">
                     {props.modalProducts.map((product, i) => {
                       return (
-                        <tr
-                          key={product._id}
-                          className="bg-white  "
-                        >
+                        <tr key={product._id} className="bg-white  ">
                           <td className="border-r-2 px-6 py-3">{i++ + 1}</td>
                           <td className="border-r-2 px-6 py-3">
                             {product.name}
@@ -97,8 +94,12 @@ const MenuFoodComponent = (props) => {
               )}
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={props.handleClose} appearance="primary">
-                Ok
+              <Button
+                className="bg-[#3498ff]"
+                onClick={props.handleClose}
+                appearance="primary"
+              >
+                Potvrdi
               </Button>
               <Button onClick={props.handleClose} appearance="subtle">
                 Otkaži

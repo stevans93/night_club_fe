@@ -153,8 +153,12 @@ const AddStaffForm = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
-                Ok
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
+                Potvrdi
               </Button>
               <Button
                 onClick={props.handleAddStaffModalClose}

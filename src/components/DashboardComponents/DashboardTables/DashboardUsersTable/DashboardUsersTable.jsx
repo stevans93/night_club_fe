@@ -1,3 +1,6 @@
+import EditButton from "../../../Buttons/EditButton/EditButton";
+import DeleteButton from "../../../Buttons/DeleteButton/DeleteButton";
+
 const DashboardUsersTable = (props) => {
   return (
     <>
@@ -8,21 +11,29 @@ const DashboardUsersTable = (props) => {
             <th className="border-r-2 bg-white px-6 py-3">Ime</th>
             <th className="border-r-2 bg-white px-6 py-3">Mobilni Telefon</th>
             <th className="border-r-2 bg-white px-6 py-3">E-mail Adresa</th>
+            <th className="border-r-2 bg-white px-6 py-3">Actions</th>
           </thead>
           <tbody className="divide-y">
             {props.users.map((user, i) => {
               return (
-                <tr
-                  key={user._id}
-                  className="bg-white  "
-                >
-                  <td className="border-r-2 px-6 py-3">
-                    {i + 1 + props.pageSize * (props.pageNumber - 1)}
-                  </td>
-                  <td className="border-r-2 px-6 py-3">{`${user.firstName} ${user.lastName}`}</td>
-                  <td className="border-r-2 px-6 py-3">{user.mobilePhone}</td>
-                  <td className="border-r-2 px-6 py-3">{user.email}</td>
-                </tr>
+                <>
+                  {user.role !== "admin" && (
+                    <tr key={user._id} className="bg-white  ">
+                      <td className="border-r-2 px-6 py-3">
+                        {i + 1 + props.pageSize * (props.pageNumber - 1)}
+                      </td>
+                      <td className="border-r-2 px-6 py-3">{`${user.firstName} ${user.lastName}`}</td>
+                      <td className="border-r-2 px-6 py-3">
+                        {user.mobilePhone}
+                      </td>
+                      <td className="border-r-2 px-6 py-3">{user.email}</td>
+                      <td className="flex  gap-4 border-r-2 px-6 py-3">
+                        <EditButton onClick={() => props.handleEditModalOpen(user._id)} />
+                        <DeleteButton onClick={() => props.handleDelete(user._id)} />
+                      </td>
+                    </tr>
+                  )}
+                </>
               );
             })}
           </tbody>

@@ -1,29 +1,28 @@
-import '../../../../../node_modules/rsuite/dist/rsuite.min.css'
+import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 
-import {Button, Modal} from 'rsuite'
-import {useRef, useState} from 'react'
+import { Button, Modal } from "rsuite";
+import { useRef, useState } from "react";
 
-import EventsService from '../../../../services/eventsService'
-import convertToBase64 from '../../../../helpers/base64Converter'
+import EventsService from "../../../../services/eventsService";
+import convertToBase64 from "../../../../helpers/base64Converter";
 
 const AddEventForm = (props) => {
-  const nameInputRef = useRef()
-  const descriptionInputRef = useRef()
-  const dateInputRef = useRef()
-  const ticketPriceInputRef = useRef()
-  const typeInputRef = useRef()
-  const imageInputRef = useRef()
+  const nameInputRef = useRef();
+  const descriptionInputRef = useRef();
+  const dateInputRef = useRef();
+  const ticketPriceInputRef = useRef();
+  const typeInputRef = useRef();
 
-  const [eventImage, setEventImage] = useState(null)
+  const [eventImage, setEventImage] = useState(null);
   async function handleChange(e) {
-    setEventImage(await convertToBase64(e.target.files[0]))
+    setEventImage(await convertToBase64(e.target.files[0]));
   }
 
   const handleSaveForm = async () => {
-    await saveEvent()
-    props.handleEventModalClose()
-    window.location.reload()
-  }
+    await saveEvent();
+    props.handleEventModalClose();
+    window.location.reload();
+  };
 
   const saveEvent = async () => {
     const event = {
@@ -32,27 +31,27 @@ const AddEventForm = (props) => {
       dateOfEvent: dateInputRef.current.value,
       ticketPrice: ticketPriceInputRef.current.value,
       type: typeInputRef.current.value,
-      image: eventImage
-    }
+      image: eventImage,
+    };
 
     try {
-      const response = await EventsService.addEvent(event)
+      const response = await EventsService.addEvent(event);
 
       // Handle the response as needed
       if (response) {
         // Handle success
-        console.log('Event saved successfully')
+        console.log("Event saved successfully");
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        console.log('Failed to save event')
+        console.log("Failed to save event");
         // You can perform additional actions if needed
       }
     } catch (error) {
       // Handle any errors here
-      console.error('An error occurred while saving the event:', error)
+      console.error("An error occurred while saving the event:", error);
     }
-  }
+  };
   return (
     <>
       {props.isAddEventModalOpen && (
@@ -61,8 +60,11 @@ const AddEventForm = (props) => {
             size="md"
             open={props.isAddEventModalOpen}
             onClose={props.handleEventModalClose}
-            backdrop={props.isAddEventModalOpen}>
-            <Modal.Header className="border-b-2 text-2xl py-2">Dodaj Događaja</Modal.Header>
+            backdrop={props.isAddEventModalOpen}
+          >
+            <Modal.Header className="border-b-2 text-2xl py-2">
+              Dodaj Događaja
+            </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
@@ -134,15 +136,23 @@ const AddEventForm = (props) => {
                       Slika
                     </label>
                     <label htmlFor="eventImage">Chose File</label>
-                    <input name="eventImage" type="file" onChange={handleChange} />
+                    <input
+                      name="eventImage"
+                      type="file"
+                      onChange={handleChange}
+                    />
                     {eventImage ? <img src={eventImage} /> : null}
                   </div>
                 </div>
               </form>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="bg-[#3498ff]" onClick={handleSaveForm} appearance="primary">
-                Ok
+              <Button
+                className="bg-[#3498ff]"
+                onClick={handleSaveForm}
+                appearance="primary"
+              >
+                Potvrdi
               </Button>
               <Button onClick={props.handleEventModalClose} appearance="subtle">
                 Otkaži
@@ -152,7 +162,7 @@ const AddEventForm = (props) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AddEventForm
+export default AddEventForm;

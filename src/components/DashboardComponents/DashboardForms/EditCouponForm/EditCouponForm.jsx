@@ -134,7 +134,7 @@ const EditCouponForm = (props) => {
                   </div>
                   <div className="w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="endDate">
-                    Krajnji Datum
+                      Krajnji Datum
                     </label>
                     <input
                       className="py-3 px-2 border-2 border-black rounded-lg"
@@ -157,7 +157,7 @@ const EditCouponForm = (props) => {
                 onClick={handleSaveForm}
                 appearance="primary"
               >
-                Ok
+                Potvrdi
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">
                 Otkaži

@@ -1,6 +1,7 @@
 import "../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import { BsCalendar4 } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const EventModal = (props) => {
@@ -10,7 +11,7 @@ const EventModal = (props) => {
       {props.showEventModal && (
         <div className="flex text-center reservation w-full">
           <Modal
-            size="lg"
+            size="full"
             open={props.showEventModal}
             onClose={props.handleCloseEventModal}
             backdrop={props.showEventModal}
@@ -21,16 +22,16 @@ const EventModal = (props) => {
                   <img className="flex w-full" src={props.event.image} alt="" />
                 </div>
                 <div className="flex flex-col xs:items-center lg:flex-1 px-6 relative xs:order-1 lg:order-2 xs:gap-4 xl:gap-0 eventBody">
-                  <span className="flex text-2xl font-bold">
+                  <span className="flex text-2xl font-bold lg:self-start">
                     {props.event.title}
                   </span>
-                  <span className="flex lg:mt-6 lg:mb-6">
+                  <span className="flex lg:mt-6 lg:mb-6 lg:self-start">
                     {props.event.description}
                   </span>
-                  <div className="flex">
-                    <div className="flex gap-4 sm:flex-1 px-4 items-center">
+                  <div className="flex xl:gap-8 w-full xs:flex-col xs:items-center xs:gap-10 md:flex-row">
+                    <div className="flex gap-4 sm:flex-1 items-center w-fit">
                       <BsCalendar4 className="text-primary" size="2rem" />
-                      <div className="flex lg:flex-col gap-2">
+                      <div className="flex xs:flex-col gap-2">
                         <span>Datum i Vreme: {""}</span>
                         <span>
                           {new Date(
@@ -38,6 +39,20 @@ const EventModal = (props) => {
                           ).toLocaleDateString()}
                         </span>
                       </div>
+                    </div>
+                    <div className="flex flex-col gap-4 sm:flex-1 items-center w-fit">
+                      <div className="flex items-center gap-4">
+                        <IoLocationOutline />
+                        <span>Tip dogadjaja: </span>
+                      </div>
+                      <span>{props.event.type}</span>
+                    </div>
+                    <div className="flex flex-col gap-4 sm:flex-1 items-center w-fit">
+                      <div className="flex items-center gap-4">
+                        <IoLocationOutline />
+                        <span>Lokacija: </span>
+                      </div>
+                      <span>{props.event.location}</span>
                     </div>
                   </div>
                   <div className="flex flex-col w-1/2 items-center self-center lg:mt-10  rounded-3xl lg:py-10 gap-6 lg:absolute lg:bottom-0">

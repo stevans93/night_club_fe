@@ -66,25 +66,29 @@ const DashboardAddClub = () => {
             <label className="mb-2 mt-2" htmlFor="bannerImage">
               Tag Objekta
             </label>
-            <input
+            <select
+              name="tag"
+              id="tag"
               className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Unesite Tag Objekta..."
-              id="bannerImage"
-              type="text"
               ref={bannerImageInputRef}
-            />
+            >
+              <option value="Regularno Mesto">Regularno Mesto</option>
+              <option value="Premijum Mesto">Premijum Mesto</option>
+            </select>
           </div>
           <div className="w-full flex flex-col">
             <label className="mb-2 mt-2" htmlFor="type">
               Tip Objekta
             </label>
-            <input
-              className="py-3 px-2 border-2 border-black rounded-lg"
-              placeholder="Unesite Tip Objekta..."
+            <select
+              name="type"
               id="type"
-              type="text"
-              ref={typeInputRef}
-            />
+              className="py-3 px-2 border-2 border-black rounded-lg"
+            >
+              <option value="splav">Splav</option>
+              <option value="diskoteka">Diskoteka</option>
+              <option value="kafana">Kafana</option>
+            </select>
           </div>
         </div>
         <div className="flex flex-col w-3/12">

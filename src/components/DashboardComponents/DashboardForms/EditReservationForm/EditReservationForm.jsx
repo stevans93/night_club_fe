@@ -179,7 +179,7 @@ const EditReservationForm = (props) => {
                 onClick={handleSaveForm}
                 appearance="primary"
               >
-                Ok
+                Potvrdi
               </Button>
               <Button onClick={props.handleEditModalClose} appearance="subtle">
                 Cancel

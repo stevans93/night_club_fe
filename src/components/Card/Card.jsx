@@ -7,9 +7,13 @@ function Card(props) {
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow ">
-      <div className="relative">
+      <div className="relative h-64">
         <a href="#">
-          <img className="rounded-t-lg" src={props.card.profileImage ?? props.card.image} alt="" />
+          <img
+            className="rounded-t-lg h-full w-full object-contain"
+            src={props.card.profileImage ?? props.card.image}
+            alt=""
+          />
         </a>
         {props.card.bannerImage && <Badge bannerImage={props.card.bannerImage} className="absolute top-5 left-4 " />}
       </div>

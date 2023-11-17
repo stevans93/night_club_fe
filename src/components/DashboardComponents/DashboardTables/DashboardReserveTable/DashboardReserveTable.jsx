@@ -41,15 +41,6 @@ const DashboardReserveTable = (props) => {
                 </td>
                 <td className="border-r-2 px-6 py-3">{reservation.name}</td>
                 <td className="border-r-2 px-6 py-3">{reservation.phone}</td>
-                {/* <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td>
-                <td className="border-r-2 px-6 py-3">kme</td> */}
                 <td className="border-r-2 px-6 py-3">
                   {new Date(reservation.date).toLocaleDateString()}
                 </td>

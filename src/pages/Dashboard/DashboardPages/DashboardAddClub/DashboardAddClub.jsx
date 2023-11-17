@@ -84,6 +84,7 @@ const DashboardAddClub = () => {
               name="type"
               id="type"
               className="py-3 px-2 border-2 border-black rounded-lg"
+              ref={typeInputRef}
             >
               <option value="splav">Splav</option>
               <option value="diskoteka">Diskoteka</option>

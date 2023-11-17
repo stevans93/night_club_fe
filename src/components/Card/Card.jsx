@@ -6,10 +6,10 @@ function Card(props) {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow w-full md:w-fit">
-      <div className="relative h-60 w-full lg:h-64 md:w-90">
+    <div className="bg-white border border-gray-200 rounded-lg shadow w-full md:w-[48%] h-90 md:h-96 overflow-hidden">
+      <div className="relative h-60 w-full lg:h-64 md:w-full">
           <img
-            className="rounded-t-lg h-full w-full object-contain"
+            className="rounded-t-lg h-full w-full object-cover"
             src={props.card.profileImage ?? props.card.image}
             alt=""
           />
@@ -20,12 +20,12 @@ function Card(props) {
           <a href="#">
             <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 ">{props.card.title}</h5>
           </a>
-          <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900 ">
+          <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900">
             {new Date(props.card.dateOfEvent).toLocaleDateString()}
           </h5>
-          <p className="mb-3 pr-3 text-sm font-normal text-gray-700 ">{props.card.description.substring(0, 100)}...</p>
+          <span className="mb-3 pr-3 text-sm font-normal text-gray-700">{props.card.description.substring(0, 100)}...</span>
         </div>
-        <div>
+        <div className='flex self-center'>
           <button
             onClick={() => handleOpenModal(props.card._id)}
             className="inline-flex items-center xs:px-6 sm:px-10 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary">

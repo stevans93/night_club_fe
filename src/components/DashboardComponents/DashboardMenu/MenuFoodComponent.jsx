@@ -2,20 +2,9 @@ import "../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import DeleteButton from "../../Buttons/DeleteButton/DeleteButton";
-import AddFoodCategoryForm from "../DashboardForms/AddFoodCategoryForm/AddFoodCategoryForm";
-import { useState } from "react";
 import { GiKnifeFork } from "react-icons/gi";
 
 const MenuFoodComponent = (props) => {
-  const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
-
-  const handleCategoryModalOpen = () => {
-    setIsAddCategoryModalOpen(true);
-  };
-
-  const handleCategoryModalClose = () => {
-    setIsAddCategoryModalOpen(false);
-  };
 
   const fetchItems = async (value) => {
     await props.fetchProducts(value);
@@ -39,12 +28,6 @@ const MenuFoodComponent = (props) => {
                 </li>
               );
             })}
-          <li
-            onClick={handleCategoryModalOpen}
-            className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
-          >
-            + Dodaj Kategoriju
-          </li>
         </ul>
       </div>
       {props.show && (
@@ -108,10 +91,6 @@ const MenuFoodComponent = (props) => {
           </Modal>
         </div>
       )}
-      <AddFoodCategoryForm
-        isAddCategoryModalOpen={isAddCategoryModalOpen}
-        handleCategoryModalClose={handleCategoryModalClose}
-      />
     </>
   );
 };

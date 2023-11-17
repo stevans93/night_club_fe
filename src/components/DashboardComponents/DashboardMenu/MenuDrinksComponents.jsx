@@ -2,7 +2,6 @@ import "../../../../node_modules/rsuite/dist/rsuite.min.css";
 import { Modal, Button } from "rsuite";
 import EditButton from "../../Buttons/EditButton/EditButton";
 import DeleteButton from "../../Buttons/DeleteButton/DeleteButton";
-import AddDrinkCategoryForm from "../DashboardForms/AddDrinkCategoryForm/AddDrinkCategoryForm";
 import { useState } from "react";
 import { BiDrink } from "react-icons/bi";
 
@@ -39,12 +38,6 @@ const MenuDrinksComponent = (props) => {
                 </li>
               );
             })}
-          <li
-            onClick={handleCategoryModalOpen}
-            className="flex w-fit py-3 px-14 bg-primary text-white rounded-lg h-fit"
-          >
-            + Dodaj Kategoriju
-          </li>
         </ul>
       </div>
       {props.show && (
@@ -108,10 +101,6 @@ const MenuDrinksComponent = (props) => {
           </Modal>
         </div>
       )}
-      <AddDrinkCategoryForm
-        isAddCategoryModalOpen={isAddCategoryModalOpen}
-        handleCategoryModalClose={handleCategoryModalClose}
-      />
     </>
   );
 };

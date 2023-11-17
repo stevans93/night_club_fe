@@ -3,7 +3,8 @@ import { Modal, Button } from "rsuite";
 import { useRef } from "react";
 import ClubsService from "../../../../services/clubsService";
 
-const AddDrinkCategoryForm = (props) => {
+const AddCategoryForm = (props) => {
+  const categoryInputRef = useRef();
   const nameInputRef = useRef();
 
   const handleSaveForm = async () => {
@@ -17,7 +18,12 @@ const AddDrinkCategoryForm = (props) => {
     };
 
     try {
-      const response = await ClubsService.addDrinkCategory(category);
+      let response;
+      if (categoryInputRef.current.value === "drinks") {
+        response = await ClubsService.addDrinkCategory(category);
+      } else if (categoryInputRef.current.value === "food") {
+        response = await ClubsService.addFoodCategory(category);
+      }
 
       // Handle the response as needed
       if (response) {
@@ -45,10 +51,10 @@ const AddDrinkCategoryForm = (props) => {
             backdrop={props.isAddCategoryModalOpen}
           >
             <Modal.Header className="border-b-2 text-2xl py-2">
-              Dodaj Kategoriju
+              Dodaj podkategoriju
             </Modal.Header>
             <Modal.Body>
-              <form className="flex flex-wrap">
+              <form className="flex flex-wrap gap-4">
                 <div className="w-full flex flex-col">
                   <label className="mb-2 mt-2" htmlFor="name">
                     Ime
@@ -60,6 +66,20 @@ const AddDrinkCategoryForm = (props) => {
                     type="text"
                     ref={nameInputRef}
                   />
+                </div>
+                <div className="w-full flex flex-col">
+                  <label className="mb-2 mt-2" htmlFor="category">
+                    Izaberi kategoriju
+                  </label>
+                  <select
+                    className="py-3 px-2 border-2 border-black rounded-lg"
+                    name="category"
+                    id="category"
+                    ref={categoryInputRef}
+                  >
+                    <option value="drinks">Pića</option>
+                    <option value="food">Hrana</option>
+                  </select>
                 </div>
               </form>
             </Modal.Body>
@@ -85,4 +105,4 @@ const AddDrinkCategoryForm = (props) => {
   );
 };
 
-export default AddDrinkCategoryForm;
+export default AddCategoryForm;

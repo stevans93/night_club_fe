@@ -63,6 +63,7 @@ function DashboardCoupon() {
 
   const handleDelete = async (id) => {
     await fetchDeleteCouponById(id);
+    setCoupons(coupons.filter((e) => e._id !== id))
   };
 
   const fetchCouponById = async (id) => {

@@ -46,6 +46,7 @@ function DashboardStaff() {
 
   const handleDelete = async (id) => {
     await fetchDeleteStaffById(id);
+    setStaff(staff.filter((e) => e._id !== id))
   };
 
   const fetchStaffById = async (id) => {

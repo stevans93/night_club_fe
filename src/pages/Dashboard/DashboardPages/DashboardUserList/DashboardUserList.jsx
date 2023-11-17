@@ -121,6 +121,7 @@ function DashboardUserList() {
 
   const handleDelete = async (id) => {
     await fetchDeleteUserById(id);
+    setUsers(users.filter((e) => e._id !== id))
   };
 
   const handleEditModalClose = () => {

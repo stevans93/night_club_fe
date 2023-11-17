@@ -55,6 +55,7 @@ function DashboardReservation() {
 
   const handleDelete = async (id) => {
     await fetchDeleteReservationById(id);
+    setReservations(reservations.filter((e) => e._id !== id))
   };
 
   const getDate = () => {

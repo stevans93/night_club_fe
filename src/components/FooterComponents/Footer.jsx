@@ -28,8 +28,6 @@ function Footer() {
     const fetchSiteInfo = async () => {
       try {
         const siteInfo = await SiteService.getSingleSite()
-        // console.log('siteInfo')
-        // console.log(siteInfo)
         setInfo(siteInfo)
       } catch (error) {
         // Handle any errors here

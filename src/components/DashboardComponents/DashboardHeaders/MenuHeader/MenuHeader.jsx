@@ -17,7 +17,6 @@ const MenuHeader = (props) => {
   const [categoryName, setCategoryName] = useState("drinks");
 
   const handleCategorySelect = (data) => {
-    console.log('here', data);
     setCategoryName(data);
   };
 

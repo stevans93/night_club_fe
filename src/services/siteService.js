@@ -23,7 +23,6 @@ class SiteService {
 
   static async editSingleSite(siteData) {
     const response = await http.put(`${sitePath}`, siteData);
-    console.log(response);
     return this.handleResponse(response);
   }
 

@@ -14,7 +14,6 @@ const DeleteCategoryForm = (props) => {
   };
 
   const deleteCategory = async () => {
-    console.log(selectedCategoryId);
 
     try {
       const response = await ClubsService.deleteCategory(selectedCategoryId);

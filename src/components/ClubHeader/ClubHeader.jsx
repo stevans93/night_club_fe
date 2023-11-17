@@ -41,8 +41,6 @@ const ClubHeader = () => {
       if (clubId) {
         try {
           const response = await ClubsService.getSingleClub(clubId)
-          console.log('response for Info')
-          console.log(response)
           setInfo(response)
         } catch (error) {
           // Handle any errors here

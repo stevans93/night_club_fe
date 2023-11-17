@@ -1,5 +1,5 @@
 import { http } from "../http/api";
-import { uploadHttp } from '../http/api';
+import { uploadHttp } from "../http/api";
 const clubsPath = "/club";
 
 class ClubsService {
@@ -54,7 +54,10 @@ class ClubsService {
   }
 
   static async addClubImage(clubId, formData) {
-    const response = await uploadHttp.put(`${clubsPath}/addClubImage/${clubId}`, formData);
+    const response = await uploadHttp.put(
+      `${clubsPath}/addClubImage/${clubId}`,
+      formData
+    );
     return this.handleResponse(response);
   }
 
@@ -199,6 +202,16 @@ class ClubsService {
     }
   }
 
+  static async deleteCategory(categoryId) {
+    try {
+      const response = await http.delete(`${clubsPath}/category/${categoryId}`);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error("Error deleting category:", error);
+      throw error;
+    }
+  }
+
   static async getAllSliderImages(clubId) {
     try {
       const response = await http.get(`${clubsPath}/sliderImages/${clubId}`);
@@ -233,9 +246,7 @@ class ClubsService {
 
   static async getDashboardWorkingHours() {
     try {
-      const response = await http.get(
-        `${clubsPath}/dashboardWorkingHours`
-      );
+      const response = await http.get(`${clubsPath}/dashboardWorkingHours`);
       return this.handleResponse(response);
     } catch (error) {
       console.error("Error fetching working hours:", error);

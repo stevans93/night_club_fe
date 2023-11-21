@@ -53,6 +53,7 @@ const DashboardTablesConfig = (props) => {
 
   const handleDelete = async (id) => {
     await fetchDeleteTableById(id);
+    window.location.reload();
   };
 
   const fetchTableById = async (id) => {
@@ -62,11 +63,11 @@ const DashboardTablesConfig = (props) => {
       if (response) {
         // Handle success
         setTableToEdit(response.table); // Assuming setTableToEdit is a state updater function
-        
+
         // You can perform additional actions if needed
       } else {
         // Handle failure
-        
+
         console.error("Failed to fetch Table", error);
         // You can perform additional actions if needed
       }
@@ -107,17 +108,16 @@ const DashboardTablesConfig = (props) => {
             <thead className="text-xs text-gray-700 uppercase bg-gray-50  border-b-2">
               <th className="border-r-2 bg-white px-6 py-3">SI</th>
               <th className="border-r-2 bg-white px-6 py-3">Ime</th>
-              <th className="border-r-2 bg-white px-6 py-3">Maksimalan Broj Ljudi</th>
+              <th className="border-r-2 bg-white px-6 py-3">
+                Maksimalan Broj Ljudi
+              </th>
               <th className="border-r-2 bg-white px-6 py-3">Mesto u Klubu</th>
               <th className="bg-white px-6 py-3">Opcije</th>
             </thead>
             <tbody className="divide-y">
               {props.tables.map((table, i) => {
                 return (
-                  <tr
-                    key={table._id}
-                    className="bg-white  "
-                  >
+                  <tr key={table._id} className="bg-white  ">
                     <td className="border-r-2 px-6 py-3">{i++ + 1}</td>
                     <td className="border-r-2 px-6 py-3">{table.name}</td>
                     <td className="border-r-2 px-6 py-3">{table.maxPersons}</td>

@@ -72,17 +72,17 @@ function DashboardSidebar({ open }) {
               </Link>
             </div>
             {open ? (
-              <div className="flex my-5 h-36">
+              <div className="flex my-5 h-48 w-36 bg-white rounded-circle overflow-hidden">
                 <img
-                  className="w-full h-full rounded-circle"
+                  className="object-contain"
                   src={info.clubLogo}
                   alt=""
                 />
               </div>
             ) : (
-              <div className="flex my-5 h-14">
+              <div className="flex my-5 h-14 bg-white rounded-circle overflow-hidden">
                 <img
-                  className="w-full h-full rounded-circle"
+                  className="object-contain"
                   src={info.clubLogo}
                   alt=""
                 />

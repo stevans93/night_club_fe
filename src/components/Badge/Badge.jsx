@@ -37,7 +37,7 @@ function Badge(props) {
           </svg>
         </span>
       )}
-      {props.bannerImage === "Premijum Mesto" && <span className="text-black font-bold">Premium</span>}
+      {props.bannerImage === "Premijum Mesto" && <span className="text-black font-bold">Premijum</span>}
       {props.bannerImage === "Dogadjaj" && <span className="pl-5">EVENTS</span>}
     </div>
   );

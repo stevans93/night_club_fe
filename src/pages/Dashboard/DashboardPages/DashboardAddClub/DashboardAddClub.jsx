@@ -15,6 +15,7 @@ const DashboardAddClub = () => {
   const handleSaveForm = async (event) => {
     event.preventDefault();
     await saveClub();
+    window.location.reload();
   };
 
   const saveClub = async () => {

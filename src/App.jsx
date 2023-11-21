@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       {clubId ? <ClubHeader /> : <Header />}
-      {!clubId && <Navbar handleOpen={handleOpen} open={open} />}
+      {!clubId && <Navbar handleOpen={handleOpen} open={open} setOpen={setOpen} />}
       <Outlet />
       <Footer />
       <ToastContainer />

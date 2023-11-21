@@ -11,6 +11,7 @@ const AddTableForm = (props) => {
   const handleSaveForm = async () => {
     await saveTable();
     props.handleTableModalClose();
+    window.location.reload();
   };
 
   const saveTable = async () => {

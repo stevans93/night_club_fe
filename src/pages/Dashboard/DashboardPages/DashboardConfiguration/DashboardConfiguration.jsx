@@ -133,6 +133,7 @@ const DashboardConfiguration = () => {
           numberOfPages={numberOfPages}
           numberOfTables={numberOfTables}
           setSelectedParams={setSelectedParams}
+          setTables={setTables}
         />
       )}
       {showSlider && dashboardSliderImages && (

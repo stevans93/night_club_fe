@@ -69,24 +69,24 @@ const ClubHeader = () => {
   return (
     <>
       <div className="flex h-20 xs:h-fit w-full">
-        <div className="flex w-full sm:justify-between xs:flex-col xs:gap-4 xs:items-center lg:flex-row">
-          <div className="flex lg:w-7/12 justify-center lg:justify-between sm:max-h-20 gap-10 xs:order-2 lg:order-1 xs:pb-4 sm:pb-0 xs:w-full">
-            <div className="flex xs:h-16 sm:h-20 sm:w-32 xs:ml-0 lg:ml-32">
-              {info && <img className="w-full" src={info.clubLogo} />}
+        <div className="flex w-full sm:justify-between xs:flex-col xs:gap-4 xs:items-center lg:flex-row py-3">
+          <div className="flex xs:flex-col sm:flex-row lg:w-7/12 justify-center items-center lg:justify-between sm:max-h-20 gap-10 xs:order-2 lg:order-1 xs:pb-4 sm:pb-0 xs:w-full">
+            <div className="flex xs:h-16 sm:h-full sm:w-52 xs:ml-0 lg:ml-32">
+              {info && <img className="w-auto max-h-16" src={info.clubLogo} />}
             </div>
             <div className="flex xs:text-2xl sm:text-xl">
               <ul className="flex gap-5 items-center m-0 xs:text-xl sm:text-2xl">
                 <li>
-                  <Link to="">Početna</Link>
+                  <Link className='hover:no-underline hover:text-primary' to="">Početna</Link>
                 </li>
                 <li>
-                  <button onClick={handleShowModal}>Rezervacija</button>
+                  <button className='hover:text-primary' onClick={handleShowModal}>Rezervacija</button>
                 </li>
               </ul>
             </div>
           </div>
           {info && (
-            <div className="flex xs:justify-center items-center xs:order-1 lg:order-2 sm:bg-gray-100 lg:bg-white sm:w-full lg:w-fit xs:justify-end sm:mr-0 lg:mr-32">
+            <div className="flex xs:justify-center items-center xs:order-1 lg:order-2 sm:w-full lg:w-fit xs:justify-end sm:mr-0 lg:mr-32">
               <Link to="#" className="m-2">
                 <FaEnvelope className="fill-primary" />
               </Link>

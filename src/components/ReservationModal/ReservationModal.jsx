@@ -62,15 +62,16 @@ const ReservationModal = (props) => {
       {props.showReservationModal && (
         <div className="flex m-auto text-center">
           <Modal
-            size="full"
+            size="screen"
             open={props.showReservationModal}
             onClose={props.handleCloseReservationModal}
             backdrop={props.showReservationModal}
+            className='w-full md:w-10/12'
           >
             <Modal.Header className="md:border-b-2 text-sm md:text-2xl py-2 md:text-center md:w-full">
               Rezervacija
             </Modal.Header>
-            <Modal.Body className="m-0 p-0 min-h-400 h-fit flex xs:flex-col lg:flex-row items-center">
+            <Modal.Body className="m-0 mt-5 p-0 min-h-400 h-fit flex xs:flex-col lg:flex-row items-center">
               <div className="flex lg:w-1/2 h-h500 flex-1">
                 <img
                   className="flex w-full"
@@ -78,7 +79,7 @@ const ReservationModal = (props) => {
                   alt=""
                 />
               </div>
-              <div className="flex flex-col lg:flex-1 px-6 pb-6 self-start xs:w-full">
+              <div className="flex flex-col lg:flex-1 md:px-6 pb-6 self-start xs:w-full">
                 <div className="flex xs:flex-col sm:flex-row justify-between mt-4">
                   <div className="sm:w-45 flex flex-col">
                     <label className="mb-2 mt-2" htmlFor="name">

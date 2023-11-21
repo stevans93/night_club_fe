@@ -1,36 +1,36 @@
-import {BsInstagram, BsWhatsapp} from 'react-icons/bs'
-import {useEffect, useRef, useState} from 'react'
+import { BsInstagram, BsWhatsapp } from "react-icons/bs";
+import { useEffect, useRef, useState } from "react";
 
-import ClubsService from '../../../services/clubsService'
-import {FaFacebookF} from 'react-icons/fa6'
-import SiteService from '../../../services/siteService'
+import ClubsService from "../../../services/clubsService";
+import { FaFacebookF } from "react-icons/fa6";
+import SiteService from "../../../services/siteService";
 
 function DashboardGeneralConfig() {
-  const logoInputRef = useRef()
-  const locationInputRef = useRef()
-  const emailInputRef = useRef()
-  const phoneInputRef = useRef()
-  const aboutInputRef = useRef()
-  const facebookInputRef = useRef()
-  const instagramInputRef = useRef()
-  const whatsAppInputRef = useRef()
+  const logoInputRef = useRef();
+  const locationInputRef = useRef();
+  const emailInputRef = useRef();
+  const phoneInputRef = useRef();
+  const aboutInputRef = useRef();
+  const facebookInputRef = useRef();
+  const instagramInputRef = useRef();
+  const whatsAppInputRef = useRef();
 
-  const [logoInput, setLogoInput] = useState(null)
-  const [thumbnailInput, setThumbnailInput] = useState(null)
-  const [mapClubInput, setMapClubInput] = useState(null)
+  const [logoInput, setLogoInput] = useState(null);
+  const [thumbnailInput, setThumbnailInput] = useState(null);
+  const [mapClubInput, setMapClubInput] = useState(null);
 
-  const [club, setClub] = useState()
+  const [club, setClub] = useState();
 
-  const ncUser = JSON.parse(localStorage.getItem('nc_user'))
-  const clubId = ncUser ? ncUser.clubId : undefined
-  const userRole = ncUser ? ncUser.role : null
+  const ncUser = JSON.parse(localStorage.getItem("nc_user"));
+  const clubId = ncUser ? ncUser.clubId : undefined;
+  const userRole = ncUser ? ncUser.role : null;
 
   const handleConfigurationForm = async (event) => {
-    event.preventDefault()
-    const newData = await saveConfiguration(clubId)
-    setClub(newData)
-    window.location.reload()
-  }
+    event.preventDefault();
+    const newData = await saveConfiguration(clubId);
+    setClub(newData);
+    window.location.reload();
+  };
 
   const saveConfiguration = async (clubId) => {
     try {
@@ -42,78 +42,82 @@ function DashboardGeneralConfig() {
         mobile: phoneInputRef.current.value,
         description: aboutInputRef.current.value,
         socialMedia: [
-          {name: 'Facebook', link: facebookInputRef.current.value},
-          {name: 'Instagram', link: instagramInputRef.current.value},
-          {name: 'WhatsApp', link: whatsAppInputRef.current.value}
-        ]
+          { name: "Facebook", link: facebookInputRef.current.value },
+          { name: "Instagram", link: instagramInputRef.current.value },
+          { name: "WhatsApp", link: whatsAppInputRef.current.value },
+        ],
         // profileImage: thumbnailInput,
         // clubMap: mapClubInput
-      }
-      if (userRole !== 'admin') {
-        await ClubsService.updateClub(clubId, club)
+      };
+      if (userRole !== "admin") {
+        await ClubsService.updateClub(clubId, club);
       } else {
-        await SiteService.editSingleSite(club)
+        await SiteService.editSingleSite(club);
       }
     } catch (error) {
       // Handle any errors here (e.g., show an error toast)
-      console.error('An error occurred while saving club configuration:', error)
+      console.error(
+        "An error occurred while saving club configuration:",
+        error
+      );
     }
-  }
+  };
 
   async function handleChange(e) {
-    if (e.target.name === 'logoInput') {
-      setLogoInput(e.target.files[0])
+    if (e.target.name === "logoInput") {
+      setLogoInput(e.target.files[0]);
     }
-    if (e.target.name === 'thumbnailInput') {
-      setThumbnailInput(e.target.files[0])
+    if (e.target.name === "thumbnailInput") {
+      setThumbnailInput(e.target.files[0]);
     }
-    if (e.target.name === 'mapClubInput') {
-      setMapClubInput(e.target.files[0])
+    if (e.target.name === "mapClubInput") {
+      setMapClubInput(e.target.files[0]);
     }
   }
 
   useEffect(() => {
     const fetchClubById = async () => {
       try {
-        const clubInfo = await ClubsService.getSingleClub(clubId)
+        const clubInfo = await ClubsService.getSingleClub(clubId);
 
-        setClub(clubInfo)
+        setClub(clubInfo);
       } catch (error) {
         // Handle any errors here
-        console.error('An error occurred while fetching club info:', error)
+        console.error("An error occurred while fetching club info:", error);
       }
-    }
+    };
 
     const fetchSiteInfo = async () => {
       try {
-        const siteInfo = await SiteService.getSingleSite()
-        setClub(siteInfo)
+        const siteInfo = await SiteService.getSingleSite();
+        setClub(siteInfo);
       } catch (error) {
         // Handle any errors here
-        console.error('An error occurred while fetching site info:', error)
+        console.error("An error occurred while fetching site info:", error);
       }
-    }
-    if (userRole !== 'admin') {
-      fetchClubById()
+    };
+    if (userRole !== "admin") {
+      fetchClubById();
     } else {
-      fetchSiteInfo()
+      fetchSiteInfo();
     }
-  }, [clubId])
+  }, [clubId]);
 
   const uploadImage = async (imageName) => {
-    const formData = new FormData()
+    const formData = new FormData();
 
-    formData.append('imageName', imageName)
-    if (imageName === 'logo') formData.append('files', logoInput)
-    if (imageName === 'thumbnail') formData.append('files', thumbnailInput)
-    if (imageName === 'mapClub') formData.append('files', mapClubInput)
+    formData.append("imageName", imageName);
+    if (imageName === "logo") formData.append("files", logoInput);
+    if (imageName === "thumbnail") formData.append("files", thumbnailInput);
+    if (imageName === "mapClub") formData.append("files", mapClubInput);
 
     try {
-      await ClubsService.addClubImage(clubId, formData)
+      await ClubsService.addClubImage(clubId, formData);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+    window.location.reload();
+  };
 
   return (
     <div className="flex w-9/12 h-fit">
@@ -185,9 +189,9 @@ function DashboardGeneralConfig() {
                 id="facebook"
                 ref={facebookInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === 'Facebook')
-                    ? club.socialMedia.find((x) => x.name === 'Facebook').link
-                    : ''
+                  club.socialMedia.find((x) => x.name === "Facebook")
+                    ? club.socialMedia.find((x) => x.name === "Facebook").link
+                    : ""
                 }
               />
             </div>
@@ -203,9 +207,9 @@ function DashboardGeneralConfig() {
                 id="instagram"
                 ref={instagramInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === 'Instagram')
-                    ? club.socialMedia.find((x) => x.name === 'Instagram').link
-                    : ''
+                  club.socialMedia.find((x) => x.name === "Instagram")
+                    ? club.socialMedia.find((x) => x.name === "Instagram").link
+                    : ""
                 }
               />
             </div>
@@ -221,22 +225,23 @@ function DashboardGeneralConfig() {
                 id="whatsApp"
                 ref={whatsAppInputRef}
                 defaultValue={
-                  club.socialMedia.find((x) => x.name === 'WhatsApp')
-                    ? club.socialMedia.find((x) => x.name === 'WhatsApp').link
-                    : ''
+                  club.socialMedia.find((x) => x.name === "WhatsApp")
+                    ? club.socialMedia.find((x) => x.name === "WhatsApp").link
+                    : ""
                 }
               />
             </div>
           </div>
           <button
             onClick={handleConfigurationForm}
-            className="flex border-2 w-fit px-10 py-2 rounded-lg bg-primary text-white">
+            className="flex border-2 w-fit px-10 py-2 rounded-lg bg-primary text-white"
+          >
             Potvrdi
           </button>
         </form>
       )}
 
-      {userRole === 'admin' ? (
+      {userRole === "admin" ? (
         <></>
       ) : (
         <div className="flex flex-col  ml-10">
@@ -246,7 +251,8 @@ function DashboardGeneralConfig() {
               <div className="flex items-center justify-center  m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center  rounded-lg cursor-pointer  hover:bg-gray-100   ">
+                  className="flex flex-col items-center justify-center  rounded-lg cursor-pointer  hover:bg-gray-100   "
+                >
                   <div className="flex flex-col items-center justify-center">
                     {/* <svg
                       className="w-8 h-8 mb-2 text-gray-500 "
@@ -271,15 +277,27 @@ function DashboardGeneralConfig() {
                         Izaberite Sliku
                       </label>
                     )}
-                    <input name="logoInput" id="logoInput" type="file" onChange={handleChange} className="hidden" />
-                    {logoInput ? <img src={URL.createObjectURL(logoInput)} className="max-h-[200px]" /> : null}
+                    <input
+                      name="logoInput"
+                      id="logoInput"
+                      type="file"
+                      onChange={handleChange}
+                      className="hidden"
+                    />
+                    {logoInput ? (
+                      <img
+                        src={URL.createObjectURL(logoInput)}
+                        className="max-h-[200px]"
+                      />
+                    ) : null}
                   </div>
 
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
                 <button
-                  onClick={() => uploadImage('logo')}
-                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  onClick={() => uploadImage("logo")}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6"
+                >
                   Upload
                 </button>
               </div>
@@ -291,7 +309,8 @@ function DashboardGeneralConfig() {
               <div className="flex items-center justify-center w-full m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full rounded-lg cursor-pointer  hover:bg-gray-100   ">
+                  className="flex flex-col items-center justify-center w-full rounded-lg cursor-pointer  hover:bg-gray-100   "
+                >
                   <div className="flex flex-col items-center justify-center w-full">
                     {/* <svg
                       className="w-8 h-8 mb-2 text-gray-500 "
@@ -324,14 +343,18 @@ function DashboardGeneralConfig() {
                       className="hidden"
                     />
                     {thumbnailInput ? (
-                      <img src={URL.createObjectURL(thumbnailInput)} className="max-h-[200px]" />
+                      <img
+                        src={URL.createObjectURL(thumbnailInput)}
+                        className="max-h-[200px]"
+                      />
                     ) : null}
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
                 <button
-                  onClick={() => uploadImage('thumbnail')}
-                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  onClick={() => uploadImage("thumbnail")}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6"
+                >
                   Upload
                 </button>
               </div>
@@ -343,7 +366,8 @@ function DashboardGeneralConfig() {
               <div className="flex items-center justify-center   m-auto flex-col">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center rounded-lg cursor-pointer  hover:bg-gray-100   ">
+                  className="flex flex-col items-center justify-center rounded-lg cursor-pointer  hover:bg-gray-100   "
+                >
                   <div className="flex flex-col items-center justify-center">
                     {/* <svg
                       className="w-8 h-8 mb-2 text-gray-500 "
@@ -374,13 +398,19 @@ function DashboardGeneralConfig() {
                       onChange={handleChange}
                       className="hidden"
                     />
-                    {mapClubInput ? <img src={URL.createObjectURL(mapClubInput)} className="max-h-[400px]" /> : null}
+                    {mapClubInput ? (
+                      <img
+                        src={URL.createObjectURL(mapClubInput)}
+                        className="max-h-[400px]"
+                      />
+                    ) : null}
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>
                 <button
-                  onClick={() => uploadImage('mapClub')}
-                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6">
+                  onClick={() => uploadImage("mapClub")}
+                  className="flex w-fit self-center mt-10 py-2 px-16 bg-primary text-white rounded-lg mb-6"
+                >
                   Upload
                 </button>
               </div>
@@ -389,7 +419,7 @@ function DashboardGeneralConfig() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default DashboardGeneralConfig
+export default DashboardGeneralConfig;

@@ -44,6 +44,11 @@ function Navbar(props) {
     });
   };
 
+  const logOutBurger = async () => {
+    handleLogOut();
+    props.setOpen(false);
+  };
+
   const ncUser = JSON.parse(localStorage.getItem("nc_user"));
 
   // Get the user's role from the parsed user object
@@ -68,7 +73,7 @@ function Navbar(props) {
 
           <div className="lg:hidden right-4 absolute">
             <button
-              className="navbar-burger flex items-center text-blue-600 p-3"
+              className="flex items-center text-blue-600 p-3"
               position="right"
               onClick={props.handleOpen}
             >
@@ -199,10 +204,16 @@ function Navbar(props) {
               props.open ? "" : "hidden"
             } dropdown absolute flex flex-col justify-center items-center left-0 text-center bg-secondary w-[100%]`}
           >
-            <NavLink to="/" className="m-2" style={{ textDecoration: "none" }}>
+            <NavLink
+              onClick={() => props.setOpen(false)}
+              to="/"
+              className="m-2"
+              style={{ textDecoration: "none" }}
+            >
               Početna
             </NavLink>
             <NavLink
+              onClick={() => props.setOpen(false)}
               to="/clubs"
               className="m-2"
               style={{ textDecoration: "none" }}
@@ -210,13 +221,16 @@ function Navbar(props) {
               Ugostiteljski Objekti
             </NavLink>
             <NavLink
-              to="/about"
+              onClick={() => props.setOpen(false)}
+              to="https://www.wheretogo.fun/o-nama/"
+              target="_blank"
               className="m-2"
               style={{ textDecoration: "none" }}
             >
               O Nama
             </NavLink>
             <NavLink
+              onClick={() => props.setOpen(false)}
               to="/contact"
               className="m-2"
               style={{ textDecoration: "none" }}
@@ -224,6 +238,7 @@ function Navbar(props) {
               Kontaktirajte Nas
             </NavLink>
             <NavLink
+              onClick={() => props.setOpen(false)}
               to="/events"
               style={{ textDecoration: "none" }}
               className="m-2 border-2 border-solid text-primary hover:bg-primary hover:text-white border-primary rounded-3xl px-4 py-2"
@@ -240,7 +255,7 @@ function Navbar(props) {
               </NavLink>
             )}
             <button
-              onClick={handleLogOut}
+              onClick={logOutBurger}
               className="m-2 border-2 border-primary bg-primary hover:bg-secondary hover:text-primary text-white rounded-3xl px-5 py-2"
             >
               Odjaviti se
@@ -263,7 +278,8 @@ function Navbar(props) {
               Ugostiteljski Objekti
             </NavLink>
             <NavLink
-              to="/about"
+              to="https://www.wheretogo.fun/o-nama/"
+              target="_blank"
               className="m-2"
               style={{ textDecoration: "none" }}
             >

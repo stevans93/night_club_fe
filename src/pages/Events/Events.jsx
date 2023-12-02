@@ -58,7 +58,7 @@ const Events = () => {
           handleChangeLocation={handleChangeLocation}
           inputName="Tip dogadjaja"
         />
-        <EventList params={selectedParams} button="Rezervišite odmah" />
+        <EventList params={selectedParams} button="Rezervišite" />
       </div>
       <button
         onClick={handleLoadMore}

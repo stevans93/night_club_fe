@@ -57,7 +57,7 @@ const EventModal = (props) => {
                   </div>
                   <div className="flex flex-col w-1/2 items-center self-center lg:mt-10  rounded-3xl lg:py-10 gap-6 lg:absolute lg:bottom-0">
                     <span className="font-bold text-2xl">
-                      {props.event.ticketPrice}.rsd
+                      {props.event.ticketPrice}
                     </span>
                     <button
                       onClick={() => {

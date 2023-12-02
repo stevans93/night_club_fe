@@ -13,26 +13,17 @@ function Card(props) {
           src={props.card.profileImage ?? props.card.image}
           alt=""
         />
-        {props.card.bannerImage && (
-          <Badge
-            bannerImage={props.card.bannerImage}
-            className="absolute top-5 left-4 "
-          />
-        )}
       </div>
-      <div className="flex items-center justify-between p-5 h-32">
-        <div>
+      <div className="flex items-center justify-between p-2 sm:p-5 h-32">
+        <div className="flex flex-col overflow-hidden w-4/6">
           <a href="#">
-            <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900">
-              {props.card.title.substring(0, 30)}
+            <h5 className="mb-2 truncate text-lg font-bold tracking-tight text-gray-900">
+              {props.card.title}
             </h5>
           </a>
           <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900">
             {new Date(props.card.dateOfEvent).toLocaleDateString()}
           </h5>
-          <span className="mb-3 pr-3 text-sm font-normal text-gray-700">
-            {props.card.description.substring(0, 40)}...
-          </span>
           <h5 className="mb-2 text-xs font-bold tracking-tight text-gray-900 ">
             {props.card.location}
           </h5>

@@ -3,6 +3,7 @@ import { Modal, Button } from "rsuite";
 import { BsCalendar4 } from "react-icons/bs";
 import { IoLocationOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { LuPartyPopper } from "react-icons/lu";
 
 const EventModal = (props) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const EventModal = (props) => {
                       </div>
                     </div>
                     <div className="flex gap-4 sm:flex-1 items-center w-fit">
-                      <IoLocationOutline className="text-primary" size="2rem" />
+                      <LuPartyPopper className="text-primary" size="2rem" />
                       <div className="flex flex-col gap-2">
                         <span>Tip dogadjaja: </span>
                         <span>{props.event.type}</span>

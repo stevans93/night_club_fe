@@ -229,7 +229,7 @@ function Home(props) {
         </div>
       </div>
       <div className="flex justify-center bg-[#F0F4F9] py-12">
-        <div className="max-w-screen-xl lg:px-20 xs:px-5">
+        <div className="max-w-screen-xl w-full lg:px-20 px-5">
           <div className="flex xs:flex-col sm:flex-row justify-between mb-6">
             <h3 className="text-2xl font-bold text-black xs:mb-3 sm:mb-0">Događaji</h3>
             <div className="flex items-center">

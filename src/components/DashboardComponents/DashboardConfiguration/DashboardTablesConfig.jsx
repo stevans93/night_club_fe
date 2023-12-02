@@ -101,6 +101,7 @@ const DashboardTablesConfig = (props) => {
       <TablesHeader
         pageSizeOptions={props.pageSizeOptions}
         handleTableModalOpen={handleTableModalOpen}
+        handlePageSizeChange={handlePageSizeChange}
       />
       {props.tables && (
         <div className="relative h-fit w-full border-t-2">
@@ -118,7 +119,12 @@ const DashboardTablesConfig = (props) => {
               {props.tables.map((table, i) => {
                 return (
                   <tr key={table._id} className="bg-white  ">
-                    <td className="border-r-2 px-6 py-3">{i++ + 1}</td>
+                    <td className="border-r-2 px-6 py-3">
+                      {i++ +
+                        1 +
+                        (props.selectedParams.pageNumber - 1) *
+                          props.selectedParams.pageSize}
+                    </td>
                     <td className="border-r-2 px-6 py-3">{table.name}</td>
                     <td className="border-r-2 px-6 py-3">{table.maxPersons}</td>
                     <td className="border-r-2 px-6 py-3">{table.area}</td>

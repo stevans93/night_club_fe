@@ -84,7 +84,7 @@ const DashboardConfiguration = () => {
     if (userRole !== "admin") {
       fetchTables();
     }
-  }, []);
+  }, [selectedParams]);
 
   useEffect(() => {
     const fetchDashboardSliderImages = async () => {

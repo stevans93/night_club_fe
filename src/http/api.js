@@ -5,7 +5,7 @@ import { getToken } from "../helpers/auth";
 //https://api.where2go.vip
 //http://localhost:4000
 const instance = axios.create({
-  baseURL: "http://localhost:4000/api",
+  baseURL: 'http://localhost:4000/api',
 });
 
 instance.interceptors.request.use((config) => {
@@ -21,7 +21,7 @@ instance.interceptors.request.use((config) => {
 //https://api.where2go.vip
 //http://localhost:4000
 const uploadInstance = axios.create({
-  baseURL: "http://localhost:4000/api", // Change the base URL if necessary
+  baseURL: 'http://localhost:4000/api', // Change the base URL if necessary
 });
 
 uploadInstance.interceptors.request.use((config) => {

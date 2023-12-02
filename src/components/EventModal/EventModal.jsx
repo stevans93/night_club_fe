@@ -40,19 +40,19 @@ const EventModal = (props) => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-4 sm:flex-1 items-center w-fit">
-                      <div className="flex items-center gap-4">
-                        <IoLocationOutline />
+                    <div className="flex gap-4 sm:flex-1 items-center w-fit">
+                      <IoLocationOutline className="text-primary" size="2rem" />
+                      <div className="flex flex-col gap-2">
                         <span>Tip dogadjaja: </span>
+                        <span>{props.event.type}</span>
                       </div>
-                      <span>{props.event.type}</span>
                     </div>
-                    <div className="flex flex-col gap-4 sm:flex-1 items-center w-fit">
-                      <div className="flex items-center gap-4">
-                        <IoLocationOutline />
+                    <div className="flex gap-4 sm:flex-1 items-center w-fit">
+                      <IoLocationOutline className="text-primary" size="2rem" />
+                      <div className="flex flex-col gap-2">
                         <span>Lokacija: </span>
+                        <span>{props.event.location}</span>
                       </div>
-                      <span>{props.event.location}</span>
                     </div>
                   </div>
                   <div className="flex flex-col w-1/2 items-center self-center lg:mt-10  rounded-3xl lg:py-10 gap-6 lg:absolute lg:bottom-0">

@@ -1,28 +1,27 @@
-import '../../../../../node_modules/rsuite/dist/rsuite.min.css'
+import "../../../../../node_modules/rsuite/dist/rsuite.min.css";
 
-import {Button, Modal} from 'rsuite'
-import {useRef, useState} from 'react'
+import { Button, Modal } from "rsuite";
+import { useRef, useState } from "react";
 
-import ProductsService from '../../../../services/productsService'
+import ProductsService from "../../../../services/productsService";
 
 const AddItemForm = (props) => {
-  const [category, setCategory] = useState('Piće')
+  const [category, setCategory] = useState("Piće");
 
-  const subCategoryInputRef = useRef()
-  const nameInputRef = useRef()
-  const priceInputRef = useRef()
-  const imageInputRef = useRef()
+  const subCategoryInputRef = useRef();
+  const nameInputRef = useRef();
+  const priceInputRef = useRef();
 
-  const [itemImage, setItemImage] = useState(null)
+  const [itemImage, setItemImage] = useState(null);
 
   async function handleChange(e) {
-    setItemImage(e.target.files[0])
+    setItemImage(e.target.files[0]);
   }
 
   const handleSaveForm = async () => {
-    await saveItem()
-    props.handleItemModalClose()
-  }
+    await saveItem();
+    props.handleItemModalClose();
+  };
 
   const saveItem = async () => {
     const item = {
@@ -30,29 +29,28 @@ const AddItemForm = (props) => {
       subCategory: subCategoryInputRef.current.value,
       name: nameInputRef.current.value,
       price: priceInputRef.current.value,
-      image: URL.createObjectURL(itemImage)
-    }
+    };
 
-    const formData = new FormData()
+    const formData = new FormData();
 
-    formData.append('category', category)
-    formData.append('subCategory', subCategoryInputRef.current.value)
-    formData.append('name', nameInputRef.current.value)
-    formData.append('price', priceInputRef.current.value)
-    formData.append('image', itemImage)
+    formData.append("category", category);
+    formData.append("subCategory", subCategoryInputRef.current.value);
+    formData.append("name", nameInputRef.current.value);
+    formData.append("price", priceInputRef.current.value);
+    formData.append("image", itemImage);
 
     try {
-      const response = await ProductsService.addProduct(formData)
+      const response = await ProductsService.addProduct(formData);
 
       if (response) {
-        console.log('Item saved successfully')
+        console.log("Item saved successfully");
       } else {
-        console.log('Failed to save item')
+        console.log("Failed to save item");
       }
     } catch (error) {
-      console.error('An error occurred while saving the item:', error)
+      console.error("An error occurred while saving the item:", error);
     }
-  }
+  };
 
   const renderCategoryOptions = () => {
     return (
@@ -60,24 +58,24 @@ const AddItemForm = (props) => {
         <option value="Piće">Piće</option>
         <option value="Hrana">Hrana</option>
       </>
-    )
-  }
+    );
+  };
 
   const renderSubCategoryOptions = () => {
-    if (category === 'Piće') {
+    if (category === "Piće") {
       return props.drinkCategories.map((category) => (
         <option key={category.name} value={category.name.toLowerCase()}>
           {category.name}
         </option>
-      ))
+      ));
     } else {
       return props.foodCategories.map((category) => (
         <option key={category.name} value={category.name.toLowerCase()}>
           {category.name}
         </option>
-      ))
+      ));
     }
-  }
+  };
 
   return (
     <>
@@ -87,8 +85,11 @@ const AddItemForm = (props) => {
             size="md"
             open={props.isAddItemModalOpen}
             onClose={props.handleItemModalClose}
-            backdrop={props.isAddItemModalOpen}>
-            <Modal.Header className="border-b-2 text-2xl py-2">Dodaj Stavku</Modal.Header>
+            backdrop={props.isAddItemModalOpen}
+          >
+            <Modal.Header className="border-b-2 text-2xl py-2">
+              Dodaj Stavku
+            </Modal.Header>
             <Modal.Body>
               <form className="flex flex-wrap">
                 <div className="w-full flex flex-col">
@@ -100,7 +101,8 @@ const AddItemForm = (props) => {
                     placeholder="Choose Category"
                     id="category"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}>
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
                     {renderCategoryOptions()}
                   </select>
                 </div>
@@ -112,7 +114,8 @@ const AddItemForm = (props) => {
                     className="py-3 px-2 border-2 border-black rounded-lg"
                     placeholder="Choose Subcategory"
                     id="subCategory"
-                    ref={subCategoryInputRef}>
+                    ref={subCategoryInputRef}
+                  >
                     {renderSubCategoryOptions()}
                   </select>
                 </div>
@@ -142,18 +145,6 @@ const AddItemForm = (props) => {
                     />
                   </div>
                 </div>
-                <div className="flex w-full justify-between">
-                  <div className="w-45 flex flex-col">
-                    <label className="mb-2 mt-2" htmlFor="image">
-                      Slika
-                    </label>
-                    <label htmlFor="itemImage" className="py-6 px-16 bg-slate-50 m-auto rounded-lg">
-                      Choose a picture
-                    </label>
-                    <input name="itemImage" id="itemImage" hidden type="file" onChange={handleChange} />
-                    {itemImage ? <img src={URL.createObjectURL(itemImage)} /> : null}
-                  </div>
-                </div>
               </form>
             </Modal.Body>
             <Modal.Footer>
@@ -172,7 +163,7 @@ const AddItemForm = (props) => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AddItemForm
+export default AddItemForm;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "../helpers/auth";
 
 // Base instance with application/json content type
-//https://api.where2go.vip
+//https://api.where2go.vip/api
 //http://localhost:4000
 const instance = axios.create({
   baseURL: 'http://localhost:4000/api',

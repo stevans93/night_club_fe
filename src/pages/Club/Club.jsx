@@ -167,7 +167,7 @@ const Club = () => {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <div className="flex flex-col max-w-screen-xl sm:px-20 xs:px-5 pb-10">
+        <div className="flex flex-col xs:w-full max-w-screen-xl md:px-20 xs:px-5 pb-10">
           <span className="text-primary font-bold mt-6 mb-4">
             Izaberi Događaj
           </span>

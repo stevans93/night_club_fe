@@ -24,6 +24,7 @@ module.exports = {
         h700: "700px",
         h550: "550px",
         h500: "500px",
+        h400: "400px",
         90: "22rem",
       },
       maxWidth: {
